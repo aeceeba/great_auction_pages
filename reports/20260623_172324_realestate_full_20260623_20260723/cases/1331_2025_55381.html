@@ -56,6 +56,9 @@ main {
   gap: 10px;
   margin: 18px 0;
 }
+.audit-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
 .summary-card,
 .guide,
 .candidate-card {
@@ -122,6 +125,40 @@ main {
   margin: 5px 0;
   color: var(--muted);
   font-size: 13px;
+}
+.collection-audit {
+  border-color: #cbd5e1;
+}
+.collection-audit .summary-grid {
+  margin: 10px 0 12px;
+}
+.audit-cache-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.audit-cache-list li {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f8fafc;
+}
+.audit-cache-list strong,
+.audit-cache-list span {
+  display: block;
+}
+.audit-cache-list span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.ok-note {
+  margin: 0;
+  color: var(--good);
+  font-weight: 700;
 }
 .llm-review {
   border-color: #c7d2fe;
@@ -400,6 +437,44 @@ main {
   font-size: 14px;
   overflow-wrap: anywhere;
 }
+.data-health {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 14px;
+}
+.data-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid #d8dde6;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.data-chip.ok {
+  border-color: #99f6e4;
+  background: #ecfdf5;
+  color: var(--good);
+}
+.data-chip.warn {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: var(--wait);
+}
+.data-chip.bad {
+  border-color: #fecaca;
+  background: #fff1f2;
+  color: var(--risk);
+}
+.data-chip.missing {
+  border-color: #e5e7eb;
+  background: #f8fafc;
+  color: #64748b;
+}
 .detail {
   margin-top: 12px;
 }
@@ -559,6 +634,7 @@ main {
 <div class="summary-card"><span>유찰</span><strong>1회</strong><p>직전최저가 6.9억</p></div>
 <div class="summary-card"><span>시세대비</span><strong>-</strong><p>예상차익 -</p></div>
 <div class="summary-card"><span>권장상한</span><strong>-</strong><p>실거래 표본 부족</p></div>
+<div class="summary-card"><span>자료상태</span><strong>확인 5/5</strong><p>미지원 1</p></div>
 </section>
 <section class="guide">
 <h2>경기도 화성시 새솔동 87-4</h2>
@@ -578,6 +654,10 @@ main {
 <div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 1.0억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-06-13입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 7명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 채무자겸소유자 1건, 근저당권자 1건, 가압류권자 1건, 지상권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 채권자 1건, 근저당권자 1건, 가압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (해당 토지를 방문하였으나 소유자나 점유자를 만나지 못함.)</li><li>매각조건 특이사항: 주거나지 상태임.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
 <div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li></ul></div>
 <div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</section>
+<section class="candidate-section">
+<h2>자료 수집 상태</h2>
+<div class="data-health" aria-label="자료상태"><span class="data-chip ok" title="">물건상세 완료</span><span class="data-chip ok" title="">사건상세 완료</span><span class="data-chip ok" title="">현황/점유 완료</span><span class="data-chip ok" title="">인근통계 완료</span><span class="data-chip warn" title="토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요">실거래 미지원</span></div>
 </section>
 <section class="candidate-section">
 <h2>수집 섹션별 조회 정보</h2>
@@ -607,7 +687,7 @@ main {
 가축사육제한구역(전부제한)&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;, 특수지역&lt;산업입지 및 개발에 관한 법률&gt;, 성장관리권역&lt;수도권정비계획법&gt;임.
 특이사항 없음.
 특이사항 없음.
-임대미상임.</span></td></tr><tr><th>건물명</th><td><span class="empty">-</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>x</th><td><span class="structured-scalar">295071</span></td></tr><tr><th>y</th><td><span class="structured-scalar">520744</span></td></tr></tbody></table></div></td></tr><tr><th>지번 주소</th><td><span class="empty">-</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260316</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">광교신청사 제101호</span></td><td><span class="structured-scalar">686826000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260624</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">광교신청사 제101호</span></td><td><span class="structured-scalar">480778000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260701</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">광교신청사 제101호</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">엠OOOOOOOOOOOOOO(OOOOOOOOOOOO)</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">박OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">엠OOOOOOOOOOOOOO(OOOOOOOOOOOOOOOO)</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">신OOOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">화OO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">남OOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">미OOOOOOO</span></td><td><span class="structured-scalar">지상권자</span></td><td><span class="structured-scalar">other</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">엠OOOOOOOOOOOOOO(OOOOOOOOOOOO)</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">엠OOOOOOOOOOOOOO(OOOOOOOOOOOOOOOO)</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">신OOOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250613</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 화성시 새솔동 87-4</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">해당 토지를 방문하였으나 소유자나 점유자를 만나지 못함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">4</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">727429250</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">301860003</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">43</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.5</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">11</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">482077455</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">235496365</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">58</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.9</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">18</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">1134117494</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">652157723</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">60</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="structured-scalar">토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">3</span></td></tr></tbody></table></div></td></tr><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260623_172324_realestate_full_20260623_20260723\1_토지_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">316</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">토지</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">782</span></td></tr><tr><th>part</th><td><span class="structured-scalar">1</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">1~500</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260623 ~ 20260723</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-23 18:54:45</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr></tbody></table></div></td></tr><tr><th> internal cs no</th><td><span class="structured-scalar">20250130055381</span></td></tr><tr><th> detail cache enriched</th><td><span class="structured-scalar">예</span></td></tr></tbody></table></div></td></tr></tbody></table></div>
+임대미상임.</span></td></tr><tr><th>건물명</th><td><span class="empty">-</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>x</th><td><span class="structured-scalar">295071</span></td></tr><tr><th>y</th><td><span class="structured-scalar">520744</span></td></tr></tbody></table></div></td></tr><tr><th>지번 주소</th><td><span class="empty">-</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260316</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">광교신청사 제101호</span></td><td><span class="structured-scalar">686826000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260624</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">광교신청사 제101호</span></td><td><span class="structured-scalar">480778000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260701</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">광교신청사 제101호</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">엠OOOOOOOOOOOOOO(OOOOOOOOOOOO)</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">박OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">엠OOOOOOOOOOOOOO(OOOOOOOOOOOOOOOO)</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">신OOOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">화OO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">남OOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">미OOOOOOO</span></td><td><span class="structured-scalar">지상권자</span></td><td><span class="structured-scalar">other</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">엠OOOOOOOOOOOOOO(OOOOOOOOOOOO)</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">엠OOOOOOOOOOOOOO(OOOOOOOOOOOOOOOO)</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">신OOOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250613</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 화성시 새솔동 87-4</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">해당 토지를 방문하였으나 소유자나 점유자를 만나지 못함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">4</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">727429250</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">301860003</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">43</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.5</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">11</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">482077455</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">235496365</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">58</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.9</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">18</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">1134117494</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">652157723</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">60</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="structured-scalar">토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">3</span></td></tr></tbody></table></div></td></tr><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260623_172324_realestate_full_20260623_20260723\1_토지_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">316</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">토지</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">782</span></td></tr><tr><th>part</th><td><span class="structured-scalar">1</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">1~500</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260623 ~ 20260723</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-23 18:54:45</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr></tbody></table></div></td></tr><tr><th> internal cs no</th><td><span class="structured-scalar">20250130055381</span></td></tr><tr><th> detail cache enriched</th><td><span class="structured-scalar">예</span></td></tr></tbody></table></div></td></tr><tr><th> detail cache status</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>item detail</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>case detail</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>current status</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>nearby stats</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">unsupported</span></td></tr><tr><th>사유</th><td><span class="structured-scalar">토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table></div>
 </section>
 </main>
 </body>
