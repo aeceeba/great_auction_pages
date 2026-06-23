@@ -249,26 +249,62 @@ main {
 .risk-list li.high strong { color: var(--risk); }
 .risk-list li.medium strong { color: var(--wait); }
 .risk-list li.low strong { color: var(--good); }
-.raw-section {
+.structured-section {
   margin: 10px 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
 }
-.raw-section summary {
+.structured-section summary {
   cursor: pointer;
   padding: 12px 14px;
   font-weight: 800;
 }
-.raw-json {
-  margin: 0;
-  padding: 14px;
+.structured-scroll {
+  width: 100%;
   overflow-x: auto;
-  background: #111827;
-  color: #e5e7eb;
-  border-radius: 8px;
-  font-size: 12px;
-  line-height: 1.55;
+}
+.kv-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+.kv-table th,
+.kv-table td,
+.data-table th,
+.data-table td {
+  vertical-align: top;
+  border-top: 1px solid #e7ebf1;
+  padding: 8px 9px;
+  font-size: 13px;
+  text-align: left;
+}
+.kv-table th {
+  width: 178px;
+  min-width: 150px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+.data-table th {
+  color: var(--muted);
+  background: #f2f5f9;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.structured-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.structured-list li {
+  margin: 5px 0;
+}
+.structured-scalar {
+  overflow-wrap: anywhere;
 }
 .empty {
   color: var(--muted);
@@ -293,7 +329,7 @@ main {
 <section class="hero">
 <p>경매 투자 스크리닝</p>
 <h1>투자 검토 필요 리포트</h1>
-<div class="meta">분석 생성 2026-06-22 04:12:58 · 리포트 생성 2026-06-23 14:59:43</div>
+<div class="meta">분석 생성 2026-06-22 04:12:58 · 리포트 생성 2026-06-23 15:09:46</div>
 </section>
 <section class="summary-grid">
 <div class="summary-card"><span>전체</span><strong>9,940건</strong><p>수도권 30일 분석</p></div>

@@ -249,26 +249,62 @@ main {
 .risk-list li.high strong { color: var(--risk); }
 .risk-list li.medium strong { color: var(--wait); }
 .risk-list li.low strong { color: var(--good); }
-.raw-section {
+.structured-section {
   margin: 10px 0;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel);
 }
-.raw-section summary {
+.structured-section summary {
   cursor: pointer;
   padding: 12px 14px;
   font-weight: 800;
 }
-.raw-json {
-  margin: 0;
-  padding: 14px;
+.structured-scroll {
+  width: 100%;
   overflow-x: auto;
-  background: #111827;
-  color: #e5e7eb;
-  border-radius: 8px;
-  font-size: 12px;
-  line-height: 1.55;
+}
+.kv-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+.kv-table th,
+.kv-table td,
+.data-table th,
+.data-table td {
+  vertical-align: top;
+  border-top: 1px solid #e7ebf1;
+  padding: 8px 9px;
+  font-size: 13px;
+  text-align: left;
+}
+.kv-table th {
+  width: 178px;
+  min-width: 150px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+.data-table th {
+  color: var(--muted);
+  background: #f2f5f9;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.structured-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.structured-list li {
+  margin: 5px 0;
+}
+.structured-scalar {
+  overflow-wrap: anywhere;
 }
 .empty {
   color: var(--muted);
@@ -317,833 +353,54 @@ main {
 <div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>수집 실거래 평균은 33,570만원, 최저가는 2.1억입니다. 현재 계산상 최저가는 시세의 62.9%, 예상차익은 58.9%입니다.</li><li>전세가율은 64.7%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
 </section>
 <section class="candidate-section">
-<h2>수집 섹션별 원본</h2>
-<details class="raw-section" open><summary>매각조건/기일</summary><pre class="raw-json">{
-  &quot;case_type&quot;: &quot;부동산임의경매&quot;,
-  &quot;claim_amt&quot;: 405208323,
-  &quot;special_notes&quot;: null,
-  &quot;bid_history&quot;: [
-    {
-      &quot;date&quot;: &quot;20260414&quot;,
-      &quot;time&quot;: &quot;1000&quot;,
-      &quot;place&quot;: &quot;104호 입찰법정&quot;,
-      &quot;min_price&quot;: 330000000,
-      &quot;sold_price&quot;: null,
-      &quot;result&quot;: &quot;002&quot;
-    },
-    {
-      &quot;date&quot;: &quot;20260519&quot;,
-      &quot;time&quot;: &quot;1000&quot;,
-      &quot;place&quot;: &quot;104호 입찰법정&quot;,
-      &quot;min_price&quot;: 264000000,
-      &quot;sold_price&quot;: null,
-      &quot;result&quot;: &quot;002&quot;
-    },
-    {
-      &quot;date&quot;: &quot;20260623&quot;,
-      &quot;time&quot;: &quot;1000&quot;,
-      &quot;place&quot;: &quot;104호 입찰법정&quot;,
-      &quot;min_price&quot;: 211200000,
-      &quot;sold_price&quot;: 0,
-      &quot;result&quot;: null
-    },
-    {
-      &quot;date&quot;: &quot;20260630&quot;,
-      &quot;time&quot;: &quot;1400&quot;,
-      &quot;place&quot;: &quot;104호 입찰법정&quot;,
-      &quot;min_price&quot;: 0,
-      &quot;sold_price&quot;: 0,
-      &quot;result&quot;: null
-    }
-  ],
-  &quot;bid_place&quot;: &quot;104호입찰법정&quot;
-}</pre></details>
-<details class="raw-section" open><summary>현황조사/점유</summary><pre class="raw-json">{
-  &quot;occupancy&quot;: [
-    {
-      &quot;address&quot;: &quot;경기도 의왕시 오전동 841 백합아파트 105동 1층106호&quot;,
-      &quot;possession&quot;: &quot;소유자점유&quot;,
-      &quot;description&quot;: &quot;1.별지 전입세대확인서 및 주민등록표등본상 채무자(소유자) 세대 전입.\r&lt;br /&gt;2.현황조사를 위해 방문하였으나 폐문으로 아무도 만나지 못하여 상세 점유관계 미상(안내문 부착)&lt;br /&gt;&quot;,
-      &quot;tenant_count&quot;: 0
-    }
-  ],
-  &quot;tenants_curr&quot;: []
-}</pre></details>
-<details class="raw-section" open><summary>사건상세/이해관계인</summary><pre class="raw-json">{
-  &quot;stakeholders&quot;: [
-    {
-      &quot;role&quot;: &quot;채권자&quot;,
-      &quot;category&quot;: &quot;creditor&quot;,
-      &quot;name&quot;: &quot;주OOO OOOOOO&quot;
-    },
-    {
-      &quot;role&quot;: &quot;채무자겸소유자&quot;,
-      &quot;category&quot;: &quot;debtor&quot;,
-      &quot;name&quot;: &quot;국OO&quot;
-    },
-    {
-      &quot;role&quot;: &quot;근저당권자&quot;,
-      &quot;category&quot;: &quot;mortgage&quot;,
-      &quot;name&quot;: &quot;주OOO OOOOOO&quot;
-    },
-    {
-      &quot;role&quot;: &quot;가압류권자&quot;,
-      &quot;category&quot;: &quot;provisional_seizure&quot;,
-      &quot;name&quot;: &quot;우OOOOOO OOOO&quot;
-    }
-  ],
-  &quot;tenants&quot;: [],
-  &quot;creditors&quot;: [
-    {
-      &quot;role&quot;: &quot;채권자&quot;,
-      &quot;category&quot;: &quot;creditor&quot;,
-      &quot;name&quot;: &quot;주OOO OOOOOO&quot;
-    },
-    {
-      &quot;role&quot;: &quot;근저당권자&quot;,
-      &quot;category&quot;: &quot;mortgage&quot;,
-      &quot;name&quot;: &quot;주OOO OOOOOO&quot;
-    },
-    {
-      &quot;role&quot;: &quot;가압류권자&quot;,
-      &quot;category&quot;: &quot;provisional_seizure&quot;,
-      &quot;name&quot;: &quot;우OOOOOO OOOO&quot;
-    }
-  ],
-  &quot;demnd_deadline&quot;: &quot;20250829&quot;
-}</pre></details>
-<details class="raw-section" open><summary>감정평가 요약</summary><pre class="raw-json">{
-  &quot;details&quot;: &quot;[집합건물 철근콘크리트조\n49.86㎡]&quot;,
-  &quot;appraisal_points&quot;: &quot;본건은 경기도 의왕시 오전동 소재 &lt;오전초등학교&gt; 북서측 인근에 위치하며, 주위는 근린생활시설, 아파트단지 등이 혼재하는 지역으로 제반 입지여건 및 주위환경은 보통임.\n본건까지 차량진출입 용이하고 인근에 버스정류장이 소재하는 등 대중교통상황은 보통임.\n철근콘크리트조 슬래브지붕 지상16층/지하1층 건물 내 제1층 제106호로서,\r\n( 사용승인일 : 1994.03.29 )\r\n외 벽 : 몰탈위 페인팅 등 마감.\r\n창 호 : 샷시 등 임.\n아파트(거실, 주방, 방3, WC)로 이용중임.\n기본적인 위생 및 급·배수설비, 승강기설비, 도시가스에 의한 난방설비 등 되어 있음.\r\n\r\n\r\n\r\n\n부정형 평지로서, 아파트 건부지로 이용중임.\r\n\n본건 북동측 및 남동측으로 중로에 접함.\n제3종일반주거지역, 제1종지구단위계획구역, 중로2류(접합), 중로2류(집산도로)(접합), 가축사육제한구역, 상대보호구역, 대기관리권역, 대기환경규제지역, 교통기타용도지역지구미분류, 도시교통정비지역, 과밀억제지역, 생활소음진동관리지역, 과밀억제권역, 택지개발지구, 배수구역(고천배수구역), 하수처리구역(고천처리구역), (한강)폐기물매립시설 설치제한지역, 중점경관관리구역임.\n없음.\n미상임.&quot;,
-  &quot;building_name&quot;: &quot;백합아파트&quot;,
-  &quot;lot_addresses&quot;: [
-    &quot;경기도 의왕시 오전로 179 (오전동,백합아파트)&quot;
-  ],
-  &quot;coordinates&quot;: {
-    &quot;x&quot;: 308902,
-    &quot;y&quot;: 528733
-  }
-}</pre></details>
-<details class="raw-section" open><summary>가격 근거</summary><pre class="raw-json">{
-  &quot;nearby_auction_stats&quot;: {
-    &quot;3m&quot;: {
-      &quot;매각건수&quot;: 5,
-      &quot;평균감정가&quot;: 840800000,
-      &quot;평균매각가&quot;: 768009399,
-      &quot;매각가율&quot;: 91,
-      &quot;평균유찰횟수&quot;: 1
-    },
-    &quot;6m&quot;: {
-      &quot;매각건수&quot;: 13,
-      &quot;평균감정가&quot;: 652846154,
-      &quot;평균매각가&quot;: 591855307,
-      &quot;매각가율&quot;: 90,
-      &quot;평균유찰횟수&quot;: 1
-    },
-    &quot;12m&quot;: {
-      &quot;매각건수&quot;: 28,
-      &quot;평균감정가&quot;: 679321429,
-      &quot;평균매각가&quot;: 615265002,
-      &quot;매각가율&quot;: 91,
-      &quot;평균유찰횟수&quot;: 1
-    }
-  },
-  &quot;real_price&quot;: {
-    &quot;matched_apt&quot;: &quot;&quot;,
-    &quot;matched_area&quot;: 49.86,
-    &quot;match_strategy&quot;: &quot;area_fallback&quot;,
-    &quot;fallback_from_apt&quot;: &quot;백합아파트&quot;,
-    &quot;trade&quot;: [
-      {
-        &quot;price&quot;: &quot;30000&quot;,
-        &quot;date&quot;: &quot;2026-06-10&quot;,
-        &quot;floor&quot;: &quot;3&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;price&quot;: &quot;33700&quot;,
-        &quot;date&quot;: &quot;2026-06-02&quot;,
-        &quot;floor&quot;: &quot;12&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;price&quot;: &quot;31000&quot;,
-        &quot;date&quot;: &quot;2026-06-01&quot;,
-        &quot;floor&quot;: &quot;8&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;price&quot;: &quot;36000&quot;,
-        &quot;date&quot;: &quot;2026-05-23&quot;,
-        &quot;floor&quot;: &quot;10&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;price&quot;: &quot;40000&quot;,
-        &quot;date&quot;: &quot;2026-05-15&quot;,
-        &quot;floor&quot;: &quot;21&quot;,
-        &quot;area&quot;: 50.2672
-      },
-      {
-        &quot;price&quot;: &quot;34500&quot;,
-        &quot;date&quot;: &quot;2026-05-15&quot;,
-        &quot;floor&quot;: &quot;15&quot;,
-        &quot;area&quot;: 49.77
-      },
-      {
-        &quot;price&quot;: &quot;31500&quot;,
-        &quot;date&quot;: &quot;2026-05-12&quot;,
-        &quot;floor&quot;: &quot;9&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;price&quot;: &quot;28500&quot;,
-        &quot;date&quot;: &quot;2026-05-01&quot;,
-        &quot;floor&quot;: &quot;10&quot;,
-        &quot;area&quot;: 49.8
-      },
-      {
-        &quot;price&quot;: &quot;23500&quot;,
-        &quot;date&quot;: &quot;2026-05-07&quot;,
-        &quot;floor&quot;: &quot;15&quot;,
-        &quot;area&quot;: 48.63
-      },
-      {
-        &quot;price&quot;: &quot;47000&quot;,
-        &quot;date&quot;: &quot;2026-05-07&quot;,
-        &quot;floor&quot;: &quot;11&quot;,
-        &quot;area&quot;: 50.2672
-      }
-    ],
-    &quot;jeonse&quot;: [
-      {
-        &quot;deposit&quot;: &quot;17000&quot;,
-        &quot;date&quot;: &quot;2026-06-18&quot;,
-        &quot;floor&quot;: &quot;12&quot;,
-        &quot;area&quot;: 49.947
-      },
-      {
-        &quot;deposit&quot;: &quot;17800&quot;,
-        &quot;date&quot;: &quot;2026-06-05&quot;,
-        &quot;floor&quot;: &quot;7&quot;,
-        &quot;area&quot;: 49.947
-      },
-      {
-        &quot;deposit&quot;: &quot;23000&quot;,
-        &quot;date&quot;: &quot;2026-06-13&quot;,
-        &quot;floor&quot;: &quot;4&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;deposit&quot;: &quot;22000&quot;,
-        &quot;date&quot;: &quot;2026-06-13&quot;,
-        &quot;floor&quot;: &quot;1&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;deposit&quot;: &quot;22500&quot;,
-        &quot;date&quot;: &quot;2026-06-13&quot;,
-        &quot;floor&quot;: &quot;18&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;deposit&quot;: &quot;38000&quot;,
-        &quot;date&quot;: &quot;2026-06-13&quot;,
-        &quot;floor&quot;: &quot;19&quot;,
-        &quot;area&quot;: 50.2672
-      },
-      {
-        &quot;deposit&quot;: &quot;23000&quot;,
-        &quot;date&quot;: &quot;2026-06-12&quot;,
-        &quot;floor&quot;: &quot;6&quot;,
-        &quot;area&quot;: 49.947
-      },
-      {
-        &quot;deposit&quot;: &quot;24000&quot;,
-        &quot;date&quot;: &quot;2026-06-04&quot;,
-        &quot;floor&quot;: &quot;15&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;deposit&quot;: &quot;15000&quot;,
-        &quot;date&quot;: &quot;2026-05-05&quot;,
-        &quot;floor&quot;: &quot;2&quot;,
-        &quot;area&quot;: 48.7
-      },
-      {
-        &quot;deposit&quot;: &quot;15000&quot;,
-        &quot;date&quot;: &quot;2026-05-20&quot;,
-        &quot;floor&quot;: &quot;1&quot;,
-        &quot;area&quot;: 45.27
-      }
-    ],
-    &quot;monthly_rent&quot;: [
-      {
-        &quot;deposit&quot;: &quot;5740&quot;,
-        &quot;monthly_rent&quot;: &quot;27&quot;,
-        &quot;date&quot;: &quot;2026-06-08&quot;,
-        &quot;floor&quot;: &quot;7&quot;,
-        &quot;area&quot;: 51.92
-      },
-      {
-        &quot;deposit&quot;: &quot;3000&quot;,
-        &quot;monthly_rent&quot;: &quot;90&quot;,
-        &quot;date&quot;: &quot;2026-06-09&quot;,
-        &quot;floor&quot;: &quot;8&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;deposit&quot;: &quot;6071&quot;,
-        &quot;monthly_rent&quot;: &quot;13&quot;,
-        &quot;date&quot;: &quot;2026-06-05&quot;,
-        &quot;floor&quot;: &quot;4&quot;,
-        &quot;area&quot;: 51.92
-      },
-      {
-        &quot;deposit&quot;: &quot;4903&quot;,
-        &quot;monthly_rent&quot;: &quot;33&quot;,
-        &quot;date&quot;: &quot;2026-06-04&quot;,
-        &quot;floor&quot;: &quot;9&quot;,
-        &quot;area&quot;: 46.94
-      },
-      {
-        &quot;deposit&quot;: &quot;4978&quot;,
-        &quot;monthly_rent&quot;: &quot;13&quot;,
-        &quot;date&quot;: &quot;2026-06-01&quot;,
-        &quot;floor&quot;: &quot;3&quot;,
-        &quot;area&quot;: 51.49
-      },
-      {
-        &quot;deposit&quot;: &quot;4501&quot;,
-        &quot;monthly_rent&quot;: &quot;31&quot;,
-        &quot;date&quot;: &quot;2026-06-01&quot;,
-        &quot;floor&quot;: &quot;1&quot;,
-        &quot;area&quot;: 51.97
-      },
-      {
-        &quot;deposit&quot;: &quot;1500&quot;,
-        &quot;monthly_rent&quot;: &quot;70&quot;,
-        &quot;date&quot;: &quot;2026-05-11&quot;,
-        &quot;floor&quot;: &quot;8&quot;,
-        &quot;area&quot;: 49.947
-      },
-      {
-        &quot;deposit&quot;: &quot;1500&quot;,
-        &quot;monthly_rent&quot;: &quot;100&quot;,
-        &quot;date&quot;: &quot;2026-05-30&quot;,
-        &quot;floor&quot;: &quot;10&quot;,
-        &quot;area&quot;: 49.5
-      },
-      {
-        &quot;deposit&quot;: &quot;12000&quot;,
-        &quot;monthly_rent&quot;: &quot;100&quot;,
-        &quot;date&quot;: &quot;2026-05-30&quot;,
-        &quot;floor&quot;: &quot;10&quot;,
-        &quot;area&quot;: 50.2855
-      },
-      {
-        &quot;deposit&quot;: &quot;1000&quot;,
-        &quot;monthly_rent&quot;: &quot;70&quot;,
-        &quot;date&quot;: &quot;2026-05-26&quot;,
-        &quot;floor&quot;: &quot;5&quot;,
-        &quot;area&quot;: 49.947
-      }
-    ]
-  },
-  &quot;real_price_note&quot;: null,
-  &quot;analysis&quot;: {
-    &quot;bid_rate_pct&quot;: 64.0,
-    &quot;avg_trade_manwon&quot;: 33570,
-    &quot;bid_vs_market_pct&quot;: 62.9,
-    &quot;est_gain_pct&quot;: 58.9,
-    &quot;avg_jeonse_manwon&quot;: 21730,
-    &quot;jeonse_rate_pct&quot;: 64.7,
-    &quot;tenant_count&quot;: 0,
-    &quot;creditor_count&quot;: 3
-  }
-}</pre></details>
-<details class="raw-section" open><summary>수집 메타</summary><pre class="raw-json">{
-  &quot;_source_file&quot;: &quot;C:\\Users\\lsyko\\Documents\\git\\great_auction\\outputs\\20260622_011024_realestate_30d\\2_아파트_서울_인천_경기_20260622_20260722_20260622_0412.json&quot;,
-  &quot;_source_index&quot;: 238,
-  &quot;_source_metadata&quot;: {
-    &quot;type&quot;: &quot;아파트&quot;,
-    &quot;total_collected&quot;: 971,
-    &quot;part&quot;: 2,
-    &quot;total_parts&quot;: 2,
-    &quot;part_range&quot;: &quot;501~971&quot;,
-    &quot;region&quot;: &quot;서울특별시, 인천광역시, 경기도&quot;,
-    &quot;date_range&quot;: &quot;20260622 ~ 20260722&quot;,
-    &quot;fetch_date&quot;: &quot;2026-06-22 04:12:52&quot;,
-    &quot;target_profile&quot;: &quot;all-realestate&quot;,
-    &quot;collection_audit_status&quot;: &quot;degraded&quot;,
-    &quot;collection_audit_file&quot;: &quot;collection_audit_서울_인천_경기_20260622_20260722_20260622_0412.json&quot;
-  }
-}</pre></details>
+<h2>수집 섹션별 조회 정보</h2>
+<details class="structured-section" open><summary>매각조건/기일</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">405208323</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="empty">-</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260414</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">104호 입찰법정</span></td><td><span class="structured-scalar">330000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260519</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">104호 입찰법정</span></td><td><span class="structured-scalar">264000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260623</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">104호 입찰법정</span></td><td><span class="structured-scalar">211200000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260630</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">104호 입찰법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">104호입찰법정</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>현황조사/점유</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 의왕시 오전동 841 백합아파트 105동 1층106호</span></td><td><span class="structured-scalar">소유자점유</span></td><td><span class="structured-scalar">1.별지 전입세대확인서 및 주민등록표등본상 채무자(소유자) 세대 전입.&lt;br /&gt;2.현황조사를 위해 방문하였으나 폐문으로 아무도 만나지 못하여 상세 점유관계 미상(안내문 부착)&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>사건상세/이해관계인</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">주OOO OOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">국OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">우OOOOOO OOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">주OOO OOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">우OOOOOO OOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250829</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>감정평가 요약</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[집합건물 철근콘크리트조
+49.86㎡]</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 의왕시 오전동 소재 &lt;오전초등학교&gt; 북서측 인근에 위치하며, 주위는 근린생활시설, 아파트단지 등이 혼재하는 지역으로 제반 입지여건 및 주위환경은 보통임.
+본건까지 차량진출입 용이하고 인근에 버스정류장이 소재하는 등 대중교통상황은 보통임.
+철근콘크리트조 슬래브지붕 지상16층/지하1층 건물 내 제1층 제106호로서,
+( 사용승인일 : 1994.03.29 )
+외 벽 : 몰탈위 페인팅 등 마감.
+창 호 : 샷시 등 임.
+아파트(거실, 주방, 방3, WC)로 이용중임.
+기본적인 위생 및 급·배수설비, 승강기설비, 도시가스에 의한 난방설비 등 되어 있음.
+
+
+
+
+부정형 평지로서, 아파트 건부지로 이용중임.
+
+본건 북동측 및 남동측으로 중로에 접함.
+제3종일반주거지역, 제1종지구단위계획구역, 중로2류(접합), 중로2류(집산도로)(접합), 가축사육제한구역, 상대보호구역, 대기관리권역, 대기환경규제지역, 교통기타용도지역지구미분류, 도시교통정비지역, 과밀억제지역, 생활소음진동관리지역, 과밀억제권역, 택지개발지구, 배수구역(고천배수구역), 하수처리구역(고천처리구역), (한강)폐기물매립시설 설치제한지역, 중점경관관리구역임.
+없음.
+미상임.</span></td></tr><tr><th>건물명</th><td><span class="structured-scalar">백합아파트</span></td></tr><tr><th>지번 주소</th><td><ul class="structured-list"><li><span class="structured-scalar">경기도 의왕시 오전로 179 (오전동,백합아파트)</span></li></ul></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>x</th><td><span class="structured-scalar">308902</span></td></tr><tr><th>y</th><td><span class="structured-scalar">528733</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>가격 근거</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">5</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">840800000</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">768009399</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">91</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">13</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">652846154</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">591855307</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">90</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">28</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">679321429</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">615265002</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">91</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>매칭 단지</th><td><span class="empty">-</span></td></tr><tr><th>매칭 면적</th><td><span class="structured-scalar">49.86</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">area_fallback</span></td></tr><tr><th>보조 기준 단지</th><td><span class="structured-scalar">백합아파트</span></td></tr><tr><th>매매 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>매매가</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-10</span></td><td><span class="structured-scalar">30000</span></td><td><span class="structured-scalar">3</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-02</span></td><td><span class="structured-scalar">33700</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">31000</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-23</span></td><td><span class="structured-scalar">36000</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-15</span></td><td><span class="structured-scalar">40000</span></td><td><span class="structured-scalar">21</span></td><td><span class="structured-scalar">50.2672</span></td></tr><tr><td><span class="structured-scalar">2026-05-15</span></td><td><span class="structured-scalar">34500</span></td><td><span class="structured-scalar">15</span></td><td><span class="structured-scalar">49.77</span></td></tr><tr><td><span class="structured-scalar">2026-05-12</span></td><td><span class="structured-scalar">31500</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-01</span></td><td><span class="structured-scalar">28500</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">49.8</span></td></tr><tr><td><span class="structured-scalar">2026-05-07</span></td><td><span class="structured-scalar">23500</span></td><td><span class="structured-scalar">15</span></td><td><span class="structured-scalar">48.63</span></td></tr><tr><td><span class="structured-scalar">2026-05-07</span></td><td><span class="structured-scalar">47000</span></td><td><span class="structured-scalar">11</span></td><td><span class="structured-scalar">50.2672</span></td></tr></tbody></table></div></td></tr><tr><th>전세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-18</span></td><td><span class="structured-scalar">17000</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">49.947</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">17800</span></td><td><span class="structured-scalar">7</span></td><td><span class="structured-scalar">49.947</span></td></tr><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">23000</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">22000</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">22500</span></td><td><span class="structured-scalar">18</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">38000</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">50.2672</span></td></tr><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">23000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">49.947</span></td></tr><tr><td><span class="structured-scalar">2026-06-04</span></td><td><span class="structured-scalar">24000</span></td><td><span class="structured-scalar">15</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-05</span></td><td><span class="structured-scalar">15000</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">48.7</span></td></tr><tr><td><span class="structured-scalar">2026-05-20</span></td><td><span class="structured-scalar">15000</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">45.27</span></td></tr></tbody></table></div></td></tr><tr><th>월세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>월세 거래</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-08</span></td><td><span class="structured-scalar">5740</span></td><td><span class="structured-scalar">27</span></td><td><span class="structured-scalar">7</span></td><td><span class="structured-scalar">51.92</span></td></tr><tr><td><span class="structured-scalar">2026-06-09</span></td><td><span class="structured-scalar">3000</span></td><td><span class="structured-scalar">90</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">6071</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">51.92</span></td></tr><tr><td><span class="structured-scalar">2026-06-04</span></td><td><span class="structured-scalar">4903</span></td><td><span class="structured-scalar">33</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">46.94</span></td></tr><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">4978</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">3</span></td><td><span class="structured-scalar">51.49</span></td></tr><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">4501</span></td><td><span class="structured-scalar">31</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">51.97</span></td></tr><tr><td><span class="structured-scalar">2026-05-11</span></td><td><span class="structured-scalar">1500</span></td><td><span class="structured-scalar">70</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">49.947</span></td></tr><tr><td><span class="structured-scalar">2026-05-30</span></td><td><span class="structured-scalar">1500</span></td><td><span class="structured-scalar">100</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-30</span></td><td><span class="structured-scalar">12000</span></td><td><span class="structured-scalar">100</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">50.2855</span></td></tr><tr><td><span class="structured-scalar">2026-05-26</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">70</span></td><td><span class="structured-scalar">5</span></td><td><span class="structured-scalar">49.947</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">64.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">33570</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">62.9</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">58.9</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">21730</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">64.7</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">3</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>수집 메타</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260622_011024_realestate_30d\2_아파트_서울_인천_경기_20260622_20260722_20260622_0412.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">238</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">971</span></td></tr><tr><th>part</th><td><span class="structured-scalar">2</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">501~971</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260622 ~ 20260722</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-22 04:12:52</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260622_20260722_20260622_0412.json</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
 </section>
 <section class="candidate-section">
-<h2>전체 원본 JSON</h2>
-<p class="empty">아래 JSON은 분석 item 전체입니다. 요약하지 않고 저장된 값을 그대로 표시합니다.</p>
-<pre class="raw-json">{
-  &quot;score&quot;: 77.0,
-  &quot;grade&quot;: &quot;C&quot;,
-  &quot;decision&quot;: &quot;권리 리스크 해소 전 보류&quot;,
-  &quot;breakdown&quot;: {
-    &quot;market_margin&quot;: 35.0,
-    &quot;auction_discount&quot;: 14.0,
-    &quot;rent_support&quot;: 10.0,
-    &quot;liquidity&quot;: 10.0,
-    &quot;risk_control&quot;: 3.0,
-    &quot;data_confidence&quot;: 5.0
-  },
-  &quot;normalized&quot;: {
-    &quot;id&quot;: &quot;2025타경101127&quot;,
-    &quot;court&quot;: &quot;안양지원&quot;,
-    &quot;type&quot;: &quot;아파트&quot;,
-    &quot;asset_category&quot;: &quot;residential&quot;,
-    &quot;investment_strategy&quot;: &quot;liquid-resale-or-rental-support&quot;,
-    &quot;market_data_support&quot;: &quot;residential_trade_and_rent&quot;,
-    &quot;requires_manual_comps&quot;: false,
-    &quot;special_asset_review&quot;: false,
-    &quot;category_target_discount_pct&quot;: null,
-    &quot;address&quot;: &quot;경기도 의왕시 오전동 841 백합아파트 105동 1층106호&quot;,
-    &quot;bid_date&quot;: &quot;20260623&quot;,
-    &quot;min_bid_won&quot;: 211200000,
-    &quot;appraisal_won&quot;: 330000000,
-    &quot;min_bid_manwon&quot;: 21120.0,
-    &quot;appraisal_manwon&quot;: 33000.0,
-    &quot;avg_trade_manwon&quot;: 33570.0,
-    &quot;avg_jeonse_manwon&quot;: 21730.0,
-    &quot;bid_rate_pct&quot;: 64.0,
-    &quot;bid_vs_market_pct&quot;: 62.9,
-    &quot;market_discount_pct&quot;: 37.1,
-    &quot;est_gain_pct&quot;: 58.9,
-    &quot;jeonse_rate_pct&quot;: 64.7,
-    &quot;trade_count&quot;: 10,
-    &quot;jeonse_count&quot;: 10,
-    &quot;monthly_rent_count&quot;: 10,
-    &quot;comp_match_quality&quot;: &quot;area_only_match&quot;,
-    &quot;comp_match_name&quot;: null,
-    &quot;comp_match_area_sqm&quot;: 49.86,
-    &quot;comp_match_strategy&quot;: &quot;area_fallback&quot;,
-    &quot;comp_match_fallback_from&quot;: &quot;백합아파트&quot;,
-    &quot;comp_match_note&quot;: &quot;Exact complex name produced no trades; area-based fallback was used from 백합아파트.&quot;,
-    &quot;nearby_3m_count&quot;: 5.0,
-    &quot;nearby_6m_count&quot;: 13.0,
-    &quot;nearby_12m_count&quot;: 28.0,
-    &quot;nearby_3m_sale_rate_pct&quot;: 91.0,
-    &quot;nearby_6m_sale_rate_pct&quot;: 90.0,
-    &quot;nearby_12m_sale_rate_pct&quot;: 91.0,
-    &quot;nearby_12m_avg_fail_count&quot;: 1.0,
-    &quot;fail_count&quot;: 2,
-    &quot;tenant_count&quot;: 0,
-    &quot;current_tenant_count&quot;: 0,
-    &quot;creditor_count&quot;: 3,
-    &quot;real_price_note&quot;: null,
-    &quot;screening_bucket&quot;: &quot;legal_review&quot;,
-    &quot;buffered_gain_pct&quot;: null,
-    &quot;suggested_max_bid_won&quot;: null,
-    &quot;suggested_max_bid_note&quot;: &quot;high risk 또는 임차인 리스크 해소 전 입찰가 산정 보류&quot;
-  },
-  &quot;risk_flags&quot;: [
-    {
-      &quot;severity&quot;: &quot;high&quot;,
-      &quot;keyword&quot;: &quot;폐기물&quot;,
-      &quot;reason&quot;: &quot;waste/environmental risk&quot;
-    },
-    {
-      &quot;severity&quot;: &quot;medium&quot;,
-      &quot;keyword&quot;: &quot;전입&quot;,
-      &quot;reason&quot;: &quot;resident registration&quot;
-    },
-    {
-      &quot;severity&quot;: &quot;medium&quot;,
-      &quot;keyword&quot;: &quot;점유&quot;,
-      &quot;reason&quot;: &quot;occupancy&quot;
-    },
-    {
-      &quot;severity&quot;: &quot;medium&quot;,
-      &quot;keyword&quot;: &quot;폐문&quot;,
-      &quot;reason&quot;: &quot;closed-door survey&quot;
-    },
-    {
-      &quot;severity&quot;: &quot;low&quot;,
-      &quot;keyword&quot;: &quot;comp_match_quality&quot;,
-      &quot;reason&quot;: &quot;comparable trade match needs manual verification&quot;
-    }
-  ],
-  &quot;opportunity_flags&quot;: [
-    &quot;학교: school nearby&quot;,
-    &quot;버스: bus access&quot;
-  ],
-  &quot;due_diligence&quot;: [
-    &quot;매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.&quot;,
-    &quot;등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.&quot;,
-    &quot;입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.&quot;,
-    &quot;high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.&quot;,
-    &quot;실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.&quot;,
-    &quot;관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.&quot;
-  ],
-  &quot;codex_brief&quot;: &quot;2025타경101127 아파트 [residential/liquid-resale-or-rental-support] / 경기도 의왕시 오전동 841 백합아파트 105동 1층106호 | score=77.0(C, 권리 리스크 해소 전 보류) | min_bid=2.1억, appraisal=3.3억, avg_trade=3.4억, bid_vs_market=62.9%, est_gain=58.9%, jeonse_rate=64.7% | risks=[high:폐기물, medium:전입, medium:점유, medium:폐문, low:comp_match_quality] | opportunities=[학교: school nearby, 버스: bus access]&quot;,
-  &quot;case&quot;: {
-    &quot;id&quot;: &quot;2025타경101127&quot;,
-    &quot;court&quot;: &quot;안양지원&quot;,
-    &quot;type&quot;: &quot;아파트&quot;,
-    &quot;address&quot;: &quot;경기도 의왕시 오전동 841 백합아파트 105동 1층106호&quot;,
-    &quot;details&quot;: &quot;[집합건물 철근콘크리트조\n49.86㎡]&quot;,
-    &quot;appraisal_amt&quot;: &quot;330000000&quot;,
-    &quot;min_bid_price&quot;: &quot;211200000&quot;,
-    &quot;bid_date&quot;: &quot;20260623&quot;,
-    &quot;bid_place&quot;: &quot;104호입찰법정&quot;,
-    &quot;fail_count&quot;: &quot;2&quot;,
-    &quot;case_type&quot;: &quot;부동산임의경매&quot;,
-    &quot;claim_amt&quot;: 405208323,
-    &quot;special_notes&quot;: null,
-    &quot;appraisal_points&quot;: &quot;본건은 경기도 의왕시 오전동 소재 &lt;오전초등학교&gt; 북서측 인근에 위치하며, 주위는 근린생활시설, 아파트단지 등이 혼재하는 지역으로 제반 입지여건 및 주위환경은 보통임.\n본건까지 차량진출입 용이하고 인근에 버스정류장이 소재하는 등 대중교통상황은 보통임.\n철근콘크리트조 슬래브지붕 지상16층/지하1층 건물 내 제1층 제106호로서,\r\n( 사용승인일 : 1994.03.29 )\r\n외 벽 : 몰탈위 페인팅 등 마감.\r\n창 호 : 샷시 등 임.\n아파트(거실, 주방, 방3, WC)로 이용중임.\n기본적인 위생 및 급·배수설비, 승강기설비, 도시가스에 의한 난방설비 등 되어 있음.\r\n\r\n\r\n\r\n\n부정형 평지로서, 아파트 건부지로 이용중임.\r\n\n본건 북동측 및 남동측으로 중로에 접함.\n제3종일반주거지역, 제1종지구단위계획구역, 중로2류(접합), 중로2류(집산도로)(접합), 가축사육제한구역, 상대보호구역, 대기관리권역, 대기환경규제지역, 교통기타용도지역지구미분류, 도시교통정비지역, 과밀억제지역, 생활소음진동관리지역, 과밀억제권역, 택지개발지구, 배수구역(고천배수구역), 하수처리구역(고천처리구역), (한강)폐기물매립시설 설치제한지역, 중점경관관리구역임.\n없음.\n미상임.&quot;,
-    &quot;building_name&quot;: &quot;백합아파트&quot;,
-    &quot;coordinates&quot;: {
-      &quot;x&quot;: 308902,
-      &quot;y&quot;: 528733
-    },
-    &quot;lot_addresses&quot;: [
-      &quot;경기도 의왕시 오전로 179 (오전동,백합아파트)&quot;
-    ],
-    &quot;bid_history&quot;: [
-      {
-        &quot;date&quot;: &quot;20260414&quot;,
-        &quot;time&quot;: &quot;1000&quot;,
-        &quot;place&quot;: &quot;104호 입찰법정&quot;,
-        &quot;min_price&quot;: 330000000,
-        &quot;sold_price&quot;: null,
-        &quot;result&quot;: &quot;002&quot;
-      },
-      {
-        &quot;date&quot;: &quot;20260519&quot;,
-        &quot;time&quot;: &quot;1000&quot;,
-        &quot;place&quot;: &quot;104호 입찰법정&quot;,
-        &quot;min_price&quot;: 264000000,
-        &quot;sold_price&quot;: null,
-        &quot;result&quot;: &quot;002&quot;
-      },
-      {
-        &quot;date&quot;: &quot;20260623&quot;,
-        &quot;time&quot;: &quot;1000&quot;,
-        &quot;place&quot;: &quot;104호 입찰법정&quot;,
-        &quot;min_price&quot;: 211200000,
-        &quot;sold_price&quot;: 0,
-        &quot;result&quot;: null
-      },
-      {
-        &quot;date&quot;: &quot;20260630&quot;,
-        &quot;time&quot;: &quot;1400&quot;,
-        &quot;place&quot;: &quot;104호 입찰법정&quot;,
-        &quot;min_price&quot;: 0,
-        &quot;sold_price&quot;: 0,
-        &quot;result&quot;: null
-      }
-    ],
-    &quot;stakeholders&quot;: [
-      {
-        &quot;role&quot;: &quot;채권자&quot;,
-        &quot;category&quot;: &quot;creditor&quot;,
-        &quot;name&quot;: &quot;주OOO OOOOOO&quot;
-      },
-      {
-        &quot;role&quot;: &quot;채무자겸소유자&quot;,
-        &quot;category&quot;: &quot;debtor&quot;,
-        &quot;name&quot;: &quot;국OO&quot;
-      },
-      {
-        &quot;role&quot;: &quot;근저당권자&quot;,
-        &quot;category&quot;: &quot;mortgage&quot;,
-        &quot;name&quot;: &quot;주OOO OOOOOO&quot;
-      },
-      {
-        &quot;role&quot;: &quot;가압류권자&quot;,
-        &quot;category&quot;: &quot;provisional_seizure&quot;,
-        &quot;name&quot;: &quot;우OOOOOO OOOO&quot;
-      }
-    ],
-    &quot;tenants&quot;: [],
-    &quot;creditors&quot;: [
-      {
-        &quot;role&quot;: &quot;채권자&quot;,
-        &quot;category&quot;: &quot;creditor&quot;,
-        &quot;name&quot;: &quot;주OOO OOOOOO&quot;
-      },
-      {
-        &quot;role&quot;: &quot;근저당권자&quot;,
-        &quot;category&quot;: &quot;mortgage&quot;,
-        &quot;name&quot;: &quot;주OOO OOOOOO&quot;
-      },
-      {
-        &quot;role&quot;: &quot;가압류권자&quot;,
-        &quot;category&quot;: &quot;provisional_seizure&quot;,
-        &quot;name&quot;: &quot;우OOOOOO OOOO&quot;
-      }
-    ],
-    &quot;demnd_deadline&quot;: &quot;20250829&quot;,
-    &quot;occupancy&quot;: [
-      {
-        &quot;address&quot;: &quot;경기도 의왕시 오전동 841 백합아파트 105동 1층106호&quot;,
-        &quot;possession&quot;: &quot;소유자점유&quot;,
-        &quot;description&quot;: &quot;1.별지 전입세대확인서 및 주민등록표등본상 채무자(소유자) 세대 전입.\r&lt;br /&gt;2.현황조사를 위해 방문하였으나 폐문으로 아무도 만나지 못하여 상세 점유관계 미상(안내문 부착)&lt;br /&gt;&quot;,
-        &quot;tenant_count&quot;: 0
-      }
-    ],
-    &quot;tenants_curr&quot;: [],
-    &quot;nearby_auction_stats&quot;: {
-      &quot;3m&quot;: {
-        &quot;매각건수&quot;: 5,
-        &quot;평균감정가&quot;: 840800000,
-        &quot;평균매각가&quot;: 768009399,
-        &quot;매각가율&quot;: 91,
-        &quot;평균유찰횟수&quot;: 1
-      },
-      &quot;6m&quot;: {
-        &quot;매각건수&quot;: 13,
-        &quot;평균감정가&quot;: 652846154,
-        &quot;평균매각가&quot;: 591855307,
-        &quot;매각가율&quot;: 90,
-        &quot;평균유찰횟수&quot;: 1
-      },
-      &quot;12m&quot;: {
-        &quot;매각건수&quot;: 28,
-        &quot;평균감정가&quot;: 679321429,
-        &quot;평균매각가&quot;: 615265002,
-        &quot;매각가율&quot;: 91,
-        &quot;평균유찰횟수&quot;: 1
-      }
-    },
-    &quot;real_price&quot;: {
-      &quot;matched_apt&quot;: &quot;&quot;,
-      &quot;matched_area&quot;: 49.86,
-      &quot;match_strategy&quot;: &quot;area_fallback&quot;,
-      &quot;fallback_from_apt&quot;: &quot;백합아파트&quot;,
-      &quot;trade&quot;: [
-        {
-          &quot;price&quot;: &quot;30000&quot;,
-          &quot;date&quot;: &quot;2026-06-10&quot;,
-          &quot;floor&quot;: &quot;3&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;price&quot;: &quot;33700&quot;,
-          &quot;date&quot;: &quot;2026-06-02&quot;,
-          &quot;floor&quot;: &quot;12&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;price&quot;: &quot;31000&quot;,
-          &quot;date&quot;: &quot;2026-06-01&quot;,
-          &quot;floor&quot;: &quot;8&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;price&quot;: &quot;36000&quot;,
-          &quot;date&quot;: &quot;2026-05-23&quot;,
-          &quot;floor&quot;: &quot;10&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;price&quot;: &quot;40000&quot;,
-          &quot;date&quot;: &quot;2026-05-15&quot;,
-          &quot;floor&quot;: &quot;21&quot;,
-          &quot;area&quot;: 50.2672
-        },
-        {
-          &quot;price&quot;: &quot;34500&quot;,
-          &quot;date&quot;: &quot;2026-05-15&quot;,
-          &quot;floor&quot;: &quot;15&quot;,
-          &quot;area&quot;: 49.77
-        },
-        {
-          &quot;price&quot;: &quot;31500&quot;,
-          &quot;date&quot;: &quot;2026-05-12&quot;,
-          &quot;floor&quot;: &quot;9&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;price&quot;: &quot;28500&quot;,
-          &quot;date&quot;: &quot;2026-05-01&quot;,
-          &quot;floor&quot;: &quot;10&quot;,
-          &quot;area&quot;: 49.8
-        },
-        {
-          &quot;price&quot;: &quot;23500&quot;,
-          &quot;date&quot;: &quot;2026-05-07&quot;,
-          &quot;floor&quot;: &quot;15&quot;,
-          &quot;area&quot;: 48.63
-        },
-        {
-          &quot;price&quot;: &quot;47000&quot;,
-          &quot;date&quot;: &quot;2026-05-07&quot;,
-          &quot;floor&quot;: &quot;11&quot;,
-          &quot;area&quot;: 50.2672
-        }
-      ],
-      &quot;jeonse&quot;: [
-        {
-          &quot;deposit&quot;: &quot;17000&quot;,
-          &quot;date&quot;: &quot;2026-06-18&quot;,
-          &quot;floor&quot;: &quot;12&quot;,
-          &quot;area&quot;: 49.947
-        },
-        {
-          &quot;deposit&quot;: &quot;17800&quot;,
-          &quot;date&quot;: &quot;2026-06-05&quot;,
-          &quot;floor&quot;: &quot;7&quot;,
-          &quot;area&quot;: 49.947
-        },
-        {
-          &quot;deposit&quot;: &quot;23000&quot;,
-          &quot;date&quot;: &quot;2026-06-13&quot;,
-          &quot;floor&quot;: &quot;4&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;deposit&quot;: &quot;22000&quot;,
-          &quot;date&quot;: &quot;2026-06-13&quot;,
-          &quot;floor&quot;: &quot;1&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;deposit&quot;: &quot;22500&quot;,
-          &quot;date&quot;: &quot;2026-06-13&quot;,
-          &quot;floor&quot;: &quot;18&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;deposit&quot;: &quot;38000&quot;,
-          &quot;date&quot;: &quot;2026-06-13&quot;,
-          &quot;floor&quot;: &quot;19&quot;,
-          &quot;area&quot;: 50.2672
-        },
-        {
-          &quot;deposit&quot;: &quot;23000&quot;,
-          &quot;date&quot;: &quot;2026-06-12&quot;,
-          &quot;floor&quot;: &quot;6&quot;,
-          &quot;area&quot;: 49.947
-        },
-        {
-          &quot;deposit&quot;: &quot;24000&quot;,
-          &quot;date&quot;: &quot;2026-06-04&quot;,
-          &quot;floor&quot;: &quot;15&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;deposit&quot;: &quot;15000&quot;,
-          &quot;date&quot;: &quot;2026-05-05&quot;,
-          &quot;floor&quot;: &quot;2&quot;,
-          &quot;area&quot;: 48.7
-        },
-        {
-          &quot;deposit&quot;: &quot;15000&quot;,
-          &quot;date&quot;: &quot;2026-05-20&quot;,
-          &quot;floor&quot;: &quot;1&quot;,
-          &quot;area&quot;: 45.27
-        }
-      ],
-      &quot;monthly_rent&quot;: [
-        {
-          &quot;deposit&quot;: &quot;5740&quot;,
-          &quot;monthly_rent&quot;: &quot;27&quot;,
-          &quot;date&quot;: &quot;2026-06-08&quot;,
-          &quot;floor&quot;: &quot;7&quot;,
-          &quot;area&quot;: 51.92
-        },
-        {
-          &quot;deposit&quot;: &quot;3000&quot;,
-          &quot;monthly_rent&quot;: &quot;90&quot;,
-          &quot;date&quot;: &quot;2026-06-09&quot;,
-          &quot;floor&quot;: &quot;8&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;deposit&quot;: &quot;6071&quot;,
-          &quot;monthly_rent&quot;: &quot;13&quot;,
-          &quot;date&quot;: &quot;2026-06-05&quot;,
-          &quot;floor&quot;: &quot;4&quot;,
-          &quot;area&quot;: 51.92
-        },
-        {
-          &quot;deposit&quot;: &quot;4903&quot;,
-          &quot;monthly_rent&quot;: &quot;33&quot;,
-          &quot;date&quot;: &quot;2026-06-04&quot;,
-          &quot;floor&quot;: &quot;9&quot;,
-          &quot;area&quot;: 46.94
-        },
-        {
-          &quot;deposit&quot;: &quot;4978&quot;,
-          &quot;monthly_rent&quot;: &quot;13&quot;,
-          &quot;date&quot;: &quot;2026-06-01&quot;,
-          &quot;floor&quot;: &quot;3&quot;,
-          &quot;area&quot;: 51.49
-        },
-        {
-          &quot;deposit&quot;: &quot;4501&quot;,
-          &quot;monthly_rent&quot;: &quot;31&quot;,
-          &quot;date&quot;: &quot;2026-06-01&quot;,
-          &quot;floor&quot;: &quot;1&quot;,
-          &quot;area&quot;: 51.97
-        },
-        {
-          &quot;deposit&quot;: &quot;1500&quot;,
-          &quot;monthly_rent&quot;: &quot;70&quot;,
-          &quot;date&quot;: &quot;2026-05-11&quot;,
-          &quot;floor&quot;: &quot;8&quot;,
-          &quot;area&quot;: 49.947
-        },
-        {
-          &quot;deposit&quot;: &quot;1500&quot;,
-          &quot;monthly_rent&quot;: &quot;100&quot;,
-          &quot;date&quot;: &quot;2026-05-30&quot;,
-          &quot;floor&quot;: &quot;10&quot;,
-          &quot;area&quot;: 49.5
-        },
-        {
-          &quot;deposit&quot;: &quot;12000&quot;,
-          &quot;monthly_rent&quot;: &quot;100&quot;,
-          &quot;date&quot;: &quot;2026-05-30&quot;,
-          &quot;floor&quot;: &quot;10&quot;,
-          &quot;area&quot;: 50.2855
-        },
-        {
-          &quot;deposit&quot;: &quot;1000&quot;,
-          &quot;monthly_rent&quot;: &quot;70&quot;,
-          &quot;date&quot;: &quot;2026-05-26&quot;,
-          &quot;floor&quot;: &quot;5&quot;,
-          &quot;area&quot;: 49.947
-        }
-      ]
-    },
-    &quot;real_price_note&quot;: null,
-    &quot;analysis&quot;: {
-      &quot;bid_rate_pct&quot;: 64.0,
-      &quot;avg_trade_manwon&quot;: 33570,
-      &quot;bid_vs_market_pct&quot;: 62.9,
-      &quot;est_gain_pct&quot;: 58.9,
-      &quot;avg_jeonse_manwon&quot;: 21730,
-      &quot;jeonse_rate_pct&quot;: 64.7,
-      &quot;tenant_count&quot;: 0,
-      &quot;creditor_count&quot;: 3
-    },
-    &quot;_source_file&quot;: &quot;C:\\Users\\lsyko\\Documents\\git\\great_auction\\outputs\\20260622_011024_realestate_30d\\2_아파트_서울_인천_경기_20260622_20260722_20260622_0412.json&quot;,
-    &quot;_source_index&quot;: 238,
-    &quot;_source_metadata&quot;: {
-      &quot;type&quot;: &quot;아파트&quot;,
-      &quot;total_collected&quot;: 971,
-      &quot;part&quot;: 2,
-      &quot;total_parts&quot;: 2,
-      &quot;part_range&quot;: &quot;501~971&quot;,
-      &quot;region&quot;: &quot;서울특별시, 인천광역시, 경기도&quot;,
-      &quot;date_range&quot;: &quot;20260622 ~ 20260722&quot;,
-      &quot;fetch_date&quot;: &quot;2026-06-22 04:12:52&quot;,
-      &quot;target_profile&quot;: &quot;all-realestate&quot;,
-      &quot;collection_audit_status&quot;: &quot;degraded&quot;,
-      &quot;collection_audit_file&quot;: &quot;collection_audit_서울_인천_경기_20260622_20260722_20260622_0412.json&quot;
-    }
-  }
-}</pre>
+<h2>전체 조회 데이터</h2>
+<p class="empty">분석 item 전체를 요약하지 않고 항목별로 펼쳐 표시합니다.</p>
+<div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점수</th><td><span class="structured-scalar">77.0</span></td></tr><tr><th>등급</th><td><span class="structured-scalar">C</span></td></tr><tr><th>판정</th><td><span class="structured-scalar">권리 리스크 해소 전 보류</span></td></tr><tr><th>점수 구성</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>market margin</th><td><span class="structured-scalar">35.0</span></td></tr><tr><th>auction discount</th><td><span class="structured-scalar">14.0</span></td></tr><tr><th>rent support</th><td><span class="structured-scalar">10.0</span></td></tr><tr><th>liquidity</th><td><span class="structured-scalar">10.0</span></td></tr><tr><th>risk control</th><td><span class="structured-scalar">3.0</span></td></tr><tr><th>data confidence</th><td><span class="structured-scalar">5.0</span></td></tr></tbody></table></div></td></tr><tr><th>정규화 정보</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경101127</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">안양지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>자산 구분</th><td><span class="structured-scalar">residential</span></td></tr><tr><th>투자 전략</th><td><span class="structured-scalar">liquid-resale-or-rental-support</span></td></tr><tr><th>시장 데이터 성격</th><td><span class="structured-scalar">residential_trade_and_rent</span></td></tr><tr><th>수동 시세보강 필요</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>특수자산 검토 필요</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>자산별 목표 할인율</th><td><span class="empty">-</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 의왕시 오전동 841 백합아파트 105동 1층106호</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260623</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">211200000</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">330000000</span></td></tr><tr><th>min bid manwon</th><td><span class="structured-scalar">21120.0</span></td></tr><tr><th>appraisal manwon</th><td><span class="structured-scalar">33000.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">33570.0</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">21730.0</span></td></tr><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">64.0</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">62.9</span></td></tr><tr><th>시세 할인율</th><td><span class="structured-scalar">37.1</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">58.9</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">64.7</span></td></tr><tr><th>매매 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>전세 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>월세 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>거래표본 품질</th><td><span class="structured-scalar">area_only_match</span></td></tr><tr><th>비교 단지/명칭</th><td><span class="empty">-</span></td></tr><tr><th>비교 면적</th><td><span class="structured-scalar">49.86</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">area_fallback</span></td></tr><tr><th>보조 매칭 기준</th><td><span class="structured-scalar">백합아파트</span></td></tr><tr><th>표본 비고</th><td><span class="structured-scalar">Exact complex name produced no trades; area-based fallback was used from 백합아파트.</span></td></tr><tr><th>3개월 인근 매각건수</th><td><span class="structured-scalar">5.0</span></td></tr><tr><th>6개월 인근 매각건수</th><td><span class="structured-scalar">13.0</span></td></tr><tr><th>12개월 인근 매각건수</th><td><span class="structured-scalar">28.0</span></td></tr><tr><th>3개월 인근 매각가율</th><td><span class="structured-scalar">91.0</span></td></tr><tr><th>6개월 인근 매각가율</th><td><span class="structured-scalar">90.0</span></td></tr><tr><th>12개월 인근 매각가율</th><td><span class="structured-scalar">91.0</span></td></tr><tr><th>12개월 평균 유찰</th><td><span class="structured-scalar">1.0</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">2</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>현황조사 임차/점유 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">3</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>검토 버킷</th><td><span class="structured-scalar">legal_review</span></td></tr><tr><th>buffered gain pct</th><td><span class="empty">-</span></td></tr><tr><th>권장 입찰 상한</th><td><span class="empty">-</span></td></tr><tr><th>권장 상한 비고</th><td><span class="structured-scalar">high risk 또는 임차인 리스크 해소 전 입찰가 산정 보류</span></td></tr></tbody></table></div></td></tr><tr><th>리스크</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>위험도</th><th>키워드</th><th>사유</th></tr></thead><tbody><tr><td><span class="structured-scalar">high</span></td><td><span class="structured-scalar">폐기물</span></td><td><span class="structured-scalar">waste/environmental risk</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">전입</span></td><td><span class="structured-scalar">resident registration</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">점유</span></td><td><span class="structured-scalar">occupancy</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">폐문</span></td><td><span class="structured-scalar">closed-door survey</span></td></tr><tr><td><span class="structured-scalar">low</span></td><td><span class="structured-scalar">comp_match_quality</span></td><td><span class="structured-scalar">comparable trade match needs manual verification</span></td></tr></tbody></table></div></td></tr><tr><th>기회 요인</th><td><ul class="structured-list"><li><span class="structured-scalar">학교: school nearby</span></li><li><span class="structured-scalar">버스: bus access</span></li></ul></td></tr><tr><th>확인할 사항</th><td><ul class="structured-list"><li><span class="structured-scalar">매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</span></li><li><span class="structured-scalar">등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</span></li><li><span class="structured-scalar">입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</span></li><li><span class="structured-scalar">high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</span></li><li><span class="structured-scalar">실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</span></li><li><span class="structured-scalar">관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</span></li></ul></td></tr><tr><th>Codex 요약</th><td><span class="structured-scalar">2025타경101127 아파트 [residential/liquid-resale-or-rental-support] / 경기도 의왕시 오전동 841 백합아파트 105동 1층106호 | score=77.0(C, 권리 리스크 해소 전 보류) | min_bid=2.1억, appraisal=3.3억, avg_trade=3.4억, bid_vs_market=62.9%, est_gain=58.9%, jeonse_rate=64.7% | risks=[high:폐기물, medium:전입, medium:점유, medium:폐문, low:comp_match_quality] | opportunities=[학교: school nearby, 버스: bus access]</span></td></tr><tr><th>수집 원본</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경101127</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">안양지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 의왕시 오전동 841 백합아파트 105동 1층106호</span></td></tr><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[집합건물 철근콘크리트조
+49.86㎡]</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">330000000</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">211200000</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260623</span></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">104호입찰법정</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">2</span></td></tr><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">405208323</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="empty">-</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 의왕시 오전동 소재 &lt;오전초등학교&gt; 북서측 인근에 위치하며, 주위는 근린생활시설, 아파트단지 등이 혼재하는 지역으로 제반 입지여건 및 주위환경은 보통임.
+본건까지 차량진출입 용이하고 인근에 버스정류장이 소재하는 등 대중교통상황은 보통임.
+철근콘크리트조 슬래브지붕 지상16층/지하1층 건물 내 제1층 제106호로서,
+( 사용승인일 : 1994.03.29 )
+외 벽 : 몰탈위 페인팅 등 마감.
+창 호 : 샷시 등 임.
+아파트(거실, 주방, 방3, WC)로 이용중임.
+기본적인 위생 및 급·배수설비, 승강기설비, 도시가스에 의한 난방설비 등 되어 있음.
+
+
+
+
+부정형 평지로서, 아파트 건부지로 이용중임.
+
+본건 북동측 및 남동측으로 중로에 접함.
+제3종일반주거지역, 제1종지구단위계획구역, 중로2류(접합), 중로2류(집산도로)(접합), 가축사육제한구역, 상대보호구역, 대기관리권역, 대기환경규제지역, 교통기타용도지역지구미분류, 도시교통정비지역, 과밀억제지역, 생활소음진동관리지역, 과밀억제권역, 택지개발지구, 배수구역(고천배수구역), 하수처리구역(고천처리구역), (한강)폐기물매립시설 설치제한지역, 중점경관관리구역임.
+없음.
+미상임.</span></td></tr><tr><th>건물명</th><td><span class="structured-scalar">백합아파트</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>x</th><td><span class="structured-scalar">308902</span></td></tr><tr><th>y</th><td><span class="structured-scalar">528733</span></td></tr></tbody></table></div></td></tr><tr><th>지번 주소</th><td><ul class="structured-list"><li><span class="structured-scalar">경기도 의왕시 오전로 179 (오전동,백합아파트)</span></li></ul></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260414</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">104호 입찰법정</span></td><td><span class="structured-scalar">330000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260519</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">104호 입찰법정</span></td><td><span class="structured-scalar">264000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260623</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">104호 입찰법정</span></td><td><span class="structured-scalar">211200000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260630</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">104호 입찰법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">주OOO OOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">국OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">우OOOOOO OOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">주OOO OOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">우OOOOOO OOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250829</span></td></tr><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 의왕시 오전동 841 백합아파트 105동 1층106호</span></td><td><span class="structured-scalar">소유자점유</span></td><td><span class="structured-scalar">1.별지 전입세대확인서 및 주민등록표등본상 채무자(소유자) 세대 전입.&lt;br /&gt;2.현황조사를 위해 방문하였으나 폐문으로 아무도 만나지 못하여 상세 점유관계 미상(안내문 부착)&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">5</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">840800000</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">768009399</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">91</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">13</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">652846154</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">591855307</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">90</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">28</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">679321429</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">615265002</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">91</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매칭 단지</th><td><span class="empty">-</span></td></tr><tr><th>매칭 면적</th><td><span class="structured-scalar">49.86</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">area_fallback</span></td></tr><tr><th>보조 기준 단지</th><td><span class="structured-scalar">백합아파트</span></td></tr><tr><th>매매 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>매매가</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-10</span></td><td><span class="structured-scalar">30000</span></td><td><span class="structured-scalar">3</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-02</span></td><td><span class="structured-scalar">33700</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">31000</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-23</span></td><td><span class="structured-scalar">36000</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-15</span></td><td><span class="structured-scalar">40000</span></td><td><span class="structured-scalar">21</span></td><td><span class="structured-scalar">50.2672</span></td></tr><tr><td><span class="structured-scalar">2026-05-15</span></td><td><span class="structured-scalar">34500</span></td><td><span class="structured-scalar">15</span></td><td><span class="structured-scalar">49.77</span></td></tr><tr><td><span class="structured-scalar">2026-05-12</span></td><td><span class="structured-scalar">31500</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-01</span></td><td><span class="structured-scalar">28500</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">49.8</span></td></tr><tr><td><span class="structured-scalar">2026-05-07</span></td><td><span class="structured-scalar">23500</span></td><td><span class="structured-scalar">15</span></td><td><span class="structured-scalar">48.63</span></td></tr><tr><td><span class="structured-scalar">2026-05-07</span></td><td><span class="structured-scalar">47000</span></td><td><span class="structured-scalar">11</span></td><td><span class="structured-scalar">50.2672</span></td></tr></tbody></table></div></td></tr><tr><th>전세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-18</span></td><td><span class="structured-scalar">17000</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">49.947</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">17800</span></td><td><span class="structured-scalar">7</span></td><td><span class="structured-scalar">49.947</span></td></tr><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">23000</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">22000</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">22500</span></td><td><span class="structured-scalar">18</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">38000</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">50.2672</span></td></tr><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">23000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">49.947</span></td></tr><tr><td><span class="structured-scalar">2026-06-04</span></td><td><span class="structured-scalar">24000</span></td><td><span class="structured-scalar">15</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-05</span></td><td><span class="structured-scalar">15000</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">48.7</span></td></tr><tr><td><span class="structured-scalar">2026-05-20</span></td><td><span class="structured-scalar">15000</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">45.27</span></td></tr></tbody></table></div></td></tr><tr><th>월세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>월세 거래</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-08</span></td><td><span class="structured-scalar">5740</span></td><td><span class="structured-scalar">27</span></td><td><span class="structured-scalar">7</span></td><td><span class="structured-scalar">51.92</span></td></tr><tr><td><span class="structured-scalar">2026-06-09</span></td><td><span class="structured-scalar">3000</span></td><td><span class="structured-scalar">90</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">6071</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">51.92</span></td></tr><tr><td><span class="structured-scalar">2026-06-04</span></td><td><span class="structured-scalar">4903</span></td><td><span class="structured-scalar">33</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">46.94</span></td></tr><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">4978</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">3</span></td><td><span class="structured-scalar">51.49</span></td></tr><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">4501</span></td><td><span class="structured-scalar">31</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">51.97</span></td></tr><tr><td><span class="structured-scalar">2026-05-11</span></td><td><span class="structured-scalar">1500</span></td><td><span class="structured-scalar">70</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">49.947</span></td></tr><tr><td><span class="structured-scalar">2026-05-30</span></td><td><span class="structured-scalar">1500</span></td><td><span class="structured-scalar">100</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">49.5</span></td></tr><tr><td><span class="structured-scalar">2026-05-30</span></td><td><span class="structured-scalar">12000</span></td><td><span class="structured-scalar">100</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">50.2855</span></td></tr><tr><td><span class="structured-scalar">2026-05-26</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">70</span></td><td><span class="structured-scalar">5</span></td><td><span class="structured-scalar">49.947</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">64.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">33570</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">62.9</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">58.9</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">21730</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">64.7</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">3</span></td></tr></tbody></table></div></td></tr><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260622_011024_realestate_30d\2_아파트_서울_인천_경기_20260622_20260722_20260622_0412.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">238</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">971</span></td></tr><tr><th>part</th><td><span class="structured-scalar">2</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">501~971</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260622 ~ 20260722</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-22 04:12:52</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260622_20260722_20260622_0412.json</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table></div>
 </section>
 </main>
 </body>
