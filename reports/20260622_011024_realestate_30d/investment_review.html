@@ -120,6 +120,18 @@ main {
   margin: 0;
   font-size: 18px;
 }
+.candidate-head h3 a,
+.hero a,
+.link-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.candidate-head h3 a:hover,
+.hero a:hover,
+.link-row a:hover {
+  text-decoration: underline;
+}
 .rank {
   display: inline-flex;
   min-width: 34px;
@@ -141,6 +153,22 @@ main {
 .address {
   margin: 8px 0 12px;
   color: var(--muted);
+}
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef4ff;
+  border: 1px solid #d7e5ff;
+  font-size: 13px;
 }
 .facts {
   display: grid;
@@ -165,6 +193,83 @@ main {
 .detail p {
   margin: 6px 0;
 }
+.comp-summary {
+  color: var(--text);
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+}
+.comp-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.comp-table th,
+.comp-table td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #e7ebf1;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comp-table th {
+  background: #f2f5f9;
+  color: var(--muted);
+  font-weight: 800;
+}
+.analysis-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e7ebf1;
+}
+.analysis-block h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.risk-list,
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.risk-list li,
+.review-list li {
+  margin: 7px 0;
+}
+.risk-list strong {
+  display: block;
+}
+.risk-list span {
+  display: block;
+  color: var(--muted);
+}
+.risk-list li.high strong { color: var(--risk); }
+.risk-list li.medium strong { color: var(--wait); }
+.risk-list li.low strong { color: var(--good); }
+.raw-section {
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.raw-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+.raw-json {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.55;
+}
 .empty {
   color: var(--muted);
 }
@@ -188,7 +293,7 @@ main {
 <section class="hero">
 <p>경매 투자 스크리닝</p>
 <h1>투자 검토 필요 리포트</h1>
-<div class="meta">분석 생성 2026-06-22 04:12:58 · 리포트 생성 2026-06-23 14:40:59</div>
+<div class="meta">분석 생성 2026-06-22 04:12:58 · 리포트 생성 2026-06-23 14:59:43</div>
 </section>
 <section class="summary-grid">
 <div class="summary-card"><span>전체</span><strong>9,940건</strong><p>수도권 30일 분석</p></div>
@@ -210,10 +315,11 @@ main {
 <h2>즉시검토 상위 후보</h2>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#1</span><h3>2025타경41607 아파트</h3></div>
+<div><span class="rank">#1</span><h3><a href="cases/001_2025_41607.html">2025타경41607 아파트</a></h3></div>
 <span class="score">A/97.0</span>
 </div>
 <p class="address">경기도 안성시 당왕동 584 안성당왕지구삼정그린코아더베스트 115동 1층102호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EC%95%88%EC%84%B1%EB%8B%B9%EC%99%95%EC%A7%80%EA%B5%AC%EC%82%BC%EC%A0%95%EA%B7%B8%EB%A6%B0%EC%BD%94%EC%95%84%EB%8D%94%EB%B2%A0%EC%8A%A4%ED%8A%B8%2059.5428%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EC%95%88%EC%84%B1%EB%8B%B9%EC%99%95%EC%A7%80%EA%B5%AC%EC%82%BC%EC%A0%95%EA%B7%B8%EB%A6%B0%EC%BD%94%EC%95%84%EB%8D%94%EB%B2%A0%EC%8A%A4%ED%8A%B8%2059.5428%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD41607%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260707 D-14</strong></div>
 <div><span>최저가</span><strong>86,436,000원</strong></div>
@@ -223,17 +329,19 @@ main {
 <div><span>권장상한</span><strong>2.2억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 안성당왕지구삼정그린코아더베스트 / 거래 10건</p>
-<p><strong>리스크</strong> 감지 없음</p>
-<p><strong>검토 포인트</strong> 가격 메리트와 기본 리스크는 양호합니다. 입찰 전 원문 3종, 점유, 관리비, 최근 실거래를 재확인하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 안성당왕지구삼정그린코아더베스트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-31</td><td>24,500만원</td><td>2</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-17</td><td>25,500만원</td><td>6</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-23</td><td>26,000만원</td><td>28</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-19</td><td>26,900만원</td><td>10</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-18</td><td>26,500만원</td><td>21</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-11</td><td>25,800만원</td><td>8</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-04-24</td><td>26,500만원</td><td>6</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-04-10</td><td>26,500만원</td><td>24</td><td>59.54㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 25,970만원, 최저가는 86,436,000원입니다. 현재 계산상 최저가는 시세의 33.3%, 예상차익은 200.5%입니다.</li><li>전세가율은 76.8%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 2.2억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#2</span><h3>2025타경64437 아파트</h3></div>
+<div><span class="rank">#2</span><h3><a href="cases/002_2025_64437.html">2025타경64437 아파트</a></h3></div>
 <span class="score">A/97.0</span>
 </div>
 <p class="address">경기도 고양시 일산서구 덕이동 1535 하이파크시티일산파밀리에4단지 409동 14층1401호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%ED%95%98%EC%9D%B4%ED%8C%8C%ED%81%AC%EC%8B%9C%ED%8B%B0%EC%9D%BC%EC%82%B0%ED%8C%8C%EB%B0%80%EB%A6%AC%EC%97%904%EB%8B%A8%EC%A7%80%20121.45%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%ED%95%98%EC%9D%B4%ED%8C%8C%ED%81%AC%EC%8B%9C%ED%8B%B0%EC%9D%BC%EC%82%B0%ED%8C%8C%EB%B0%80%EB%A6%AC%EC%97%904%EB%8B%A8%EC%A7%80%20121.45%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64437%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260630 D-7</strong></div>
 <div><span>최저가</span><strong>3.0억</strong></div>
@@ -243,17 +351,19 @@ main {
 <div><span>권장상한</span><strong>4.5억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 하이파크시티일산파밀리에4단지 / 거래 10건</p>
-<p><strong>리스크</strong> 감지 없음</p>
-<p><strong>검토 포인트</strong> 가격 메리트와 기본 리스크는 양호합니다. 입찰 전 원문 3종, 점유, 관리비, 최근 실거래를 재확인하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 하이파크시티일산파밀리에4단지 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-02</td><td>51,000만원</td><td>11</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-05-14</td><td>49,000만원</td><td>23</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-04-21</td><td>57,000만원</td><td>19</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-04-07</td><td>45,000만원</td><td>11</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-04-03</td><td>52,000만원</td><td>18</td><td>121.66㎡</td></tr><tr><td>매매</td><td>2026-02-23</td><td>52,500만원</td><td>16</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-01-29</td><td>60,200만원</td><td>15</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-01-29</td><td>60,200만원</td><td>15</td><td>121.45㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 52,990만원, 최저가는 3.0억입니다. 현재 계산상 최저가는 시세의 56.7%, 예상차익은 76.4%입니다.</li><li>전세가율은 75.4%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 4.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#3</span><h3>2025타경71351 아파트</h3></div>
+<div><span class="rank">#3</span><h3><a href="cases/003_2025_71351.html">2025타경71351 아파트</a></h3></div>
 <span class="score">A/94.0</span>
 </div>
 <p class="address">경기도 남양주시 호평동 676 호평마을동원로얄듀크 1704동 10층1002호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%ED%98%B8%ED%8F%89%EB%A7%88%EC%9D%84%EB%8F%99%EC%9B%90%EB%A1%9C%EC%96%84%EB%93%80%ED%81%AC%2084.9949%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%ED%98%B8%ED%8F%89%EB%A7%88%EC%9D%84%EB%8F%99%EC%9B%90%EB%A1%9C%EC%96%84%EB%93%80%ED%81%AC%2084.9949%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD71351%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260623 D-day</strong></div>
 <div><span>최저가</span><strong>2.1억</strong></div>
@@ -263,17 +373,19 @@ main {
 <div><span>권장상한</span><strong>3.5억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 호평마을동원로얄듀크 / 거래 10건</p>
-<p><strong>리스크</strong> 감지 없음</p>
-<p><strong>검토 포인트</strong> 가격 메리트와 기본 리스크는 양호합니다. 입찰 전 원문 3종, 점유, 관리비, 최근 실거래를 재확인하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 호평마을동원로얄듀크 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-10</td><td>44,000만원</td><td>11</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-06-01</td><td>43,500만원</td><td>16</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-06-01</td><td>52,500만원</td><td>20</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-06-02</td><td>42,000만원</td><td>9</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-05-12</td><td>40,300만원</td><td>6</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-05-13</td><td>37,500만원</td><td>11</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-05-08</td><td>39,800만원</td><td>13</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-05-08</td><td>37,900만원</td><td>15</td><td>84.99㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 41,320만원, 최저가는 2.1억입니다. 현재 계산상 최저가는 시세의 50.5%, 예상차익은 97.9%입니다.</li><li>전세가율은 80.1%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 3.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#4</span><h3>2025타경61366 오피스텔</h3></div>
+<div><span class="rank">#4</span><h3><a href="cases/004_2025_61366.html">2025타경61366 오피스텔</a></h3></div>
 <span class="score">A/94.0</span>
 </div>
 <p class="address">경기도 파주시 마무리길 77 10층에이동1008호 (금촌동,천년가골든뷰)</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EC%B2%9C%EB%85%84%EA%B0%80%EA%B3%A8%EB%93%A0%EB%B7%B0%2024.219%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EC%B2%9C%EB%85%84%EA%B0%80%EA%B3%A8%EB%93%A0%EB%B7%B0%2024.219%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD61366%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260630 D-7</strong></div>
 <div><span>최저가</span><strong>50,421,000원</strong></div>
@@ -283,17 +395,19 @@ main {
 <div><span>권장상한</span><strong>1.1억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 천년가골든뷰 / 거래 3건</p>
-<p><strong>리스크</strong> 감지 없음</p>
-<p><strong>검토 포인트</strong> 가격 메리트와 기본 리스크는 양호합니다. 입찰 전 원문 3종, 점유, 관리비, 최근 실거래를 재확인하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 천년가골든뷰 · 매매 3건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2025-07-01</td><td>11,000만원</td><td>19</td><td>22.46㎡</td></tr><tr><td>매매</td><td>2024-08-12</td><td>14,867만원</td><td>11</td><td>24.22㎡</td></tr><tr><td>매매</td><td>2024-08-12</td><td>14,867만원</td><td>11</td><td>24.22㎡</td></tr><tr><td>전세</td><td>2026-06-16</td><td>10,500만원</td><td>14</td><td>24.22㎡</td></tr><tr><td>전세</td><td>2026-06-17</td><td>10,500만원</td><td>13</td><td>24.22㎡</td></tr><tr><td>전세</td><td>2026-06-11</td><td>10,500만원</td><td>20</td><td>22.46㎡</td></tr><tr><td>전세</td><td>2026-05-29</td><td>11,000만원</td><td>8</td><td>24.22㎡</td></tr><tr><td>전세</td><td>2026-05-29</td><td>10,000만원</td><td>21</td><td>24.22㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 13,578만원, 최저가는 50,421,000원입니다. 현재 계산상 최저가는 시세의 37.1%, 예상차익은 169.3%입니다.</li><li>전세가율은 78.4%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 1.1억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 3건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#5</span><h3>2025타경64453 오피스텔</h3></div>
+<div><span class="rank">#5</span><h3><a href="cases/005_2025_64453.html">2025타경64453 오피스텔</a></h3></div>
 <span class="score">A/94.0</span>
 </div>
 <p class="address">경기도 고양시 덕양구 도내동 956 원흥베네하임5차 21층2111호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EC%9B%90%ED%9D%A5%EB%B2%A0%EB%84%A4%ED%95%98%EC%9E%845%EC%B0%A8%2029.7447%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EC%9B%90%ED%9D%A5%EB%B2%A0%EB%84%A4%ED%95%98%EC%9E%845%EC%B0%A8%2029.7447%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64453%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260702 D-9</strong></div>
 <div><span>최저가</span><strong>1.9억</strong></div>
@@ -303,17 +417,19 @@ main {
 <div><span>권장상한</span><strong>2.2억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 원흥베네하임5차 / 거래 6건</p>
-<p><strong>리스크</strong> 감지 없음</p>
-<p><strong>검토 포인트</strong> 가격 메리트와 기본 리스크는 양호합니다. 입찰 전 원문 3종, 점유, 관리비, 최근 실거래를 재확인하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 원흥베네하임5차 · 매매 6건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2025-05-08</td><td>28,000만원</td><td>23</td><td>29.74㎡</td></tr><tr><td>매매</td><td>2024-11-15</td><td>27,303만원</td><td>14</td><td>29.74㎡</td></tr><tr><td>매매</td><td>2024-11-06</td><td>27,557만원</td><td>17</td><td>29.74㎡</td></tr><tr><td>매매</td><td>2024-10-20</td><td>27,557만원</td><td>17</td><td>29.74㎡</td></tr><tr><td>매매</td><td>2024-10-20</td><td>27,557만원</td><td>18</td><td>29.74㎡</td></tr><tr><td>매매</td><td>2024-10-17</td><td>27,683만원</td><td>19</td><td>29.74㎡</td></tr><tr><td>전세</td><td>2026-06-10</td><td>19,500만원</td><td>6</td><td>29.74㎡</td></tr><tr><td>전세</td><td>2026-04-16</td><td>17,000만원</td><td>7</td><td>29.74㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 27,610만원, 최저가는 1.9억입니다. 현재 계산상 최저가는 시세의 70.2%, 예상차익은 42.4%입니다.</li><li>전세가율은 65.6%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 2.2억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 6건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#6</span><h3>2025타경41588 아파트</h3></div>
+<div><span class="rank">#6</span><h3><a href="cases/006_2025_41588.html">2025타경41588 아파트</a></h3></div>
 <span class="score">A/91.0</span>
 </div>
 <p class="address">경기도 평택시 지산동 781-9 이한렉스빌플러스 7층714호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EC%9D%B4%ED%95%9C%EB%A0%89%EC%8A%A4%EB%B9%8C%ED%94%8C%EB%9F%AC%EC%8A%A4%2026.9%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EC%9D%B4%ED%95%9C%EB%A0%89%EC%8A%A4%EB%B9%8C%ED%94%8C%EB%9F%AC%EC%8A%A4%2026.9%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD41588%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260707 D-14</strong></div>
 <div><span>최저가</span><strong>33,614,000원</strong></div>
@@ -323,17 +439,19 @@ main {
 <div><span>권장상한</span><strong>64,764,000원</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 이한렉스빌플러스 / 거래 10건</p>
-<p><strong>리스크</strong> 감지 없음</p>
-<p><strong>검토 포인트</strong> 가격 메리트와 기본 리스크는 양호합니다. 입찰 전 원문 3종, 점유, 관리비, 최근 실거래를 재확인하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 이한렉스빌플러스 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-07</td><td>8,500만원</td><td>12</td><td>27.04㎡</td></tr><tr><td>매매</td><td>2026-04-14</td><td>8,000만원</td><td>12</td><td>27.04㎡</td></tr><tr><td>매매</td><td>2026-04-02</td><td>8,300만원</td><td>8</td><td>27.04㎡</td></tr><tr><td>매매</td><td>2026-03-18</td><td>7,000만원</td><td>11</td><td>27.04㎡</td></tr><tr><td>매매</td><td>2026-03-16</td><td>7,200만원</td><td>12</td><td>27.04㎡</td></tr><tr><td>매매</td><td>2026-01-14</td><td>8,000만원</td><td>4</td><td>27.04㎡</td></tr><tr><td>매매</td><td>2026-01-09</td><td>7,400만원</td><td>12</td><td>26.90㎡</td></tr><tr><td>매매</td><td>2025-09-17</td><td>7,000만원</td><td>12</td><td>27.04㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 7,710만원, 최저가는 33,614,000원입니다. 현재 계산상 최저가는 시세의 43.6%, 예상차익은 129.4%입니다.</li><li>전세가율은 95.7%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 64,764,000원입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#7</span><h3>2025타경63507 아파트</h3></div>
+<div><span class="rank">#7</span><h3><a href="cases/007_2025_63507.html">2025타경63507 아파트</a></h3></div>
 <span class="score">A/90.0</span>
 </div>
 <p class="address">경기도 파주시 목동동 2-110 해솔마을3단지 운정현대아파트 304동 5층501호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%ED%95%B4%EC%86%94%EB%A7%88%EC%9D%843%EB%8B%A8%EC%A7%80%20%EC%9A%B4%EC%A0%95%ED%98%84%EB%8C%80%EC%95%84%ED%8C%8C%ED%8A%B8%20134.825%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%ED%95%B4%EC%86%94%EB%A7%88%EC%9D%843%EB%8B%A8%EC%A7%80%20%EC%9A%B4%EC%A0%95%ED%98%84%EB%8C%80%EC%95%84%ED%8C%8C%ED%8A%B8%20134.825%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD63507%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260701 D-8</strong></div>
 <div><span>최저가</span><strong>2.9억</strong></div>
@@ -343,17 +461,19 @@ main {
 <div><span>권장상한</span><strong>3.3억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 해솔마을3단지 운정현대아파트 / 거래 4건</p>
-<p><strong>리스크</strong> 감지 없음</p>
-<p><strong>검토 포인트</strong> 가격 메리트와 기본 리스크는 양호합니다. 입찰 전 원문 3종, 점유, 관리비, 최근 실거래를 재확인하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 해솔마을3단지 운정현대아파트 · 매매 4건 · 전세 3건 · 월세 6건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2025-12-09</td><td>35,000만원</td><td>1</td><td>134.82㎡</td></tr><tr><td>매매</td><td>2024-12-03</td><td>39,500만원</td><td>20</td><td>134.82㎡</td></tr><tr><td>매매</td><td>2024-08-25</td><td>41,700만원</td><td>6</td><td>134.82㎡</td></tr><tr><td>매매</td><td>2024-08-27</td><td>39,700만원</td><td>3</td><td>134.82㎡</td></tr><tr><td>전세</td><td>2025-08-22</td><td>25,000만원</td><td>15</td><td>134.82㎡</td></tr><tr><td>전세</td><td>2025-07-08</td><td>30,000만원</td><td>14</td><td>134.82㎡</td></tr><tr><td>전세</td><td>2024-08-20</td><td>29,000만원</td><td>4</td><td>134.82㎡</td></tr><tr><td>월세</td><td>2026-06-17</td><td>3,000만원 / 120만원</td><td>8</td><td>134.82㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 38,975만원, 최저가는 2.9억입니다. 현재 계산상 최저가는 시세의 74.2%, 예상차익은 34.8%입니다.</li><li>전세가율은 71.8%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 3.3억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 4건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#8</span><h3>2025타경64875 아파트</h3></div>
+<div><span class="rank">#8</span><h3><a href="cases/008_2025_64875.html">2025타경64875 아파트</a></h3></div>
 <span class="score">A/89.0</span>
 </div>
 <p class="address">경기도 파주시 문산읍 선유리 1357 진흥소슬마을 103동 5층504호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EC%A7%84%ED%9D%A5%EC%86%8C%EC%8A%AC%EB%A7%88%EC%9D%84%2084.98%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EC%A7%84%ED%9D%A5%EC%86%8C%EC%8A%AC%EB%A7%88%EC%9D%84%2084.98%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64875%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260630 D-7</strong></div>
 <div><span>최저가</span><strong>1.5억</strong></div>
@@ -363,9 +483,10 @@ main {
 <div><span>권장상한</span><strong>1.8억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 진흥소슬마을 / 거래 10건</p>
-<p><strong>리스크</strong> 감지 없음</p>
-<p><strong>검토 포인트</strong> 가격 메리트와 기본 리스크는 양호합니다. 입찰 전 원문 3종, 점유, 관리비, 최근 실거래를 재확인하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 진흥소슬마을 · 매매 10건 · 전세 10건 · 월세 9건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-04</td><td>20,000만원</td><td>3</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-05-30</td><td>20,000만원</td><td>1</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-05-16</td><td>24,000만원</td><td>8</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-05-09</td><td>23,000만원</td><td>9</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-03-21</td><td>20,900만원</td><td>2</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-03-18</td><td>22,000만원</td><td>11</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-03-12</td><td>20,650만원</td><td>15</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-02-12</td><td>20,900만원</td><td>13</td><td>84.98㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 21,345만원, 최저가는 1.5억입니다. 현재 계산상 최저가는 시세의 69.2%, 예상차익은 44.5%입니다.</li><li>전세가율은 86.9%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 1.8억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
 </div>
 </article>
 </section>
@@ -373,10 +494,11 @@ main {
 <h2>시세보강 후 검토 후보</h2>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#1</span><h3>2025타경71362 아파트</h3></div>
+<div><span class="rank">#1</span><h3><a href="cases/009_2025_71362.html">2025타경71362 아파트</a></h3></div>
 <span class="score">C/98.0</span>
 </div>
 <p class="address">경기도 남양주시 평내동 107-1 대명아파트 108동 9층906호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C%20%ED%8F%89%EB%82%B4%EB%8F%99%20107-1%20%EB%8C%80%EB%AA%85%EC%95%84%ED%8C%8C%ED%8A%B8%20108%EB%8F%99%209%EC%B8%B5906%ED%98%B8%2059.85%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C%20%ED%8F%89%EB%82%B4%EB%8F%99%20107-1%20%EB%8C%80%EB%AA%85%EC%95%84%ED%8C%8C%ED%8A%B8%20108%EB%8F%99%209%EC%B8%B5906%ED%98%B8%2059.85%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD71362%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260624 D-1</strong></div>
 <div><span>최저가</span><strong>1.5억</strong></div>
@@ -386,17 +508,19 @@ main {
 <div><span>권장상한</span><strong>3.3억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> area_only_match / - / 거래 10건</p>
-<p><strong>리스크</strong> low:comp_match_quality</p>
-<p><strong>검토 포인트</strong> 점수는 높지만 비교 거래 품질이 약합니다. 같은 단지·면적 실거래와 호가를 직접 확인하기 전에는 보류하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 대명아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-16</td><td>32,500만원</td><td>5</td><td>58.14㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>69,000만원</td><td>18</td><td>59.75㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>24,700만원</td><td>13</td><td>59.89㎡</td></tr><tr><td>매매</td><td>2026-06-10</td><td>44,000만원</td><td>3</td><td>59.99㎡</td></tr><tr><td>매매</td><td>2026-06-08</td><td>41,000만원</td><td>4</td><td>64.07㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>25,700만원</td><td>9</td><td>59.95㎡</td></tr><tr><td>매매</td><td>2026-06-14</td><td>48,800만원</td><td>16</td><td>59.81㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>39,000만원</td><td>7</td><td>59.94㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 네이버부동산 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 39,410만원, 최저가는 1.5억입니다. 현재 계산상 최저가는 시세의 37.3%, 예상차익은 168.1%입니다.</li><li>전세가율은 62.8%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 3.3억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#2</span><h3>2025타경71402 아파트</h3></div>
+<div><span class="rank">#2</span><h3><a href="cases/010_2025_71402.html">2025타경71402 아파트</a></h3></div>
 <span class="score">C/98.0</span>
 </div>
 <p class="address">경기도 남양주시 화도읍 창현리 764 신한토탈아파트 107동 7층703호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C%20%ED%99%94%EB%8F%84%EC%9D%8D%20%EC%B0%BD%ED%98%84%EB%A6%AC%20764%20%EC%8B%A0%ED%95%9C%ED%86%A0%ED%83%88%EC%95%84%ED%8C%8C%ED%8A%B8%20107%EB%8F%99%207%EC%B8%B5703%ED%98%B8%2071.164%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EB%82%A8%EC%96%91%EC%A3%BC%EC%8B%9C%20%ED%99%94%EB%8F%84%EC%9D%8D%20%EC%B0%BD%ED%98%84%EB%A6%AC%20764%20%EC%8B%A0%ED%95%9C%ED%86%A0%ED%83%88%EC%95%84%ED%8C%8C%ED%8A%B8%20107%EB%8F%99%207%EC%B8%B5703%ED%98%B8%2071.164%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD71402%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260623 D-day</strong></div>
 <div><span>최저가</span><strong>1.3억</strong></div>
@@ -406,17 +530,19 @@ main {
 <div><span>권장상한</span><strong>5.5억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> area_only_match / - / 거래 10건</p>
-<p><strong>리스크</strong> low:comp_match_quality</p>
-<p><strong>검토 포인트</strong> 점수는 높지만 비교 거래 품질이 약합니다. 같은 단지·면적 실거래와 호가를 직접 확인하기 전에는 보류하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 신한토탈아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-18</td><td>77,000만원</td><td>20</td><td>72.48㎡</td></tr><tr><td>매매</td><td>2026-06-09</td><td>85,000만원</td><td>15</td><td>74.82㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>28,400만원</td><td>4</td><td>72.06㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>28,800만원</td><td>3</td><td>72.60㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>28,400만원</td><td>2</td><td>72.06㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>28,500만원</td><td>2</td><td>72.06㎡</td></tr><tr><td>매매</td><td>2026-06-02</td><td>91,800만원</td><td>11</td><td>74.98㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>91,700만원</td><td>15</td><td>74.88㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 네이버부동산 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 64,980만원, 최저가는 1.3억입니다. 현재 계산상 최저가는 시세의 20.2%, 예상차익은 394.8%입니다.</li><li>전세가율은 69.5%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 5.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#3</span><h3>2025타경63500 아파트</h3></div>
+<div><span class="rank">#3</span><h3><a href="cases/011_2025_63500.html">2025타경63500 아파트</a></h3></div>
 <span class="score">C/98.0</span>
 </div>
 <p class="address">경기도 고양시 일산서구 일산동 1058 후곡마을아파트 903동 15층1501호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EC%9D%BC%EC%82%B0%EC%84%9C%EA%B5%AC%20%EC%9D%BC%EC%82%B0%EB%8F%99%201058%20%ED%9B%84%EA%B3%A1%EB%A7%88%EC%9D%84%EC%95%84%ED%8C%8C%ED%8A%B8%20903%EB%8F%99%2015%EC%B8%B51501%ED%98%B8%2070.714%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EC%9D%BC%EC%82%B0%EC%84%9C%EA%B5%AC%20%EC%9D%BC%EC%82%B0%EB%8F%99%201058%20%ED%9B%84%EA%B3%A1%EB%A7%88%EC%9D%84%EC%95%84%ED%8C%8C%ED%8A%B8%20903%EB%8F%99%2015%EC%B8%B51501%ED%98%B8%2070.714%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD63500%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260630 D-7</strong></div>
 <div><span>최저가</span><strong>2.5억</strong></div>
@@ -426,17 +552,19 @@ main {
 <div><span>권장상한</span><strong>3.7억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> area_only_match / - / 거래 10건</p>
-<p><strong>리스크</strong> low:comp_match_quality</p>
-<p><strong>검토 포인트</strong> 점수는 높지만 비교 거래 품질이 약합니다. 같은 단지·면적 실거래와 호가를 직접 확인하기 전에는 보류하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 후곡마을아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-15</td><td>45,500만원</td><td>9</td><td>71.32㎡</td></tr><tr><td>매매</td><td>2026-06-17</td><td>54,000만원</td><td>10</td><td>67.39㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>39,600만원</td><td>8</td><td>69.90㎡</td></tr><tr><td>매매</td><td>2026-06-09</td><td>47,100만원</td><td>14</td><td>70.47㎡</td></tr><tr><td>매매</td><td>2026-06-11</td><td>41,000만원</td><td>3</td><td>69.09㎡</td></tr><tr><td>매매</td><td>2026-06-08</td><td>38,000만원</td><td>5</td><td>68.13㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>41,500만원</td><td>23</td><td>74.77㎡</td></tr><tr><td>매매</td><td>2026-06-11</td><td>42,000만원</td><td>22</td><td>74.96㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 네이버부동산 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 44,100만원, 최저가는 2.5억입니다. 현재 계산상 최저가는 시세의 56.0%, 예상차익은 78.6%입니다.</li><li>전세가율은 60.4%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 3.7억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#4</span><h3>2025타경63691 아파트</h3></div>
+<div><span class="rank">#4</span><h3><a href="cases/012_2025_63691.html">2025타경63691 아파트</a></h3></div>
 <span class="score">C/98.0</span>
 </div>
 <p class="address">경기도 고양시 덕양구 주교동 568-8 비케이팰리스아파트 5층501호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A3%BC%EA%B5%90%EB%8F%99%20568-8%20%EB%B9%84%EC%BC%80%EC%9D%B4%ED%8C%B0%EB%A6%AC%EC%8A%A4%EC%95%84%ED%8C%8C%ED%8A%B8%205%EC%B8%B5501%ED%98%B8%2045.19%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EA%B3%A0%EC%96%91%EC%8B%9C%20%EB%8D%95%EC%96%91%EA%B5%AC%20%EC%A3%BC%EA%B5%90%EB%8F%99%20568-8%20%EB%B9%84%EC%BC%80%EC%9D%B4%ED%8C%B0%EB%A6%AC%EC%8A%A4%EC%95%84%ED%8C%8C%ED%8A%B8%205%EC%B8%B5501%ED%98%B8%2045.19%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD63691%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260624 D-1</strong></div>
 <div><span>최저가</span><strong>1.2억</strong></div>
@@ -446,17 +574,19 @@ main {
 <div><span>권장상한</span><strong>2.6억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> area_only_match / - / 거래 10건</p>
-<p><strong>리스크</strong> low:comp_match_quality</p>
-<p><strong>검토 포인트</strong> 점수는 높지만 비교 거래 품질이 약합니다. 같은 단지·면적 실거래와 호가를 직접 확인하기 전에는 보류하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 비케이팰리스아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-11</td><td>27,000만원</td><td>6</td><td>50.00㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>34,000만원</td><td>10</td><td>50.00㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>56,900만원</td><td>10</td><td>46.98㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>25,000만원</td><td>10</td><td>43.76㎡</td></tr><tr><td>매매</td><td>2026-06-17</td><td>25,300만원</td><td>13</td><td>49.95㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>26,000만원</td><td>6</td><td>49.95㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>33,000만원</td><td>12</td><td>50.00㎡</td></tr><tr><td>매매</td><td>2026-06-14</td><td>26,500만원</td><td>11</td><td>49.95㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 네이버부동산 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 31,020만원, 최저가는 1.2억입니다. 현재 계산상 최저가는 시세의 37.4%, 예상차익은 167.1%입니다.</li><li>전세가율은 62.7%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 2.6억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#5</span><h3>2025타경654 아파트</h3></div>
+<div><span class="rank">#5</span><h3><a href="cases/013_2025_654.html">2025타경654 아파트</a></h3></div>
 <span class="score">C/98.0</span>
 </div>
 <p class="address">경기도 시흥시 매화동 361-6 금강아파트 101동 5층505호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%8B%9C%ED%9D%A5%EC%8B%9C%20%EB%A7%A4%ED%99%94%EB%8F%99%20361-6%20%EA%B8%88%EA%B0%95%EC%95%84%ED%8C%8C%ED%8A%B8%20101%EB%8F%99%205%EC%B8%B5505%ED%98%B8%2055.735%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EA%B2%BD%EA%B8%B0%EB%8F%84%20%EC%8B%9C%ED%9D%A5%EC%8B%9C%20%EB%A7%A4%ED%99%94%EB%8F%99%20361-6%20%EA%B8%88%EA%B0%95%EC%95%84%ED%8C%8C%ED%8A%B8%20101%EB%8F%99%205%EC%B8%B5505%ED%98%B8%2055.735%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD654%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260630 D-7</strong></div>
 <div><span>최저가</span><strong>1.0억</strong></div>
@@ -466,9 +596,10 @@ main {
 <div><span>권장상한</span><strong>2.5억</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> area_only_match / - / 거래 10건</p>
-<p><strong>리스크</strong> low:comp_match_quality</p>
-<p><strong>검토 포인트</strong> 점수는 높지만 비교 거래 품질이 약합니다. 같은 단지·면적 실거래와 호가를 직접 확인하기 전에는 보류하세요.</p>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 금강아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-16</td><td>59,500만원</td><td>42</td><td>59.95㎡</td></tr><tr><td>매매</td><td>2026-06-19</td><td>19,500만원</td><td>1</td><td>59.98㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>21,500만원</td><td>2</td><td>59.94㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>43,000만원</td><td>20</td><td>59.93㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>22,650만원</td><td>7</td><td>59.23㎡</td></tr><tr><td>매매</td><td>2026-06-17</td><td>24,700만원</td><td>2</td><td>59.97㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>23,500만원</td><td>4</td><td>59.03㎡</td></tr><tr><td>매매</td><td>2026-06-17</td><td>41,200만원</td><td>3</td><td>59.96㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 네이버부동산 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 30,235만원, 최저가는 1.0억입니다. 현재 계산상 최저가는 시세의 34.5%, 예상차익은 189.7%입니다.</li><li>전세가율은 64.6%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 2.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
 </div>
 </article>
 </section>
@@ -476,10 +607,11 @@ main {
 <h2>권리검토형 주의 후보</h2>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#1</span><h3>2023타경66172 아파트</h3></div>
+<div><span class="rank">#1</span><h3><a href="cases/014_2023_66172.html">2023타경66172 아파트</a></h3></div>
 <span class="score">C/81.0</span>
 </div>
 <p class="address">경기도 하남시 미사강변한강로 60 111동 10층1002호 (선동,미사강변2차푸르지오)</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EB%AF%B8%EC%82%AC%EA%B0%95%EB%B3%802%EC%B0%A8%ED%91%B8%EB%A5%B4%EC%A7%80%EC%98%A4%20101.818%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EB%AF%B8%EC%82%AC%EA%B0%95%EB%B3%802%EC%B0%A8%ED%91%B8%EB%A5%B4%EC%A7%80%EC%98%A4%20101.818%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2023%ED%83%80%EA%B2%BD66172%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260629 D-6</strong></div>
 <div><span>최저가</span><strong>9.4억</strong></div>
@@ -489,17 +621,19 @@ main {
 <div><span>권장상한</span><strong>-</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 미사강변2차푸르지오 / 거래 10건</p>
-<p><strong>리스크</strong> high:폐기물, medium:전입, medium:점유, low:creditors</p>
-<p><strong>검토 포인트</strong> 가격 매력이 있어도 권리·점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 입찰 보류가 맞습니다.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 미사강변2차푸르지오 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-23</td><td>153,000만원</td><td>24</td><td>101.82㎡</td></tr><tr><td>매매</td><td>2026-05-30</td><td>145,000만원</td><td>8</td><td>101.88㎡</td></tr><tr><td>매매</td><td>2026-05-29</td><td>149,000만원</td><td>21</td><td>101.88㎡</td></tr><tr><td>매매</td><td>2026-05-20</td><td>146,000만원</td><td>7</td><td>101.88㎡</td></tr><tr><td>매매</td><td>2026-05-22</td><td>132,000만원</td><td>2</td><td>101.88㎡</td></tr><tr><td>매매</td><td>2026-05-18</td><td>153,000만원</td><td>14</td><td>101.89㎡</td></tr><tr><td>매매</td><td>2026-05-13</td><td>148,000만원</td><td>17</td><td>101.89㎡</td></tr><tr><td>매매</td><td>2026-05-07</td><td>150,000만원</td><td>24</td><td>101.82㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 폐기물/환경 리스크</strong><span>폐기물 관련 문구가 있어 처리비, 원상복구, 환경 책임이 발생할 수 있습니다.</span></li><li class="medium"><strong>중간 · 전입 가능성</strong><span>전입 관련 문구가 있어 대항력 있는 임차인이 존재할 가능성을 배제할 수 없습니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li><li class="low"><strong>낮음 · 채권자 다수</strong><span>채권자 수가 많아 배당관계가 복잡할 수 있습니다. 배당표와 말소/인수 관계를 등기 기준으로 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>수집 실거래 평균은 147,600만원, 최저가는 9.4억입니다. 현재 계산상 최저가는 시세의 64.0%, 예상차익은 56.2%입니다.</li><li>전세가율은 51.9%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#2</span><h3>2025타경72826 아파트</h3></div>
+<div><span class="rank">#2</span><h3><a href="cases/015_2025_72826.html">2025타경72826 아파트</a></h3></div>
 <span class="score">C/79.0</span>
 </div>
 <p class="address">경기도 의정부시 호원동 226-298 클래스원3차 102동 6층 602호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9B%903%EC%B0%A8%2082.868%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9B%903%EC%B0%A8%2082.868%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD72826%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260702 D-9</strong></div>
 <div><span>최저가</span><strong>1.6억</strong></div>
@@ -509,17 +643,19 @@ main {
 <div><span>권장상한</span><strong>-</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> area_only_match / - / 거래 10건</p>
-<p><strong>리스크</strong> high:폐기물, medium:배당요구, medium:점유, low:comp_match_quality</p>
-<p><strong>검토 포인트</strong> 가격 매력이 있어도 권리·점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 입찰 보류가 맞습니다.</p>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 클래스원3차 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-17</td><td>32,500만원</td><td>15</td><td>84.69㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>44,300만원</td><td>16</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>53,000만원</td><td>3</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-06-07</td><td>34,500만원</td><td>7</td><td>84.69㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>36,700만원</td><td>5</td><td>84.96㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>35,000만원</td><td>23</td><td>84.97㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>33,000만원</td><td>15</td><td>84.69㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>35,800만원</td><td>9</td><td>84.96㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 폐기물/환경 리스크</strong><span>폐기물 관련 문구가 있어 처리비, 원상복구, 환경 책임이 발생할 수 있습니다.</span></li><li class="medium"><strong>중간 · 배당요구</strong><span>배당요구가 언급되어 임차인 또는 이해관계인의 배당관계를 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>수집 실거래 평균은 39,755만원, 최저가는 1.6억입니다. 현재 계산상 최저가는 시세의 41.2%, 예상차익은 142.9%입니다.</li><li>전세가율은 77.8%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#3</span><h3>2025타경72761 아파트</h3></div>
+<div><span class="rank">#3</span><h3><a href="cases/016_2025_72761.html">2025타경72761 아파트</a></h3></div>
 <span class="score">C/77.0</span>
 </div>
 <p class="address">경기도 의정부시 호원동 468-4 1동 12층 1213호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/1%EB%8F%99%2015.64%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=1%EB%8F%99%2015.64%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD72761%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260707 D-14</strong></div>
 <div><span>최저가</span><strong>39,200,000원</strong></div>
@@ -529,17 +665,19 @@ main {
 <div><span>권장상한</span><strong>-</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> area_only_match / - / 거래 10건</p>
-<p><strong>리스크</strong> high:폐기물, medium:점유, low:comp_match_quality</p>
-<p><strong>검토 포인트</strong> 가격 매력이 있어도 권리·점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 입찰 보류가 맞습니다.</p>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-18</td><td>4,600만원</td><td>10</td><td>17.50㎡</td></tr><tr><td>매매</td><td>2026-06-06</td><td>5,900만원</td><td>14</td><td>15.75㎡</td></tr><tr><td>매매</td><td>2026-06-10</td><td>9,000만원</td><td>6</td><td>17.24㎡</td></tr><tr><td>매매</td><td>2026-06-03</td><td>6,000만원</td><td>15</td><td>14.54㎡</td></tr><tr><td>매매</td><td>2026-06-03</td><td>7,100만원</td><td>9</td><td>20.04㎡</td></tr><tr><td>매매</td><td>2026-05-23</td><td>9,200만원</td><td>14</td><td>18.23㎡</td></tr><tr><td>매매</td><td>2026-05-23</td><td>5,500만원</td><td>9</td><td>19.62㎡</td></tr><tr><td>매매</td><td>2026-05-16</td><td>8,900만원</td><td>24</td><td>14.62㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 폐기물/환경 리스크</strong><span>폐기물 관련 문구가 있어 처리비, 원상복구, 환경 책임이 발생할 수 있습니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>수집 실거래 평균은 6,820만원, 최저가는 39,200,000원입니다. 현재 계산상 최저가는 시세의 57.5%, 예상차익은 74.0%입니다.</li><li>전세가율은 95.2%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#4</span><h3>2025타경101127 아파트</h3></div>
+<div><span class="rank">#4</span><h3><a href="cases/017_2025_101127.html">2025타경101127 아파트</a></h3></div>
 <span class="score">C/77.0</span>
 </div>
 <p class="address">경기도 의왕시 오전동 841 백합아파트 105동 1층106호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%EB%B0%B1%ED%95%A9%EC%95%84%ED%8C%8C%ED%8A%B8%2049.86%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%EB%B0%B1%ED%95%A9%EC%95%84%ED%8C%8C%ED%8A%B8%2049.86%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD101127%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260623 D-day</strong></div>
 <div><span>최저가</span><strong>2.1억</strong></div>
@@ -549,17 +687,19 @@ main {
 <div><span>권장상한</span><strong>-</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> area_only_match / - / 거래 10건</p>
-<p><strong>리스크</strong> high:폐기물, medium:전입, medium:점유, medium:폐문, low:comp_match_quality</p>
-<p><strong>검토 포인트</strong> 가격 매력이 있어도 권리·점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 입찰 보류가 맞습니다.</p>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 백합아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-10</td><td>30,000만원</td><td>3</td><td>49.50㎡</td></tr><tr><td>매매</td><td>2026-06-02</td><td>33,700만원</td><td>12</td><td>49.50㎡</td></tr><tr><td>매매</td><td>2026-06-01</td><td>31,000만원</td><td>8</td><td>49.50㎡</td></tr><tr><td>매매</td><td>2026-05-23</td><td>36,000만원</td><td>10</td><td>49.50㎡</td></tr><tr><td>매매</td><td>2026-05-15</td><td>40,000만원</td><td>21</td><td>50.27㎡</td></tr><tr><td>매매</td><td>2026-05-15</td><td>34,500만원</td><td>15</td><td>49.77㎡</td></tr><tr><td>매매</td><td>2026-05-12</td><td>31,500만원</td><td>9</td><td>49.50㎡</td></tr><tr><td>매매</td><td>2026-05-01</td><td>28,500만원</td><td>10</td><td>49.80㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 폐기물/환경 리스크</strong><span>폐기물 관련 문구가 있어 처리비, 원상복구, 환경 책임이 발생할 수 있습니다.</span></li><li class="medium"><strong>중간 · 전입 가능성</strong><span>전입 관련 문구가 있어 대항력 있는 임차인이 존재할 가능성을 배제할 수 없습니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 폐문 조사</strong><span>현황조사에서 폐문 등으로 내부 확인이 제한됐을 가능성이 있습니다. 실제 점유와 내부 상태를 현장 기준으로 확인해야 합니다.</span></li><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>수집 실거래 평균은 33,570만원, 최저가는 2.1억입니다. 현재 계산상 최저가는 시세의 62.9%, 예상차익은 58.9%입니다.</li><li>전세가율은 64.7%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
 </div>
 </article>
 <article class="candidate-card">
 <div class="candidate-head">
-<div><span class="rank">#5</span><h3>2026타경500712 오피스텔</h3></div>
+<div><span class="rank">#5</span><h3><a href="cases/018_2026_500712.html">2026타경500712 오피스텔</a></h3></div>
 <span class="score">C/77.0</span>
 </div>
 <p class="address">인천광역시 서구 청라동 157-10 현대썬앤빌더테라스 7층101-720호</p>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%ED%98%84%EB%8C%80%EC%8D%AC%EC%95%A4%EB%B9%8C%EB%8D%94%ED%85%8C%EB%9D%BC%EC%8A%A4%2023.834%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%ED%98%84%EB%8C%80%EC%8D%AC%EC%95%A4%EB%B9%8C%EB%8D%94%ED%85%8C%EB%9D%BC%EC%8A%A4%2023.834%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2026%ED%83%80%EA%B2%BD500712%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
 <div class="facts">
 <div><span>입찰일</span><strong>20260703 D-10</strong></div>
 <div><span>최저가</span><strong>51,940,000원</strong></div>
@@ -569,9 +709,10 @@ main {
 <div><span>권장상한</span><strong>-</strong></div>
 </div>
 <div class="detail">
-<p><strong>거래표본</strong> exact_complex / 현대썬앤빌더테라스 / 거래 10건</p>
-<p><strong>리스크</strong> medium:tenants, medium:임차인, medium:전입, medium:점유, medium:폐문</p>
-<p><strong>검토 포인트</strong> 가격 매력이 있어도 권리·점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 입찰 보류가 맞습니다.</p>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 현대썬앤빌더테라스 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-26</td><td>8,000만원</td><td>14</td><td>23.83㎡</td></tr><tr><td>매매</td><td>2026-03-18</td><td>10,300만원</td><td>28</td><td>23.83㎡</td></tr><tr><td>매매</td><td>2026-02-09</td><td>9,000만원</td><td>19</td><td>23.83㎡</td></tr><tr><td>매매</td><td>2026-02-07</td><td>23,000만원</td><td>15</td><td>23.83㎡</td></tr><tr><td>매매</td><td>2026-01-17</td><td>10,400만원</td><td>23</td><td>23.83㎡</td></tr><tr><td>매매</td><td>2025-12-13</td><td>9,500만원</td><td>22</td><td>23.83㎡</td></tr><tr><td>매매</td><td>2025-12-31</td><td>10,000만원</td><td>27</td><td>23.83㎡</td></tr><tr><td>매매</td><td>2025-12-04</td><td>9,500만원</td><td>7</td><td>23.83㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 사건상세 임차인 정보</strong><span>사건상세에 임차인 관련 정보가 있어 말소기준권리보다 앞서는 대항력 또는 배당관계를 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 임차인 문구</strong><span>임차인 관련 문구가 있어 보증금, 확정일자, 배당요구 여부 확인이 필요합니다.</span></li><li class="medium"><strong>중간 · 전입 가능성</strong><span>전입 관련 문구가 있어 대항력 있는 임차인이 존재할 가능성을 배제할 수 없습니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 폐문 조사</strong><span>현황조사에서 폐문 등으로 내부 확인이 제한됐을 가능성이 있습니다. 실제 점유와 내부 상태를 현장 기준으로 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>수집 실거래 평균은 10,960만원, 최저가는 51,940,000원입니다. 현재 계산상 최저가는 시세의 47.4%, 예상차익은 111.0%입니다.</li><li>전세가율은 72.5%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>전입세대열람, 확정일자, 배당요구 여부, 보증금 인수 가능성을 별도로 확인한다.</li></ul></div>
 </div>
 </article>
 </section>

@@ -1,0 +1,1242 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025타경72826 상세 조회 자료</title>
+<style>
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #18202a;
+  --muted: #667085;
+  --line: #d8dde6;
+  --good: #0f766e;
+  --wait: #946200;
+  --risk: #b42318;
+  --accent: #1d4ed8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+main {
+  width: min(1120px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+.hero {
+  padding: 12px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.hero p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+.meta {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.summary-card,
+.guide,
+.candidate-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.summary-card {
+  padding: 14px;
+}
+.summary-card span,
+.facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+}
+.summary-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.guide {
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.guide h2,
+.candidate-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.guide ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.guide code {
+  overflow-wrap: anywhere;
+}
+.candidate-section {
+  margin-top: 24px;
+}
+.candidate-section.good h2 { color: var(--good); }
+.candidate-section.wait h2 { color: var(--wait); }
+.candidate-section.risk h2 { color: var(--risk); }
+.candidate-card {
+  padding: 16px;
+  margin: 10px 0;
+}
+.candidate-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.candidate-head h3 {
+  display: inline;
+  margin: 0;
+  font-size: 18px;
+}
+.candidate-head h3 a,
+.hero a,
+.link-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.candidate-head h3 a:hover,
+.hero a:hover,
+.link-row a:hover {
+  text-decoration: underline;
+}
+.rank {
+  display: inline-flex;
+  min-width: 34px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #e7eefc;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+.score {
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--accent);
+}
+.address {
+  margin: 8px 0 12px;
+  color: var(--muted);
+}
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef4ff;
+  border: 1px solid #d7e5ff;
+  font-size: 13px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.facts div {
+  padding: 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+}
+.facts strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.detail {
+  margin-top: 12px;
+}
+.detail p {
+  margin: 6px 0;
+}
+.comp-summary {
+  color: var(--text);
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+}
+.comp-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.comp-table th,
+.comp-table td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #e7ebf1;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comp-table th {
+  background: #f2f5f9;
+  color: var(--muted);
+  font-weight: 800;
+}
+.analysis-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e7ebf1;
+}
+.analysis-block h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.risk-list,
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.risk-list li,
+.review-list li {
+  margin: 7px 0;
+}
+.risk-list strong {
+  display: block;
+}
+.risk-list span {
+  display: block;
+  color: var(--muted);
+}
+.risk-list li.high strong { color: var(--risk); }
+.risk-list li.medium strong { color: var(--wait); }
+.risk-list li.low strong { color: var(--good); }
+.raw-section {
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.raw-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+.raw-json {
+  margin: 0;
+  padding: 14px;
+  overflow-x: auto;
+  background: #111827;
+  color: #e5e7eb;
+  border-radius: 8px;
+  font-size: 12px;
+  line-height: 1.55;
+}
+.empty {
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  main { width: min(100% - 20px, 720px); padding-top: 18px; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { font-size: 25px; }
+}
+@media (max-width: 460px) {
+  .summary-grid,
+  .facts { grid-template-columns: 1fr; }
+  .candidate-head { display: block; }
+  .score { display: inline-block; margin-top: 8px; }
+}
+
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p><a href="../investment_review.html">← 투자 검토 리포트로 돌아가기</a></p>
+<h1>2025타경72826 상세 조회 자료</h1>
+<div class="meta">#15 · 권리검토형 주의 후보 · 원천 분석 reports\20260622_011024_realestate_30d\analysis.json</div>
+</section>
+<section class="summary-grid">
+<div class="summary-card"><span>점수</span><strong>C/79.0</strong><p>권리 리스크 해소 전 보류</p></div>
+<div class="summary-card"><span>입찰일</span><strong>20260702</strong><p>D-9</p></div>
+<div class="summary-card"><span>최저가</span><strong>1.6억</strong><p>감정가 3.3억</p></div>
+<div class="summary-card"><span>시세대비</span><strong>41.2%</strong><p>예상차익 142.9%</p></div>
+<div class="summary-card"><span>권장상한</span><strong>-</strong><p>high risk 또는 임차인 리스크 해소 전 입찰가 산정 보류</p></div>
+</section>
+<section class="guide">
+<h2>경기도 의정부시 호원동 226-298 클래스원3차 102동 6층 602호</h2>
+<div class="link-row"><a href="https://m.land.naver.com/search/result/%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9B%903%EC%B0%A8%2082.868%E3%8E%A1" target="_blank" rel="noopener">네이버부동산 시세</a><a href="https://search.naver.com/search.naver?query=%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9B%903%EC%B0%A8%2082.868%E3%8E%A1%20%EC%8B%A4%EA%B1%B0%EB%9E%98%EA%B0%80" target="_blank" rel="noopener">네이버 실거래 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD72826%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a></div>
+</section>
+<section class="candidate-section good">
+<h2>거래표본 전체</h2>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 클래스원3차 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-17</td><td>32,500만원</td><td>15</td><td>84.69㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>44,300만원</td><td>16</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>53,000만원</td><td>3</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-06-07</td><td>34,500만원</td><td>7</td><td>84.69㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>36,700만원</td><td>5</td><td>84.96㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>35,000만원</td><td>23</td><td>84.97㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>33,000만원</td><td>15</td><td>84.69㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>35,800만원</td><td>9</td><td>84.96㎡</td></tr><tr><td>매매</td><td>2026-06-08</td><td>47,250만원</td><td>14</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-06-11</td><td>45,500만원</td><td>4</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-06-10</td><td>37,000만원</td><td>14</td><td>84.97㎡</td></tr><tr><td>전세</td><td>2026-06-18</td><td>32,500만원</td><td>4</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-06-15</td><td>37,000만원</td><td>7</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-06-16</td><td>28,000만원</td><td>1</td><td>82.34㎡</td></tr><tr><td>전세</td><td>2026-06-10</td><td>36,750만원</td><td>6</td><td>84.91㎡</td></tr><tr><td>전세</td><td>2026-06-15</td><td>29,000만원</td><td>1</td><td>84.91㎡</td></tr><tr><td>전세</td><td>2026-06-16</td><td>42,000만원</td><td>11</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-06-15</td><td>10,000만원</td><td>1</td><td>84.99㎡</td></tr><tr><td>전세</td><td>2026-06-16</td><td>27,000만원</td><td>14</td><td>84.99㎡</td></tr><tr><td>전세</td><td>2026-06-08</td><td>30,000만원</td><td>10</td><td>84.37㎡</td></tr><tr><td>월세</td><td>2026-06-03</td><td>10,000만원 / 90만원</td><td>1</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-06-16</td><td>10,000만원 / 100만원</td><td>13</td><td>84.93㎡</td></tr><tr><td>월세</td><td>2026-06-16</td><td>7,250만원 / 150만원</td><td>3</td><td>84.98㎡</td></tr><tr><td>월세</td><td>2026-06-12</td><td>32,000만원 / 25만원</td><td>5</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-06-05</td><td>4,000만원 / 135만원</td><td>39</td><td>84.38㎡</td></tr><tr><td>월세</td><td>2026-06-15</td><td>5,000만원 / 145만원</td><td>5</td><td>84.66㎡</td></tr><tr><td>월세</td><td>2026-06-11</td><td>5,000만원 / 160만원</td><td>11</td><td>84.98㎡</td></tr><tr><td>월세</td><td>2026-06-13</td><td>4,000만원 / 126만원</td><td>10</td><td>84.99㎡</td></tr><tr><td>월세</td><td>2026-06-12</td><td>0만원 / 100만원</td><td>5</td><td>84.94㎡</td></tr><tr><td>월세</td><td>2026-06-11</td><td>15,000만원 / 70만원</td><td>8</td><td>84.83㎡</td></tr></tbody></table></div>
+</section>
+<section class="candidate-section risk">
+<h2>리스크와 검토 포인트</h2>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 폐기물/환경 리스크</strong><span>폐기물 관련 문구가 있어 처리비, 원상복구, 환경 책임이 발생할 수 있습니다.</span></li><li class="medium"><strong>중간 · 배당요구</strong><span>배당요구가 언급되어 임차인 또는 이해관계인의 배당관계를 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>수집 실거래 평균은 39,755만원, 최저가는 1.6억입니다. 현재 계산상 최저가는 시세의 41.2%, 예상차익은 142.9%입니다.</li><li>전세가율은 77.8%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 네이버 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</section>
+<section class="candidate-section">
+<h2>수집 섹션별 원본</h2>
+<details class="raw-section" open><summary>매각조건/기일</summary><pre class="raw-json">{
+  &quot;case_type&quot;: &quot;부동산강제경매&quot;,
+  &quot;claim_amt&quot;: 320000000,
+  &quot;special_notes&quot;: null,
+  &quot;bid_history&quot;: [
+    {
+      &quot;date&quot;: &quot;20260423&quot;,
+      &quot;time&quot;: &quot;1030&quot;,
+      &quot;place&quot;: &quot;경매입찰법정(제6호)&quot;,
+      &quot;min_price&quot;: 334000000,
+      &quot;sold_price&quot;: null,
+      &quot;result&quot;: &quot;002&quot;
+    },
+    {
+      &quot;date&quot;: &quot;20260528&quot;,
+      &quot;time&quot;: &quot;1030&quot;,
+      &quot;place&quot;: &quot;경매입찰법정(제6호)&quot;,
+      &quot;min_price&quot;: 233800000,
+      &quot;sold_price&quot;: null,
+      &quot;result&quot;: &quot;002&quot;
+    },
+    {
+      &quot;date&quot;: &quot;20260702&quot;,
+      &quot;time&quot;: &quot;1030&quot;,
+      &quot;place&quot;: &quot;경매입찰법정(제6호)&quot;,
+      &quot;min_price&quot;: 163660000,
+      &quot;sold_price&quot;: 0,
+      &quot;result&quot;: null
+    },
+    {
+      &quot;date&quot;: &quot;20260709&quot;,
+      &quot;time&quot;: &quot;1530&quot;,
+      &quot;place&quot;: &quot;경매입찰법정(제6호)&quot;,
+      &quot;min_price&quot;: 0,
+      &quot;sold_price&quot;: 0,
+      &quot;result&quot;: null
+    }
+  ],
+  &quot;bid_place&quot;: &quot;경매입찰법정(제6호)&quot;
+}</pre></details>
+<details class="raw-section" open><summary>현황조사/점유</summary><pre class="raw-json">{
+  &quot;occupancy&quot;: [
+    {
+      &quot;address&quot;: &quot;경기도 의정부시 호원동 226-298 클래스원3차 102동 6층 602호&quot;,
+      &quot;possession&quot;: &quot;소유자점유&quot;,
+      &quot;description&quot;: &quot;부동산의 현황 기재사항과 같음.&lt;br /&gt;&quot;,
+      &quot;tenant_count&quot;: 0
+    }
+  ],
+  &quot;tenants_curr&quot;: []
+}</pre></details>
+<details class="raw-section" open><summary>사건상세/이해관계인</summary><pre class="raw-json">{
+  &quot;stakeholders&quot;: [
+    {
+      &quot;role&quot;: &quot;채권자&quot;,
+      &quot;category&quot;: &quot;creditor&quot;,
+      &quot;name&quot;: &quot;주OOOOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;채무자겸소유자&quot;,
+      &quot;category&quot;: &quot;debtor&quot;,
+      &quot;name&quot;: &quot;망 OOOO OOOOOOO OOO OOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;가압류권자&quot;,
+      &quot;category&quot;: &quot;provisional_seizure&quot;,
+      &quot;name&quot;: &quot;서OOOOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;압류권자&quot;,
+      &quot;category&quot;: &quot;seizure&quot;,
+      &quot;name&quot;: &quot;의OOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;교부권자&quot;,
+      &quot;category&quot;: &quot;delivery_claimant&quot;,
+      &quot;name&quot;: &quot;동OOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;교부권자&quot;,
+      &quot;category&quot;: &quot;delivery_claimant&quot;,
+      &quot;name&quot;: &quot;국OOOOOOO OOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;교부권자&quot;,
+      &quot;category&quot;: &quot;delivery_claimant&quot;,
+      &quot;name&quot;: &quot;서OOOOOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;교부권자&quot;,
+      &quot;category&quot;: &quot;delivery_claimant&quot;,
+      &quot;name&quot;: &quot;의OOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;교부권자&quot;,
+      &quot;category&quot;: &quot;delivery_claimant&quot;,
+      &quot;name&quot;: &quot;서OOOO OOO(OOOOO)&quot;
+    },
+    {
+      &quot;role&quot;: &quot;배당요구권자&quot;,
+      &quot;category&quot;: &quot;dividend_claimant&quot;,
+      &quot;name&quot;: &quot;신OOOOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;배당요구권자&quot;,
+      &quot;category&quot;: &quot;dividend_claimant&quot;,
+      &quot;name&quot;: &quot;서OOOOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;배당요구권자&quot;,
+      &quot;category&quot;: &quot;dividend_claimant&quot;,
+      &quot;name&quot;: &quot;주OOO OOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;임차권자&quot;,
+      &quot;category&quot;: &quot;other&quot;,
+      &quot;name&quot;: &quot;이OO&quot;
+    }
+  ],
+  &quot;tenants&quot;: [],
+  &quot;creditors&quot;: [
+    {
+      &quot;role&quot;: &quot;채권자&quot;,
+      &quot;category&quot;: &quot;creditor&quot;,
+      &quot;name&quot;: &quot;주OOOOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;가압류권자&quot;,
+      &quot;category&quot;: &quot;provisional_seizure&quot;,
+      &quot;name&quot;: &quot;서OOOOOOO&quot;
+    },
+    {
+      &quot;role&quot;: &quot;압류권자&quot;,
+      &quot;category&quot;: &quot;seizure&quot;,
+      &quot;name&quot;: &quot;의OOO&quot;
+    }
+  ],
+  &quot;demnd_deadline&quot;: &quot;20251013&quot;
+}</pre></details>
+<details class="raw-section" open><summary>감정평가 요약</summary><pre class="raw-json">{
+  &quot;details&quot;: &quot;[집합건물 철근콘크리트구조 82.868㎡]&quot;,
+  &quot;appraisal_points&quot;: &quot;본건은 경기도 의정부시 호원동 소재 \&quot;\&quot;호암초등학교\&quot;\&quot; 북측 인근에 위치하며, 주위는 단독\r\n주택. 소규모 공동주택(다세대주택, 연립주택등) 등이 혼재하는 지역으로서 제반 입지조건 \r\n및 주위환경 보통임.\n본건까지 차량 출입 가능하며 인근에 버스정류장 및 지하철 1호선  \&quot;\&quot;망월사역\&quot;\&quot;이 소재하는\r\n등 전반적인 교통여건 무난함.\n구조 : 철근콘크리트구조 (철근)콘크리트지붕 9층 중 6층 602호로서 \r\n       (건물사용승인일 : 2018.06.08).\r\n외벽 : 외장재 및 일부 석재마감 등.\r\n내벽 : 벽지 도배, 일부 타일 등 마감.\r\n창호 : 샷시 창호임.\n주거용 오피스텔(방3, 거실, 주방/식당, 욕실겸화장실2, 다용도실,  현관 등)로 이용중이며,\r\n내부구조는 지적 및 건물개황도 참조.\n급배수 및 위생설비, 상하수도, 난방설비(가스보일러에 의한 개별난방), 화재경보기,\r\n승강기설비 등을 갖추었음.\n자체지면 및 인접도로 대비 등고평탄한 4필 일단지의 세장형의 토지로서 공동주택\r\n(다세대주택 및 오피스텔) 건부지로 이용 중임.\n본건 단지 북측으로 폭 약 8 미터의 포장도로에 접함.\n기호  1  : 제2종일반주거지역, 소로2류(폭 8m~10m)(2020-06-30)(접합), 상대보호구역\r\n           상대보호구역(호암초,호암유치원), 상대보호구역(호원고), 과밀억제권역,\r\n           (한강)폐기물매립시설설치제한지역.\r\n기호 2~4 : 제2종일반주거지역, 상대보호구역(호암초,호암유치원), 상대보호구역(호원고),\r\n           과밀억제권역, (한강)폐기물매립시설설치제한지역.\n없 음.\n임대관계 : 미상. \r\n기    타 : -&quot;,
+  &quot;building_name&quot;: &quot;클래스원3차&quot;,
+  &quot;lot_addresses&quot;: [
+    &quot;경기도 의정부시 망월로45번길 22 (호원동,클래스원3차)&quot;,
+    &quot;경기도 의정부시 망월로45번길 22 (호원동,클래스원3차)&quot;,
+    &quot;경기도 의정부시 망월로45번길 22 (호원동,클래스원3차)&quot;,
+    &quot;경기도 의정부시 망월로45번길 22 (호원동,클래스원3차)&quot;
+  ],
+  &quot;coordinates&quot;: {
+    &quot;x&quot;: 316115,
+    &quot;y&quot;: 567509
+  }
+}</pre></details>
+<details class="raw-section" open><summary>가격 근거</summary><pre class="raw-json">{
+  &quot;nearby_auction_stats&quot;: {
+    &quot;3m&quot;: {
+      &quot;매각건수&quot;: 54,
+      &quot;평균감정가&quot;: 347935185,
+      &quot;평균매각가&quot;: 286241288,
+      &quot;매각가율&quot;: 79,
+      &quot;평균유찰횟수&quot;: 1.7
+    },
+    &quot;6m&quot;: {
+      &quot;매각건수&quot;: 90,
+      &quot;평균감정가&quot;: 334627778,
+      &quot;평균매각가&quot;: 274174811,
+      &quot;매각가율&quot;: 79,
+      &quot;평균유찰횟수&quot;: 1.7
+    },
+    &quot;12m&quot;: {
+      &quot;매각건수&quot;: 158,
+      &quot;평균감정가&quot;: 329156962,
+      &quot;평균매각가&quot;: 271774522,
+      &quot;매각가율&quot;: 80,
+      &quot;평균유찰횟수&quot;: 1.6
+    }
+  },
+  &quot;real_price&quot;: {
+    &quot;matched_apt&quot;: &quot;&quot;,
+    &quot;matched_area&quot;: 82.868,
+    &quot;match_strategy&quot;: &quot;area_fallback&quot;,
+    &quot;fallback_from_apt&quot;: &quot;클래스원3차&quot;,
+    &quot;trade&quot;: [
+      {
+        &quot;price&quot;: &quot;32500&quot;,
+        &quot;date&quot;: &quot;2026-06-17&quot;,
+        &quot;floor&quot;: &quot;15&quot;,
+        &quot;area&quot;: 84.6857
+      },
+      {
+        &quot;price&quot;: &quot;44300&quot;,
+        &quot;date&quot;: &quot;2026-06-18&quot;,
+        &quot;floor&quot;: &quot;16&quot;,
+        &quot;area&quot;: 84.9788
+      },
+      {
+        &quot;price&quot;: &quot;53000&quot;,
+        &quot;date&quot;: &quot;2026-06-13&quot;,
+        &quot;floor&quot;: &quot;3&quot;,
+        &quot;area&quot;: 84.99
+      },
+      {
+        &quot;price&quot;: &quot;34500&quot;,
+        &quot;date&quot;: &quot;2026-06-07&quot;,
+        &quot;floor&quot;: &quot;7&quot;,
+        &quot;area&quot;: 84.6857
+      },
+      {
+        &quot;price&quot;: &quot;36700&quot;,
+        &quot;date&quot;: &quot;2026-06-13&quot;,
+        &quot;floor&quot;: &quot;5&quot;,
+        &quot;area&quot;: 84.96
+      },
+      {
+        &quot;price&quot;: &quot;35000&quot;,
+        &quot;date&quot;: &quot;2026-06-15&quot;,
+        &quot;floor&quot;: &quot;23&quot;,
+        &quot;area&quot;: 84.966
+      },
+      {
+        &quot;price&quot;: &quot;33000&quot;,
+        &quot;date&quot;: &quot;2026-06-18&quot;,
+        &quot;floor&quot;: &quot;15&quot;,
+        &quot;area&quot;: 84.6857
+      },
+      {
+        &quot;price&quot;: &quot;35800&quot;,
+        &quot;date&quot;: &quot;2026-06-15&quot;,
+        &quot;floor&quot;: &quot;9&quot;,
+        &quot;area&quot;: 84.96
+      },
+      {
+        &quot;price&quot;: &quot;47250&quot;,
+        &quot;date&quot;: &quot;2026-06-08&quot;,
+        &quot;floor&quot;: &quot;14&quot;,
+        &quot;area&quot;: 84.9788
+      },
+      {
+        &quot;price&quot;: &quot;45500&quot;,
+        &quot;date&quot;: &quot;2026-06-11&quot;,
+        &quot;floor&quot;: &quot;4&quot;,
+        &quot;area&quot;: 84.9788
+      }
+    ],
+    &quot;jeonse&quot;: [
+      {
+        &quot;deposit&quot;: &quot;37000&quot;,
+        &quot;date&quot;: &quot;2026-06-10&quot;,
+        &quot;floor&quot;: &quot;14&quot;,
+        &quot;area&quot;: 84.97
+      },
+      {
+        &quot;deposit&quot;: &quot;32500&quot;,
+        &quot;date&quot;: &quot;2026-06-18&quot;,
+        &quot;floor&quot;: &quot;4&quot;,
+        &quot;area&quot;: 84.9823
+      },
+      {
+        &quot;deposit&quot;: &quot;37000&quot;,
+        &quot;date&quot;: &quot;2026-06-15&quot;,
+        &quot;floor&quot;: &quot;7&quot;,
+        &quot;area&quot;: 84.9788
+      },
+      {
+        &quot;deposit&quot;: &quot;28000&quot;,
+        &quot;date&quot;: &quot;2026-06-16&quot;,
+        &quot;floor&quot;: &quot;1&quot;,
+        &quot;area&quot;: 82.34
+      },
+      {
+        &quot;deposit&quot;: &quot;36750&quot;,
+        &quot;date&quot;: &quot;2026-06-10&quot;,
+        &quot;floor&quot;: &quot;6&quot;,
+        &quot;area&quot;: 84.91
+      },
+      {
+        &quot;deposit&quot;: &quot;29000&quot;,
+        &quot;date&quot;: &quot;2026-06-15&quot;,
+        &quot;floor&quot;: &quot;1&quot;,
+        &quot;area&quot;: 84.91
+      },
+      {
+        &quot;deposit&quot;: &quot;42000&quot;,
+        &quot;date&quot;: &quot;2026-06-16&quot;,
+        &quot;floor&quot;: &quot;11&quot;,
+        &quot;area&quot;: 84.9788
+      },
+      {
+        &quot;deposit&quot;: &quot;10000&quot;,
+        &quot;date&quot;: &quot;2026-06-15&quot;,
+        &quot;floor&quot;: &quot;1&quot;,
+        &quot;area&quot;: 84.9907
+      },
+      {
+        &quot;deposit&quot;: &quot;27000&quot;,
+        &quot;date&quot;: &quot;2026-06-16&quot;,
+        &quot;floor&quot;: &quot;14&quot;,
+        &quot;area&quot;: 84.988
+      },
+      {
+        &quot;deposit&quot;: &quot;30000&quot;,
+        &quot;date&quot;: &quot;2026-06-08&quot;,
+        &quot;floor&quot;: &quot;10&quot;,
+        &quot;area&quot;: 84.372
+      }
+    ],
+    &quot;monthly_rent&quot;: [
+      {
+        &quot;deposit&quot;: &quot;10000&quot;,
+        &quot;monthly_rent&quot;: &quot;90&quot;,
+        &quot;date&quot;: &quot;2026-06-03&quot;,
+        &quot;floor&quot;: &quot;1&quot;,
+        &quot;area&quot;: 84.97
+      },
+      {
+        &quot;deposit&quot;: &quot;10000&quot;,
+        &quot;monthly_rent&quot;: &quot;100&quot;,
+        &quot;date&quot;: &quot;2026-06-16&quot;,
+        &quot;floor&quot;: &quot;13&quot;,
+        &quot;area&quot;: 84.93
+      },
+      {
+        &quot;deposit&quot;: &quot;7250&quot;,
+        &quot;monthly_rent&quot;: &quot;150&quot;,
+        &quot;date&quot;: &quot;2026-06-16&quot;,
+        &quot;floor&quot;: &quot;3&quot;,
+        &quot;area&quot;: 84.9788
+      },
+      {
+        &quot;deposit&quot;: &quot;32000&quot;,
+        &quot;monthly_rent&quot;: &quot;25&quot;,
+        &quot;date&quot;: &quot;2026-06-12&quot;,
+        &quot;floor&quot;: &quot;5&quot;,
+        &quot;area&quot;: 84.97
+      },
+      {
+        &quot;deposit&quot;: &quot;4000&quot;,
+        &quot;monthly_rent&quot;: &quot;135&quot;,
+        &quot;date&quot;: &quot;2026-06-05&quot;,
+        &quot;floor&quot;: &quot;39&quot;,
+        &quot;area&quot;: 84.3813
+      },
+      {
+        &quot;deposit&quot;: &quot;5000&quot;,
+        &quot;monthly_rent&quot;: &quot;145&quot;,
+        &quot;date&quot;: &quot;2026-06-15&quot;,
+        &quot;floor&quot;: &quot;5&quot;,
+        &quot;area&quot;: 84.66
+      },
+      {
+        &quot;deposit&quot;: &quot;5000&quot;,
+        &quot;monthly_rent&quot;: &quot;160&quot;,
+        &quot;date&quot;: &quot;2026-06-11&quot;,
+        &quot;floor&quot;: &quot;11&quot;,
+        &quot;area&quot;: 84.9788
+      },
+      {
+        &quot;deposit&quot;: &quot;4000&quot;,
+        &quot;monthly_rent&quot;: &quot;126&quot;,
+        &quot;date&quot;: &quot;2026-06-13&quot;,
+        &quot;floor&quot;: &quot;10&quot;,
+        &quot;area&quot;: 84.99
+      },
+      {
+        &quot;deposit&quot;: &quot;0&quot;,
+        &quot;monthly_rent&quot;: &quot;100&quot;,
+        &quot;date&quot;: &quot;2026-06-12&quot;,
+        &quot;floor&quot;: &quot;5&quot;,
+        &quot;area&quot;: 84.9367
+      },
+      {
+        &quot;deposit&quot;: &quot;15000&quot;,
+        &quot;monthly_rent&quot;: &quot;70&quot;,
+        &quot;date&quot;: &quot;2026-06-11&quot;,
+        &quot;floor&quot;: &quot;8&quot;,
+        &quot;area&quot;: 84.83
+      }
+    ]
+  },
+  &quot;real_price_note&quot;: null,
+  &quot;analysis&quot;: {
+    &quot;bid_rate_pct&quot;: 49.0,
+    &quot;avg_trade_manwon&quot;: 39755,
+    &quot;bid_vs_market_pct&quot;: 41.2,
+    &quot;est_gain_pct&quot;: 142.9,
+    &quot;avg_jeonse_manwon&quot;: 30925,
+    &quot;jeonse_rate_pct&quot;: 77.8,
+    &quot;tenant_count&quot;: 0,
+    &quot;creditor_count&quot;: 3
+  }
+}</pre></details>
+<details class="raw-section" open><summary>수집 메타</summary><pre class="raw-json">{
+  &quot;_source_file&quot;: &quot;C:\\Users\\lsyko\\Documents\\git\\great_auction\\outputs\\20260622_011024_realestate_30d\\1_아파트_서울_인천_경기_20260622_20260722_20260622_0412.json&quot;,
+  &quot;_source_index&quot;: 126,
+  &quot;_source_metadata&quot;: {
+    &quot;type&quot;: &quot;아파트&quot;,
+    &quot;total_collected&quot;: 971,
+    &quot;part&quot;: 1,
+    &quot;total_parts&quot;: 2,
+    &quot;part_range&quot;: &quot;1~500&quot;,
+    &quot;region&quot;: &quot;서울특별시, 인천광역시, 경기도&quot;,
+    &quot;date_range&quot;: &quot;20260622 ~ 20260722&quot;,
+    &quot;fetch_date&quot;: &quot;2026-06-22 04:12:52&quot;,
+    &quot;target_profile&quot;: &quot;all-realestate&quot;,
+    &quot;collection_audit_status&quot;: &quot;degraded&quot;,
+    &quot;collection_audit_file&quot;: &quot;collection_audit_서울_인천_경기_20260622_20260722_20260622_0412.json&quot;
+  }
+}</pre></details>
+</section>
+<section class="candidate-section">
+<h2>전체 원본 JSON</h2>
+<p class="empty">아래 JSON은 분석 item 전체입니다. 요약하지 않고 저장된 값을 그대로 표시합니다.</p>
+<pre class="raw-json">{
+  &quot;score&quot;: 79.0,
+  &quot;grade&quot;: &quot;C&quot;,
+  &quot;decision&quot;: &quot;권리 리스크 해소 전 보류&quot;,
+  &quot;breakdown&quot;: {
+    &quot;market_margin&quot;: 35.0,
+    &quot;auction_discount&quot;: 15.0,
+    &quot;rent_support&quot;: 7.0,
+    &quot;liquidity&quot;: 10.0,
+    &quot;risk_control&quot;: 7.0,
+    &quot;data_confidence&quot;: 5.0
+  },
+  &quot;normalized&quot;: {
+    &quot;id&quot;: &quot;2025타경72826&quot;,
+    &quot;court&quot;: &quot;의정부지방법원&quot;,
+    &quot;type&quot;: &quot;아파트&quot;,
+    &quot;asset_category&quot;: &quot;residential&quot;,
+    &quot;investment_strategy&quot;: &quot;liquid-resale-or-rental-support&quot;,
+    &quot;market_data_support&quot;: &quot;residential_trade_and_rent&quot;,
+    &quot;requires_manual_comps&quot;: false,
+    &quot;special_asset_review&quot;: false,
+    &quot;category_target_discount_pct&quot;: null,
+    &quot;address&quot;: &quot;경기도 의정부시 호원동 226-298 클래스원3차 102동 6층 602호&quot;,
+    &quot;bid_date&quot;: &quot;20260702&quot;,
+    &quot;min_bid_won&quot;: 163660000,
+    &quot;appraisal_won&quot;: 334000000,
+    &quot;min_bid_manwon&quot;: 16366.0,
+    &quot;appraisal_manwon&quot;: 33400.0,
+    &quot;avg_trade_manwon&quot;: 39755.0,
+    &quot;avg_jeonse_manwon&quot;: 30925.0,
+    &quot;bid_rate_pct&quot;: 49.0,
+    &quot;bid_vs_market_pct&quot;: 41.2,
+    &quot;market_discount_pct&quot;: 58.8,
+    &quot;est_gain_pct&quot;: 142.9,
+    &quot;jeonse_rate_pct&quot;: 77.8,
+    &quot;trade_count&quot;: 10,
+    &quot;jeonse_count&quot;: 10,
+    &quot;monthly_rent_count&quot;: 10,
+    &quot;comp_match_quality&quot;: &quot;area_only_match&quot;,
+    &quot;comp_match_name&quot;: null,
+    &quot;comp_match_area_sqm&quot;: 82.868,
+    &quot;comp_match_strategy&quot;: &quot;area_fallback&quot;,
+    &quot;comp_match_fallback_from&quot;: &quot;클래스원3차&quot;,
+    &quot;comp_match_note&quot;: &quot;Exact complex name produced no trades; area-based fallback was used from 클래스원3차.&quot;,
+    &quot;nearby_3m_count&quot;: 54.0,
+    &quot;nearby_6m_count&quot;: 90.0,
+    &quot;nearby_12m_count&quot;: 158.0,
+    &quot;nearby_3m_sale_rate_pct&quot;: 79.0,
+    &quot;nearby_6m_sale_rate_pct&quot;: 79.0,
+    &quot;nearby_12m_sale_rate_pct&quot;: 80.0,
+    &quot;nearby_12m_avg_fail_count&quot;: 1.6,
+    &quot;fail_count&quot;: 2,
+    &quot;tenant_count&quot;: 0,
+    &quot;current_tenant_count&quot;: 0,
+    &quot;creditor_count&quot;: 3,
+    &quot;real_price_note&quot;: null,
+    &quot;screening_bucket&quot;: &quot;legal_review&quot;,
+    &quot;buffered_gain_pct&quot;: null,
+    &quot;suggested_max_bid_won&quot;: null,
+    &quot;suggested_max_bid_note&quot;: &quot;high risk 또는 임차인 리스크 해소 전 입찰가 산정 보류&quot;
+  },
+  &quot;risk_flags&quot;: [
+    {
+      &quot;severity&quot;: &quot;high&quot;,
+      &quot;keyword&quot;: &quot;폐기물&quot;,
+      &quot;reason&quot;: &quot;waste/environmental risk&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;medium&quot;,
+      &quot;keyword&quot;: &quot;배당요구&quot;,
+      &quot;reason&quot;: &quot;distribution claim&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;medium&quot;,
+      &quot;keyword&quot;: &quot;점유&quot;,
+      &quot;reason&quot;: &quot;occupancy&quot;
+    },
+    {
+      &quot;severity&quot;: &quot;low&quot;,
+      &quot;keyword&quot;: &quot;comp_match_quality&quot;,
+      &quot;reason&quot;: &quot;comparable trade match needs manual verification&quot;
+    }
+  ],
+  &quot;opportunity_flags&quot;: [
+    &quot;지하철: subway access&quot;,
+    &quot;학교: school nearby&quot;,
+    &quot;버스: bus access&quot;
+  ],
+  &quot;due_diligence&quot;: [
+    &quot;매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.&quot;,
+    &quot;등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.&quot;,
+    &quot;입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.&quot;,
+    &quot;high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.&quot;,
+    &quot;실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.&quot;,
+    &quot;관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.&quot;
+  ],
+  &quot;codex_brief&quot;: &quot;2025타경72826 아파트 [residential/liquid-resale-or-rental-support] / 경기도 의정부시 호원동 226-298 클래스원3차 102동 6층 602호 | score=79.0(C, 권리 리스크 해소 전 보류) | min_bid=1.6억, appraisal=3.3억, avg_trade=4.0억, bid_vs_market=41.2%, est_gain=142.9%, jeonse_rate=77.8% | risks=[high:폐기물, medium:배당요구, medium:점유, low:comp_match_quality] | opportunities=[지하철: subway access, 학교: school nearby, 버스: bus access]&quot;,
+  &quot;case&quot;: {
+    &quot;id&quot;: &quot;2025타경72826&quot;,
+    &quot;court&quot;: &quot;의정부지방법원&quot;,
+    &quot;type&quot;: &quot;아파트&quot;,
+    &quot;address&quot;: &quot;경기도 의정부시 호원동 226-298 클래스원3차 102동 6층 602호&quot;,
+    &quot;details&quot;: &quot;[집합건물 철근콘크리트구조 82.868㎡]&quot;,
+    &quot;appraisal_amt&quot;: &quot;334000000&quot;,
+    &quot;min_bid_price&quot;: &quot;163660000&quot;,
+    &quot;bid_date&quot;: &quot;20260702&quot;,
+    &quot;bid_place&quot;: &quot;경매입찰법정(제6호)&quot;,
+    &quot;fail_count&quot;: &quot;2&quot;,
+    &quot;case_type&quot;: &quot;부동산강제경매&quot;,
+    &quot;claim_amt&quot;: 320000000,
+    &quot;special_notes&quot;: null,
+    &quot;appraisal_points&quot;: &quot;본건은 경기도 의정부시 호원동 소재 \&quot;\&quot;호암초등학교\&quot;\&quot; 북측 인근에 위치하며, 주위는 단독\r\n주택. 소규모 공동주택(다세대주택, 연립주택등) 등이 혼재하는 지역으로서 제반 입지조건 \r\n및 주위환경 보통임.\n본건까지 차량 출입 가능하며 인근에 버스정류장 및 지하철 1호선  \&quot;\&quot;망월사역\&quot;\&quot;이 소재하는\r\n등 전반적인 교통여건 무난함.\n구조 : 철근콘크리트구조 (철근)콘크리트지붕 9층 중 6층 602호로서 \r\n       (건물사용승인일 : 2018.06.08).\r\n외벽 : 외장재 및 일부 석재마감 등.\r\n내벽 : 벽지 도배, 일부 타일 등 마감.\r\n창호 : 샷시 창호임.\n주거용 오피스텔(방3, 거실, 주방/식당, 욕실겸화장실2, 다용도실,  현관 등)로 이용중이며,\r\n내부구조는 지적 및 건물개황도 참조.\n급배수 및 위생설비, 상하수도, 난방설비(가스보일러에 의한 개별난방), 화재경보기,\r\n승강기설비 등을 갖추었음.\n자체지면 및 인접도로 대비 등고평탄한 4필 일단지의 세장형의 토지로서 공동주택\r\n(다세대주택 및 오피스텔) 건부지로 이용 중임.\n본건 단지 북측으로 폭 약 8 미터의 포장도로에 접함.\n기호  1  : 제2종일반주거지역, 소로2류(폭 8m~10m)(2020-06-30)(접합), 상대보호구역\r\n           상대보호구역(호암초,호암유치원), 상대보호구역(호원고), 과밀억제권역,\r\n           (한강)폐기물매립시설설치제한지역.\r\n기호 2~4 : 제2종일반주거지역, 상대보호구역(호암초,호암유치원), 상대보호구역(호원고),\r\n           과밀억제권역, (한강)폐기물매립시설설치제한지역.\n없 음.\n임대관계 : 미상. \r\n기    타 : -&quot;,
+    &quot;building_name&quot;: &quot;클래스원3차&quot;,
+    &quot;coordinates&quot;: {
+      &quot;x&quot;: 316115,
+      &quot;y&quot;: 567509
+    },
+    &quot;lot_addresses&quot;: [
+      &quot;경기도 의정부시 망월로45번길 22 (호원동,클래스원3차)&quot;,
+      &quot;경기도 의정부시 망월로45번길 22 (호원동,클래스원3차)&quot;,
+      &quot;경기도 의정부시 망월로45번길 22 (호원동,클래스원3차)&quot;,
+      &quot;경기도 의정부시 망월로45번길 22 (호원동,클래스원3차)&quot;
+    ],
+    &quot;bid_history&quot;: [
+      {
+        &quot;date&quot;: &quot;20260423&quot;,
+        &quot;time&quot;: &quot;1030&quot;,
+        &quot;place&quot;: &quot;경매입찰법정(제6호)&quot;,
+        &quot;min_price&quot;: 334000000,
+        &quot;sold_price&quot;: null,
+        &quot;result&quot;: &quot;002&quot;
+      },
+      {
+        &quot;date&quot;: &quot;20260528&quot;,
+        &quot;time&quot;: &quot;1030&quot;,
+        &quot;place&quot;: &quot;경매입찰법정(제6호)&quot;,
+        &quot;min_price&quot;: 233800000,
+        &quot;sold_price&quot;: null,
+        &quot;result&quot;: &quot;002&quot;
+      },
+      {
+        &quot;date&quot;: &quot;20260702&quot;,
+        &quot;time&quot;: &quot;1030&quot;,
+        &quot;place&quot;: &quot;경매입찰법정(제6호)&quot;,
+        &quot;min_price&quot;: 163660000,
+        &quot;sold_price&quot;: 0,
+        &quot;result&quot;: null
+      },
+      {
+        &quot;date&quot;: &quot;20260709&quot;,
+        &quot;time&quot;: &quot;1530&quot;,
+        &quot;place&quot;: &quot;경매입찰법정(제6호)&quot;,
+        &quot;min_price&quot;: 0,
+        &quot;sold_price&quot;: 0,
+        &quot;result&quot;: null
+      }
+    ],
+    &quot;stakeholders&quot;: [
+      {
+        &quot;role&quot;: &quot;채권자&quot;,
+        &quot;category&quot;: &quot;creditor&quot;,
+        &quot;name&quot;: &quot;주OOOOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;채무자겸소유자&quot;,
+        &quot;category&quot;: &quot;debtor&quot;,
+        &quot;name&quot;: &quot;망 OOOO OOOOOOO OOO OOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;가압류권자&quot;,
+        &quot;category&quot;: &quot;provisional_seizure&quot;,
+        &quot;name&quot;: &quot;서OOOOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;압류권자&quot;,
+        &quot;category&quot;: &quot;seizure&quot;,
+        &quot;name&quot;: &quot;의OOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;교부권자&quot;,
+        &quot;category&quot;: &quot;delivery_claimant&quot;,
+        &quot;name&quot;: &quot;동OOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;교부권자&quot;,
+        &quot;category&quot;: &quot;delivery_claimant&quot;,
+        &quot;name&quot;: &quot;국OOOOOOO OOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;교부권자&quot;,
+        &quot;category&quot;: &quot;delivery_claimant&quot;,
+        &quot;name&quot;: &quot;서OOOOOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;교부권자&quot;,
+        &quot;category&quot;: &quot;delivery_claimant&quot;,
+        &quot;name&quot;: &quot;의OOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;교부권자&quot;,
+        &quot;category&quot;: &quot;delivery_claimant&quot;,
+        &quot;name&quot;: &quot;서OOOO OOO(OOOOO)&quot;
+      },
+      {
+        &quot;role&quot;: &quot;배당요구권자&quot;,
+        &quot;category&quot;: &quot;dividend_claimant&quot;,
+        &quot;name&quot;: &quot;신OOOOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;배당요구권자&quot;,
+        &quot;category&quot;: &quot;dividend_claimant&quot;,
+        &quot;name&quot;: &quot;서OOOOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;배당요구권자&quot;,
+        &quot;category&quot;: &quot;dividend_claimant&quot;,
+        &quot;name&quot;: &quot;주OOO OOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;임차권자&quot;,
+        &quot;category&quot;: &quot;other&quot;,
+        &quot;name&quot;: &quot;이OO&quot;
+      }
+    ],
+    &quot;tenants&quot;: [],
+    &quot;creditors&quot;: [
+      {
+        &quot;role&quot;: &quot;채권자&quot;,
+        &quot;category&quot;: &quot;creditor&quot;,
+        &quot;name&quot;: &quot;주OOOOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;가압류권자&quot;,
+        &quot;category&quot;: &quot;provisional_seizure&quot;,
+        &quot;name&quot;: &quot;서OOOOOOO&quot;
+      },
+      {
+        &quot;role&quot;: &quot;압류권자&quot;,
+        &quot;category&quot;: &quot;seizure&quot;,
+        &quot;name&quot;: &quot;의OOO&quot;
+      }
+    ],
+    &quot;demnd_deadline&quot;: &quot;20251013&quot;,
+    &quot;occupancy&quot;: [
+      {
+        &quot;address&quot;: &quot;경기도 의정부시 호원동 226-298 클래스원3차 102동 6층 602호&quot;,
+        &quot;possession&quot;: &quot;소유자점유&quot;,
+        &quot;description&quot;: &quot;부동산의 현황 기재사항과 같음.&lt;br /&gt;&quot;,
+        &quot;tenant_count&quot;: 0
+      }
+    ],
+    &quot;tenants_curr&quot;: [],
+    &quot;nearby_auction_stats&quot;: {
+      &quot;3m&quot;: {
+        &quot;매각건수&quot;: 54,
+        &quot;평균감정가&quot;: 347935185,
+        &quot;평균매각가&quot;: 286241288,
+        &quot;매각가율&quot;: 79,
+        &quot;평균유찰횟수&quot;: 1.7
+      },
+      &quot;6m&quot;: {
+        &quot;매각건수&quot;: 90,
+        &quot;평균감정가&quot;: 334627778,
+        &quot;평균매각가&quot;: 274174811,
+        &quot;매각가율&quot;: 79,
+        &quot;평균유찰횟수&quot;: 1.7
+      },
+      &quot;12m&quot;: {
+        &quot;매각건수&quot;: 158,
+        &quot;평균감정가&quot;: 329156962,
+        &quot;평균매각가&quot;: 271774522,
+        &quot;매각가율&quot;: 80,
+        &quot;평균유찰횟수&quot;: 1.6
+      }
+    },
+    &quot;real_price&quot;: {
+      &quot;matched_apt&quot;: &quot;&quot;,
+      &quot;matched_area&quot;: 82.868,
+      &quot;match_strategy&quot;: &quot;area_fallback&quot;,
+      &quot;fallback_from_apt&quot;: &quot;클래스원3차&quot;,
+      &quot;trade&quot;: [
+        {
+          &quot;price&quot;: &quot;32500&quot;,
+          &quot;date&quot;: &quot;2026-06-17&quot;,
+          &quot;floor&quot;: &quot;15&quot;,
+          &quot;area&quot;: 84.6857
+        },
+        {
+          &quot;price&quot;: &quot;44300&quot;,
+          &quot;date&quot;: &quot;2026-06-18&quot;,
+          &quot;floor&quot;: &quot;16&quot;,
+          &quot;area&quot;: 84.9788
+        },
+        {
+          &quot;price&quot;: &quot;53000&quot;,
+          &quot;date&quot;: &quot;2026-06-13&quot;,
+          &quot;floor&quot;: &quot;3&quot;,
+          &quot;area&quot;: 84.99
+        },
+        {
+          &quot;price&quot;: &quot;34500&quot;,
+          &quot;date&quot;: &quot;2026-06-07&quot;,
+          &quot;floor&quot;: &quot;7&quot;,
+          &quot;area&quot;: 84.6857
+        },
+        {
+          &quot;price&quot;: &quot;36700&quot;,
+          &quot;date&quot;: &quot;2026-06-13&quot;,
+          &quot;floor&quot;: &quot;5&quot;,
+          &quot;area&quot;: 84.96
+        },
+        {
+          &quot;price&quot;: &quot;35000&quot;,
+          &quot;date&quot;: &quot;2026-06-15&quot;,
+          &quot;floor&quot;: &quot;23&quot;,
+          &quot;area&quot;: 84.966
+        },
+        {
+          &quot;price&quot;: &quot;33000&quot;,
+          &quot;date&quot;: &quot;2026-06-18&quot;,
+          &quot;floor&quot;: &quot;15&quot;,
+          &quot;area&quot;: 84.6857
+        },
+        {
+          &quot;price&quot;: &quot;35800&quot;,
+          &quot;date&quot;: &quot;2026-06-15&quot;,
+          &quot;floor&quot;: &quot;9&quot;,
+          &quot;area&quot;: 84.96
+        },
+        {
+          &quot;price&quot;: &quot;47250&quot;,
+          &quot;date&quot;: &quot;2026-06-08&quot;,
+          &quot;floor&quot;: &quot;14&quot;,
+          &quot;area&quot;: 84.9788
+        },
+        {
+          &quot;price&quot;: &quot;45500&quot;,
+          &quot;date&quot;: &quot;2026-06-11&quot;,
+          &quot;floor&quot;: &quot;4&quot;,
+          &quot;area&quot;: 84.9788
+        }
+      ],
+      &quot;jeonse&quot;: [
+        {
+          &quot;deposit&quot;: &quot;37000&quot;,
+          &quot;date&quot;: &quot;2026-06-10&quot;,
+          &quot;floor&quot;: &quot;14&quot;,
+          &quot;area&quot;: 84.97
+        },
+        {
+          &quot;deposit&quot;: &quot;32500&quot;,
+          &quot;date&quot;: &quot;2026-06-18&quot;,
+          &quot;floor&quot;: &quot;4&quot;,
+          &quot;area&quot;: 84.9823
+        },
+        {
+          &quot;deposit&quot;: &quot;37000&quot;,
+          &quot;date&quot;: &quot;2026-06-15&quot;,
+          &quot;floor&quot;: &quot;7&quot;,
+          &quot;area&quot;: 84.9788
+        },
+        {
+          &quot;deposit&quot;: &quot;28000&quot;,
+          &quot;date&quot;: &quot;2026-06-16&quot;,
+          &quot;floor&quot;: &quot;1&quot;,
+          &quot;area&quot;: 82.34
+        },
+        {
+          &quot;deposit&quot;: &quot;36750&quot;,
+          &quot;date&quot;: &quot;2026-06-10&quot;,
+          &quot;floor&quot;: &quot;6&quot;,
+          &quot;area&quot;: 84.91
+        },
+        {
+          &quot;deposit&quot;: &quot;29000&quot;,
+          &quot;date&quot;: &quot;2026-06-15&quot;,
+          &quot;floor&quot;: &quot;1&quot;,
+          &quot;area&quot;: 84.91
+        },
+        {
+          &quot;deposit&quot;: &quot;42000&quot;,
+          &quot;date&quot;: &quot;2026-06-16&quot;,
+          &quot;floor&quot;: &quot;11&quot;,
+          &quot;area&quot;: 84.9788
+        },
+        {
+          &quot;deposit&quot;: &quot;10000&quot;,
+          &quot;date&quot;: &quot;2026-06-15&quot;,
+          &quot;floor&quot;: &quot;1&quot;,
+          &quot;area&quot;: 84.9907
+        },
+        {
+          &quot;deposit&quot;: &quot;27000&quot;,
+          &quot;date&quot;: &quot;2026-06-16&quot;,
+          &quot;floor&quot;: &quot;14&quot;,
+          &quot;area&quot;: 84.988
+        },
+        {
+          &quot;deposit&quot;: &quot;30000&quot;,
+          &quot;date&quot;: &quot;2026-06-08&quot;,
+          &quot;floor&quot;: &quot;10&quot;,
+          &quot;area&quot;: 84.372
+        }
+      ],
+      &quot;monthly_rent&quot;: [
+        {
+          &quot;deposit&quot;: &quot;10000&quot;,
+          &quot;monthly_rent&quot;: &quot;90&quot;,
+          &quot;date&quot;: &quot;2026-06-03&quot;,
+          &quot;floor&quot;: &quot;1&quot;,
+          &quot;area&quot;: 84.97
+        },
+        {
+          &quot;deposit&quot;: &quot;10000&quot;,
+          &quot;monthly_rent&quot;: &quot;100&quot;,
+          &quot;date&quot;: &quot;2026-06-16&quot;,
+          &quot;floor&quot;: &quot;13&quot;,
+          &quot;area&quot;: 84.93
+        },
+        {
+          &quot;deposit&quot;: &quot;7250&quot;,
+          &quot;monthly_rent&quot;: &quot;150&quot;,
+          &quot;date&quot;: &quot;2026-06-16&quot;,
+          &quot;floor&quot;: &quot;3&quot;,
+          &quot;area&quot;: 84.9788
+        },
+        {
+          &quot;deposit&quot;: &quot;32000&quot;,
+          &quot;monthly_rent&quot;: &quot;25&quot;,
+          &quot;date&quot;: &quot;2026-06-12&quot;,
+          &quot;floor&quot;: &quot;5&quot;,
+          &quot;area&quot;: 84.97
+        },
+        {
+          &quot;deposit&quot;: &quot;4000&quot;,
+          &quot;monthly_rent&quot;: &quot;135&quot;,
+          &quot;date&quot;: &quot;2026-06-05&quot;,
+          &quot;floor&quot;: &quot;39&quot;,
+          &quot;area&quot;: 84.3813
+        },
+        {
+          &quot;deposit&quot;: &quot;5000&quot;,
+          &quot;monthly_rent&quot;: &quot;145&quot;,
+          &quot;date&quot;: &quot;2026-06-15&quot;,
+          &quot;floor&quot;: &quot;5&quot;,
+          &quot;area&quot;: 84.66
+        },
+        {
+          &quot;deposit&quot;: &quot;5000&quot;,
+          &quot;monthly_rent&quot;: &quot;160&quot;,
+          &quot;date&quot;: &quot;2026-06-11&quot;,
+          &quot;floor&quot;: &quot;11&quot;,
+          &quot;area&quot;: 84.9788
+        },
+        {
+          &quot;deposit&quot;: &quot;4000&quot;,
+          &quot;monthly_rent&quot;: &quot;126&quot;,
+          &quot;date&quot;: &quot;2026-06-13&quot;,
+          &quot;floor&quot;: &quot;10&quot;,
+          &quot;area&quot;: 84.99
+        },
+        {
+          &quot;deposit&quot;: &quot;0&quot;,
+          &quot;monthly_rent&quot;: &quot;100&quot;,
+          &quot;date&quot;: &quot;2026-06-12&quot;,
+          &quot;floor&quot;: &quot;5&quot;,
+          &quot;area&quot;: 84.9367
+        },
+        {
+          &quot;deposit&quot;: &quot;15000&quot;,
+          &quot;monthly_rent&quot;: &quot;70&quot;,
+          &quot;date&quot;: &quot;2026-06-11&quot;,
+          &quot;floor&quot;: &quot;8&quot;,
+          &quot;area&quot;: 84.83
+        }
+      ]
+    },
+    &quot;real_price_note&quot;: null,
+    &quot;analysis&quot;: {
+      &quot;bid_rate_pct&quot;: 49.0,
+      &quot;avg_trade_manwon&quot;: 39755,
+      &quot;bid_vs_market_pct&quot;: 41.2,
+      &quot;est_gain_pct&quot;: 142.9,
+      &quot;avg_jeonse_manwon&quot;: 30925,
+      &quot;jeonse_rate_pct&quot;: 77.8,
+      &quot;tenant_count&quot;: 0,
+      &quot;creditor_count&quot;: 3
+    },
+    &quot;_source_file&quot;: &quot;C:\\Users\\lsyko\\Documents\\git\\great_auction\\outputs\\20260622_011024_realestate_30d\\1_아파트_서울_인천_경기_20260622_20260722_20260622_0412.json&quot;,
+    &quot;_source_index&quot;: 126,
+    &quot;_source_metadata&quot;: {
+      &quot;type&quot;: &quot;아파트&quot;,
+      &quot;total_collected&quot;: 971,
+      &quot;part&quot;: 1,
+      &quot;total_parts&quot;: 2,
+      &quot;part_range&quot;: &quot;1~500&quot;,
+      &quot;region&quot;: &quot;서울특별시, 인천광역시, 경기도&quot;,
+      &quot;date_range&quot;: &quot;20260622 ~ 20260722&quot;,
+      &quot;fetch_date&quot;: &quot;2026-06-22 04:12:52&quot;,
+      &quot;target_profile&quot;: &quot;all-realestate&quot;,
+      &quot;collection_audit_status&quot;: &quot;degraded&quot;,
+      &quot;collection_audit_file&quot;: &quot;collection_audit_서울_인천_경기_20260622_20260722_20260622_0412.json&quot;
+    }
+  }
+}</pre>
+</section>
+</main>
+</body>
+</html>
