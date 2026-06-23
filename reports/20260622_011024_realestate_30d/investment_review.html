@@ -106,10 +106,16 @@ main {
 .candidate-section.wait h2 { color: var(--wait); }
 .candidate-section.risk h2 { color: var(--risk); }
 .tab-list {
+  position: sticky;
+  top: 0;
+  z-index: 5;
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin: 12px 0;
+  padding: 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
 }
 .tab-button {
   display: inline-flex;
@@ -394,7 +400,7 @@ main {
 <section class="hero">
 <p>경매 투자 스크리닝</p>
 <h1>투자 검토 필요 리포트</h1>
-<div class="meta">분석 생성 2026-06-22 04:12:58 · 리포트 생성 2026-06-23 15:49:37</div>
+<div class="meta">분석 생성 2026-06-22 04:12:58 · 리포트 생성 2026-06-23 15:50:41</div>
 </section>
 <section class="candidate-section category-tabs">
 <h2>분류별 상위 후보</h2>
