@@ -111,6 +111,16 @@ main {
   gap: 8px;
   margin: 12px 0 8px;
 }
+.city-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0 10px;
+  padding: 8px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #ffffff;
+}
 .tab-list {
   position: sticky;
   top: 0;
@@ -124,6 +134,7 @@ main {
   border-bottom: 1px solid var(--line);
 }
 .region-button,
+.city-button,
 .tab-button {
   display: inline-flex;
   align-items: center;
@@ -140,6 +151,7 @@ main {
   cursor: pointer;
 }
 .region-button span,
+.city-button span,
 .tab-button span {
   display: inline-flex;
   min-width: 28px;
@@ -151,12 +163,14 @@ main {
   font-size: 12px;
 }
 .region-button.active,
+.city-button.active,
 .tab-button.active {
   border-color: var(--accent);
   background: var(--accent);
   color: #ffffff;
 }
 .region-button.active span,
+.city-button.active span,
 .tab-button.active span {
   background: rgba(255, 255, 255, 0.18);
   color: #ffffff;
@@ -165,6 +179,12 @@ main {
   display: none;
 }
 .region-view.active {
+  display: block;
+}
+.city-view {
+  display: none;
+}
+.city-view.active {
   display: block;
 }
 .tab-panel {

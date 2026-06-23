@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025타경71565 상세 조회 자료</title>
+<style>
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #18202a;
+  --muted: #667085;
+  --line: #d8dde6;
+  --good: #0f766e;
+  --wait: #946200;
+  --risk: #b42318;
+  --accent: #1d4ed8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+main {
+  width: min(1120px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+.hero {
+  padding: 12px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.hero p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+.meta {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.summary-card,
+.guide,
+.candidate-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.summary-card {
+  padding: 14px;
+}
+.summary-card span,
+.facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+}
+.summary-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.guide {
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.guide h2,
+.candidate-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.guide ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.guide code {
+  overflow-wrap: anywhere;
+}
+.candidate-section {
+  margin-top: 24px;
+}
+.candidate-section.good h2 { color: var(--good); }
+.candidate-section.wait h2 { color: var(--wait); }
+.candidate-section.risk h2 { color: var(--risk); }
+.region-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.city-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0 10px;
+  padding: 8px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+.tab-list {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.region-button,
+.city-button,
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.region-button span,
+.city-button span,
+.tab-button span {
+  display: inline-flex;
+  min-width: 28px;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 12px;
+}
+.region-button.active,
+.city-button.active,
+.tab-button.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+.region-button.active span,
+.city-button.active span,
+.tab-button.active span {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+.region-view {
+  display: none;
+}
+.region-view.active {
+  display: block;
+}
+.city-view {
+  display: none;
+}
+.city-view.active {
+  display: block;
+}
+.tab-panel {
+  display: none;
+  margin-top: 12px;
+}
+.tab-panel.active {
+  display: block;
+}
+.category-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+.category-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.category-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.candidate-card {
+  padding: 16px;
+  margin: 10px 0;
+}
+.candidate-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.candidate-head h3 {
+  display: inline;
+  margin: 0;
+  font-size: 18px;
+}
+.candidate-head h3 a,
+.hero a,
+.link-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.candidate-head h3 a:hover,
+.hero a:hover,
+.link-row a:hover {
+  text-decoration: underline;
+}
+.rank {
+  display: inline-flex;
+  min-width: 34px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #e7eefc;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+.score {
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--accent);
+}
+.address {
+  margin: 8px 0 12px;
+  color: var(--muted);
+}
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef4ff;
+  border: 1px solid #d7e5ff;
+  font-size: 13px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.facts div {
+  padding: 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+}
+.facts strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.detail {
+  margin-top: 12px;
+}
+.detail p {
+  margin: 6px 0;
+}
+.comp-summary {
+  color: var(--text);
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+}
+.comp-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.comp-table th,
+.comp-table td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #e7ebf1;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comp-table th {
+  background: #f2f5f9;
+  color: var(--muted);
+  font-weight: 800;
+}
+.analysis-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e7ebf1;
+}
+.analysis-block h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.risk-list,
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.risk-list li,
+.review-list li {
+  margin: 7px 0;
+}
+.risk-list strong {
+  display: block;
+}
+.risk-list span {
+  display: block;
+  color: var(--muted);
+}
+.risk-list li.high strong { color: var(--risk); }
+.risk-list li.medium strong { color: var(--wait); }
+.risk-list li.low strong { color: var(--good); }
+.structured-section {
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.structured-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+.structured-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.kv-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+.kv-table th,
+.kv-table td,
+.data-table th,
+.data-table td {
+  vertical-align: top;
+  border-top: 1px solid #e7ebf1;
+  padding: 8px 9px;
+  font-size: 13px;
+  text-align: left;
+}
+.kv-table th {
+  width: 178px;
+  min-width: 150px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+.data-table th {
+  color: var(--muted);
+  background: #f2f5f9;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.structured-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.structured-list li {
+  margin: 5px 0;
+}
+.structured-scalar {
+  overflow-wrap: anywhere;
+}
+.empty {
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  main { width: min(100% - 20px, 720px); padding-top: 18px; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { font-size: 25px; }
+  .category-heading { display: block; }
+  .category-heading p { margin-top: 3px; }
+}
+@media (max-width: 460px) {
+  .summary-grid,
+  .facts { grid-template-columns: 1fr; }
+  .candidate-head { display: block; }
+  .score { display: inline-block; margin-top: 8px; }
+}
+
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p><a href="../investment_review.html">← 투자 검토 리포트로 돌아가기</a></p>
+<h1>2025타경71565 상세 조회 자료</h1>
+<div class="meta">#329 · 남양주시 상가/업무 분류 상위 후보 · 원천 분석 reports\20260622_011024_realestate_30d\analysis.json</div>
+</section>
+<section class="summary-grid">
+<div class="summary-card"><span>점수</span><strong>D/45.5</strong><p>권리 리스크 해소 전 보류</p></div>
+<div class="summary-card"><span>입찰일</span><strong>20260624</strong><p>D-1</p></div>
+<div class="summary-card"><span>최저가</span><strong>7.7억</strong><p>감정가 11.0억</p></div>
+<div class="summary-card"><span>유찰</span><strong>2회</strong><p>직전최저가 11.0억</p></div>
+<div class="summary-card"><span>시세대비</span><strong>355.6%</strong><p>예상차익 -71.9%</p></div>
+<div class="summary-card"><span>권장상한</span><strong>-</strong><p>high risk 또는 임차인 리스크 해소 전 입찰가 산정 보류</p></div>
+</section>
+<section class="guide">
+<h2>경기도 남양주시 다산동 6184-4 엘센트로타워 1층 115호</h2>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%97%98%EC%84%BC%ED%8A%B8%EB%A1%9C%ED%83%80%EC%9B%8C" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD71565%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+</section>
+<section class="candidate-section good">
+<h2>거래표본 전체</h2>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-01</td><td>4,500만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-13</td><td>45,350만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-26</td><td>7,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-23</td><td>38,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-21</td><td>10,400만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-15</td><td>22,130만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-15</td><td>22,517만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-08</td><td>21,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-10</td><td>22,630만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-10</td><td>23,017만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+</section>
+<section class="candidate-section risk">
+<h2>리스크와 검토 포인트</h2>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 6.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-07-07입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 4명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장 방문 시 폐문부재로 아무도 만나지 못하였고, 상가건물임대차현황서에 등재 사실이 없어, 점유관계를 알 수 없으므로 이에 관하여는 별도의 확인을 요함)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 최저가가 비교시세 초과</strong><span>최저입찰가가 수집된 비교 실거래 평균보다 높습니다. 낙찰 후 비용을 감안하면 가격 메리트가 없을 수 있습니다.</span></li><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>수집 실거래 평균은 21,654만원, 최저가는 7.7억입니다. 현재 계산상 최저가는 시세의 355.6%, 예상차익은 -71.9%입니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</section>
+<section class="candidate-section">
+<h2>수집 섹션별 조회 정보</h2>
+<details class="structured-section" open><summary>매각조건/기일</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">650870907</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="empty">-</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260415</span></td><td><span class="structured-scalar">1030</span></td><td><span class="structured-scalar">제101호 경매법정</span></td><td><span class="structured-scalar">1100000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260520</span></td><td><span class="structured-scalar">1030</span></td><td><span class="structured-scalar">제101호 경매법정</span></td><td><span class="structured-scalar">770000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260624</span></td><td><span class="structured-scalar">1030</span></td><td><span class="structured-scalar">제101호 경매법정</span></td><td><span class="structured-scalar">539000000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260701</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">제101호 경매법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">제101호경매법정</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>현황조사/점유</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 남양주시 다산동 6184-4 엘센트로타워 1층 115호</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현장 방문 시 폐문부재로 아무도 만나지 못하였고, 상가건물임대차현황서에 등재 사실이 없어, 점유관계를 알 수 없으므로 이에 관하여는 별도의 확인을 요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>사건상세/이해관계인</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">인OOOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">양OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">평OOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">남OOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr></tbody></table></div></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">인OOOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250707</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>감정평가 요약</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[집합건물 철근콘크리트구조 33.4800㎡]</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 남양주시 다산동 소재 &#x27;남양주시청 제2청사&#x27; 북측 인근에 위치하는 부동산(구분건물)으로서, 주위는 아파트단지, 업무시설 및 각종 근린생활시설 등이 혼재하는 지대임. 제반 입지여건 무난한 편임.
+대상물건까지 차량의 진출입이 가능하며, 인근에 버스정류장이 소재하는 등 대중교통 상황은 
+보통임.
+철근콘크리트구조 평지붕 5층 건물 내 제1층 제115호로서,
+- 외벽 : 석재붙임 마감 등
+- 내벽 : 몰탈위페인팅 마감 등
+- 창호 : 새시 창호 마감임.
+근린생활시설로 이용 중임. 
+(후첨 ‘건물내부구조도’ 참조)
+기본적인 위생설비 및 급배수 설비, 소화전설비, 화재탐지설비, 승강기설비 등을 갖춤.
+
+인접지와 등고 평탄한 가장형 토지로서, &quot;&quot;상업용&quot;&quot; 건부지로 이용 중임.
+대상물건 남동측, 북서측 및 북동측으로 폭 약 15M 내외의 포장도로와 각각 접함.
+도시지역, 준주거지역, 지구단위계획구역(남양주 다산지금 공공주택지구), 중로3류(폭 12m~15m)(접합) 가축사육제한구역&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;, 공공주택지구(남양주 다산지금 공공주택지구)&lt;공공주택 특별법&gt;, 배출시설설치제한지역&lt;물환경보전법&gt;, 준보전산지&lt;산지관리법&gt;, 과밀억제권역&lt;수도권정비계획법&gt;, 공장설립승인지역(수도법시행령 제14조의3 2호)&lt;수도법&gt;임.
+없  음.
+대상물건 임대관계는 미상임.</span></td></tr><tr><th>건물명</th><td><span class="structured-scalar">엘센트로타워</span></td></tr><tr><th>지번 주소</th><td><ul class="structured-list"><li><span class="structured-scalar">경기도 남양주시 다산중앙로82번안길 166-22 (다산동,엘센트로타워)</span></li></ul></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>x</th><td><span class="structured-scalar">327001</span></td></tr><tr><th>y</th><td><span class="structured-scalar">557075</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>가격 근거</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>인근 경매 통계</th><td><span class="empty">-</span></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>매칭 면적</th><td><span class="structured-scalar">33.48</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">non_residential_area_use</span></td></tr><tr><th>매매 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>매매가</th><th>building use</th><th>building ar</th><th>plot ar</th><th>build year</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">4500</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">30.6</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">1990</span></td></tr><tr><td><span class="structured-scalar">2026-05-13</span></td><td><span class="structured-scalar">45350</span></td><td><span class="structured-scalar">제2종근린생활</span></td><td><span class="structured-scalar">37.72</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-05-26</span></td><td><span class="structured-scalar">7000</span></td><td><span class="structured-scalar">업무</span></td><td><span class="structured-scalar">38.88</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2002</span></td></tr><tr><td><span class="structured-scalar">2026-05-23</span></td><td><span class="structured-scalar">38000</span></td><td><span class="structured-scalar">제2종근린생활</span></td><td><span class="structured-scalar">38.76</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2014</span></td></tr><tr><td><span class="structured-scalar">2026-05-21</span></td><td><span class="structured-scalar">10400</span></td><td><span class="structured-scalar">교육연구</span></td><td><span class="structured-scalar">27.36</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-05-15</span></td><td><span class="structured-scalar">22130</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">34.38</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-05-15</span></td><td><span class="structured-scalar">22517</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">34.38</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-05-08</span></td><td><span class="structured-scalar">21000</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">36.34</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2005</span></td></tr><tr><td><span class="structured-scalar">2026-04-10</span></td><td><span class="structured-scalar">22630</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">34.38</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-04-10</span></td><td><span class="structured-scalar">23017</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">34.38</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">21654</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">355.6</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">-71.9</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>수집 메타</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260622_011024_realestate_30d\1_상업시설_서울_인천_경기_20260622_20260722_20260622_0412.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">373</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">상업시설</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">596</span></td></tr><tr><th>part</th><td><span class="structured-scalar">1</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">1~500</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260622 ~ 20260722</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-22 04:12:52</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260622_20260722_20260622_0412.json</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+</section>
+<section class="candidate-section">
+<h2>전체 조회 데이터</h2>
+<p class="empty">분석 item 전체를 요약하지 않고 항목별로 펼쳐 표시합니다.</p>
+<div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점수</th><td><span class="structured-scalar">45.5</span></td></tr><tr><th>등급</th><td><span class="structured-scalar">D</span></td></tr><tr><th>판정</th><td><span class="structured-scalar">권리 리스크 해소 전 보류</span></td></tr><tr><th>점수 구성</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>market margin</th><td><span class="structured-scalar">0.0</span></td></tr><tr><th>auction discount</th><td><span class="structured-scalar">14.0</span></td></tr><tr><th>rent support</th><td><span class="structured-scalar">5.0</span></td></tr><tr><th>liquidity</th><td><span class="structured-scalar">7.0</span></td></tr><tr><th>risk control</th><td><span class="structured-scalar">15.0</span></td></tr><tr><th>data confidence</th><td><span class="structured-scalar">4.5</span></td></tr></tbody></table></div></td></tr><tr><th>정규화 정보</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경71565</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">남양주지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">근린시설</span></td></tr><tr><th>자산 구분</th><td><span class="structured-scalar">commercial</span></td></tr><tr><th>투자 전략</th><td><span class="structured-scalar">commercial-income-and-resale</span></td></tr><tr><th>시장 데이터 성격</th><td><span class="structured-scalar">non_residential_trade</span></td></tr><tr><th>수동 시세보강 필요</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>특수자산 검토 필요</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>자산별 목표 할인율</th><td><span class="structured-scalar">68.0</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 남양주시 다산동 6184-4 엘센트로타워 1층 115호</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260624</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">770000000</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">1100000000</span></td></tr><tr><th>min bid manwon</th><td><span class="structured-scalar">77000.0</span></td></tr><tr><th>appraisal manwon</th><td><span class="structured-scalar">110000.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">21654.4</span></td></tr><tr><th>전세 평균</th><td><span class="empty">-</span></td></tr><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">355.6</span></td></tr><tr><th>시세 할인율</th><td><span class="structured-scalar">-255.6</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">-71.9</span></td></tr><tr><th>전세가율</th><td><span class="empty">-</span></td></tr><tr><th>매매 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>전세 표본 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>월세 표본 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>거래표본 품질</th><td><span class="structured-scalar">area_only_match</span></td></tr><tr><th>비교 단지/명칭</th><td><span class="empty">-</span></td></tr><tr><th>비교 면적</th><td><span class="structured-scalar">33.48</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">non_residential_area_use</span></td></tr><tr><th>보조 매칭 기준</th><td><span class="empty">-</span></td></tr><tr><th>표본 비고</th><td><span class="structured-scalar">Comparable trades exist, but complex/building name was not verified.</span></td></tr><tr><th>3개월 인근 매각건수</th><td><span class="empty">-</span></td></tr><tr><th>6개월 인근 매각건수</th><td><span class="empty">-</span></td></tr><tr><th>12개월 인근 매각건수</th><td><span class="empty">-</span></td></tr><tr><th>3개월 인근 매각가율</th><td><span class="empty">-</span></td></tr><tr><th>6개월 인근 매각가율</th><td><span class="empty">-</span></td></tr><tr><th>12개월 인근 매각가율</th><td><span class="empty">-</span></td></tr><tr><th>12개월 평균 유찰</th><td><span class="empty">-</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">2</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>현황조사 임차/점유 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>검토 버킷</th><td><span class="structured-scalar">legal_review</span></td></tr><tr><th>buffered gain pct</th><td><span class="empty">-</span></td></tr><tr><th>권장 입찰 상한</th><td><span class="empty">-</span></td></tr><tr><th>권장 상한 비고</th><td><span class="structured-scalar">high risk 또는 임차인 리스크 해소 전 입찰가 산정 보류</span></td></tr></tbody></table></div></td></tr><tr><th>리스크</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>위험도</th><th>키워드</th><th>사유</th></tr></thead><tbody><tr><td><span class="structured-scalar">high</span></td><td><span class="structured-scalar">over_market</span></td><td><span class="structured-scalar">minimum bid is above comparable trade average</span></td></tr><tr><td><span class="structured-scalar">low</span></td><td><span class="structured-scalar">comp_match_quality</span></td><td><span class="structured-scalar">comparable trade match needs manual verification</span></td></tr></tbody></table></div></td></tr><tr><th>기회 요인</th><td><ul class="structured-list"><li><span class="structured-scalar">상업시설: commercial amenities</span></li></ul></td></tr><tr><th>확인할 사항</th><td><ul class="structured-list"><li><span class="structured-scalar">매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</span></li><li><span class="structured-scalar">등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</span></li><li><span class="structured-scalar">입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</span></li><li><span class="structured-scalar">high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</span></li><li><span class="structured-scalar">실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</span></li><li><span class="structured-scalar">최저가가 시세 대비 충분히 낮지 않으므로 취득세, 명도비, 수리비, 금융비용을 반영해 재계산한다.</span></li><li><span class="structured-scalar">상가/업무시설은 임대차계약서, 보증금, 월세, 공실률, 관리비 체납, 업종 제한을 별도로 확인한다.</span></li><li><span class="structured-scalar">전면도로, 주차, 가시성, 층수, 전용률, 권리금 형성 여부를 현장 기준으로 확인한다.</span></li><li><span class="structured-scalar">관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</span></li></ul></td></tr><tr><th>Codex 요약</th><td><span class="structured-scalar">2025타경71565 근린시설 [commercial/commercial-income-and-resale] / 경기도 남양주시 다산동 6184-4 엘센트로타워 1층 115호 | score=45.5(D, 권리 리스크 해소 전 보류) | min_bid=7.7억, appraisal=11.0억, avg_trade=2.2억, bid_vs_market=355.6%, est_gain=-71.9%, jeonse_rate=None% | risks=[high:over_market, low:comp_match_quality] | opportunities=[상업시설: commercial amenities]</span></td></tr><tr><th>수집 원본</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경71565</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">남양주지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">근린시설</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 남양주시 다산동 6184-4 엘센트로타워 1층 115호</span></td></tr><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[집합건물 철근콘크리트구조 33.4800㎡]</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">1100000000</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">770000000</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260624</span></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">제101호경매법정</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">2</span></td></tr><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">650870907</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="empty">-</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 남양주시 다산동 소재 &#x27;남양주시청 제2청사&#x27; 북측 인근에 위치하는 부동산(구분건물)으로서, 주위는 아파트단지, 업무시설 및 각종 근린생활시설 등이 혼재하는 지대임. 제반 입지여건 무난한 편임.
+대상물건까지 차량의 진출입이 가능하며, 인근에 버스정류장이 소재하는 등 대중교통 상황은 
+보통임.
+철근콘크리트구조 평지붕 5층 건물 내 제1층 제115호로서,
+- 외벽 : 석재붙임 마감 등
+- 내벽 : 몰탈위페인팅 마감 등
+- 창호 : 새시 창호 마감임.
+근린생활시설로 이용 중임. 
+(후첨 ‘건물내부구조도’ 참조)
+기본적인 위생설비 및 급배수 설비, 소화전설비, 화재탐지설비, 승강기설비 등을 갖춤.
+
+인접지와 등고 평탄한 가장형 토지로서, &quot;&quot;상업용&quot;&quot; 건부지로 이용 중임.
+대상물건 남동측, 북서측 및 북동측으로 폭 약 15M 내외의 포장도로와 각각 접함.
+도시지역, 준주거지역, 지구단위계획구역(남양주 다산지금 공공주택지구), 중로3류(폭 12m~15m)(접합) 가축사육제한구역&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;, 공공주택지구(남양주 다산지금 공공주택지구)&lt;공공주택 특별법&gt;, 배출시설설치제한지역&lt;물환경보전법&gt;, 준보전산지&lt;산지관리법&gt;, 과밀억제권역&lt;수도권정비계획법&gt;, 공장설립승인지역(수도법시행령 제14조의3 2호)&lt;수도법&gt;임.
+없  음.
+대상물건 임대관계는 미상임.</span></td></tr><tr><th>건물명</th><td><span class="structured-scalar">엘센트로타워</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>x</th><td><span class="structured-scalar">327001</span></td></tr><tr><th>y</th><td><span class="structured-scalar">557075</span></td></tr></tbody></table></div></td></tr><tr><th>지번 주소</th><td><ul class="structured-list"><li><span class="structured-scalar">경기도 남양주시 다산중앙로82번안길 166-22 (다산동,엘센트로타워)</span></li></ul></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260415</span></td><td><span class="structured-scalar">1030</span></td><td><span class="structured-scalar">제101호 경매법정</span></td><td><span class="structured-scalar">1100000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260520</span></td><td><span class="structured-scalar">1030</span></td><td><span class="structured-scalar">제101호 경매법정</span></td><td><span class="structured-scalar">770000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260624</span></td><td><span class="structured-scalar">1030</span></td><td><span class="structured-scalar">제101호 경매법정</span></td><td><span class="structured-scalar">539000000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260701</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">제101호 경매법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 남양주시 다산동 6184-4 엘센트로타워 1층 115호</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현장 방문 시 폐문부재로 아무도 만나지 못하였고, 상가건물임대차현황서에 등재 사실이 없어, 점유관계를 알 수 없으므로 이에 관하여는 별도의 확인을 요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>인근 경매 통계</th><td><span class="empty">-</span></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매칭 면적</th><td><span class="structured-scalar">33.48</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">non_residential_area_use</span></td></tr><tr><th>매매 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>매매가</th><th>building use</th><th>building ar</th><th>plot ar</th><th>build year</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">4500</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">30.6</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">1990</span></td></tr><tr><td><span class="structured-scalar">2026-05-13</span></td><td><span class="structured-scalar">45350</span></td><td><span class="structured-scalar">제2종근린생활</span></td><td><span class="structured-scalar">37.72</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-05-26</span></td><td><span class="structured-scalar">7000</span></td><td><span class="structured-scalar">업무</span></td><td><span class="structured-scalar">38.88</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2002</span></td></tr><tr><td><span class="structured-scalar">2026-05-23</span></td><td><span class="structured-scalar">38000</span></td><td><span class="structured-scalar">제2종근린생활</span></td><td><span class="structured-scalar">38.76</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2014</span></td></tr><tr><td><span class="structured-scalar">2026-05-21</span></td><td><span class="structured-scalar">10400</span></td><td><span class="structured-scalar">교육연구</span></td><td><span class="structured-scalar">27.36</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-05-15</span></td><td><span class="structured-scalar">22130</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">34.38</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-05-15</span></td><td><span class="structured-scalar">22517</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">34.38</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-05-08</span></td><td><span class="structured-scalar">21000</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">36.34</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2005</span></td></tr><tr><td><span class="structured-scalar">2026-04-10</span></td><td><span class="structured-scalar">22630</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">34.38</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr><tr><td><span class="structured-scalar">2026-04-10</span></td><td><span class="structured-scalar">23017</span></td><td><span class="structured-scalar">제1종근린생활</span></td><td><span class="structured-scalar">34.38</span></td><td><span class="structured-scalar">0.0</span></td><td><span class="structured-scalar">2021</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">21654</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">355.6</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">-71.9</span></td></tr></tbody></table></div></td></tr><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260622_011024_realestate_30d\1_상업시설_서울_인천_경기_20260622_20260722_20260622_0412.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">373</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">상업시설</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">596</span></td></tr><tr><th>part</th><td><span class="structured-scalar">1</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">1~500</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260622 ~ 20260722</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-22 04:12:52</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260622_20260722_20260622_0412.json</span></td></tr></tbody></table></div></td></tr><tr><th> internal cs no</th><td><span class="structured-scalar">20250130071565</span></td></tr><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">인OOOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">양OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">평OOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">남OOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr></tbody></table></div></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">인OOOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250707</span></td></tr><tr><th> detail cache enriched</th><td><span class="structured-scalar">예</span></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</section>
+</main>
+</body>
+</html>
