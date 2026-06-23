@@ -105,6 +105,69 @@ main {
 .candidate-section.good h2 { color: var(--good); }
 .candidate-section.wait h2 { color: var(--wait); }
 .candidate-section.risk h2 { color: var(--risk); }
+.tab-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.tab-button span {
+  display: inline-flex;
+  min-width: 28px;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 12px;
+}
+.tab-button.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+.tab-button.active span {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+.tab-panel {
+  display: none;
+  margin-top: 12px;
+}
+.tab-panel.active {
+  display: block;
+}
+.category-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+.category-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.category-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
 .candidate-card {
   padding: 16px;
   margin: 10px 0;
@@ -314,6 +377,8 @@ main {
   .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .hero h1 { font-size: 25px; }
+  .category-heading { display: block; }
+  .category-heading p { margin-top: 3px; }
 }
 @media (max-width: 460px) {
   .summary-grid,
@@ -329,7 +394,7 @@ main {
 <section class="hero">
 <p>경매 투자 스크리닝</p>
 <h1>투자 검토 필요 리포트</h1>
-<div class="meta">분석 생성 2026-06-22 04:12:58 · 리포트 생성 2026-06-23 15:35:00</div>
+<div class="meta">분석 생성 2026-06-22 04:12:58 · 리포트 생성 2026-06-23 15:42:17</div>
 </section>
 <section class="summary-grid">
 <div class="summary-card"><span>전체</span><strong>9,940건</strong><p>수도권 30일 분석</p></div>
@@ -346,6 +411,1255 @@ main {
 <li>권리검토 후보는 가격 매력이 있어도 점유·임차·폐기물 리스크 해소 전에는 보류합니다.</li>
 </ol>
 <p>원천 분석 파일: <code>reports\20260622_011024_realestate_30d\analysis.json</code></p>
+</section>
+<section class="candidate-section category-tabs">
+<h2>분류별 상위 후보</h2>
+<div class="tab-list" role="tablist" aria-label="자산 분류별 상위 후보">
+<button class="tab-button active" type="button" role="tab" id="tab-residential" aria-controls="panel-residential" aria-selected="true" data-tab-target="panel-residential">주거<span>7,440</span></button>
+<button class="tab-button" type="button" role="tab" id="tab-commercial" aria-controls="panel-commercial" aria-selected="false" data-tab-target="panel-commercial">상가/업무<span>587</span></button>
+<button class="tab-button" type="button" role="tab" id="tab-industrial" aria-controls="panel-industrial" aria-selected="false" data-tab-target="panel-industrial">공장/창고<span>70</span></button>
+<button class="tab-button" type="button" role="tab" id="tab-land" aria-controls="panel-land" aria-selected="false" data-tab-target="panel-land">토지<span>729</span></button>
+<button class="tab-button" type="button" role="tab" id="tab-road_special" aria-controls="panel-road_special" aria-selected="false" data-tab-target="panel-road_special">도로/특수<span>554</span></button>
+<button class="tab-button" type="button" role="tab" id="tab-other_realestate" aria-controls="panel-other_realestate" aria-selected="false" data-tab-target="panel-other_realestate">기타 부동산<span>310</span></button>
+</div>
+<div class="tab-panels">
+<section class="tab-panel good active" id="panel-residential" role="tabpanel" aria-labelledby="tab-residential">
+<div class="category-heading">
+<h3>주거 상위 후보</h3>
+<p>수집 7,440건 중 점수 상위 8건</p>
+</div>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#1</span><h3><a href="cases/009_2025_71362.html">2025타경71362 아파트</a></h3></div>
+<span class="score">C/98.0</span>
+</div>
+<p class="address">경기도 남양주시 평내동 107-1 대명아파트 108동 9층906호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%8C%80%EB%AA%85%EC%95%84%ED%8C%8C%ED%8A%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD71362%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260624 D-1</strong></div>
+<div><span>최저가</span><strong>1.5억</strong></div>
+<div><span>감정가</span><strong>3.0억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>2.1억</strong></div>
+<div><span>시세대비</span><strong>37.3%</strong></div>
+<div><span>예상차익</span><strong>168.1%</strong></div>
+<div><span>권장상한</span><strong>3.3억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 대명아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-16</td><td>32,500만원</td><td>5</td><td>58.14㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>69,000만원</td><td>18</td><td>59.75㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>24,700만원</td><td>13</td><td>59.89㎡</td></tr><tr><td>매매</td><td>2026-06-10</td><td>44,000만원</td><td>3</td><td>59.99㎡</td></tr><tr><td>매매</td><td>2026-06-08</td><td>41,000만원</td><td>4</td><td>64.07㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>25,700만원</td><td>9</td><td>59.95㎡</td></tr><tr><td>매매</td><td>2026-06-14</td><td>48,800만원</td><td>16</td><td>59.81㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>39,000만원</td><td>7</td><td>59.94㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 2.6억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-06-02입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 14명/건 수집됐습니다. 구성은 교부권자 5건, 압류권자 2건, 채권자 1건, 채무자겸소유자 1건, 임차인 1건, 근저당권자 1건, 배당요구권자 1건, 점유자 1건, 주택임차권자 1건입니다.</li><li>사건상 임차인 관련 항목이 1건 있습니다. 주OOOOOOO의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 4건입니다. 구성은 압류권자 2건, 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 임차인점유, 현황조사 임차인 1명 (현장에 임하였으나 점유자를 만나지 못하였으므로, 정확한 점유관계는 별도 확인이 필요함)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 39,410만원, 최저가는 1.5억입니다. 현재 계산상 최저가는 시세의 37.3%, 예상차익은 168.1%입니다.</li><li>전세가율은 62.8%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 3.3억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#2</span><h3><a href="cases/010_2025_71402.html">2025타경71402 아파트</a></h3></div>
+<span class="score">C/98.0</span>
+</div>
+<p class="address">경기도 남양주시 화도읍 창현리 764 신한토탈아파트 107동 7층703호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%8B%A0%ED%95%9C%ED%86%A0%ED%83%88%EC%95%84%ED%8C%8C%ED%8A%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD71402%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260623 D-day</strong></div>
+<div><span>최저가</span><strong>1.3억</strong></div>
+<div><span>감정가</span><strong>2.7억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>1.9억</strong></div>
+<div><span>시세대비</span><strong>20.2%</strong></div>
+<div><span>예상차익</span><strong>394.8%</strong></div>
+<div><span>권장상한</span><strong>5.5억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 신한토탈아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-18</td><td>77,000만원</td><td>20</td><td>72.48㎡</td></tr><tr><td>매매</td><td>2026-06-09</td><td>85,000만원</td><td>15</td><td>74.82㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>28,400만원</td><td>4</td><td>72.06㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>28,800만원</td><td>3</td><td>72.60㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>28,400만원</td><td>2</td><td>72.06㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>28,500만원</td><td>2</td><td>72.06㎡</td></tr><tr><td>매매</td><td>2026-06-02</td><td>91,800만원</td><td>11</td><td>74.98㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>91,700만원</td><td>15</td><td>74.88㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 2.6억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-06-09입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 9명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 채무자겸소유자 1건, 근저당권자 1건, 가압류권자 1건, 압류권자 1건, 배당요구권자 1건, 주택임차권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 4건입니다. 구성은 채권자 1건, 근저당권자 1건, 가압류권자 1건, 압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장에 임하였으나 점유자를 만나지 못하였으므로, 정확한 점유관계는 별도 확인이 필요함)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 64,980만원, 최저가는 1.3억입니다. 현재 계산상 최저가는 시세의 20.2%, 예상차익은 394.8%입니다.</li><li>전세가율은 69.5%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 5.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#3</span><h3><a href="cases/011_2025_63500.html">2025타경63500 아파트</a></h3></div>
+<span class="score">C/98.0</span>
+</div>
+<p class="address">경기도 고양시 일산서구 일산동 1058 후곡마을아파트 903동 15층1501호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%ED%9B%84%EA%B3%A1%EB%A7%88%EC%9D%84%EC%95%84%ED%8C%8C%ED%8A%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD63500%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260630 D-7</strong></div>
+<div><span>최저가</span><strong>2.5억</strong></div>
+<div><span>감정가</span><strong>5.0억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>3.5억</strong></div>
+<div><span>시세대비</span><strong>56.0%</strong></div>
+<div><span>예상차익</span><strong>78.6%</strong></div>
+<div><span>권장상한</span><strong>3.7억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 후곡마을아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-15</td><td>45,500만원</td><td>9</td><td>71.32㎡</td></tr><tr><td>매매</td><td>2026-06-17</td><td>54,000만원</td><td>10</td><td>67.39㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>39,600만원</td><td>8</td><td>69.90㎡</td></tr><tr><td>매매</td><td>2026-06-09</td><td>47,100만원</td><td>14</td><td>70.47㎡</td></tr><tr><td>매매</td><td>2026-06-11</td><td>41,000만원</td><td>3</td><td>69.09㎡</td></tr><tr><td>매매</td><td>2026-06-08</td><td>38,000만원</td><td>5</td><td>68.13㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>41,500만원</td><td>23</td><td>74.77㎡</td></tr><tr><td>매매</td><td>2026-06-11</td><td>42,000만원</td><td>22</td><td>74.96㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 4.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-09-16입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 8명/건 수집됐습니다. 구성은 임차권자 2건, 채권자 1건, 채무자겸소유자 1건, 근저당권자 1건, 교부권자 1건, 가처분권자 1건, 배당요구권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장방문시 아무도 만나지 못하였으며, 덧붙인 전입세대확인서, 외국인체류확인서에는 각 등재자가 없으므로 점유관계 등은 별도의 확인을 요함.(안내문 부착))</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 44,100만원, 최저가는 2.5억입니다. 현재 계산상 최저가는 시세의 56.0%, 예상차익은 78.6%입니다.</li><li>전세가율은 60.4%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 3.7억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#4</span><h3><a href="cases/012_2025_63691.html">2025타경63691 아파트</a></h3></div>
+<span class="score">C/98.0</span>
+</div>
+<p class="address">경기도 고양시 덕양구 주교동 568-8 비케이팰리스아파트 5층501호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%B9%84%EC%BC%80%EC%9D%B4%ED%8C%B0%EB%A6%AC%EC%8A%A4%EC%95%84%ED%8C%8C%ED%8A%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD63691%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260624 D-1</strong></div>
+<div><span>최저가</span><strong>1.2억</strong></div>
+<div><span>감정가</span><strong>2.4억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>1.7억</strong></div>
+<div><span>시세대비</span><strong>37.4%</strong></div>
+<div><span>예상차익</span><strong>167.1%</strong></div>
+<div><span>권장상한</span><strong>2.6억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 비케이팰리스아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-11</td><td>27,000만원</td><td>6</td><td>50.00㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>34,000만원</td><td>10</td><td>50.00㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>56,900만원</td><td>10</td><td>46.98㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>25,000만원</td><td>10</td><td>43.76㎡</td></tr><tr><td>매매</td><td>2026-06-17</td><td>25,300만원</td><td>13</td><td>49.95㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>26,000만원</td><td>6</td><td>49.95㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>33,000만원</td><td>12</td><td>50.00㎡</td></tr><tr><td>매매</td><td>2026-06-14</td><td>26,500만원</td><td>11</td><td>49.95㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 2.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-10-10입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 23명/건 수집됐습니다. 구성은 교부권자 13건, 압류권자 4건, 채권자 1건, 채무자겸소유자 1건, 임차인 1건, 가압류권자 1건, 배당요구권자 1건, 임차권자 1건입니다.</li><li>사건상 임차인 관련 항목이 1건 있습니다. 주OOOOOOO의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 6건입니다. 구성은 압류권자 4건, 채권자 1건, 가압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장방문시 아무도 만나지 못하였으며, 덧붙인 전입세대확인서, 외국인체류확인서에는 각 등재자가 없으므로 점유관계 등은 별도의 확인을 요함.(안내문 부착))</li><li>매각조건 특이사항: 1. 부동산등기사항전부증명서상 을구 순위 1번 2024년5월28일 제70667호 접수 주택임차권등기에 대하여 임차권자의 채권양수인인 신청채권자 주택도시보증공사가 2026.5.4.자 확약서(보증금 전액을 배당금에서 변제 받지 못하더라도 잔존임대차보증금반환청구권을 포기하고, 임차권등기를 말소하는 것에 동의함)를 제출함.</li><li>권리상 주의 키워드: 임차권등기. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 31,020만원, 최저가는 1.2억입니다. 현재 계산상 최저가는 시세의 37.4%, 예상차익은 167.1%입니다.</li><li>전세가율은 62.7%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 2.6억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#5</span><h3><a href="cases/013_2025_654.html">2025타경654 아파트</a></h3></div>
+<span class="score">C/98.0</span>
+</div>
+<p class="address">경기도 시흥시 매화동 361-6 금강아파트 101동 5층505호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EA%B8%88%EA%B0%95%EC%95%84%ED%8C%8C%ED%8A%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD654%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260630 D-7</strong></div>
+<div><span>최저가</span><strong>1.0억</strong></div>
+<div><span>감정가</span><strong>2.1억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>1.5억</strong></div>
+<div><span>시세대비</span><strong>34.5%</strong></div>
+<div><span>예상차익</span><strong>189.7%</strong></div>
+<div><span>권장상한</span><strong>2.5억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 금강아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-16</td><td>59,500만원</td><td>42</td><td>59.95㎡</td></tr><tr><td>매매</td><td>2026-06-19</td><td>19,500만원</td><td>1</td><td>59.98㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>21,500만원</td><td>2</td><td>59.94㎡</td></tr><tr><td>매매</td><td>2026-06-18</td><td>43,000만원</td><td>20</td><td>59.93㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>22,650만원</td><td>7</td><td>59.23㎡</td></tr><tr><td>매매</td><td>2026-06-17</td><td>24,700만원</td><td>2</td><td>59.97㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>23,500만원</td><td>4</td><td>59.03㎡</td></tr><tr><td>매매</td><td>2026-06-17</td><td>41,200만원</td><td>3</td><td>59.96㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 1.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-09-01입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 11명/건 수집됐습니다. 구성은 가압류권자 5건, 근저당권자 2건, 채권자 1건, 채무자겸소유자 1건, 임금채권자 1건, 교부권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 8건입니다. 구성은 가압류권자 5건, 근저당권자 2건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (- 본건 부동산에 대하여 현황조사차 방문하였으나 폐문부재로 소유자나 점유자를 만나지 못하였음. - 출입문에 안내문을 붙여 두었으나 점유관계를 확인할 수 없음. - 전입세대확인서와 주민등록표 등본에 채무자 겸 소유자 `이현주`가 세대주로 등재되어 있음. - 외국인체류확인서에 등재된 전입자 없음.)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 30,235만원, 최저가는 1.0억입니다. 현재 계산상 최저가는 시세의 34.5%, 예상차익은 189.7%입니다.</li><li>전세가율은 64.6%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 2.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#6</span><h3><a href="cases/001_2025_41607.html">2025타경41607 아파트</a></h3></div>
+<span class="score">A/97.0</span>
+</div>
+<p class="address">경기도 안성시 당왕동 584 안성당왕지구삼정그린코아더베스트 115동 1층102호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%95%88%EC%84%B1%EB%8B%B9%EC%99%95%EC%A7%80%EA%B5%AC%EC%82%BC%EC%A0%95%EA%B7%B8%EB%A6%B0%EC%BD%94%EC%95%84%EB%8D%94%EB%B2%A0%EC%8A%A4%ED%8A%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD41607%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260707 D-14</strong></div>
+<div><span>최저가</span><strong>86,436,000원</strong></div>
+<div><span>감정가</span><strong>2.5억</strong></div>
+<div><span>유찰</span><strong>4회</strong></div>
+<div><span>직전최저가</span><strong>1.2억</strong></div>
+<div><span>시세대비</span><strong>33.3%</strong></div>
+<div><span>예상차익</span><strong>200.5%</strong></div>
+<div><span>권장상한</span><strong>2.2억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 안성당왕지구삼정그린코아더베스트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-31</td><td>24,500만원</td><td>2</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-17</td><td>25,500만원</td><td>6</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-23</td><td>26,000만원</td><td>28</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-19</td><td>26,900만원</td><td>10</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-18</td><td>26,500만원</td><td>21</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-05-11</td><td>25,800만원</td><td>8</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-04-24</td><td>26,500만원</td><td>6</td><td>59.54㎡</td></tr><tr><td>매매</td><td>2026-04-10</td><td>26,500만원</td><td>24</td><td>59.54㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 2.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-06-20입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 7명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 채무자겸소유자 1건, 임차인 1건, 압류권자 1건, 주택임차권자 1건입니다.</li><li>사건상 임차인 관련 항목이 1건 있습니다. 서OOOOO OOOO의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 기타/점유관계 별도 확인, 현황조사 임차인 0명 (* 폐문으로 점유자를 만나지 못하여 점유관계를 알 수 없음. * 전입세대확인서 신청 결과 등재인 없음. 전입세대확인서 첨부. * 외국인체류확인서 신청 결과 전입신고된 외국인 없음. 외국인체류확인서 첨부.)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 25,970만원, 최저가는 86,436,000원입니다. 현재 계산상 최저가는 시세의 33.3%, 예상차익은 200.5%입니다.</li><li>전세가율은 76.8%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 2.2억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#7</span><h3><a href="cases/002_2025_64437.html">2025타경64437 아파트</a></h3></div>
+<span class="score">A/97.0</span>
+</div>
+<p class="address">경기도 고양시 일산서구 덕이동 1535 하이파크시티일산파밀리에4단지 409동 14층1401호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%ED%95%98%EC%9D%B4%ED%8C%8C%ED%81%AC%EC%8B%9C%ED%8B%B0%EC%9D%BC%EC%82%B0%ED%8C%8C%EB%B0%80%EB%A6%AC%EC%97%904%EB%8B%A8%EC%A7%80" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64437%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260630 D-7</strong></div>
+<div><span>최저가</span><strong>3.0억</strong></div>
+<div><span>감정가</span><strong>6.1억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>4.3억</strong></div>
+<div><span>시세대비</span><strong>56.7%</strong></div>
+<div><span>예상차익</span><strong>76.4%</strong></div>
+<div><span>권장상한</span><strong>4.5억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 하이파크시티일산파밀리에4단지 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-02</td><td>51,000만원</td><td>11</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-05-14</td><td>49,000만원</td><td>23</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-04-21</td><td>57,000만원</td><td>19</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-04-07</td><td>45,000만원</td><td>11</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-04-03</td><td>52,000만원</td><td>18</td><td>121.66㎡</td></tr><tr><td>매매</td><td>2026-02-23</td><td>52,500만원</td><td>16</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-01-29</td><td>60,200만원</td><td>15</td><td>121.45㎡</td></tr><tr><td>매매</td><td>2026-01-29</td><td>60,200만원</td><td>15</td><td>121.45㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 5.0억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-01-12입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 6명/건 수집됐습니다. 구성은 채권자 1건, 채무자겸소유자 1건, 임차인 1건, 근저당권자 1건, 교부권자 1건, 임차권자 1건입니다.</li><li>사건상 임차인 관련 항목이 1건 있습니다. 주OOOOOOO(OOO)의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 소유자점유, 현황조사 임차인 0명 (현장조사시 만난 채무자(소유자)의 어머니에게 현황조사에 대하여 설명하고 현황조사 안내문 교부하였으며 채무자(소유자) 어머니의 진술에 의하면 채무자(소유자)가 전부 점유하고 있다고 하나 점유관계 등은 별도 확인이 필요함)</li><li>매각조건 특이사항: 1.대지권 미등기이나 매각목적물 및 평가에 포함 2.일산서구청으로부터 2025.11.02.자로 토지+건물에 대한 취득세가 납부되었다는 사실조회 회신 있음(과세증명서 제출)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><p>자동 수집 데이터에서 즉시 경고할 리스크는 발견되지 않았습니다. 다만 원문 3종과 등기 확인은 별도 필요합니다.</p></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격, 표본, 리스크 기준으로는 우선 검토군입니다. 다만 자동 추천이 아니라 원문/등기/현장 확인 후 입찰가를 확정해야 합니다.</li><li>수집 실거래 평균은 52,990만원, 최저가는 3.0억입니다. 현재 계산상 최저가는 시세의 56.7%, 예상차익은 76.4%입니다.</li><li>전세가율은 75.4%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 4.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#8</span><h3><a href="cases/019_2025_71278.html">2025타경71278 아파트</a></h3></div>
+<span class="score">C/97.0</span>
+</div>
+<p class="address">경기도 남양주시 화도읍 묵현리 42-1 마석건영아파트 8층810호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%A7%88%EC%84%9D%EA%B1%B4%EC%98%81%EC%95%84%ED%8C%8C%ED%8A%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD71278%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260625 D-2</strong></div>
+<div><span>최저가</span><strong>1.1억</strong></div>
+<div><span>감정가</span><strong>1.5억</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>1.5억</strong></div>
+<div><span>시세대비</span><strong>27.0%</strong></div>
+<div><span>예상차익</span><strong>270.4%</strong></div>
+<div><span>권장상한</span><strong>3.3억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 마석건영아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-16</td><td>32,500만원</td><td>5</td><td>58.14㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>69,000만원</td><td>18</td><td>59.75㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>24,700만원</td><td>13</td><td>59.89㎡</td></tr><tr><td>매매</td><td>2026-06-10</td><td>44,000만원</td><td>3</td><td>59.99㎡</td></tr><tr><td>매매</td><td>2026-06-08</td><td>41,000만원</td><td>4</td><td>64.07㎡</td></tr><tr><td>매매</td><td>2026-06-15</td><td>25,700만원</td><td>9</td><td>59.95㎡</td></tr><tr><td>매매</td><td>2026-06-14</td><td>48,800만원</td><td>16</td><td>59.81㎡</td></tr><tr><td>매매</td><td>2026-06-13</td><td>39,000만원</td><td>7</td><td>59.94㎡</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 1.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-05-19입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 13명/건 수집됐습니다. 구성은 압류권자 4건, 교부권자 4건, 채권자 1건, 채무자겸소유자 1건, 임차인 1건, 전세권자 1건, 배당요구권자 1건입니다.</li><li>사건상 임차인 관련 항목이 1건 있습니다. 한OO의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 5건입니다. 구성은 압류권자 4건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 임차인점유, 현황조사 임차인 1명 (현장에 임하였으나 점유자를 만나지 못하였으므로, 정확한 점유관계는 별도 확인이 필요함)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 39,410만원, 최저가는 1.1억입니다. 현재 계산상 최저가는 시세의 27.0%, 예상차익은 270.4%입니다.</li><li>전세가율은 62.8%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 3.3억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+</section>
+<section class="tab-panel wait" id="panel-commercial" role="tabpanel" aria-labelledby="tab-commercial" hidden>
+<div class="category-heading">
+<h3>상가/업무 상위 후보</h3>
+<p>수집 587건 중 점수 상위 8건</p>
+</div>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#1</span><h3><a href="cases/020_2024_72119.html">2024타경72119 근린시설</a></h3></div>
+<span class="score">C/89.5</span>
+</div>
+<p class="address">경기도 용인시 기흥구 서천로201번길 14 지1층비004호 (농서동,프리미엄원희캐슬기흥서천)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%ED%94%84%EB%A6%AC%EB%AF%B8%EC%97%84%EC%9B%90%ED%9D%AC%EC%BA%90%EC%8A%AC%EA%B8%B0%ED%9D%A5%EC%84%9C%EC%B2%9C" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD72119%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260703 D-10</strong></div>
+<div><span>최저가</span><strong>2.4억</strong></div>
+<div><span>감정가</span><strong>5.0억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>3.5억</strong></div>
+<div><span>시세대비</span><strong>49.9%</strong></div>
+<div><span>예상차익</span><strong>100.3%</strong></div>
+<div><span>권장상한</span><strong>3.3억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-18</td><td>34,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-06-10</td><td>80,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-01</td><td>65,700만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-17</td><td>17,400만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-30</td><td>71,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-10</td><td>32,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-22</td><td>20,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-13</td><td>21,000만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 3.0억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2024-08-09입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 9명/건 수집됐습니다. 구성은 교부권자 4건, 압류권자 2건, 승계인 1건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 압류권자 2건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (- 현장에서는 폐문으로 사람을 만나지 못하여 점유관계 확인하지 못하고 출입문에 안내문을 붙여 놓았음 - 전입세대확인서, 상가건물임대차 현황에는 전입세대나 임차인이 없는 것으로 나타남)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 48,688만원, 최저가는 2.4억입니다. 현재 계산상 최저가는 시세의 49.9%, 예상차익은 100.3%입니다.</li><li>자동 권장 입찰 상한은 3.3억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#2</span><h3><a href="cases/021_2024_61277.html">2024타경61277 근린시설</a></h3></div>
+<span class="score">C/89.5</span>
+</div>
+<p class="address">경기도 고양시 덕양구 지축로 74 5층517호 (지축동,벨라미)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%B2%A8%EB%9D%BC%EB%AF%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD61277%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260624 D-1</strong></div>
+<div><span>최저가</span><strong>68,910,000원</strong></div>
+<div><span>감정가</span><strong>2.9억</strong></div>
+<div><span>유찰</span><strong>4회</strong></div>
+<div><span>직전최저가</span><strong>98,440,000원</strong></div>
+<div><span>시세대비</span><strong>20.6%</strong></div>
+<div><span>예상차익</span><strong>386.3%</strong></div>
+<div><span>권장상한</span><strong>2.3억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-19</td><td>11,500만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-06-19</td><td>53,004만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-06-04</td><td>63,600만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-06-08</td><td>70,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-14</td><td>14,500만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-30</td><td>12,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-29</td><td>10,500만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-29</td><td>10,000만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 1.6억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2024-05-07입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 9명/건 수집됐습니다. 구성은 교부권자 4건, 채무자겸소유자 2건, 승계인 1건, 채권자 1건, 임차인 1건입니다.</li><li>사건상 임차인 관련 항목이 1건 있습니다. 이OO의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 임차인점유, 현황조사 임차인 1명 (현장조사시 만난 임차인 이재호가 운영하는 바른쎌한방병원 직원 김지혜에게 현황조사에 대하여 설명하고 현황조사 안내문 교부하였으며 김지혜 진술에 의하면 임차인이 전부 점유하고 있다고 하나 점유관계 등은 별도 확인이 필요함(전입세대확인서 및 상가건물임대차 현황서에는 등재되어있지않으나 확인이 필요함))</li><li>매각조건 특이사항: 1. 대지권 미등기이나, 최저매각가격에 대지권가격이 포함됨 2. 특별매각조건으로 매수보증금은 최저매각가격의 10분의 2를 납부하여야 함.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 33,510만원, 최저가는 68,910,000원입니다. 현재 계산상 최저가는 시세의 20.6%, 예상차익은 386.3%입니다.</li><li>자동 권장 입찰 상한은 2.3억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#3</span><h3><a href="cases/022_2025_64290.html">2025타경64290 근린시설</a></h3></div>
+<span class="score">C/89.5</span>
+</div>
+<p class="address">경기도 파주시 문산읍 당동리 899-6 뚱발트랜스포머420오피스텔 1층129호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%9A%B1%EB%B0%9C%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%AC%EB%A8%B8420%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64290%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260702 D-9</strong></div>
+<div><span>최저가</span><strong>1.9억</strong></div>
+<div><span>감정가</span><strong>4.0억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>2.8억</strong></div>
+<div><span>시세대비</span><strong>37.7%</strong></div>
+<div><span>예상차익</span><strong>165.2%</strong></div>
+<div><span>권장상한</span><strong>3.5억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-03</td><td>42,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-01</td><td>17,700만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-25</td><td>104,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-29</td><td>90,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-28</td><td>12,744만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-28</td><td>12,744만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-30</td><td>60,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-23</td><td>78,000만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 19.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-12-22입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 5명/건 수집됐습니다. 구성은 채권자 2건, 승계인 1건, 채무자 1건, 소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 2건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 아무도 만나지 못하였고 덧붙인 전입세대 확인서 / 외국인체류 확인서 / 상가건물임대차현황서에 등재자가 없으나 점유관계 등은 별도 확인이 필요함(현황조사안내문 부착함))</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 51,469만원, 최저가는 1.9억입니다. 현재 계산상 최저가는 시세의 37.7%, 예상차익은 165.2%입니다.</li><li>자동 권장 입찰 상한은 3.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#4</span><h3><a href="cases/023_2025_64290.html">2025타경64290 근린시설</a></h3></div>
+<span class="score">C/89.5</span>
+</div>
+<p class="address">경기도 파주시 문산읍 당동리 899-6 뚱발트랜스포머420오피스텔 1층126호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%9A%B1%EB%B0%9C%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%AC%EB%A8%B8420%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64290%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260702 D-9</strong></div>
+<div><span>최저가</span><strong>2.2억</strong></div>
+<div><span>감정가</span><strong>4.4억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>3.1억</strong></div>
+<div><span>시세대비</span><strong>41.8%</strong></div>
+<div><span>예상차익</span><strong>139.1%</strong></div>
+<div><span>권장상한</span><strong>3.5억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-03</td><td>42,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-01</td><td>17,700만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-25</td><td>104,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-29</td><td>90,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-28</td><td>12,744만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-30</td><td>60,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-23</td><td>78,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-23</td><td>77,000만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 19.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-12-22입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 5명/건 수집됐습니다. 구성은 채권자 2건, 승계인 1건, 채무자 1건, 소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 2건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 아무도 만나지 못하였고 덧붙인 전입세대 확인서 / 외국인체류 확인서 / 상가건물임대차현황서에 등재자가 없으나 점유관계 등은 별도 확인이 필요함(현황조사안내문 부착함))</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 51,428만원, 최저가는 2.2억입니다. 현재 계산상 최저가는 시세의 41.8%, 예상차익은 139.1%입니다.</li><li>자동 권장 입찰 상한은 3.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#5</span><h3><a href="cases/024_2025_64290.html">2025타경64290 근린시설</a></h3></div>
+<span class="score">C/89.5</span>
+</div>
+<p class="address">경기도 파주시 문산읍 당동리 899-6 뚱발트랜스포머420오피스텔 1층125호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%9A%B1%EB%B0%9C%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%AC%EB%A8%B8420%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64290%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260702 D-9</strong></div>
+<div><span>최저가</span><strong>2.2억</strong></div>
+<div><span>감정가</span><strong>4.4억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>3.1억</strong></div>
+<div><span>시세대비</span><strong>41.8%</strong></div>
+<div><span>예상차익</span><strong>139.1%</strong></div>
+<div><span>권장상한</span><strong>3.5억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-03</td><td>42,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-01</td><td>17,700만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-25</td><td>104,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-29</td><td>90,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-28</td><td>12,744만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-30</td><td>60,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-23</td><td>78,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-23</td><td>77,000만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 19.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-12-22입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 5명/건 수집됐습니다. 구성은 채권자 2건, 승계인 1건, 채무자 1건, 소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 2건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 아무도 만나지 못하였고 덧붙인 전입세대 확인서 / 외국인체류 확인서 / 상가건물임대차현황서에 등재자가 없으나 점유관계 등은 별도 확인이 필요함(현황조사안내문 부착함))</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 51,428만원, 최저가는 2.2억입니다. 현재 계산상 최저가는 시세의 41.8%, 예상차익은 139.1%입니다.</li><li>자동 권장 입찰 상한은 3.5억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#6</span><h3><a href="cases/025_2025_64290.html">2025타경64290 근린시설</a></h3></div>
+<span class="score">C/89.5</span>
+</div>
+<p class="address">경기도 파주시 문산읍 당동리 899-6 뚱발트랜스포머420오피스텔 1층111호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%9A%B1%EB%B0%9C%ED%8A%B8%EB%9E%9C%EC%8A%A4%ED%8F%AC%EB%A8%B8420%EC%98%A4%ED%94%BC%EC%8A%A4%ED%85%94" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64290%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260702 D-9</strong></div>
+<div><span>최저가</span><strong>2.2억</strong></div>
+<div><span>감정가</span><strong>4.6억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>3.2억</strong></div>
+<div><span>시세대비</span><strong>48.9%</strong></div>
+<div><span>예상차익</span><strong>104.3%</strong></div>
+<div><span>권장상한</span><strong>3.1억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-05-27</td><td>18,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-03</td><td>42,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-05-01</td><td>17,700만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-25</td><td>104,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-29</td><td>90,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-30</td><td>60,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-23</td><td>77,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-04-22</td><td>12,335만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 19.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-12-22입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 5명/건 수집됐습니다. 구성은 채권자 2건, 승계인 1건, 채무자 1건, 소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 2건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 아무도 만나지 못하였고 덧붙인 전입세대 확인서 / 외국인체류 확인서 / 상가건물임대차현황서에 등재자가 없으나 점유관계 등은 별도 확인이 필요함(현황조사안내문 부착함))</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 45,854만원, 최저가는 2.2억입니다. 현재 계산상 최저가는 시세의 48.9%, 예상차익은 104.3%입니다.</li><li>자동 권장 입찰 상한은 3.1억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#7</span><h3><a href="cases/026_2025_64720.html">2025타경64720 근린시설</a></h3></div>
+<span class="score">C/89.5</span>
+</div>
+<p class="address">경기도 파주시 광탄면 신산리 68</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64720%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260707 D-14</strong></div>
+<div><span>최저가</span><strong>12.3억</strong></div>
+<div><span>감정가</span><strong>25.2억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>17.6억</strong></div>
+<div><span>시세대비</span><strong>21.5%</strong></div>
+<div><span>예상차익</span><strong>366.1%</strong></div>
+<div><span>권장상한</span><strong>39.1억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 6건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2025-12-15</td><td>611,773만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2025-12-01</td><td>628,700만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2025-10-24</td><td>750,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2025-08-16</td><td>546,500만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2024-07-25</td><td>457,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2024-07-25</td><td>457,000만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 5.0억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-02-09입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 15명/건 수집됐습니다. 구성은 근저당권자 5건, 교부권자 4건, 배당요구권자 2건, 채권자 1건, 채무자 1건, 소유자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 6건입니다. 구성은 근저당권자 5건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도의 확인을 요하며, 위 소재지에 제시외 3층 건물과 제시외 1층 건물이 소재하여 현황파악을 한 바, 모두 폐쇄된 상태이므로 각각 안내문을 부착하였음.)</li><li>매각조건 특이사항: 일괄매각</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 575,162만원, 최저가는 12.3억입니다. 현재 계산상 최저가는 시세의 21.5%, 예상차익은 366.1%입니다.</li><li>자동 권장 입찰 상한은 39.1억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 6건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#8</span><h3><a href="cases/027_2025_64858.html">2025타경64858 상가</a></h3></div>
+<span class="score">C/89.5</span>
+</div>
+<p class="address">경기도 고양시 일산서구 덕이동 561-1 자성리치빌(2단지)씨동 4층402호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%9E%90%EC%84%B1%EB%A6%AC%EC%B9%98%EB%B9%8C%282%EB%8B%A8%EC%A7%80%29%EC%94%A8%EB%8F%99" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64858%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260707 D-14</strong></div>
+<div><span>최저가</span><strong>1.1억</strong></div>
+<div><span>감정가</span><strong>2.3억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>1.6억</strong></div>
+<div><span>시세대비</span><strong>55.9%</strong></div>
+<div><span>예상차익</span><strong>78.8%</strong></div>
+<div><span>권장상한</span><strong>1.4억</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 주소/면적 · 매매 10건 · 전세 0건 · 월세 0건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-04-04</td><td>28,000만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-03-25</td><td>13,500만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-03-06</td><td>6,800만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-02-11</td><td>14,175만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-02-11</td><td>14,175만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-02-11</td><td>13,965만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-02-07</td><td>14,700만원</td><td>-</td><td>-</td></tr><tr><td>매매</td><td>2026-02-07</td><td>14,700만원</td><td>-</td><td>-</td></tr></tbody></table></div>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 2.1억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-02-19입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 8명/건 수집됐습니다. 구성은 임차인 2건, 교부권자 2건, 임차권자 2건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 관련 항목이 2건 있습니다. 윤OO, 조OO의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 임차인점유, 현황조사 임차인 2명 (-현장조사시 만난 임차인 윤상진에게 현황조사에 대하여 설명하고 현황조사 안내문 교부하였으며 임차인의 진술에 의하면 임차인이 전부 점유하고 있다고 하나 점유관계 등은 별도 확인이 필요함 -덧붙인 전입세대확인서 및 주민등록표등본에는 동거인 조혜원이 등재되어 있음)</li><li>매각조건 특이사항: 신청채권자인 주택도시보증공사(양도전:주택임차권자 신주현)가 ‘임차보증금에 대하여 우선변제권만 주장하고 대항력은 포기하며, 전액을 변제받지 못하더라도 임차권등기를 말소함에 동의한다.’는 내용의 2026.02.04.자 인수조건변경확약서를 제출함</li><li>권리상 주의 키워드: 임차권등기, 인수, 대항력. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 20,326만원, 최저가는 1.1억입니다. 현재 계산상 최저가는 시세의 55.9%, 예상차익은 78.8%입니다.</li><li>자동 권장 입찰 상한은 1.4억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</div>
+</article>
+</section>
+<section class="tab-panel wait" id="panel-industrial" role="tabpanel" aria-labelledby="tab-industrial" hidden>
+<div class="category-heading">
+<h3>공장/창고 상위 후보</h3>
+<p>수집 70건 중 점수 상위 8건</p>
+</div>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#1</span><h3><a href="cases/028_2026_30053.html">2026타경30053 자동차</a></h3></div>
+<span class="score">D/45.0</span>
+</div>
+<p class="address">사용본거지 : 경기도 부천시 원미구 상일로 71, 1810동 1007호 (상동, 반달마을)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%8F%98%EB%A0%8C%ED%86%A0" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2026%ED%83%80%EA%B2%BD30053%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260709 D-16</strong></div>
+<div><span>최저가</span><strong>16,660,000원</strong></div>
+<div><span>감정가</span><strong>34,000,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>23,800,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 43,576,094원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-04-06입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 6명/건 수집됐습니다. 구성은 압류권자 2건, 교부권자 2건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 압류권자 2건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>매각조건 특이사항: 1. 디젤 차량 2. 중고차 사고이력 정보 보고서에 내차 피해 2회(5,558,140원)있음 3. 자동차 보관장소가 &#x27;김포시 고촌읍 신곡로 30-4 대성해운항공물류&#x27;로 변경됨</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 수익형 자산 표본 부족</strong><span>상가/공장/창고류는 매매 실거래만으로 판단하기 어렵습니다. 임대료, 공실률, 업종 제한, 관리비, 전용률을 따로 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#2</span><h3><a href="cases/029_2025_514782.html">2025타경514782 자동차,중기</a></h3></div>
+<span class="score">D/44.0</span>
+</div>
+<p class="address">사용본거지 : 인천광역시 미추홀구 인주대로 75 102동 204호 (숭의동, 포근네스트빌)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%A0%9C%EB%84%A4%EC%8B%9C%EC%8A%A4%28GENESIS%29" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD514782%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260709 D-16</strong></div>
+<div><span>최저가</span><strong>7,000,000원</strong></div>
+<div><span>감정가</span><strong>10,000,000원</strong></div>
+<div><span>유찰</span><strong>1회</strong></div>
+<div><span>직전최저가</span><strong>10,000,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 36,752,594원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-03-13입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 7명/건 수집됐습니다. 구성은 교부권자 5건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 수익형 자산 표본 부족</strong><span>상가/공장/창고류는 매매 실거래만으로 판단하기 어렵습니다. 임대료, 공실률, 업종 제한, 관리비, 전용률을 따로 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#3</span><h3><a href="cases/030_2025_73228.html">2025타경73228 자동차</a></h3></div>
+<span class="score">D/43.0</span>
+</div>
+<p class="address">사용본거지 : 인천 미추홀구 경원대로864번길 59 (주안동, 주안6동행정복지센터)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=BMW%20530i" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD73228%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260701 D-8</strong></div>
+<div><span>최저가</span><strong>14,700,000원</strong></div>
+<div><span>감정가</span><strong>30,000,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>21,000,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 65,798,102원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-11-10입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 25명/건 수집됐습니다. 구성은 압류권자 15건, 교부권자 7건, 채권자 1건, 채무자겸소유자 1건, 저당권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 17건입니다. 구성은 압류권자 15건, 채권자 1건, 저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>매각조건 특이사항: 연식: 2018년 연료: 가솔린 주행거리: 계기판상 71,324km</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 수익형 자산 표본 부족</strong><span>상가/공장/창고류는 매매 실거래만으로 판단하기 어렵습니다. 임대료, 공실률, 업종 제한, 관리비, 전용률을 따로 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li><li class="low"><strong>낮음 · 채권자 다수</strong><span>채권자 수가 많아 배당관계가 복잡할 수 있습니다. 배당표와 말소/인수 관계를 등기 기준으로 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#4</span><h3><a href="cases/031_2025_52475.html">2025타경52475 자동차,중기</a></h3></div>
+<span class="score">D/43.0</span>
+</div>
+<p class="address">사용본거지 : 경기도 여주시 여양로 693-9 금왕물류(주)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%ED%95%9C%EA%B5%AD%ED%8A%B9%EC%9E%A5%EA%B8%B0%EC%88%A06.5%ED%86%A4%ED%8A%B8%EB%9F%AD" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD52475%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260629 D-6</strong></div>
+<div><span>최저가</span><strong>7,683,000원</strong></div>
+<div><span>감정가</span><strong>32,000,000원</strong></div>
+<div><span>유찰</span><strong>4회</strong></div>
+<div><span>직전최저가</span><strong>10,976,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 64,694,643원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-07-28입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 3명/건 수집됐습니다. 구성은 채권자 1건, 채무자 1건, 소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 수익형 자산 표본 부족</strong><span>상가/공장/창고류는 매매 실거래만으로 판단하기 어렵습니다. 임대료, 공실률, 업종 제한, 관리비, 전용률을 따로 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#5</span><h3><a href="cases/032_2025_41572.html">2025타경41572 기타</a></h3></div>
+<span class="score">D/43.0</span>
+</div>
+<p class="address">경기도 평택시 팽성읍 함정리 128-2</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD41572%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260707 D-14</strong></div>
+<div><span>최저가</span><strong>2.8억</strong></div>
+<div><span>감정가</span><strong>8.0억</strong></div>
+<div><span>유찰</span><strong>4회</strong></div>
+<div><span>직전최저가</span><strong>3.9억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 3.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-07-25입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 9명/건 수집됐습니다. 구성은 가처분권자 5건, 교부권자 2건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (* 폐문으로 점유자를 만나지 못하여 점유관계를 알 수 없음. * 전입세대확인서 신청결과, 채무자겸소유자 1인 등재되어 있음. 전입세대확인서, 주민등록표등본 첨부. * 외국인체류확인서 신청결과, 등재인 없음. 외국인체류확인서 첨부.)</li><li>매각조건 특이사항: 1. 일괄매각. 목록1에 부속한 제시외건물(다용도실, 보일러실) 포함. 2. 목록4는 맹지로서, 지목 ‘전’이나 현황 주거나지. 농지취득자격증명 제출 필요(미제출시 보증금 몰수). 3. 목록2는 단독주택 부지, 목록3은 도로로 이용중. 4. 목록1은 주택 및 창고로 이용중. 창고는 공부상 ‘세멘브럭조 스레트지붕’이나 현황은 ‘판넬조 판넬지붕’임.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 수익형 자산 표본 부족</strong><span>상가/공장/창고류는 매매 실거래만으로 판단하기 어렵습니다. 임대료, 공실률, 업종 제한, 관리비, 전용률을 따로 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#6</span><h3><a href="cases/033_2024_83796.html">2024타경83796 기타</a></h3></div>
+<span class="score">D/42.0</span>
+</div>
+<p class="address">경기도 고양시 일산서구 구산동 1517-1</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD83796%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260701 D-8</strong></div>
+<div><span>최저가</span><strong>43.0억</strong></div>
+<div><span>감정가</span><strong>61.4억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>61.4억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 9.1억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-01-16입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 16명/건 수집됐습니다. 구성은 임차인 3건, 근저당권자 3건, 교부권자 3건, 가압류권자 2건, 채권자 1건, 소유자 1건, 채무자겸소유자 1건, 배당요구권자 1건, 유치권자 1건입니다.</li><li>사건상 임차인 관련 항목이 3건 있습니다. 조OO, 주OOO OOOO, 함OO의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 6건입니다. 구성은 근저당권자 3건, 가압류권자 2건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 아무도 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함)</li><li>매각조건 특이사항: 1. 일괄매각. 제시외 건물 포함. 매각에서 제외되는 컨테이너 수동 있음. 2. 목록2.토지 농지취득자격증명서 제출요(미제출시 보증금 미반환), 공부상 지목은 전이나 현황은 대부분 공장부지로 이용중임. 3. 채무자겸소유자 이진묵, 소유자 졍영희로부터 집행에 관한 이의신청(2025타기253)이 있었지만 2025. 5. 21.자로 취하서가 들어옴. 4. 공고이후 2025.8.26.자로 임차...</li><li>권리상 주의 키워드: 임차인, 유치권. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 수익형 자산 표본 부족</strong><span>상가/공장/창고류는 매매 실거래만으로 판단하기 어렵습니다. 임대료, 공실률, 업종 제한, 관리비, 전용률을 따로 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#7</span><h3><a href="cases/034_2025_5021.html">2025타경5021 기타</a></h3></div>
+<span class="score">D/42.0</span>
+</div>
+<p class="address">경기도 파주시 상지석동 554-305</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD5021%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260702 D-9</strong></div>
+<div><span>최저가</span><strong>20.1억</strong></div>
+<div><span>감정가</span><strong>28.7억</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>28.7억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 21.0억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-11-24입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 16명/건 수집됐습니다. 구성은 공유자 7건, 교부권자 4건, 채권자 1건, 소유자 1건, 채무자겸소유자 1건, 임차인 1건, 가압류권자 1건입니다.</li><li>사건상 임차인 관련 항목이 1건 있습니다. 김OO의 대항력, 확정일자, 배당요구 여부를 입찰가에서 먼저 차감 검토해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 가압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 아무도 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함)</li><li>매각조건 특이사항: 1. 일괄매각. 제시외 건물 포함 2. 목록 3. 공부상 지목은 &#x27;공장용지&#x27; 이나 현황 &#x27;도로&#x27;로 이용중임. 지분매각임. 3. 목록 4. 지분매각임.</li><li>권리상 주의 키워드: 지분매각. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 수익형 자산 표본 부족</strong><span>상가/공장/창고류는 매매 실거래만으로 판단하기 어렵습니다. 임대료, 공실률, 업종 제한, 관리비, 전용률을 따로 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#8</span><h3><a href="cases/035_2025_64371.html">2025타경64371 기타</a></h3></div>
+<span class="score">D/42.0</span>
+</div>
+<p class="address">경기도 고양시 덕양구 향동동 391 디엠씨플렉스데시앙 16층케이비1624호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%94%94%EC%97%A0%EC%94%A8%ED%94%8C%EB%A0%89%EC%8A%A4%EB%8D%B0%EC%8B%9C%EC%95%99" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64371%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260702 D-9</strong></div>
+<div><span>최저가</span><strong>2.5억</strong></div>
+<div><span>감정가</span><strong>3.6억</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>3.6억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 2.4억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-01-12입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 3명/건 수집됐습니다. 구성은 채권자 1건, 채무자겸소유자 1건, 교부권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장방문시 아무도 만나지 못하였고 덧붙인 전입세대확인서, 외국인체류확인서, 상가건물임대차현황서에 각 등재자가 없으므로 점유관계 등은 별도의 확인을 요함.(안내문 부착))</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 수익형 자산 표본 부족</strong><span>상가/공장/창고류는 매매 실거래만으로 판단하기 어렵습니다. 임대료, 공실률, 업종 제한, 관리비, 전용률을 따로 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+</section>
+<section class="tab-panel land" id="panel-land" role="tabpanel" aria-labelledby="tab-land" hidden>
+<div class="category-heading">
+<h3>토지 상위 후보</h3>
+<p>수집 729건 중 점수 상위 8건</p>
+</div>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#1</span><h3><a href="cases/036_2024_579842.html">2024타경579842 전답</a></h3></div>
+<span class="score">D/35.5</span>
+</div>
+<p class="address">인천광역시 강화군 불은면 삼성리 438</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD579842%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260625 D-2</strong></div>
+<div><span>최저가</span><strong>4.3억</strong></div>
+<div><span>감정가</span><strong>9.2억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>6.1억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 2.6억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-03-03입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 10명/건 수집됐습니다. 구성은 교부권자 3건, 가압류권자 2건, 압류권자 2건, 채권자 1건, 채무자겸소유자 1건, 지상권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 5건입니다. 구성은 가압류권자 2건, 압류권자 2건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (- 본건 현황조사차 현장에 임한 바, 이해관계인 등을 만날 수 없었으나, - 전입세대확인서 결과 임대차관계는 없는 것으로 추정됨. - 전입세대확인서 첨부)</li><li>매각조건 특이사항: 일괄매각. 농지취득자격증명 제출 필요(매각결정기일까지 미제출시 보증금은 반환하지 않음), 원상회복명령이 발하여질 가능성 있음. 목록1 제시 외 관정 1식 포함. 목록2 제시 외 경량철골조 및 판넬조판넬지붕 창고 등 약 78㎡는 매각에서 제외함. 매각에서 제외하는 지상 건물에 대한 법정지상권 성립여부 불분명. 목록2 제시 외 건물 소재로 인하여 제한 받는 토지 가격은 104 ,355,30...</li><li>권리상 주의 키워드: 법정지상권. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#2</span><h3><a href="cases/037_2025_54673.html">2025타경54673 대지,임야,전답</a></h3></div>
+<span class="score">D/35.5</span>
+</div>
+<p class="address">경기도 용인시 처인구 유방동 산60-4</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD54673%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260703 D-10</strong></div>
+<div><span>최저가</span><strong>1.8억</strong></div>
+<div><span>감정가</span><strong>3.7억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>2.6억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 2.6억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-05-13입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 78명/건 수집됐습니다. 구성은 공유자 71건, 교부권자 2건, 채권자 1건, 채무자 1건, 소유자 1건, 근저당권자 1건, 가압류권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 채권자 1건, 근저당권자 1건, 가압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (해당 부동산에 대하여 현황조사차 방문하였는바, 소유자 및 점유자 등을 만날 수 없어 점유관계 등을 확인하지 못함.)</li><li>매각조건 특이사항: - 맹지임 - 공유자의 우선매수신고는 1회에 한하여 행사할 수 있음(공유자가 우선매수권 신고 후 매각기일까지 매수보증금을 미납하여 실효되는 경우에는 그 공유자는 이후 매각기일부터는 우선매수권을 행사할 수 없음) - 물건은 일부 &#x27;여수곡터널&#x27; 상층부에 해당하는 임야로 정확한 경계나 미상의 분묘 등 확인을 위하여 측량감정 등으로 확인을 요함(부동산 현황조사서 참조)</li><li>권리상 주의 키워드: 공유자. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#3</span><h3><a href="cases/038_2026_50706.html">2026타경50706 자동차</a></h3></div>
+<span class="score">D/35.5</span>
+</div>
+<p class="address">사용본거지 : 서울 관악구 인헌13길 12-12 (봉천동)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=E300%204Matic" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2026%ED%83%80%EA%B2%BD50706%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260703 D-10</strong></div>
+<div><span>최저가</span><strong>8,400,000원</strong></div>
+<div><span>감정가</span><strong>12,000,000원</strong></div>
+<div><span>유찰</span><strong>1회</strong></div>
+<div><span>직전최저가</span><strong>12,000,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 55,566,488원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-03-30입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 6명/건 수집됐습니다. 구성은 압류권자 2건, 교부권자 2건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 압류권자 2건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>매각조건 특이사항: 내차 피해 9회, 상대차 피해 4회</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#4</span><h3><a href="cases/039_2025_41537.html">2025타경41537 대지</a></h3></div>
+<span class="score">D/35.5</span>
+</div>
+<p class="address">경기도 평택시 고덕동 1795-2</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD41537%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260707 D-14</strong></div>
+<div><span>최저가</span><strong>5.6억</strong></div>
+<div><span>감정가</span><strong>11.3억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>7.9억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 5.8억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-06-12입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 8명/건 수집됐습니다. 구성은 승계인 1건, 채권자 1건, 채무자겸소유자 1건, 근저당권자 1건, 압류권자 1건, 가등기권자 1건, 교부권자 1건, 지상권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 채권자 1건, 근저당권자 1건, 압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (* 점유자를 만나지 못하여 점유관계를 알 수 없음.)</li><li>매각조건 특이사항: 지목 &quot;대&quot;, 현황 &quot;나대지&quot; 상태. 지상에 버려진 공사자재물, 쓰레기더미, 잡풀더미가 있음.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#5</span><h3><a href="cases/040_2024_84172.html">2024타경84172 대지,임야,전답</a></h3></div>
+<span class="score">D/35.5</span>
+</div>
+<p class="address">경기도 가평군 가평읍 마장리 8</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD84172%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260625 D-2</strong></div>
+<div><span>최저가</span><strong>87,308,000원</strong></div>
+<div><span>감정가</span><strong>1.8억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>1.2억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 3.3억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2024-12-30입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 13명/건 수집됐습니다. 구성은 교부권자 3건, 소유자 2건, 압류권자 2건, 채권자 1건, 채무자 1건, 채무자겸소유자 1건, 근저당권자 1건, 지상권자 1건, 점유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 4건입니다. 구성은 압류권자 2건, 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장에 임하였으나 점유자를 만나지 못하였으므로, 정확한 점유관계는 별도 확인이 필요함)</li><li>매각조건 특이사항: 1. 목록 1,2 일괄매각 2. 목록 1,2 농지취득자격증명 제출요(미제출시 매수보증금 미반환) 3. 목록 1 지상에 매각대상이 아닌 건물 등이 존재함(법정지상권 성립 여부 불명). 제시외 건물 소재로 인하여 제한받는 가격은 80,025,000원임. 4. 목록 2 지상에 분묘 1기가 소재함(분묘기지권 성립 여부 불명) 5. 목록 1,2 맹지임</li><li>권리상 주의 키워드: 법정지상권. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#6</span><h3><a href="cases/041_2024_84998.html">2024타경84998 대지,임야,전답</a></h3></div>
+<span class="score">D/35.5</span>
+</div>
+<p class="address">경기도 남양주시 수동면 외방리 295</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD84998%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260625 D-2</strong></div>
+<div><span>최저가</span><strong>4.3억</strong></div>
+<div><span>감정가</span><strong>8.7억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>6.1억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 3.2억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-01-20입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 7명/건 수집됐습니다. 구성은 압류권자 2건, 교부권자 2건, 채권자 1건, 채무자겸소유자 1건, 배당요구권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 압류권자 2건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장에 임하였으나 점유자를 만나지 못하였으므로, 정확한 점유관계는 별도 확인이 필요함)</li><li>매각조건 특이사항: 1. 일괄매각 2. 농지취득자격증명 제출요(미제출시 매수보증금 미반환) 3. 목록2-지상에 분묘 1기가 소재하며 분묘기지권 성립여부 불분명. 분묘 소재로 인하여 제한받는 가격은 413,174,000원(262,000/㎡) 임 4. 목록1,3 토지는 맹지이며 인접토지를 통하여 출입함</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#7</span><h3><a href="cases/042_2024_85557.html">2024타경85557 대지,임야,전답</a></h3></div>
+<span class="score">D/35.5</span>
+</div>
+<p class="address">경기도 가평군 조종면 현리 402-27</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD85557%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260624 D-1</strong></div>
+<div><span>최저가</span><strong>6.3억</strong></div>
+<div><span>감정가</span><strong>12.9억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>9.1억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 9.4억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-01-31입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 15명/건 수집됐습니다. 구성은 교부권자 4건, 배당요구권자 4건, 가압류권자 3건, 채권자 1건, 채무자겸소유자 1건, 근저당권자 1건, 지상권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 5건입니다. 구성은 가압류권자 3건, 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장에 임하였으나 점유자를 만나지 못하였으므로, 정확한 점유관계는 별도 확인이 필요함)</li><li>매각조건 특이사항: 1. 일괄매각 2. 제시외 건물(창고 등) 매각 제외 3. 상업나지로 이용중</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#8</span><h3><a href="cases/043_2024_86451.html">2024타경86451 대지,임야,전답</a></h3></div>
+<span class="score">D/35.5</span>
+</div>
+<p class="address">경기도 남양주시 오남읍 팔현리 산61</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD86451%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260625 D-2</strong></div>
+<div><span>최저가</span><strong>5.8억</strong></div>
+<div><span>감정가</span><strong>11.9억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>8.3억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 1.4억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-02-24입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 9명/건 수집됐습니다. 구성은 가압류권자 3건, 채권자 1건, 채무자 1건, 소유자 1건, 근저당권자 1건, 교부권자 1건, 지상권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 5건입니다. 구성은 가압류권자 3건, 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현장에 임하였으나 아무도 만나지 못하였으므로, 점유관계 등은 별도의 확인이 필요함)</li><li>매각조건 특이사항: 1. 지적도상 &#x27;맹지&#x27; 상태임 2. 본건 지상에 소유자 미상의 제시외 분묘 2기가 소재함. 지상 분묘 소재로 인하여 제한받는 가격은 6,790/㎡ 임</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+</section>
+<section class="tab-panel risk" id="panel-road_special" role="tabpanel" aria-labelledby="tab-road_special" hidden>
+<div class="category-heading">
+<h3>도로/특수 상위 후보</h3>
+<p>수집 554건 중 점수 상위 8건</p>
+</div>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#1</span><h3><a href="cases/044_2025_514172.html">2025타경514172 자동차,중기</a></h3></div>
+<span class="score">D/29.5</span>
+</div>
+<p class="address">사용본거지 : 인천광역시 남동구 수현로136번길 30, 에이동 420호 (만수동, 신한아파트)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=Arteon%202.0%20TDI" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD514172%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260709 D-16</strong></div>
+<div><span>최저가</span><strong>10,780,000원</strong></div>
+<div><span>감정가</span><strong>22,000,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>15,400,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 27,327,937원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-02-27입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 3명/건 수집됐습니다. 구성은 채권자 1건, 채무자겸소유자 1건, 교부권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#2</span><h3><a href="cases/045_2024_61617.html">2024타경61617 기타</a></h3></div>
+<span class="score">D/29.5</span>
+</div>
+<p class="address">경기도 하남시 미사강변한강로 270-1 201동 2층2-105호 (망월동,미사역호반써밋)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EB%AF%B8%EC%82%AC%EC%97%AD%ED%98%B8%EB%B0%98%EC%8D%A8%EB%B0%8B" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD61617%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260706 D-13</strong></div>
+<div><span>최저가</span><strong>1.9억</strong></div>
+<div><span>감정가</span><strong>3.9억</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>2.7억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 2.2억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2024-09-09입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 7명/건 수집됐습니다. 구성은 교부권자 5건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 기타/점유관계 별도 확인, 현황조사 임차인 0명</li><li>매각조건 특이사항: 1. 공실임</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#3</span><h3><a href="cases/046_2025_41994.html">2025타경41994 기타</a></h3></div>
+<span class="score">D/29.5</span>
+</div>
+<p class="address">경기도 평택시 신장동 261-122</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD41994%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260706 D-13</strong></div>
+<div><span>최저가</span><strong>1.0억</strong></div>
+<div><span>감정가</span><strong>4.2억</strong></div>
+<div><span>유찰</span><strong>4회</strong></div>
+<div><span>직전최저가</span><strong>1.4억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 13,378,397원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-09-04입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 3명/건 수집됐습니다. 구성은 채권자 1건, 채무자겸소유자 1건, 가압류권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 가압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (* 불특정 다수인이 통행하는 도로임.)</li><li>매각조건 특이사항: -본건 토지의 남동측 일부 면적이 철도보호지구에 저축되어 있어 이를 감안하여 평가함. -인접 토지와의 정확한 경계 구분은 측량을 통하여 확인 요함.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#4</span><h3><a href="cases/047_2025_33266.html">2025타경33266 기타</a></h3></div>
+<span class="score">D/28.5</span>
+</div>
+<p class="address">경기도 김포시 구래동 6877-5 김포한강 듀클래스 7층 709호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EA%B9%80%ED%8F%AC%ED%95%9C%EA%B0%95%20%EB%93%80%ED%81%B4%EB%9E%98%EC%8A%A4" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD33266%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260702 D-9</strong></div>
+<div><span>최저가</span><strong>1.4억</strong></div>
+<div><span>감정가</span><strong>2.0억</strong></div>
+<div><span>유찰</span><strong>1회</strong></div>
+<div><span>직전최저가</span><strong>2.0억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산강제경매이고 청구금액은 4,371,110원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-07-16입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 4명/건 수집됐습니다. 구성은 채권자 1건, 채무자겸소유자 1건, 근저당권자 1건, 교부권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 기타/점유관계 별도 확인, 현황조사 임차인 0명 (현장에서 만난 소유자 정한수를 면담 후 안내문 교부함. 본인이 전부 사용한다고 함.)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#5</span><h3><a href="cases/048_2025_62517.html">2025타경62517 기타</a></h3></div>
+<span class="score">D/28.5</span>
+</div>
+<p class="address">경기도 파주시 파주읍 봉서리 262-2</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD62517%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260625 D-2</strong></div>
+<div><span>최저가</span><strong>22,096,000원</strong></div>
+<div><span>감정가</span><strong>64,419,000원</strong></div>
+<div><span>유찰</span><strong>4회</strong></div>
+<div><span>직전최저가</span><strong>31,565,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 공유물분할을위한경매이고 청구금액은 -입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-05-30입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 14명/건 수집됐습니다. 구성은 상대방겸소유자 7건, 교부권자 3건, 근저당권자 2건, 신청인 1건, 신청인겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 근저당권자 2건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함)</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#6</span><h3><a href="cases/049_2025_512789.html">2025타경512789 자동차,중기</a></h3></div>
+<span class="score">D/27.5</span>
+</div>
+<p class="address">사용본거지 : 인천광역시 연수구 능허대로79번길 30 101동 1104호 (옥련동, 럭키송도아파트)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%8F%98%EB%82%98%ED%83%80%20%28SONATA%29" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD512789%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260709 D-16</strong></div>
+<div><span>최저가</span><strong>11,270,000원</strong></div>
+<div><span>감정가</span><strong>23,000,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>16,100,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 18,712,277원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-02-02입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 12명/건 수집됐습니다. 구성은 압류권자 7건, 교부권자 3건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 8건입니다. 구성은 압류권자 7건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li><li class="low"><strong>낮음 · 채권자 다수</strong><span>채권자 수가 많아 배당관계가 복잡할 수 있습니다. 배당표와 말소/인수 관계를 등기 기준으로 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#7</span><h3><a href="cases/050_2025_2760.html">2025타경2760 기타</a></h3></div>
+<span class="score">D/25.5</span>
+</div>
+<p class="address">경기도 의정부시 고산동 996-2 한강듀클래스의정부고산 씨동 7층718호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%ED%95%9C%EA%B0%95%EB%93%80%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9D%98%EC%A0%95%EB%B6%80%EA%B3%A0%EC%82%B0" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD2760%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260623 D-day</strong></div>
+<div><span>최저가</span><strong>2.4억</strong></div>
+<div><span>감정가</span><strong>4.9억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>3.5억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 4.3억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-09-22입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 6명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 채무자겸소유자 1건, 가압류권자 1건, 기타 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 가압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 소유자점유, 현황조사 임차인 0명 (부동산의 현황 기재사항과 같음.)</li><li>매각조건 특이사항: 공장(지식산업센터)으로 이용중이며 입주조건 별도확인 필요함</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#8</span><h3><a href="cases/051_2025_72532.html">2025타경72532 기타</a></h3></div>
+<span class="score">D/25.5</span>
+</div>
+<p class="address">경기도 의정부시 민락동 927-1 의정부더리브센텀스퀘어1 지식산업센터1동 10층1004호</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%9D%98%EC%A0%95%EB%B6%80%EB%8D%94%EB%A6%AC%EB%B8%8C%EC%84%BC%ED%85%80%EC%8A%A4%ED%80%98%EC%96%B41%20%EC%A7%80%EC%8B%9D%EC%82%B0%EC%97%85%EC%84%BC%ED%84%B01%EB%8F%99" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD72532%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260623 D-day</strong></div>
+<div><span>최저가</span><strong>1.1억</strong></div>
+<div><span>감정가</span><strong>2.2억</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>1.6억</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 92,213,970원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-09-01입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 5명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 채무자겸소유자 1건, 압류권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 소유자점유, 현황조사 임차인 0명 (부동산의 현황 기재사항과 같음.)</li><li>매각조건 특이사항: 공장(지식산업센터)으로 이용중이며 입주조건 별도로 확인필요</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</div>
+</article>
+</section>
+<section class="tab-panel manual" id="panel-other_realestate" role="tabpanel" aria-labelledby="tab-other_realestate" hidden>
+<div class="category-heading">
+<h3>기타 부동산 상위 후보</h3>
+<p>수집 310건 중 점수 상위 8건</p>
+</div>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#1</span><h3><a href="cases/052_2025_514807.html">2025타경514807 자동차,중기</a></h3></div>
+<span class="score">D/42.5</span>
+</div>
+<p class="address">사용본거지 : 경기도 포천시 창수면 창동로 228 (오가리)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=TGX" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD514807%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260709 D-16</strong></div>
+<div><span>최저가</span><strong>24,010,000원</strong></div>
+<div><span>감정가</span><strong>70,000,000원</strong></div>
+<div><span>유찰</span><strong>3회</strong></div>
+<div><span>직전최저가</span><strong>34,300,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 67,869,459원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-02-23입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 4명/건 수집됐습니다. 구성은 채권자 1건, 채무자 1건, 소유자 1건, 교부권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#2</span><h3><a href="cases/053_2025_1918.html">2025타경1918 자동차</a></h3></div>
+<span class="score">D/42.5</span>
+</div>
+<p class="address">사용본거지 : 서울 강남구 남부순환로 2708 (도곡동, 매산빌딩)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EA%B7%B8%EB%9E%9C%EB%93%9C%20%EC%8A%A4%ED%83%80%EB%A0%89%EC%8A%A4%28GRAND%20STAREX%29" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD1918%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260706 D-13</strong></div>
+<div><span>최저가</span><strong>6,615,000원</strong></div>
+<div><span>감정가</span><strong>13,500,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>9,450,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차강제경매이고 청구금액은 32,833,887원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-01-02입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 6명/건 수집됐습니다. 구성은 교부권자 3건, 채권자 1건, 채무자겸소유자 1건, 가압류권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 가압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#3</span><h3><a href="cases/054_2025_59499.html">2025타경59499 자동차</a></h3></div>
+<span class="score">D/42.5</span>
+</div>
+<p class="address">사용본거지 : 경기도 화성시 남양읍 신남리 .</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%8F%98%EB%82%98%ED%83%80%28SONATA%29" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD59499%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260708 D-15</strong></div>
+<div><span>최저가</span><strong>8,820,000원</strong></div>
+<div><span>감정가</span><strong>18,000,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>12,600,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 11,544,339원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-03-10입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 7명/건 수집됐습니다. 구성은 압류권자 2건, 교부권자 2건, 채권자 1건, 소유자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 압류권자 2건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#4</span><h3><a href="cases/055_2025_504020.html">2025타경504020 자동차</a></h3></div>
+<span class="score">D/42.5</span>
+</div>
+<p class="address">사용본거지 : 인천 동구 화도진로 16, 108동 2305호 (송림동, 동인천역파크푸르지오)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%B9%B4%EB%8B%88%EB%B0%9C" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD504020%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260706 D-13</strong></div>
+<div><span>최저가</span><strong>6,860,000원</strong></div>
+<div><span>감정가</span><strong>14,000,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>9,800,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 17,050,316원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-01-26입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 6명/건 수집됐습니다. 구성은 압류권자 3건, 채권자 1건, 채무자겸소유자 1건, 교부권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 4건입니다. 구성은 압류권자 3건, 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>매각조건 특이사항: -보험사고이력 내차피해 1회, 상대차피해 3회(자차 미가입기간 사고이력 확인불가) -검사유효기간 도과</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#5</span><h3><a href="cases/056_2025_13812.html">2025타경13812 자동차,중기</a></h3></div>
+<span class="score">D/41.5</span>
+</div>
+<p class="address">사용본거지 : 서울 중랑구 상봉로20길 81, 201호 (망우동, 빌드아르떼)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%8F%98%EB%A0%8C%ED%86%A0" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD13812%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260707 D-14</strong></div>
+<div><span>최저가</span><strong>25,600,000원</strong></div>
+<div><span>감정가</span><strong>40,000,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>32,000,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 23,194,171원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-02-23입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 5명/건 수집됐습니다. 구성은 채권자 1건, 채무자겸소유자 1건, 가압류권자 1건, 저당권자 1건, 압류권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 4건입니다. 구성은 채권자 1건, 가압류권자 1건, 저당권자 1건, 압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>매각조건 특이사항: 감정평가서에 의하면, 내차피해 1회의 중고차 사고이력정보가 있음</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#6</span><h3><a href="cases/057_2026_70106.html">2026타경70106 자동차,중기</a></h3></div>
+<span class="score">D/41.5</span>
+</div>
+<p class="address">사용본거지 : 경기도 시흥시 큰솔로 84, 303호(정왕동)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EC%B9%B4%EB%8B%88%EB%B0%9C%20%ED%95%98%EC%9D%B4%EB%A6%AC%EB%AC%B4%EC%A7%84" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2026%ED%83%80%EA%B2%BD70106%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260701 D-8</strong></div>
+<div><span>최저가</span><strong>28,000,000원</strong></div>
+<div><span>감정가</span><strong>40,000,000원</strong></div>
+<div><span>유찰</span><strong>1회</strong></div>
+<div><span>직전최저가</span><strong>40,000,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 73,405,932원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-03-26입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 5명/건 수집됐습니다. 구성은 채권자 1건, 채무자겸소유자 1건, 저당권자 1건, 압류권자 1건, 교부권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 3건입니다. 구성은 채권자 1건, 저당권자 1건, 압류권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>매각조건 특이사항: 감정평가서에 의하면 배터리방전으로 계기판상 주행거리는 확인하지 못하였으나 자동차등록원부상 주행거리는 4,650km 로 확인됨. 자동차등록원부상 2025.11.18.자 운행정지명령 등록되어 있으니 별도 확인요함(등록관청: 경기도 시흥시) 사용연료 가솔린</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#7</span><h3><a href="cases/058_2026_70519.html">2026타경70519 자동차,중기</a></h3></div>
+<span class="score">D/41.5</span>
+</div>
+<p class="address">사용본거지 : 경기도 남양주시 별내5로5번길 28-9, 201호 (별내동)</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=EQ900" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2026%ED%83%80%EA%B2%BD70519%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260702 D-9</strong></div>
+<div><span>최저가</span><strong>6,300,000원</strong></div>
+<div><span>감정가</span><strong>9,000,000원</strong></div>
+<div><span>유찰</span><strong>1회</strong></div>
+<div><span>직전최저가</span><strong>9,000,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 자동차임의경매이고 청구금액은 7,964,552원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-05-04입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 5명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 채무자겸소유자 1건, 근저당권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>매각조건 특이사항: -본건은 자동차등록증상 연료가 휘발유이나 LPG로 개조되어 있으나 이에대하여 자동차등록원부에 기재된 내역은 없는 상태임 -계기판상 주행거리는 36,978km이나, 명의이전 등록시 주행거리는 385,468km로 주행거리 불일치임.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+<article class="candidate-card">
+<div class="candidate-head">
+<div><span class="rank">#8</span><h3><a href="cases/059_2025_512132.html">2025타경512132 자동차,중기</a></h3></div>
+<span class="score">D/41.5</span>
+</div>
+<p class="address">소재지 : 인천광역시 강화군 선원면 중앙로 142 .</p>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%EA%B5%B4%EC%B0%A9%EA%B8%B0" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD512132%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+<div class="facts">
+<div><span>입찰일</span><strong>20260709 D-16</strong></div>
+<div><span>최저가</span><strong>24,500,000원</strong></div>
+<div><span>감정가</span><strong>50,000,000원</strong></div>
+<div><span>유찰</span><strong>2회</strong></div>
+<div><span>직전최저가</span><strong>35,000,000원</strong></div>
+<div><span>시세대비</span><strong>-</strong></div>
+<div><span>예상차익</span><strong>-</strong></div>
+<div><span>권장상한</span><strong>-</strong></div>
+</div>
+<div class="detail">
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 건설기계임의경매이고 청구금액은 31,172,085원입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-01-02입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 4명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 채무자겸소유자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 정보가 비어 있습니다. 폐문, 미상, 소유자점유 여부를 원문으로 확인하기 전까지 명도 리스크를 0으로 보지 않습니다.</li><li>자동 감지상 선순위/인수 권리 키워드는 강하게 잡히지 않았습니다. 다만 자동 판단은 보조자료이므로 입찰 전 등기부등본, 매각물건명세서, 현황조사서 확인이 필수입니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</li></ul></div>
+</div>
+</article>
+</section>
+</div>
 </section>
 <section class="candidate-section good">
 <h2>즉시검토 상위 후보</h2>
@@ -806,6 +2120,25 @@ main {
 </div>
 </article>
 </section>
+
+<script>
+document.addEventListener("click", function (event) {
+  const button = event.target.closest("[data-tab-target]");
+  if (!button) return;
+  const root = button.closest(".category-tabs");
+  if (!root) return;
+  root.querySelectorAll(".tab-button").forEach(function (item) {
+    item.classList.toggle("active", item === button);
+    item.setAttribute("aria-selected", item === button ? "true" : "false");
+  });
+  root.querySelectorAll(".tab-panel").forEach(function (panel) {
+    const active = panel.id === button.dataset.tabTarget;
+    panel.classList.toggle("active", active);
+    panel.hidden = !active;
+  });
+});
+</script>
+
 </main>
 </body>
 </html>
