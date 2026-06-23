@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2024타경2083 상세 조회 자료</title>
+<style>
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #18202a;
+  --muted: #667085;
+  --line: #d8dde6;
+  --good: #0f766e;
+  --wait: #946200;
+  --risk: #b42318;
+  --accent: #1d4ed8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+main {
+  width: min(1120px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+.hero {
+  padding: 12px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.hero p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+.meta {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.summary-card,
+.guide,
+.candidate-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.summary-card {
+  padding: 14px;
+}
+.summary-card span,
+.facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+}
+.summary-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.guide {
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.guide h2,
+.candidate-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.guide ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.guide code {
+  overflow-wrap: anywhere;
+}
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.criteria-card {
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #f8fafc;
+}
+.criteria-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.criteria-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.criteria-card li {
+  margin: 5px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.llm-review {
+  border-color: #c7d2fe;
+  background: #f8fbff;
+}
+.llm-meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.llm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.llm-pick {
+  border: 1px solid #dbe3f0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 13px 14px;
+}
+.llm-pick h3,
+.llm-followups h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.llm-rank {
+  display: inline-block;
+  margin-right: 6px;
+  color: #3730a3;
+  font-size: 13px;
+}
+.llm-pick h4 {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.llm-pick ul,
+.llm-followups ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.llm-pick li,
+.llm-followups li {
+  margin: 5px 0;
+}
+.llm-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.llm-badges span {
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 3px 8px;
+  color: #3730a3;
+  background: #eef2ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+.llm-rerank {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-left: 3px solid #6366f1;
+  background: #f8fafc;
+  color: var(--text);
+}
+.llm-rerank strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #3730a3;
+}
+.llm-price {
+  margin: 12px 0 0;
+  color: var(--text);
+  font-weight: 700;
+}
+.llm-followups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.candidate-section {
+  margin-top: 24px;
+}
+.candidate-section.good h2 { color: var(--good); }
+.candidate-section.wait h2 { color: var(--wait); }
+.candidate-section.risk h2 { color: var(--risk); }
+.region-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.city-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0 10px;
+  padding: 8px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+.tab-list {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.region-button,
+.city-button,
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.region-button span,
+.city-button span,
+.tab-button span {
+  display: inline-flex;
+  min-width: 28px;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 12px;
+}
+.region-button.active,
+.city-button.active,
+.tab-button.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+.region-button.active span,
+.city-button.active span,
+.tab-button.active span {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+.region-view {
+  display: none;
+}
+.region-view.active {
+  display: block;
+}
+.city-view {
+  display: none;
+}
+.city-view.active {
+  display: block;
+}
+.tab-panel {
+  display: none;
+  margin-top: 12px;
+}
+.tab-panel.active {
+  display: block;
+}
+.category-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+.category-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.category-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.candidate-card {
+  padding: 16px;
+  margin: 10px 0;
+}
+.candidate-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.candidate-head h3 {
+  display: inline;
+  margin: 0;
+  font-size: 18px;
+}
+.candidate-head h3 a,
+.hero a,
+.link-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.candidate-head h3 a:hover,
+.hero a:hover,
+.link-row a:hover {
+  text-decoration: underline;
+}
+.rank {
+  display: inline-flex;
+  min-width: 34px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #e7eefc;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+.score {
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--accent);
+}
+.address {
+  margin: 8px 0 12px;
+  color: var(--muted);
+}
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef4ff;
+  border: 1px solid #d7e5ff;
+  font-size: 13px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.facts div {
+  padding: 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+}
+.facts strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.detail {
+  margin-top: 12px;
+}
+.detail p {
+  margin: 6px 0;
+}
+.comp-summary {
+  color: var(--text);
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+}
+.comp-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.comp-table th,
+.comp-table td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #e7ebf1;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comp-table th {
+  background: #f2f5f9;
+  color: var(--muted);
+  font-weight: 800;
+}
+.analysis-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e7ebf1;
+}
+.analysis-block h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.investment-opinion {
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.risk-list,
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.risk-list li,
+.review-list li {
+  margin: 7px 0;
+}
+.risk-list strong {
+  display: block;
+}
+.risk-list span {
+  display: block;
+  color: var(--muted);
+}
+.risk-list li.high strong { color: var(--risk); }
+.risk-list li.medium strong { color: var(--wait); }
+.risk-list li.low strong { color: var(--good); }
+.structured-section {
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.structured-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+.structured-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.kv-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+.kv-table th,
+.kv-table td,
+.data-table th,
+.data-table td {
+  vertical-align: top;
+  border-top: 1px solid #e7ebf1;
+  padding: 8px 9px;
+  font-size: 13px;
+  text-align: left;
+}
+.kv-table th {
+  width: 178px;
+  min-width: 150px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+.data-table th {
+  color: var(--muted);
+  background: #f2f5f9;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.structured-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.structured-list li {
+  margin: 5px 0;
+}
+.structured-scalar {
+  overflow-wrap: anywhere;
+}
+.empty {
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  main { width: min(100% - 20px, 720px); padding-top: 18px; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { font-size: 25px; }
+  .category-heading { display: block; }
+  .category-heading p { margin-top: 3px; }
+}
+@media (max-width: 460px) {
+  .summary-grid,
+  .facts { grid-template-columns: 1fr; }
+  .candidate-head { display: block; }
+  .score { display: inline-block; margin-top: 8px; }
+}
+
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p><a href="../investment_review.html">← 투자 검토 리포트로 돌아가기</a></p>
+<h1>2024타경2083 상세 조회 자료</h1>
+<div class="meta">#398 · 광주시 도로/특수 분류 상위 후보 · 원천 분석 reports\20260623_172324_realestate_full_20260623_20260723\analysis.json</div>
+</section>
+<section class="summary-grid">
+<div class="summary-card"><span>점수</span><strong>D/22.2</strong><p>특수자산 수익논리 확인 전 보류</p></div>
+<div class="summary-card"><span>입찰일</span><strong>20260629</strong><p>D-6</p></div>
+<div class="summary-card"><span>최저가</span><strong>14.8억</strong><p>감정가 21.1억</p></div>
+<div class="summary-card"><span>유찰</span><strong>1회</strong><p>직전최저가 21.1억</p></div>
+<div class="summary-card"><span>시세대비</span><strong>-</strong><p>예상차익 -</p></div>
+<div class="summary-card"><span>권장상한</span><strong>-</strong><p>실거래 표본 부족</p></div>
+</section>
+<section class="guide">
+<h2>경기도 광주시 남한산성면 엄미리 649-1</h2>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2024%ED%83%80%EA%B2%BD2083%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+</section>
+<section class="candidate-section wait">
+<h2>종합 투자 의견</h2>
+<div class="analysis-block investment-opinion"><h4>종합 투자 의견</h4><ul class="review-list"><li>종합 의견: D/22.2점입니다. 특수자산 수익 논리가 확인되기 전에는 투자 후보로 올리지 않습니다.</li><li>가격 의견: 최저가는 시세 대비 -, 예상차익은 -입니다. 권장상한은 실거래 표본 부족 상태입니다.</li><li>도로/특수자산은 가격보다 수익 논리가 먼저입니다. 인접 소유자 매입 수요, 통행로 분쟁 해결, 보상 가능성 중 하나가 확인돼야 합니다.</li><li>현재 자동 입찰상한은 산정하지 않습니다. 수익 논리가 비어 있으면 저가라도 보류가 맞습니다.</li><li>다음 행동: 인접지 매수자, 보상 가능성, 개발계획 같은 구체적 수익 논리를 먼저 확보합니다.</li></ul></div>
+</section>
+<section class="candidate-section good">
+<h2>거래표본 전체</h2>
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+</section>
+<section class="candidate-section risk">
+<h2>리스크와 검토 포인트</h2>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 12.4억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2024-06-17입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 9명/건 수집됐습니다. 구성은 교부권자 2건, 채권자 1건, 소유자 1건, 채무자겸소유자 1건, 근저당권자 1건, 가등기권자 1건, 지상권자 1건, 배당요구권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 2건입니다. 구성은 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (- 마름모꼴 형태의 관리되지 아니한 토지로, 다듬지 않은 크기가 큰 돌들이 일부에 쌓여 있음 - 정확한 경계와 위치는 전문적 측량이 필요함.)</li><li>매각조건 특이사항: 일괄매각</li><li>권리상 주의 키워드: 가등기. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 도로/특수자산</strong><span>도로, 구거, 하천, 특수목적 자산은 독립 사용가치가 낮을 수 있습니다. 인접 토지 소유자 협상, 보상 가능성, 개발계획이 없으면 보수적으로 봅니다.</span></li><li class="high"><strong>높음 · 가등기</strong><span>가등기는 본등기 전환 시 소유권 또는 권리관계에 영향을 줄 수 있어 말소 여부 확인이 필요합니다.</span></li><li class="high"><strong>높음 · 개발제한구역</strong><span>개발행위가 제한되어 기대 수익률을 낮춰야 합니다.</span></li><li class="high"><strong>높음 · 맹지/접도 문제</strong><span>도로 접근성이 부족하면 개발, 대출, 재매각이 어려울 수 있습니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</section>
+<section class="candidate-section">
+<h2>수집 섹션별 조회 정보</h2>
+<details class="structured-section" open><summary>매각조건/기일</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">1238231779</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="structured-scalar">일괄매각
+</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260522</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제3별관 1층 제5호법정</span></td><td><span class="structured-scalar">2109168000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260629</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제3별관 1층 제5호법정</span></td><td><span class="structured-scalar">1476418000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260706</span></td><td><span class="structured-scalar">1600</span></td><td><span class="structured-scalar">제3별관 1층 제5호법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">제3별관1층제5호법정</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>현황조사/점유</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 586</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 마름모꼴 형태의 관리되지 아니한 토지로, 다듬지 않은 크기가 큰 돌들이 일부에 쌓여 있음&lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 586-1</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 도로 옆에 나란히 기다란 형태의 토지로서 관리되지 아니한 모습임. &lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 587</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 삼각형 형태의 관리되지 아니한 토지임.&lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 587-1</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 도로 옆과 나란한 기다란 형태의 토지로서 관리되지 아니한 모습임. &lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 649-1</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 물이 흐르는 개천의 위쪽 부분의 사각형 모습의 관리되지 아니한 토지로 잡풀 등이 자라고 있음.&lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 649-2</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 물이 흐르는 개천의 위쪽 부분의 삼각형 모습의 관리되지 아니한 토지로 잡풀 등이 자라고 있음.&lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>사건상세/이해관계인</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">신OOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">하OOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">가등기권자</span></td><td><span class="structured-scalar">other</span></td></tr><tr><td><span class="structured-scalar">국OOOOOOO OOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">광OO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">하OOOOOOO</span></td><td><span class="structured-scalar">지상권자</span></td><td><span class="structured-scalar">other</span></td></tr><tr><td><span class="structured-scalar">신OOO OOOO</span></td><td><span class="structured-scalar">배당요구권자</span></td><td><span class="structured-scalar">dividend_claimant</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">신OOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">하OOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20240617</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>감정평가 요약</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[토지 잡종지 777㎡]</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 광주시 남한산성면 엄미리 &quot;엄미1리마을회관&quot; 서측 근거리에 소재하며, 
+주위는 단독주택, 근린생활시설, 전, 답 및 임야등이 혼재하는 지역임.
+본건 기호2, 4, 6 토지까지 차량 출입 가능하며, 인근에 버스정류장이 소재하나, 운행의
+종류 및 빈도등을 고려할 시 대중교통사정은 다소 불편함.
+기호1, 2, 3, 4 토지 공히 인접도로대비 대체로 평지, 부정형 토지로서 묵답, 묵전등으로
+이용중이고, 기호5, 6 토지는 남측하향 완경사지를 평탄하게 조성된 토지로 잡종지등으로
+이용중임.
+기호1 토지는 지적도상 맹지이나 인접토지인 기호2 토지를 통하여 출입하고 있으며,
+기호3 토지는 지적도상 맹지이나 인접토지인 기호4 토지를 통하여 출입하고 있으며,
+기호5 토지는 지적도상 3m내외의 시멘포장도로에 접하나 토지의 고저차로 출입은 
+불가능하며, 인접 기호6 토지를 통하여 차량 출입 가능하고, 
+기호2, 4 토지는 10m 내외의 아스콘 포장도로에 접하고, 기호6 토지는 4m내외의 
+아스콘 포장도로에 접합.
+기호1, 2 토지 공히 도시지역, 자연녹지지역, 가축사육제한구역(일부제한구역)&lt;가축
+분뇨의 관리 및 이용에 관한 법률&gt;, 개발제한구역&lt;개발제한구역의 지정 및 관리에 
+관한 특별조치법&gt;, 배출시설설치제한지역&lt;물환경보전법&gt;, 자연보전권역&lt;수도권정비계획법&gt;,
+공장설립승인지역&lt;수도법&gt;, 특별대책지역&lt;환경정책기본법&gt;, 영농여건불리농지이며,
+동시에 기호2 토지는 소로1류(폭10m-12m)(접합)이며,
+
+기호3, 4 토지는 공히 도시지역, 제1종일반주거지역, 제1종지구단위계획구역, 주차장, 
+가축사육제한구역&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;,배출시설설치제한지역&lt;물환경
+보전법&gt;, 자연보전권역&lt;수도권정비계획법&gt;, 공장설립승인지역&lt;수도법&gt;, 
+특별대책지역&lt;환경정책기본법&gt;이며, 동시에 기호4 토지는 소로1류(폭10m-12m)(접합)이며,
+
+기호5, 6 토지는 공히 도시지역, 제1종일반주거지역, 제1종지구단위계획구역, 소로3류
+(폭8m미만)(저촉), 가축사육제한구역&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;,배출시설
+설치제한지역&lt;물환경보전법&gt;, 자연보전권역&lt;수도권정비계획법&gt;, 
+공장설립승인지역&lt;수도법&gt;, 특별대책지역&lt;환경정책기본법&gt;임.
+해당사항 없음.
+해당사항 없음.
+1. 임대관계 미상임.
+
+2. 본건 기호5 엄미리649-1, 기호6 엄미리 649-2 토지는 2020.03월 근린생활시설의 건축을
+   목적으로 건축허가를 득하였으며, 2023. 2월 착공 신고하였으나, 기준시점 현재 
+   미착공상태이므로 참고하시기 바람.</span></td></tr><tr><th>건물명</th><td><span class="empty">-</span></td></tr><tr><th>지번 주소</th><td><span class="empty">-</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>x</th><td><span class="structured-scalar">331365</span></td></tr><tr><th>y</th><td><span class="structured-scalar">541810</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>가격 근거</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">6</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">880286183</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">468445167</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">48</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.7</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">11</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">1035149559</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">613774964</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">54</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.3</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">15</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">907465291</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">524763487</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">53</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.3</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="structured-scalar">실거래가 미지원 유형</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">2</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>수집 메타</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260623_172324_realestate_full_20260623_20260723\1_도로특수_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">437</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">도로특수</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">744</span></td></tr><tr><th>part</th><td><span class="structured-scalar">1</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">1~500</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260623 ~ 20260723</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-23 18:54:41</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+</section>
+<section class="candidate-section">
+<h2>전체 조회 데이터</h2>
+<p class="empty">분석 item 전체를 요약하지 않고 항목별로 펼쳐 표시합니다.</p>
+<div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점수</th><td><span class="structured-scalar">22.2</span></td></tr><tr><th>등급</th><td><span class="structured-scalar">D</span></td></tr><tr><th>판정</th><td><span class="structured-scalar">특수자산 수익논리 확인 전 보류</span></td></tr><tr><th>점수 구성</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>가격 옵션 점수</th><td><span class="structured-scalar">0.5</span></td></tr><tr><th>경매 할인 점수</th><td><span class="structured-scalar">7.5</span></td></tr><tr><th>특수자산 수익논리 점수</th><td><span class="structured-scalar">6.8</span></td></tr><tr><th>환금성 점수</th><td><span class="structured-scalar">0.0</span></td></tr><tr><th>권리/리스크 점수</th><td><span class="structured-scalar">0.0</span></td></tr><tr><th>데이터 신뢰도 점수</th><td><span class="structured-scalar">7.5</span></td></tr></tbody></table></div></td></tr><tr><th>정규화 정보</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2024타경2083</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">성남지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">기타</span></td></tr><tr><th>자산 구분</th><td><span class="structured-scalar">road_special</span></td></tr><tr><th>투자 전략</th><td><span class="structured-scalar">adjacent-owner-or-development-option</span></td></tr><tr><th>시장 데이터 성격</th><td><span class="structured-scalar">unsupported_special_asset</span></td></tr><tr><th>수동 시세보강 필요</th><td><span class="structured-scalar">예</span></td></tr><tr><th>특수자산 검토 필요</th><td><span class="structured-scalar">예</span></td></tr><tr><th>자산별 목표 할인율</th><td><span class="empty">-</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 649-1</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260629</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">1476418000</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">2109168000</span></td></tr><tr><th>min bid manwon</th><td><span class="structured-scalar">147641.8</span></td></tr><tr><th>appraisal manwon</th><td><span class="structured-scalar">210916.8</span></td></tr><tr><th>매매 평균</th><td><span class="empty">-</span></td></tr><tr><th>전세 평균</th><td><span class="empty">-</span></td></tr><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="empty">-</span></td></tr><tr><th>시세 할인율</th><td><span class="empty">-</span></td></tr><tr><th>예상차익률</th><td><span class="empty">-</span></td></tr><tr><th>전세가율</th><td><span class="empty">-</span></td></tr><tr><th>매매 표본 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>전세 표본 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>월세 표본 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>거래표본 품질</th><td><span class="structured-scalar">no_comps</span></td></tr><tr><th>비교 단지/명칭</th><td><span class="empty">-</span></td></tr><tr><th>비교 면적</th><td><span class="structured-scalar">0.0</span></td></tr><tr><th>매칭 방식</th><td><span class="empty">-</span></td></tr><tr><th>보조 매칭 기준</th><td><span class="empty">-</span></td></tr><tr><th>표본 비고</th><td><span class="structured-scalar">No comparable trade data was collected.</span></td></tr><tr><th>3개월 인근 매각건수</th><td><span class="structured-scalar">6.0</span></td></tr><tr><th>6개월 인근 매각건수</th><td><span class="structured-scalar">11.0</span></td></tr><tr><th>12개월 인근 매각건수</th><td><span class="structured-scalar">15.0</span></td></tr><tr><th>3개월 인근 매각가율</th><td><span class="structured-scalar">48.0</span></td></tr><tr><th>6개월 인근 매각가율</th><td><span class="structured-scalar">54.0</span></td></tr><tr><th>12개월 인근 매각가율</th><td><span class="structured-scalar">53.0</span></td></tr><tr><th>12개월 평균 유찰</th><td><span class="structured-scalar">2.3</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>현황조사 임차/점유 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">2</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="structured-scalar">실거래가 미지원 유형</span></td></tr><tr><th>임차/점유 감지</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 배당요구 확인</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 인수위험 감지</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 배당요구 상태</th><td><span class="structured-scalar">none</span></td></tr><tr><th>임차인 배당요구 판단</th><td><span class="structured-scalar">임차인 또는 점유자 위험 신호가 자동 수집 기준으로 두드러지지 않습니다.</span></td></tr><tr><th>검토 버킷</th><td><span class="structured-scalar">special_asset_review</span></td></tr><tr><th>buffered gain pct</th><td><span class="empty">-</span></td></tr><tr><th>권장 입찰 상한</th><td><span class="empty">-</span></td></tr><tr><th>권장 상한 비고</th><td><span class="structured-scalar">실거래 표본 부족</span></td></tr><tr><th>점수 프로필</th><td><span class="structured-scalar">special-adjacent-owner</span></td></tr><tr><th>점수 프로필 설명</th><td><span class="structured-scalar">도로/특수: 독립 사용가치보다 인접지 협상, 보상, 개발계획 논리를 우선 반영</span></td></tr></tbody></table></div></td></tr><tr><th>리스크</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>위험도</th><th>키워드</th><th>사유</th></tr></thead><tbody><tr><td><span class="structured-scalar">high</span></td><td><span class="structured-scalar">special_asset</span></td><td><span class="structured-scalar">road/special-purpose property needs adjacent-owner or development thesis</span></td></tr><tr><td><span class="structured-scalar">high</span></td><td><span class="structured-scalar">가등기</span></td><td><span class="structured-scalar">provisional registration</span></td></tr><tr><td><span class="structured-scalar">high</span></td><td><span class="structured-scalar">개발제한구역</span></td><td><span class="structured-scalar">greenbelt or development restriction</span></td></tr><tr><td><span class="structured-scalar">high</span></td><td><span class="structured-scalar">맹지</span></td><td><span class="structured-scalar">land without road access</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">real_price.trade</span></td><td><span class="structured-scalar">no comparable trade found</span></td></tr></tbody></table></div></td></tr><tr><th>기회 요인</th><td><ul class="structured-list"><li><span class="structured-scalar">버스: bus access</span></li><li><span class="structured-scalar">주차: parking support</span></li></ul></td></tr><tr><th>확인할 사항</th><td><ul class="structured-list"><li><span class="structured-scalar">매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</span></li><li><span class="structured-scalar">등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</span></li><li><span class="structured-scalar">입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</span></li><li><span class="structured-scalar">high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</span></li><li><span class="structured-scalar">동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</span></li><li><span class="structured-scalar">특별매각조건과 비고 문구를 원문 기준으로 해석한다.</span></li><li><span class="structured-scalar">도로/구거/하천 등 특수자산은 독립 사용가치가 낮으므로 인접 토지 소유자, 보상 가능성, 개발계획, 사도 여부를 확인한다.</span></li><li><span class="structured-scalar">수익 논리가 인접지 협상 또는 공익사업 보상에 의존하면 자동 입찰 후보에서 제외한다.</span></li><li><span class="structured-scalar">관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</span></li></ul></td></tr><tr><th>Codex 요약</th><td><span class="structured-scalar">2024타경2083 기타 [road_special/adjacent-owner-or-development-option] / 경기도 광주시 남한산성면 엄미리 649-1 | score=22.2(D, 특수자산 수익논리 확인 전 보류) | min_bid=14.8억, appraisal=21.1억, avg_trade=-, bid_vs_market=None%, est_gain=None%, jeonse_rate=None% | risks=[high:special_asset, high:가등기, high:개발제한구역, high:맹지, medium:real_price.trade] | opportunities=[버스: bus access, 주차: parking support]</span></td></tr><tr><th>수집 원본</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2024타경2083</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">성남지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">기타</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 649-1</span></td></tr><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[토지 잡종지 777㎡]</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">2109168000</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">1476418000</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260629</span></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">제3별관1층제5호법정</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">1238231779</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="structured-scalar">일괄매각
+</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 광주시 남한산성면 엄미리 &quot;엄미1리마을회관&quot; 서측 근거리에 소재하며, 
+주위는 단독주택, 근린생활시설, 전, 답 및 임야등이 혼재하는 지역임.
+본건 기호2, 4, 6 토지까지 차량 출입 가능하며, 인근에 버스정류장이 소재하나, 운행의
+종류 및 빈도등을 고려할 시 대중교통사정은 다소 불편함.
+기호1, 2, 3, 4 토지 공히 인접도로대비 대체로 평지, 부정형 토지로서 묵답, 묵전등으로
+이용중이고, 기호5, 6 토지는 남측하향 완경사지를 평탄하게 조성된 토지로 잡종지등으로
+이용중임.
+기호1 토지는 지적도상 맹지이나 인접토지인 기호2 토지를 통하여 출입하고 있으며,
+기호3 토지는 지적도상 맹지이나 인접토지인 기호4 토지를 통하여 출입하고 있으며,
+기호5 토지는 지적도상 3m내외의 시멘포장도로에 접하나 토지의 고저차로 출입은 
+불가능하며, 인접 기호6 토지를 통하여 차량 출입 가능하고, 
+기호2, 4 토지는 10m 내외의 아스콘 포장도로에 접하고, 기호6 토지는 4m내외의 
+아스콘 포장도로에 접합.
+기호1, 2 토지 공히 도시지역, 자연녹지지역, 가축사육제한구역(일부제한구역)&lt;가축
+분뇨의 관리 및 이용에 관한 법률&gt;, 개발제한구역&lt;개발제한구역의 지정 및 관리에 
+관한 특별조치법&gt;, 배출시설설치제한지역&lt;물환경보전법&gt;, 자연보전권역&lt;수도권정비계획법&gt;,
+공장설립승인지역&lt;수도법&gt;, 특별대책지역&lt;환경정책기본법&gt;, 영농여건불리농지이며,
+동시에 기호2 토지는 소로1류(폭10m-12m)(접합)이며,
+
+기호3, 4 토지는 공히 도시지역, 제1종일반주거지역, 제1종지구단위계획구역, 주차장, 
+가축사육제한구역&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;,배출시설설치제한지역&lt;물환경
+보전법&gt;, 자연보전권역&lt;수도권정비계획법&gt;, 공장설립승인지역&lt;수도법&gt;, 
+특별대책지역&lt;환경정책기본법&gt;이며, 동시에 기호4 토지는 소로1류(폭10m-12m)(접합)이며,
+
+기호5, 6 토지는 공히 도시지역, 제1종일반주거지역, 제1종지구단위계획구역, 소로3류
+(폭8m미만)(저촉), 가축사육제한구역&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;,배출시설
+설치제한지역&lt;물환경보전법&gt;, 자연보전권역&lt;수도권정비계획법&gt;, 
+공장설립승인지역&lt;수도법&gt;, 특별대책지역&lt;환경정책기본법&gt;임.
+해당사항 없음.
+해당사항 없음.
+1. 임대관계 미상임.
+
+2. 본건 기호5 엄미리649-1, 기호6 엄미리 649-2 토지는 2020.03월 근린생활시설의 건축을
+   목적으로 건축허가를 득하였으며, 2023. 2월 착공 신고하였으나, 기준시점 현재 
+   미착공상태이므로 참고하시기 바람.</span></td></tr><tr><th>건물명</th><td><span class="empty">-</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>x</th><td><span class="structured-scalar">331365</span></td></tr><tr><th>y</th><td><span class="structured-scalar">541810</span></td></tr></tbody></table></div></td></tr><tr><th>지번 주소</th><td><span class="empty">-</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260522</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제3별관 1층 제5호법정</span></td><td><span class="structured-scalar">2109168000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260629</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제3별관 1층 제5호법정</span></td><td><span class="structured-scalar">1476418000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260706</span></td><td><span class="structured-scalar">1600</span></td><td><span class="structured-scalar">제3별관 1층 제5호법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">신OOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">하OOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">가등기권자</span></td><td><span class="structured-scalar">other</span></td></tr><tr><td><span class="structured-scalar">국OOOOOOO OOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">광OO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">하OOOOOOO</span></td><td><span class="structured-scalar">지상권자</span></td><td><span class="structured-scalar">other</span></td></tr><tr><td><span class="structured-scalar">신OOO OOOO</span></td><td><span class="structured-scalar">배당요구권자</span></td><td><span class="structured-scalar">dividend_claimant</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">신OOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">하OOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20240617</span></td></tr><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 586</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 마름모꼴 형태의 관리되지 아니한 토지로, 다듬지 않은 크기가 큰 돌들이 일부에 쌓여 있음&lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 586-1</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 도로 옆에 나란히 기다란 형태의 토지로서 관리되지 아니한 모습임. &lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 587</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 삼각형 형태의 관리되지 아니한 토지임.&lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 587-1</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 도로 옆과 나란한 기다란 형태의 토지로서 관리되지 아니한 모습임. &lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 649-1</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 물이 흐르는 개천의 위쪽 부분의 사각형 모습의 관리되지 아니한 토지로 잡풀 등이 자라고 있음.&lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 광주시 남한산성면 엄미리 649-2</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">- 물이 흐르는 개천의 위쪽 부분의 삼각형 모습의 관리되지 아니한 토지로 잡풀 등이 자라고 있음.&lt;br /&gt;- 정확한 경계와 위치는 전문적 측량이 필요함.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">6</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">880286183</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">468445167</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">48</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.7</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">11</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">1035149559</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">613774964</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">54</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.3</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">15</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">907465291</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">524763487</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">53</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.3</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="structured-scalar">실거래가 미지원 유형</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">2</span></td></tr></tbody></table></div></td></tr><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260623_172324_realestate_full_20260623_20260723\1_도로특수_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">437</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">도로특수</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">744</span></td></tr><tr><th>part</th><td><span class="structured-scalar">1</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">1~500</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260623 ~ 20260723</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-23 18:54:41</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr></tbody></table></div></td></tr><tr><th> internal cs no</th><td><span class="structured-scalar">20240130002083</span></td></tr><tr><th> detail cache enriched</th><td><span class="structured-scalar">예</span></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</section>
+</main>
+</body>
+</html>

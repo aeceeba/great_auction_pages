@@ -1,0 +1,634 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025타경32969 상세 조회 자료</title>
+<style>
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #18202a;
+  --muted: #667085;
+  --line: #d8dde6;
+  --good: #0f766e;
+  --wait: #946200;
+  --risk: #b42318;
+  --accent: #1d4ed8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+main {
+  width: min(1120px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+.hero {
+  padding: 12px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.hero p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+.meta {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.summary-card,
+.guide,
+.candidate-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.summary-card {
+  padding: 14px;
+}
+.summary-card span,
+.facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+}
+.summary-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.guide {
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.guide h2,
+.candidate-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.guide ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.guide code {
+  overflow-wrap: anywhere;
+}
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.criteria-card {
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #f8fafc;
+}
+.criteria-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.criteria-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.criteria-card li {
+  margin: 5px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.llm-review {
+  border-color: #c7d2fe;
+  background: #f8fbff;
+}
+.llm-meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.llm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.llm-pick {
+  border: 1px solid #dbe3f0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 13px 14px;
+}
+.llm-pick h3,
+.llm-followups h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.llm-rank {
+  display: inline-block;
+  margin-right: 6px;
+  color: #3730a3;
+  font-size: 13px;
+}
+.llm-pick h4 {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.llm-pick ul,
+.llm-followups ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.llm-pick li,
+.llm-followups li {
+  margin: 5px 0;
+}
+.llm-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.llm-badges span {
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 3px 8px;
+  color: #3730a3;
+  background: #eef2ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+.llm-rerank {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-left: 3px solid #6366f1;
+  background: #f8fafc;
+  color: var(--text);
+}
+.llm-rerank strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #3730a3;
+}
+.llm-price {
+  margin: 12px 0 0;
+  color: var(--text);
+  font-weight: 700;
+}
+.llm-followups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.candidate-section {
+  margin-top: 24px;
+}
+.candidate-section.good h2 { color: var(--good); }
+.candidate-section.wait h2 { color: var(--wait); }
+.candidate-section.risk h2 { color: var(--risk); }
+.region-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.city-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0 10px;
+  padding: 8px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+.tab-list {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.region-button,
+.city-button,
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.region-button span,
+.city-button span,
+.tab-button span {
+  display: inline-flex;
+  min-width: 28px;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 12px;
+}
+.region-button.active,
+.city-button.active,
+.tab-button.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+.region-button.active span,
+.city-button.active span,
+.tab-button.active span {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+.region-view {
+  display: none;
+}
+.region-view.active {
+  display: block;
+}
+.city-view {
+  display: none;
+}
+.city-view.active {
+  display: block;
+}
+.tab-panel {
+  display: none;
+  margin-top: 12px;
+}
+.tab-panel.active {
+  display: block;
+}
+.category-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+.category-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.category-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.candidate-card {
+  padding: 16px;
+  margin: 10px 0;
+}
+.candidate-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.candidate-head h3 {
+  display: inline;
+  margin: 0;
+  font-size: 18px;
+}
+.candidate-head h3 a,
+.hero a,
+.link-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.candidate-head h3 a:hover,
+.hero a:hover,
+.link-row a:hover {
+  text-decoration: underline;
+}
+.rank {
+  display: inline-flex;
+  min-width: 34px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #e7eefc;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+.score {
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--accent);
+}
+.address {
+  margin: 8px 0 12px;
+  color: var(--muted);
+}
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef4ff;
+  border: 1px solid #d7e5ff;
+  font-size: 13px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.facts div {
+  padding: 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+}
+.facts strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.detail {
+  margin-top: 12px;
+}
+.detail p {
+  margin: 6px 0;
+}
+.comp-summary {
+  color: var(--text);
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+}
+.comp-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.comp-table th,
+.comp-table td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #e7ebf1;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comp-table th {
+  background: #f2f5f9;
+  color: var(--muted);
+  font-weight: 800;
+}
+.analysis-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e7ebf1;
+}
+.analysis-block h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.investment-opinion {
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.risk-list,
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.risk-list li,
+.review-list li {
+  margin: 7px 0;
+}
+.risk-list strong {
+  display: block;
+}
+.risk-list span {
+  display: block;
+  color: var(--muted);
+}
+.risk-list li.high strong { color: var(--risk); }
+.risk-list li.medium strong { color: var(--wait); }
+.risk-list li.low strong { color: var(--good); }
+.structured-section {
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.structured-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+.structured-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.kv-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+.kv-table th,
+.kv-table td,
+.data-table th,
+.data-table td {
+  vertical-align: top;
+  border-top: 1px solid #e7ebf1;
+  padding: 8px 9px;
+  font-size: 13px;
+  text-align: left;
+}
+.kv-table th {
+  width: 178px;
+  min-width: 150px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+.data-table th {
+  color: var(--muted);
+  background: #f2f5f9;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.structured-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.structured-list li {
+  margin: 5px 0;
+}
+.structured-scalar {
+  overflow-wrap: anywhere;
+}
+.empty {
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  main { width: min(100% - 20px, 720px); padding-top: 18px; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { font-size: 25px; }
+  .category-heading { display: block; }
+  .category-heading p { margin-top: 3px; }
+}
+@media (max-width: 460px) {
+  .summary-grid,
+  .facts { grid-template-columns: 1fr; }
+  .candidate-head { display: block; }
+  .score { display: inline-block; margin-top: 8px; }
+}
+
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p><a href="../investment_review.html">← 투자 검토 리포트로 돌아가기</a></p>
+<h1>2025타경32969 상세 조회 자료</h1>
+<div class="meta">#444 · 김포시 주거 분류 상위 후보 · 원천 분석 reports\20260623_172324_realestate_full_20260623_20260723\analysis.json</div>
+</section>
+<section class="summary-grid">
+<div class="summary-card"><span>점수</span><strong>B/81.5</strong><p>조건부 우선 검토</p></div>
+<div class="summary-card"><span>입찰일</span><strong>20260702</strong><p>D-9</p></div>
+<div class="summary-card"><span>최저가</span><strong>3.8억</strong><p>감정가 5.4억</p></div>
+<div class="summary-card"><span>유찰</span><strong>1회</strong><p>직전최저가 5.4억</p></div>
+<div class="summary-card"><span>시세대비</span><strong>76.1%</strong><p>예상차익 31.4%</p></div>
+<div class="summary-card"><span>권장상한</span><strong>4.2억</strong><p>최근 실거래 평균의 84%를 1차 보수 상한으로 계산</p></div>
+</section>
+<section class="guide">
+<h2>경기도 김포시 장기동 2193 한강센트럴자이1단지 109동 10층 1003호</h2>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%ED%95%9C%EA%B0%95%EC%84%BC%ED%8A%B8%EB%9F%B4%EC%9E%90%EC%9D%B41%EB%8B%A8%EC%A7%80" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD32969%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+</section>
+<section class="candidate-section wait">
+<h2>종합 투자 의견</h2>
+<div class="analysis-block investment-opinion"><h4>종합 투자 의견</h4><ul class="review-list"><li>종합 의견: B/81.5점입니다. 자동 기준상 추가 확인이 필요한 관찰 대상입니다.</li><li>가격 의견: 최저가는 시세 대비 76.1%, 예상차익은 31.4%입니다. 자동 권장상한은 4.2억입니다.</li><li>주거 기준으로 보면 매매 표본 10건, 전세 표본 10건, 전세가율 68.7%입니다.</li><li>자동 수집 기준으로 두드러진 임차인 리스크는 없지만, 전입세대열람과 현황조사서 원문 확인 전에는 명도 리스크를 0으로 보지 않습니다.</li><li>다음 행동: 부족한 원문과 비교자료를 채운 뒤 후보군 편입 여부를 다시 판단합니다.</li></ul></div>
+</section>
+<section class="candidate-section good">
+<h2>거래표본 전체</h2>
+<p class="comp-summary"><strong>거래표본</strong> 단지명 기준 매칭 · 기준 한강센트럴자이1단지 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-11</td><td>45,000만원</td><td>2</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-06-03</td><td>50,000만원</td><td>8</td><td>84.96㎡</td></tr><tr><td>매매</td><td>2026-06-05</td><td>53,500만원</td><td>8</td><td>84.97㎡</td></tr><tr><td>매매</td><td>2026-05-17</td><td>48,400만원</td><td>28</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-05-23</td><td>52,000만원</td><td>6</td><td>84.97㎡</td></tr><tr><td>매매</td><td>2026-05-03</td><td>48,000만원</td><td>6</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-05-09</td><td>51,300만원</td><td>19</td><td>84.97㎡</td></tr><tr><td>매매</td><td>2026-05-03</td><td>48,300만원</td><td>3</td><td>84.97㎡</td></tr><tr><td>매매</td><td>2026-05-01</td><td>49,000만원</td><td>9</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-05-06</td><td>49,500만원</td><td>12</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-06-13</td><td>32,000만원</td><td>6</td><td>84.77㎡</td></tr><tr><td>전세</td><td>2026-06-12</td><td>35,000만원</td><td>13</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-06-10</td><td>34,000만원</td><td>9</td><td>84.96㎡</td></tr><tr><td>전세</td><td>2026-06-10</td><td>35,000만원</td><td>16</td><td>84.97㎡</td></tr><tr><td>전세</td><td>2026-06-05</td><td>37,000만원</td><td>2</td><td>84.97㎡</td></tr><tr><td>전세</td><td>2026-06-04</td><td>34,000만원</td><td>25</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-06-01</td><td>35,000만원</td><td>27</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-05-27</td><td>34,000만원</td><td>19</td><td>84.96㎡</td></tr><tr><td>전세</td><td>2026-05-27</td><td>30,950만원</td><td>16</td><td>84.98㎡</td></tr><tr><td>전세</td><td>2026-05-27</td><td>33,000만원</td><td>19</td><td>81.83㎡</td></tr><tr><td>월세</td><td>2026-06-12</td><td>3,000만원 / 130만원</td><td>11</td><td>84.98㎡</td></tr><tr><td>월세</td><td>2026-06-09</td><td>10,000만원 / 110만원</td><td>26</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-05-30</td><td>5,000만원 / 150만원</td><td>23</td><td>84.98㎡</td></tr><tr><td>월세</td><td>2026-05-08</td><td>3,000만원 / 160만원</td><td>9</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-05-14</td><td>25,000만원 / 40만원</td><td>29</td><td>81.83㎡</td></tr><tr><td>월세</td><td>2026-05-21</td><td>32,000만원 / 15만원</td><td>14</td><td>84.98㎡</td></tr><tr><td>월세</td><td>2026-04-15</td><td>3,000만원 / 140만원</td><td>17</td><td>81.83㎡</td></tr><tr><td>월세</td><td>2026-04-18</td><td>5,000만원 / 150만원</td><td>6</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-04-16</td><td>5,000만원 / 150만원</td><td>8</td><td>84.98㎡</td></tr><tr><td>월세</td><td>2026-03-04</td><td>5,000만원 / 140만원</td><td>19</td><td>84.97㎡</td></tr></tbody></table></div>
+</section>
+<section class="candidate-section risk">
+<h2>리스크와 검토 포인트</h2>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 2.3억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-06-13입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 9명/건 수집됐습니다. 구성은 교부권자 3건, 가압류권자 2건, 채권자 1건, 채무자 1건, 소유자 1건, 근저당권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 4건입니다. 구성은 가압류권자 2건, 채권자 1건, 근저당권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 소유자점유, 현황조사 임차인 0명 (현장에 임하였으나 이해관계인을 만나지 못하여 점유관계 알 수 없었음. 전입세대확인서(동거인포함) 및 주민등록등본 발급받아 확인 한 바, 소유자가 세대주로 등재되어 있었음. 안내문을 현관문 틈에 끼워 두었음.)</li><li>권리상 주의 키워드: 전입. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 전입 가능성</strong><span>전입 관련 문구가 있어 대항력 있는 임차인이 존재할 가능성을 배제할 수 없습니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>자동 분류상 추가 확인이 필요한 물건입니다.</li><li>수집 실거래 평균은 49,500만원, 최저가는 3.8억입니다. 현재 계산상 최저가는 시세의 76.1%, 예상차익은 31.4%입니다.</li><li>전세가율은 68.7%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 4.2억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 단지명 기준 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</li></ul></div>
+</section>
+<section class="candidate-section">
+<h2>수집 섹션별 조회 정보</h2>
+<details class="structured-section" open><summary>매각조건/기일</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">231984056</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="empty">-</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260528</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">별관 제122호 법정</span></td><td><span class="structured-scalar">538000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260702</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">별관 제122호 법정</span></td><td><span class="structured-scalar">376600000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260709</span></td><td><span class="structured-scalar">1530</span></td><td><span class="structured-scalar">별관 제122호 법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">별관제122호법정</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>현황조사/점유</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 김포시 장기동 2193 한강센트럴자이1단지 109동 10층 1003호</span></td><td><span class="structured-scalar">소유자점유</span></td><td><span class="structured-scalar">현장에 임하였으나 이해관계인을 만나지 못하여 점유관계 알 수 없었음. 전입세대확인서(동거인포함) 및 주민등록등본 발급받아 확인 한 바, 소유자가 세대주로 등재되어 있었음. 안내문을 현관문 틈에 끼워 두었음.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>사건상세/이해관계인</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">웰OOOOO OOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOOOOO</span></td><td><span class="structured-scalar">채무자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">신OO</span></td><td><span class="structured-scalar">소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">한OOOOOOO(OOOOOOOOOOOOOOOO)</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">신OOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">중OOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">국OOOOOOO OOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">국(OOOOOOOOO)</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">김OO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">웰OOOOO OOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">한OOOOOOO(OOOOOOOOOOOOOOOO)</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">신OOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">중OOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250613</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>감정평가 요약</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[집합건물 철근콘크리트구조 84.9751㎡]</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 김포시 장기동 소재 &#x27;김포금빛초등학교&#x27; 남측 인근에 소재하며, 주위는 대규모 아파트단지, 근린생활시설 등이 소재하는 아파트지대임.
+본건 인근에 버스정류장이 소재하는 등 제반 교통상황은 보통임.
+철근콘크리트구조 (철근)콘크리트지붕 28층 건물 내 제10층 제1003호으로서,
+(사용승인일 : 2017.01.20)
+
+외벽 : 몰탈위 페인팅 등 마감.
+내벽 : 몰탈위 페인팅 등 마감.
+창호 : 샷시 창호 마감임.
+아파트으로 이용중임.
+기본적인 위생 및 급배수시설, 난방설비, 승강기설비 등을 갖추고 있음.
+
+
+인접 필지 대비 등고 평탄한 부정형의 토지로서, 주거용 건부지로 이용중임.
+본건 소재 아파트단지는 북서측 및 북동측으로 폭 약 40미터 및 폭 약 20미터의 아스콘포장도로에 각각 접하고 있음.
+도시지역, 보전녹지지역, 자연녹지지역(2017-07-11), 제2종일반주거지역, 고도지구(공항고도제한해발112.86m~371.43m미만), 지구단위계획구역, 근린공원(2017-06-15)(저촉), 대로1류(폭 35m~40m)(2017-06-15)(접합), 중로1류(폭 20m~25m)(2017-06-15)(접합), 가축사육제한구역(모든축종 제한)&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;, 장애물제한표면구역&lt;공항시설법&gt;, 진입표면구역&lt;공항시설법&gt;, 상대보호구역&lt;교육환경 보호에 관한 법률&gt;, 상대보호구역(김포가온유치원)&lt;교육환경 보호에 관한 법률&gt;, 상대보호구역(김포금빛초등학교)&lt;교육환경 보호에 관한 법률&gt;, 절대보호구역(김포가온유치원)&lt;교육환경 보호에 관한 법률&gt;, 절대보호구역(김포금빛초등학교)&lt;교육환경 보호에 관한 법률&gt;, 군사기지 및 군사시설 보호구역(육군17사단관할지역)&lt;군사기지 및 군사시설 보호법&gt;, 제한보호구역(전방지역:25km)(위탁지역8m)&lt;군사기지 및 군사시설 보호법&gt;, 제한보호구역(전방지역:25km)(협의지역)&lt;군사기지 및 군사시설 보호법&gt;, 준보전산지(2018-12-28)&lt;산지관리법&gt;, 성장관리권역&lt;수도권정비계획법&gt;, 하수처리구역(장기처리분구)&lt;하수도법&gt;임.
+해당사항 없음.
+임대관계는 미상임.
+
+</span></td></tr><tr><th>건물명</th><td><span class="structured-scalar">한강센트럴자이1단지</span></td></tr><tr><th>지번 주소</th><td><ul class="structured-list"><li><span class="structured-scalar">경기도 김포시 태장로 845 (장기동,한강센트럴자이1단지)</span></li></ul></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>x</th><td><span class="structured-scalar">283440</span></td></tr><tr><th>y</th><td><span class="structured-scalar">560096</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>가격 근거</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">69</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">446724638</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">365482099</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">82</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.1</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">116</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">468241379</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">385027901</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">82</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.1</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">234</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">482448718</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">403367026</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">84</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.1</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>매칭 단지</th><td><span class="structured-scalar">한강센트럴자이1단지</span></td></tr><tr><th>매칭 면적</th><td><span class="structured-scalar">84.9751</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">exact_name</span></td></tr><tr><th>보조 기준 단지</th><td><span class="empty">-</span></td></tr><tr><th>매매 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>매매가</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-11</span></td><td><span class="structured-scalar">45000</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-06-03</span></td><td><span class="structured-scalar">50000</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.9607</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">53500</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-17</span></td><td><span class="structured-scalar">48400</span></td><td><span class="structured-scalar">28</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-23</span></td><td><span class="structured-scalar">52000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-03</span></td><td><span class="structured-scalar">48000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-09</span></td><td><span class="structured-scalar">51300</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-03</span></td><td><span class="structured-scalar">48300</span></td><td><span class="structured-scalar">3</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-01</span></td><td><span class="structured-scalar">49000</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-06</span></td><td><span class="structured-scalar">49500</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">84.9751</span></td></tr></tbody></table></div></td></tr><tr><th>전세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">32000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.7674</span></td></tr><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">35000</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-06-10</span></td><td><span class="structured-scalar">34000</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.9607</span></td></tr><tr><td><span class="structured-scalar">2026-06-10</span></td><td><span class="structured-scalar">35000</span></td><td><span class="structured-scalar">16</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">37000</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-06-04</span></td><td><span class="structured-scalar">34000</span></td><td><span class="structured-scalar">25</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">35000</span></td><td><span class="structured-scalar">27</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-27</span></td><td><span class="structured-scalar">34000</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">84.9607</span></td></tr><tr><td><span class="structured-scalar">2026-05-27</span></td><td><span class="structured-scalar">30950</span></td><td><span class="structured-scalar">16</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-27</span></td><td><span class="structured-scalar">33000</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">81.832</span></td></tr></tbody></table></div></td></tr><tr><th>월세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>월세 거래</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">3000</span></td><td><span class="structured-scalar">130</span></td><td><span class="structured-scalar">11</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-06-09</span></td><td><span class="structured-scalar">10000</span></td><td><span class="structured-scalar">110</span></td><td><span class="structured-scalar">26</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-30</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">150</span></td><td><span class="structured-scalar">23</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-08</span></td><td><span class="structured-scalar">3000</span></td><td><span class="structured-scalar">160</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-14</span></td><td><span class="structured-scalar">25000</span></td><td><span class="structured-scalar">40</span></td><td><span class="structured-scalar">29</span></td><td><span class="structured-scalar">81.832</span></td></tr><tr><td><span class="structured-scalar">2026-05-21</span></td><td><span class="structured-scalar">32000</span></td><td><span class="structured-scalar">15</span></td><td><span class="structured-scalar">14</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-04-15</span></td><td><span class="structured-scalar">3000</span></td><td><span class="structured-scalar">140</span></td><td><span class="structured-scalar">17</span></td><td><span class="structured-scalar">81.832</span></td></tr><tr><td><span class="structured-scalar">2026-04-18</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">150</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-04-16</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">150</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-03-04</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">140</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">84.9699</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">49500</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">76.1</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">31.4</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">33995</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">68.7</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">4</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>수집 메타</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260623_172324_realestate_full_20260623_20260723\1_아파트_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">491</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">1002</span></td></tr><tr><th>part</th><td><span class="structured-scalar">1</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">3</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">1~500</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260623 ~ 20260723</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-23 18:54:42</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+</section>
+<section class="candidate-section">
+<h2>전체 조회 데이터</h2>
+<p class="empty">분석 item 전체를 요약하지 않고 항목별로 펼쳐 표시합니다.</p>
+<div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점수</th><td><span class="structured-scalar">81.5</span></td></tr><tr><th>등급</th><td><span class="structured-scalar">B</span></td></tr><tr><th>판정</th><td><span class="structured-scalar">조건부 우선 검토</span></td></tr><tr><th>점수 구성</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>시세 할인 점수</th><td><span class="structured-scalar">20.6</span></td></tr><tr><th>경매 할인 점수</th><td><span class="structured-scalar">11.2</span></td></tr><tr><th>전세/임대 지지 점수</th><td><span class="structured-scalar">12.0</span></td></tr><tr><th>환금성 점수</th><td><span class="structured-scalar">12.0</span></td></tr><tr><th>권리/리스크 점수</th><td><span class="structured-scalar">17.7</span></td></tr><tr><th>데이터 신뢰도 점수</th><td><span class="structured-scalar">8.0</span></td></tr></tbody></table></div></td></tr><tr><th>정규화 정보</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경32969</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">부천지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>자산 구분</th><td><span class="structured-scalar">residential</span></td></tr><tr><th>투자 전략</th><td><span class="structured-scalar">liquid-resale-or-rental-support</span></td></tr><tr><th>시장 데이터 성격</th><td><span class="structured-scalar">residential_trade_and_rent</span></td></tr><tr><th>수동 시세보강 필요</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>특수자산 검토 필요</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>자산별 목표 할인율</th><td><span class="empty">-</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 김포시 장기동 2193 한강센트럴자이1단지 109동 10층 1003호</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260702</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">376600000</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">538000000</span></td></tr><tr><th>min bid manwon</th><td><span class="structured-scalar">37660.0</span></td></tr><tr><th>appraisal manwon</th><td><span class="structured-scalar">53800.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">49500.0</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">33995.0</span></td></tr><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">76.1</span></td></tr><tr><th>시세 할인율</th><td><span class="structured-scalar">23.9</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">31.4</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">68.7</span></td></tr><tr><th>매매 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>전세 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>월세 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>거래표본 품질</th><td><span class="structured-scalar">exact_complex</span></td></tr><tr><th>비교 단지/명칭</th><td><span class="structured-scalar">한강센트럴자이1단지</span></td></tr><tr><th>비교 면적</th><td><span class="structured-scalar">84.9751</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">exact_name</span></td></tr><tr><th>보조 매칭 기준</th><td><span class="empty">-</span></td></tr><tr><th>표본 비고</th><td><span class="structured-scalar">Comparable trades are tied to a named apartment/officetel complex.</span></td></tr><tr><th>3개월 인근 매각건수</th><td><span class="structured-scalar">69.0</span></td></tr><tr><th>6개월 인근 매각건수</th><td><span class="structured-scalar">116.0</span></td></tr><tr><th>12개월 인근 매각건수</th><td><span class="structured-scalar">234.0</span></td></tr><tr><th>3개월 인근 매각가율</th><td><span class="structured-scalar">82.0</span></td></tr><tr><th>6개월 인근 매각가율</th><td><span class="structured-scalar">82.0</span></td></tr><tr><th>12개월 인근 매각가율</th><td><span class="structured-scalar">84.0</span></td></tr><tr><th>12개월 평균 유찰</th><td><span class="structured-scalar">1.1</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>현황조사 임차/점유 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">4</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>임차/점유 감지</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 배당요구 확인</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 인수위험 감지</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 배당요구 상태</th><td><span class="structured-scalar">none</span></td></tr><tr><th>임차인 배당요구 판단</th><td><span class="structured-scalar">임차인 또는 점유자 위험 신호가 자동 수집 기준으로 두드러지지 않습니다.</span></td></tr><tr><th>검토 버킷</th><td><span class="structured-scalar">watchlist</span></td></tr><tr><th>buffered gain pct</th><td><span class="structured-scalar">22.2</span></td></tr><tr><th>권장 입찰 상한</th><td><span class="structured-scalar">415800000</span></td></tr><tr><th>권장 상한 비고</th><td><span class="structured-scalar">최근 실거래 평균의 84%를 1차 보수 상한으로 계산</span></td></tr><tr><th>점수 프로필</th><td><span class="structured-scalar">residential-liquidity-rights</span></td></tr><tr><th>점수 프로필 설명</th><td><span class="structured-scalar">주거: 같은 단지 시세, 전세가율, 환금성, 임차/명도 리스크를 우선 반영</span></td></tr></tbody></table></div></td></tr><tr><th>리스크</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>위험도</th><th>키워드</th><th>사유</th></tr></thead><tbody><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">전입</span></td><td><span class="structured-scalar">resident registration</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">점유</span></td><td><span class="structured-scalar">occupancy</span></td></tr></tbody></table></div></td></tr><tr><th>기회 요인</th><td><ul class="structured-list"><li><span class="structured-scalar">학교: school nearby</span></li><li><span class="structured-scalar">버스: bus access</span></li></ul></td></tr><tr><th>확인할 사항</th><td><ul class="structured-list"><li><span class="structured-scalar">매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</span></li><li><span class="structured-scalar">등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</span></li><li><span class="structured-scalar">입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</span></li><li><span class="structured-scalar">관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</span></li></ul></td></tr><tr><th>Codex 요약</th><td><span class="structured-scalar">2025타경32969 아파트 [residential/liquid-resale-or-rental-support] / 경기도 김포시 장기동 2193 한강센트럴자이1단지 109동 10층 1003호 | score=81.5(B, 조건부 우선 검토) | min_bid=3.8억, appraisal=5.4억, avg_trade=5.0억, bid_vs_market=76.1%, est_gain=31.4%, jeonse_rate=68.7% | risks=[medium:전입, medium:점유] | opportunities=[학교: school nearby, 버스: bus access]</span></td></tr><tr><th>수집 원본</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경32969</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">부천지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 김포시 장기동 2193 한강센트럴자이1단지 109동 10층 1003호</span></td></tr><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[집합건물 철근콘크리트구조 84.9751㎡]</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">538000000</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">376600000</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260702</span></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">별관제122호법정</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">231984056</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="empty">-</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 김포시 장기동 소재 &#x27;김포금빛초등학교&#x27; 남측 인근에 소재하며, 주위는 대규모 아파트단지, 근린생활시설 등이 소재하는 아파트지대임.
+본건 인근에 버스정류장이 소재하는 등 제반 교통상황은 보통임.
+철근콘크리트구조 (철근)콘크리트지붕 28층 건물 내 제10층 제1003호으로서,
+(사용승인일 : 2017.01.20)
+
+외벽 : 몰탈위 페인팅 등 마감.
+내벽 : 몰탈위 페인팅 등 마감.
+창호 : 샷시 창호 마감임.
+아파트으로 이용중임.
+기본적인 위생 및 급배수시설, 난방설비, 승강기설비 등을 갖추고 있음.
+
+
+인접 필지 대비 등고 평탄한 부정형의 토지로서, 주거용 건부지로 이용중임.
+본건 소재 아파트단지는 북서측 및 북동측으로 폭 약 40미터 및 폭 약 20미터의 아스콘포장도로에 각각 접하고 있음.
+도시지역, 보전녹지지역, 자연녹지지역(2017-07-11), 제2종일반주거지역, 고도지구(공항고도제한해발112.86m~371.43m미만), 지구단위계획구역, 근린공원(2017-06-15)(저촉), 대로1류(폭 35m~40m)(2017-06-15)(접합), 중로1류(폭 20m~25m)(2017-06-15)(접합), 가축사육제한구역(모든축종 제한)&lt;가축분뇨의 관리 및 이용에 관한 법률&gt;, 장애물제한표면구역&lt;공항시설법&gt;, 진입표면구역&lt;공항시설법&gt;, 상대보호구역&lt;교육환경 보호에 관한 법률&gt;, 상대보호구역(김포가온유치원)&lt;교육환경 보호에 관한 법률&gt;, 상대보호구역(김포금빛초등학교)&lt;교육환경 보호에 관한 법률&gt;, 절대보호구역(김포가온유치원)&lt;교육환경 보호에 관한 법률&gt;, 절대보호구역(김포금빛초등학교)&lt;교육환경 보호에 관한 법률&gt;, 군사기지 및 군사시설 보호구역(육군17사단관할지역)&lt;군사기지 및 군사시설 보호법&gt;, 제한보호구역(전방지역:25km)(위탁지역8m)&lt;군사기지 및 군사시설 보호법&gt;, 제한보호구역(전방지역:25km)(협의지역)&lt;군사기지 및 군사시설 보호법&gt;, 준보전산지(2018-12-28)&lt;산지관리법&gt;, 성장관리권역&lt;수도권정비계획법&gt;, 하수처리구역(장기처리분구)&lt;하수도법&gt;임.
+해당사항 없음.
+임대관계는 미상임.
+
+</span></td></tr><tr><th>건물명</th><td><span class="structured-scalar">한강센트럴자이1단지</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>x</th><td><span class="structured-scalar">283440</span></td></tr><tr><th>y</th><td><span class="structured-scalar">560096</span></td></tr></tbody></table></div></td></tr><tr><th>지번 주소</th><td><ul class="structured-list"><li><span class="structured-scalar">경기도 김포시 태장로 845 (장기동,한강센트럴자이1단지)</span></li></ul></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260528</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">별관 제122호 법정</span></td><td><span class="structured-scalar">538000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260702</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">별관 제122호 법정</span></td><td><span class="structured-scalar">376600000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260709</span></td><td><span class="structured-scalar">1530</span></td><td><span class="structured-scalar">별관 제122호 법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">웰OOOOO OOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOOOOO</span></td><td><span class="structured-scalar">채무자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">신OO</span></td><td><span class="structured-scalar">소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">한OOOOOOO(OOOOOOOOOOOOOOOO)</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">신OOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">중OOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">국OOOOOOO OOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">국(OOOOOOOOO)</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">김OO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">웰OOOOO OOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">한OOOOOOO(OOOOOOOOOOOOOOOO)</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">신OOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">중OOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250613</span></td></tr><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 김포시 장기동 2193 한강센트럴자이1단지 109동 10층 1003호</span></td><td><span class="structured-scalar">소유자점유</span></td><td><span class="structured-scalar">현장에 임하였으나 이해관계인을 만나지 못하여 점유관계 알 수 없었음. 전입세대확인서(동거인포함) 및 주민등록등본 발급받아 확인 한 바, 소유자가 세대주로 등재되어 있었음. 안내문을 현관문 틈에 끼워 두었음.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">69</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">446724638</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">365482099</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">82</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.1</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">116</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">468241379</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">385027901</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">82</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.1</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">234</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">482448718</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">403367026</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">84</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.1</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매칭 단지</th><td><span class="structured-scalar">한강센트럴자이1단지</span></td></tr><tr><th>매칭 면적</th><td><span class="structured-scalar">84.9751</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">exact_name</span></td></tr><tr><th>보조 기준 단지</th><td><span class="empty">-</span></td></tr><tr><th>매매 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>매매가</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-11</span></td><td><span class="structured-scalar">45000</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-06-03</span></td><td><span class="structured-scalar">50000</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.9607</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">53500</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-17</span></td><td><span class="structured-scalar">48400</span></td><td><span class="structured-scalar">28</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-23</span></td><td><span class="structured-scalar">52000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-03</span></td><td><span class="structured-scalar">48000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-09</span></td><td><span class="structured-scalar">51300</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-03</span></td><td><span class="structured-scalar">48300</span></td><td><span class="structured-scalar">3</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-01</span></td><td><span class="structured-scalar">49000</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-06</span></td><td><span class="structured-scalar">49500</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">84.9751</span></td></tr></tbody></table></div></td></tr><tr><th>전세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-13</span></td><td><span class="structured-scalar">32000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.7674</span></td></tr><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">35000</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-06-10</span></td><td><span class="structured-scalar">34000</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.9607</span></td></tr><tr><td><span class="structured-scalar">2026-06-10</span></td><td><span class="structured-scalar">35000</span></td><td><span class="structured-scalar">16</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">37000</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-06-04</span></td><td><span class="structured-scalar">34000</span></td><td><span class="structured-scalar">25</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-06-01</span></td><td><span class="structured-scalar">35000</span></td><td><span class="structured-scalar">27</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-27</span></td><td><span class="structured-scalar">34000</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">84.9607</span></td></tr><tr><td><span class="structured-scalar">2026-05-27</span></td><td><span class="structured-scalar">30950</span></td><td><span class="structured-scalar">16</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-27</span></td><td><span class="structured-scalar">33000</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">81.832</span></td></tr></tbody></table></div></td></tr><tr><th>월세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>월세 거래</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">3000</span></td><td><span class="structured-scalar">130</span></td><td><span class="structured-scalar">11</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-06-09</span></td><td><span class="structured-scalar">10000</span></td><td><span class="structured-scalar">110</span></td><td><span class="structured-scalar">26</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-30</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">150</span></td><td><span class="structured-scalar">23</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-05-08</span></td><td><span class="structured-scalar">3000</span></td><td><span class="structured-scalar">160</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-05-14</span></td><td><span class="structured-scalar">25000</span></td><td><span class="structured-scalar">40</span></td><td><span class="structured-scalar">29</span></td><td><span class="structured-scalar">81.832</span></td></tr><tr><td><span class="structured-scalar">2026-05-21</span></td><td><span class="structured-scalar">32000</span></td><td><span class="structured-scalar">15</span></td><td><span class="structured-scalar">14</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-04-15</span></td><td><span class="structured-scalar">3000</span></td><td><span class="structured-scalar">140</span></td><td><span class="structured-scalar">17</span></td><td><span class="structured-scalar">81.832</span></td></tr><tr><td><span class="structured-scalar">2026-04-18</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">150</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9699</span></td></tr><tr><td><span class="structured-scalar">2026-04-16</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">150</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.9751</span></td></tr><tr><td><span class="structured-scalar">2026-03-04</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">140</span></td><td><span class="structured-scalar">19</span></td><td><span class="structured-scalar">84.9699</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">49500</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">76.1</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">31.4</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">33995</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">68.7</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">4</span></td></tr></tbody></table></div></td></tr><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260623_172324_realestate_full_20260623_20260723\1_아파트_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">491</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">1002</span></td></tr><tr><th>part</th><td><span class="structured-scalar">1</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">3</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">1~500</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260623 ~ 20260723</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-23 18:54:42</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260623_20260723_20260623_1854.json</span></td></tr></tbody></table></div></td></tr><tr><th> internal cs no</th><td><span class="structured-scalar">20250130032969</span></td></tr><tr><th> detail cache enriched</th><td><span class="structured-scalar">예</span></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</section>
+</main>
+</body>
+</html>
