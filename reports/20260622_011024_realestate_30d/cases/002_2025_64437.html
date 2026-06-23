@@ -99,6 +99,30 @@ main {
 .guide code {
   overflow-wrap: anywhere;
 }
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.criteria-card {
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #f8fafc;
+}
+.criteria-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.criteria-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.criteria-card li {
+  margin: 5px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
 .candidate-section {
   margin-top: 24px;
 }
@@ -335,7 +359,7 @@ main {
   margin: 0 0 8px;
   font-size: 15px;
 }
-.asset-review {
+.investment-opinion {
   background: #f8fafc;
   border: 1px solid #e7ebf1;
   border-radius: 8px;
@@ -457,8 +481,8 @@ main {
 <div class="link-row"><a href="https://search.naver.com/search.naver?query=%ED%95%98%EC%9D%B4%ED%8C%8C%ED%81%AC%EC%8B%9C%ED%8B%B0%EC%9D%BC%EC%82%B0%ED%8C%8C%EB%B0%80%EB%A6%AC%EC%97%904%EB%8B%A8%EC%A7%80" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64437%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
 </section>
 <section class="candidate-section wait">
-<h2>분류별 평가</h2>
-<div class="analysis-block asset-review"><h4>주거 평가 포인트</h4><ul class="review-list"><li>주거: 같은 단지 시세, 전세가율, 환금성, 임차/명도 리스크를 우선 반영</li><li>주거 물건은 같은 단지·같은 면적 실거래, 전세가율, 환금성, 명도 난이도를 핵심으로 봅니다. 현재 표본은 매매 10건, 전세 10건입니다.</li><li>전세가율은 75.4%입니다. 전세가율이 너무 낮으면 자기자본 회수력이 약하고, 너무 높으면 역전세·보증금 리스크를 함께 봐야 합니다.</li><li>자동 수집 기준으로 두드러진 임차인 리스크는 없지만, 전입세대열람과 현황조사서 원문 확인 전에는 명도 리스크를 0으로 보지 않습니다.</li><li>입찰가에는 취득세, 법무비, 명도비, 수리비, 금융비용을 먼저 차감하고 같은 단지 최근 저층/급매 가격과 다시 비교합니다.</li></ul></div>
+<h2>종합 투자 의견</h2>
+<div class="analysis-block investment-opinion"><h4>종합 투자 의견</h4><ul class="review-list"><li>종합 의견: A/96.4점으로 자동 선별상 우선 검토군입니다. 다만 원문 3종, 등기, 현장 확인 후 입찰가를 확정해야 합니다.</li><li>가격 의견: 최저가는 시세 대비 56.7%, 예상차익은 76.4%입니다. 자동 권장상한은 4.5억입니다.</li><li>주거 기준으로 보면 매매 표본 10건, 전세 표본 10건, 전세가율 75.4%입니다.</li><li>자동 수집 기준으로 두드러진 임차인 리스크는 없지만, 전입세대열람과 현황조사서 원문 확인 전에는 명도 리스크를 0으로 보지 않습니다.</li><li>다음 행동: 원문 3종과 등기부등본을 열어 말소/인수 권리를 확정하고, 현장·관리비·수리비를 반영해 입찰상한을 낮춰 잡습니다.</li></ul></div>
 </section>
 <section class="candidate-section good">
 <h2>거래표본 전체</h2>
