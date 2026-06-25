@@ -1,0 +1,751 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025타경55979 상세 조회 자료</title>
+<style>
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #18202a;
+  --muted: #667085;
+  --line: #d8dde6;
+  --good: #0f766e;
+  --wait: #946200;
+  --risk: #b42318;
+  --accent: #1d4ed8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+main {
+  width: min(1120px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+.hero {
+  padding: 12px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.hero p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+.meta {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.audit-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.summary-card,
+.guide,
+.candidate-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.summary-card {
+  padding: 14px;
+}
+.summary-card span,
+.facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+}
+.summary-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.guide {
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.guide h2,
+.candidate-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.guide ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.guide code {
+  overflow-wrap: anywhere;
+}
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.criteria-card {
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #f8fafc;
+}
+.criteria-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.criteria-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.criteria-card li {
+  margin: 5px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.collection-audit {
+  border-color: #cbd5e1;
+}
+.collection-audit .summary-grid {
+  margin: 10px 0 12px;
+}
+.audit-cache-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.audit-cache-list li {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f8fafc;
+}
+.audit-cache-list strong,
+.audit-cache-list span {
+  display: block;
+}
+.audit-cache-list span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.ok-note {
+  margin: 0;
+  color: var(--good);
+  font-weight: 700;
+}
+.llm-review {
+  border-color: #c7d2fe;
+  background: #f8fbff;
+}
+.llm-meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.llm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.llm-pick {
+  border: 1px solid #dbe3f0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 13px 14px;
+}
+.llm-pick h3,
+.llm-followups h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.llm-pick h3 a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.llm-pick h3 a:hover {
+  text-decoration: underline;
+}
+.llm-rank {
+  display: inline-block;
+  margin-right: 6px;
+  color: #3730a3;
+  font-size: 13px;
+}
+.llm-pick h4 {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.llm-pick ul,
+.llm-followups ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.llm-pick li,
+.llm-followups li {
+  margin: 5px 0;
+}
+.llm-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.llm-badges span {
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 3px 8px;
+  color: #3730a3;
+  background: #eef2ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+.llm-basic-info {
+  margin: 10px 0 12px;
+  padding: 10px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #fbfdff;
+}
+.llm-basic-info .address {
+  margin-top: 0;
+}
+.llm-basic-info .link-row {
+  margin: 8px 0 10px;
+}
+.llm-facts {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.llm-detail-link {
+  margin: 0;
+}
+.llm-detail-link a {
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+.llm-detail-link a:hover {
+  text-decoration: underline;
+}
+.llm-rerank {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-left: 3px solid #6366f1;
+  background: #f8fafc;
+  color: var(--text);
+}
+.llm-rerank strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #3730a3;
+}
+.llm-price {
+  margin: 12px 0 0;
+  color: var(--text);
+  font-weight: 700;
+}
+.llm-followups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.candidate-section {
+  margin-top: 24px;
+}
+.candidate-section.good h2 { color: var(--good); }
+.candidate-section.wait h2 { color: var(--wait); }
+.candidate-section.risk h2 { color: var(--risk); }
+.region-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.city-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0 10px;
+  padding: 8px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+.tab-list {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.region-button,
+.city-button,
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.region-button span,
+.city-button span,
+.tab-button span {
+  display: inline-flex;
+  min-width: 28px;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 12px;
+}
+.region-button.active,
+.city-button.active,
+.tab-button.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+.region-button.active span,
+.city-button.active span,
+.tab-button.active span {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+.region-view {
+  display: none;
+}
+.region-view.active {
+  display: block;
+}
+.city-view {
+  display: none;
+}
+.city-view.active {
+  display: block;
+}
+.tab-panel {
+  display: none;
+  margin-top: 12px;
+}
+.tab-panel.active {
+  display: block;
+}
+.category-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+.category-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.category-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.candidate-card {
+  padding: 16px;
+  margin: 10px 0;
+}
+.candidate-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.candidate-head h3 {
+  display: inline;
+  margin: 0;
+  font-size: 18px;
+}
+.candidate-head h3 a,
+.hero a,
+.link-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.candidate-head h3 a:hover,
+.hero a:hover,
+.link-row a:hover {
+  text-decoration: underline;
+}
+.rank {
+  display: inline-flex;
+  min-width: 34px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #e7eefc;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+.score {
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--accent);
+}
+.address {
+  margin: 8px 0 12px;
+  color: var(--muted);
+}
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef4ff;
+  border: 1px solid #d7e5ff;
+  font-size: 13px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.facts div {
+  padding: 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+}
+.facts strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.data-health {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 14px;
+}
+.data-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid #d8dde6;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.data-chip.ok {
+  border-color: #99f6e4;
+  background: #ecfdf5;
+  color: var(--good);
+}
+.data-chip.warn {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: var(--wait);
+}
+.data-chip.bad {
+  border-color: #fecaca;
+  background: #fff1f2;
+  color: var(--risk);
+}
+.data-chip.missing {
+  border-color: #e5e7eb;
+  background: #f8fafc;
+  color: #64748b;
+}
+.detail {
+  margin-top: 12px;
+}
+.detail p {
+  margin: 6px 0;
+}
+.comp-summary {
+  color: var(--text);
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+}
+.comp-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.comp-table th,
+.comp-table td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #e7ebf1;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comp-table th {
+  background: #f2f5f9;
+  color: var(--muted);
+  font-weight: 800;
+}
+.analysis-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e7ebf1;
+}
+.analysis-block h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.investment-opinion {
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.risk-list,
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.risk-list li,
+.review-list li {
+  margin: 7px 0;
+}
+.risk-list strong {
+  display: block;
+}
+.risk-list span {
+  display: block;
+  color: var(--muted);
+}
+.risk-list li.high strong { color: var(--risk); }
+.risk-list li.medium strong { color: var(--wait); }
+.risk-list li.low strong { color: var(--good); }
+.structured-section {
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.structured-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+.structured-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.kv-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+.kv-table th,
+.kv-table td,
+.data-table th,
+.data-table td {
+  vertical-align: top;
+  border-top: 1px solid #e7ebf1;
+  padding: 8px 9px;
+  font-size: 13px;
+  text-align: left;
+}
+.kv-table th {
+  width: 178px;
+  min-width: 150px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+.data-table th {
+  color: var(--muted);
+  background: #f2f5f9;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.structured-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.structured-list li {
+  margin: 5px 0;
+}
+.structured-scalar {
+  overflow-wrap: anywhere;
+}
+.empty {
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  main { width: min(100% - 20px, 720px); padding-top: 18px; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { font-size: 25px; }
+  .category-heading { display: block; }
+  .category-heading p { margin-top: 3px; }
+}
+@media (max-width: 460px) {
+  .summary-grid,
+  .facts { grid-template-columns: 1fr; }
+  .candidate-head { display: block; }
+  .score { display: inline-block; margin-top: 8px; }
+}
+
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p><a href="../investment_review.html">← 투자 검토 리포트로 돌아가기</a></p>
+<h1>2025타경55979 상세 조회 자료</h1>
+<div class="meta">#611 · 수원시 주거 분류 상위 후보 · 원천 분석 reports\20260625_083524_realestate_full_20260625_20260725\analysis.json</div>
+</section>
+<section class="summary-grid">
+<div class="summary-card"><span>점수</span><strong>C/81.0</strong><p>시세 보강 필요</p></div>
+<div class="summary-card"><span>입찰일</span><strong>20260710</strong><p>D-15</p></div>
+<div class="summary-card"><span>최저가</span><strong>2.6억</strong><p>감정가 3.7억</p></div>
+<div class="summary-card"><span>유찰</span><strong>1회</strong><p>직전최저가 3.7억</p></div>
+<div class="summary-card"><span>시세대비</span><strong>53.3%</strong><p>예상차익 87.7%</p></div>
+<div class="summary-card"><span>권장상한</span><strong>4.1억</strong><p>최근 실거래 평균의 84%를 1차 보수 상한으로 계산</p></div>
+<div class="summary-card"><span>자료상태</span><strong>확인 5/5</strong><p>주요 보강 완료</p></div>
+</section>
+<section class="guide">
+<h2>경기도 수원시 권선구 호매실동 84-25 호매실지에스아파트 108동 1층104호</h2>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=%ED%98%B8%EB%A7%A4%EC%8B%A4%EC%A7%80%EC%97%90%EC%8A%A4%EC%95%84%ED%8C%8C%ED%8A%B8" target="_blank" rel="noopener">네이버 검색</a><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD55979%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+</section>
+<section class="candidate-section wait">
+<h2>종합 투자 의견</h2>
+<div class="analysis-block investment-opinion"><h4>종합 투자 의견</h4><ul class="review-list"><li>종합 의견: C/81.0점이지만 시세 근거가 부족합니다. 외부 실거래와 호가 보강 전에는 후보 확정이 어렵습니다.</li><li>가격 의견: 최저가는 시세 대비 53.3%, 예상차익은 87.7%입니다. 자동 권장상한은 4.1억입니다.</li><li>주거 기준으로 보면 매매 표본 10건, 전세 표본 10건, 전세가율 75.4%입니다.</li><li>자동 수집 기준으로 두드러진 임차인 리스크는 없지만, 전입세대열람과 현황조사서 원문 확인 전에는 명도 리스크를 0으로 보지 않습니다.</li><li>다음 행동: 같은 단지/면적 또는 같은 용도 물건의 최근 거래와 호가를 보강한 뒤 점수를 다시 봅니다.</li></ul></div>
+</section>
+<section class="candidate-section good">
+<h2>거래표본 전체</h2>
+<p class="comp-summary"><strong>거래표본</strong> 면적/주소 기반 보조 매칭 · 기준 호매실지에스아파트 · 매매 10건 · 전세 10건 · 월세 10건</p>
+<div class="table-wrap"><table class="comp-table"><thead><tr><th>구분</th><th>계약일</th><th>금액</th><th>층</th><th>면적</th></tr></thead><tbody><tr><td>매매</td><td>2026-06-20</td><td>58,500만원</td><td>7</td><td>84.98㎡</td></tr><tr><td>매매</td><td>2026-06-20</td><td>54,000만원</td><td>10</td><td>84.79㎡</td></tr><tr><td>매매</td><td>2026-06-24</td><td>28,500만원</td><td>1</td><td>84.99㎡</td></tr><tr><td>매매</td><td>2026-06-24</td><td>37,600만원</td><td>2</td><td>84.90㎡</td></tr><tr><td>매매</td><td>2026-06-24</td><td>59,800만원</td><td>9</td><td>84.85㎡</td></tr><tr><td>매매</td><td>2026-06-23</td><td>62,700만원</td><td>13</td><td>84.85㎡</td></tr><tr><td>매매</td><td>2026-06-06</td><td>73,000만원</td><td>2</td><td>84.88㎡</td></tr><tr><td>매매</td><td>2026-06-12</td><td>31,000만원</td><td>8</td><td>84.70㎡</td></tr><tr><td>매매</td><td>2026-06-20</td><td>39,000만원</td><td>11</td><td>84.30㎡</td></tr><tr><td>매매</td><td>2026-06-22</td><td>42,000만원</td><td>5</td><td>84.82㎡</td></tr><tr><td>전세</td><td>2026-06-10</td><td>43,900만원</td><td>6</td><td>84.95㎡</td></tr><tr><td>전세</td><td>2026-06-24</td><td>29,500만원</td><td>13</td><td>84.97㎡</td></tr><tr><td>전세</td><td>2026-06-20</td><td>24,150만원</td><td>4</td><td>84.94㎡</td></tr><tr><td>전세</td><td>2026-06-24</td><td>27,000만원</td><td>9</td><td>84.95㎡</td></tr><tr><td>전세</td><td>2026-06-22</td><td>46,000만원</td><td>21</td><td>84.95㎡</td></tr><tr><td>전세</td><td>2026-06-19</td><td>38,000만원</td><td>8</td><td>84.72㎡</td></tr><tr><td>전세</td><td>2026-06-23</td><td>41,000만원</td><td>6</td><td>84.85㎡</td></tr><tr><td>전세</td><td>2026-06-20</td><td>30,000만원</td><td>13</td><td>84.73㎡</td></tr><tr><td>전세</td><td>2026-06-20</td><td>38,850만원</td><td>6</td><td>84.94㎡</td></tr><tr><td>전세</td><td>2026-06-09</td><td>48,000만원</td><td>12</td><td>84.88㎡</td></tr><tr><td>월세</td><td>2026-06-24</td><td>9,790만원 / 63만원</td><td>6</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-06-24</td><td>5,000만원 / 140만원</td><td>8</td><td>84.94㎡</td></tr><tr><td>월세</td><td>2026-06-24</td><td>11,390만원 / 57만원</td><td>4</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-06-24</td><td>12,990만원 / 53만원</td><td>2</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-06-23</td><td>9,790만원 / 63만원</td><td>12</td><td>84.75㎡</td></tr><tr><td>월세</td><td>2026-06-23</td><td>9,790만원 / 63만원</td><td>4</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-06-23</td><td>11,390만원 / 59만원</td><td>5</td><td>84.97㎡</td></tr><tr><td>월세</td><td>2026-06-23</td><td>16,210만원 / 63만원</td><td>10</td><td>84.71㎡</td></tr><tr><td>월세</td><td>2026-06-12</td><td>4,000만원 / 110만원</td><td>1</td><td>84.96㎡</td></tr><tr><td>월세</td><td>2026-06-05</td><td>9,790만원 / 63만원</td><td>8</td><td>84.75㎡</td></tr></tbody></table></div>
+</section>
+<section class="candidate-section risk">
+<h2>리스크와 검토 포인트</h2>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 4.8억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2025-07-29입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 3명/건 수집됐습니다. 구성은 채권자 1건, 채무자겸소유자 1건, 교부권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 1건입니다. 구성은 채권자 1건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 소유자점유, 현황조사 임차인 0명 (해당 부동산에 대하여 현황조사차 방문하였는바, 폐문부재로 소유자 및 점유자 등을 만날 수 없어 출입문에 안내문을 부착하여 두었으며, 전입세대확인서 등에 의하면, 해당 주소에는 채무자 겸 소유자를 세대주로 하는 세대가 전입되어 있음.)</li><li>권리상 주의 키워드: 전입. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="medium"><strong>중간 · 전입 가능성</strong><span>전입 관련 문구가 있어 대항력 있는 임차인이 존재할 가능성을 배제할 수 없습니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li><li class="medium"><strong>중간 · 폐문 조사</strong><span>현황조사에서 폐문 등으로 내부 확인이 제한됐을 가능성이 있습니다. 실제 점유와 내부 상태를 현장 기준으로 확인해야 합니다.</span></li><li class="low"><strong>낮음 · 실거래 매칭 확인 필요</strong><span>비교 표본이 면적/주소 기반 보조 매칭 상태입니다. 같은 단지, 같은 전용면적, 유사 층 거래인지 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>점수는 높지만 시세 근거가 약합니다. 외부 호가와 같은 단지·면적 실거래를 보강하기 전에는 입찰 후보로 확정하지 않습니다.</li><li>수집 실거래 평균은 48,610만원, 최저가는 2.6억입니다. 현재 계산상 최저가는 시세의 53.3%, 예상차익은 87.7%입니다.</li><li>전세가율은 75.4%로 계산됩니다. 실제 임대 가능 보증금과 명도 기간을 반영해 자기자본 회수율을 다시 계산하세요.</li><li>자동 권장 입찰 상한은 4.1억입니다. 취득세, 법무비, 명도비, 수리비, 금융비용을 넣으면 이 금액보다 낮아질 수 있습니다.</li><li>거래표본은 면적/주소 기반 보조 매칭이며 매매 10건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</li></ul></div>
+</section>
+<section class="candidate-section">
+<h2>자료 수집 상태</h2>
+<div class="data-health" aria-label="자료상태"><span class="data-chip ok" title="">물건상세 완료</span><span class="data-chip ok" title="">사건상세 완료</span><span class="data-chip ok" title="">현황/점유 완료</span><span class="data-chip ok" title="">인근통계 완료</span><span class="data-chip ok" title="">실거래 완료</span></div>
+</section>
+<section class="candidate-section">
+<h2>수집 섹션별 조회 정보</h2>
+<details class="structured-section" open><summary>매각조건/기일</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">481250689</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="empty">-</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260605</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제101호 법정</span></td><td><span class="structured-scalar">370000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260710</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제101호 법정</span></td><td><span class="structured-scalar">259000000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260720</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">제101호 법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">제101호법정</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>현황조사/점유</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 수원시 권선구 호매실동 84-25 호매실지에스아파트 108동 1층104호</span></td><td><span class="structured-scalar">소유자점유</span></td><td><span class="structured-scalar">해당 부동산에 대하여 현황조사차 방문하였는바, 폐문부재로 소유자 및 점유자 등을 만날 수 없어 출입문에 안내문을 부착하여 두었으며, 전입세대확인서 등에 의하면, 해당 주소에는 채무자 겸 소유자를 세대주로 하는 세대가 전입되어 있음.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>사건상세/이해관계인</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">비OOOOOO OOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">심OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">수OO OOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">비OOOOOO OOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250729</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>감정평가 요약</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[집합건물 철근콘크리트조
+84.9220㎡]</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 수원시 권선구 호매실동 &#x27;수원시립호매실도서관&#x27; 북동측 인근에 위치하는 호매실GS아파트 제108동 내에 소재함. 본건 주위는 대단위아파트지대로서,  단지 주변과 인근으로 근린생활시설과 초증등학교, 시립도서관, 문화원, 나지 등이 혼재함.
+본건 아파트 단지까지 차량 출입이 용이하고, 단지 주변으로 버스정류장이 있어 제반 교통사정은 보통시 됨.
+본건은 1998년 6월에 사용승인된 철근콘크리트조 슬래브지붕 20층 아파트 중 1층 104호로서,
+외벽은 콘크리트위 페인트 마감,       
+내벽은 벽지 마감,  
+창호는 샷시 단창 또는 샷시 이중창호임.
+남서향 계단식 아파트로서 침실3, 욕실2, 거실, 주방 겸 식당, 현관, 발코니로 이용중임.
+도시가스에 의한 개별 난방과 급탕설비, 급배수시설, 위생설비, 승강기설비, 무인공동현관 시스템 등이 되어있음.
+
+6필지 일단지인 대지권 목적 토지는 평탄한 지세에 부정형 형태로 16개동 1,754세대 아파트와 상가동, 부속건물 대지로 이용중임.
+단지 북서측과 남서측으로 매실로와 칠보로183번길에, 단지 동측과 남측으로 칠보로에 접함.
+대지권 기호(1) 토지는 제3종일반주거지역, 상대보호구역(칠보초등학교, 푸른하늘유치원, 호매실중학교, 호매실초등학교), 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(2) 토지는 제3종일반주거지역, 지구단위계획구역, 중로1류(폭 20m~25m)· 중로2류(폭 15m~20m) 저촉, 상대보호구역(호매실초등학교), 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(3) 토지는 제3종일반주거지역, 지구단위계획구역, 중로1류(폭 20m~25m) 저촉, 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(4) 토지는 제3종일반주거지역, 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(5) 토지는 제3종일반주거지역, 중로2류(폭 15m~20m) 접함, 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(6) 토지는 제3종일반주거지역, 대로2류(폭 30m~35m)·소로1류(폭 10m~12m)· 중로2류(폭 15m~20m) 접함, 상대보호구역(칠보초등학교, 푸른하늘류치원, 호매실중학교, 호매실초등학교), 비행안전제6구역, 도시교통정비지역, 과밀억제권역임.
+없음
+소유자가 거주하는 것으로 탐문조사되었으나 임대관계는 추후 재확인 요함.</span></td></tr><tr><th>건물명</th><td><span class="structured-scalar">호매실지에스아파트</span></td></tr><tr><th>지번 주소</th><td><ul class="structured-list"><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li></ul></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>x</th><td><span class="structured-scalar">307778</span></td></tr><tr><th>y</th><td><span class="structured-scalar">518989</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>가격 근거</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">47</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">280574468</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">232093803</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">75</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.6</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">59</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">330338983</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">283255251</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">78</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.4</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">119</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">341008403</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">284205610</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">77</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.5</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>매칭 단지</th><td><span class="empty">-</span></td></tr><tr><th>매칭 면적</th><td><span class="structured-scalar">84.922</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">area_fallback</span></td></tr><tr><th>보조 기준 단지</th><td><span class="structured-scalar">호매실지에스아파트</span></td></tr><tr><th>매매 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>매매가</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">58500</span></td><td><span class="structured-scalar">7</span></td><td><span class="structured-scalar">84.98</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">54000</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">84.79</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">28500</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">84.99</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">37600</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.903</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">59800</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.85</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">62700</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">84.85</span></td></tr><tr><td><span class="structured-scalar">2026-06-06</span></td><td><span class="structured-scalar">73000</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.8763</span></td></tr><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">31000</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.7038</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">39000</span></td><td><span class="structured-scalar">11</span></td><td><span class="structured-scalar">84.3</span></td></tr><tr><td><span class="structured-scalar">2026-06-22</span></td><td><span class="structured-scalar">42000</span></td><td><span class="structured-scalar">5</span></td><td><span class="structured-scalar">84.8151</span></td></tr></tbody></table></div></td></tr><tr><th>전세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-10</span></td><td><span class="structured-scalar">43900</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9521</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">29500</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">84.97</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">24150</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">84.9416</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">27000</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.952</span></td></tr><tr><td><span class="structured-scalar">2026-06-22</span></td><td><span class="structured-scalar">46000</span></td><td><span class="structured-scalar">21</span></td><td><span class="structured-scalar">84.9521</span></td></tr><tr><td><span class="structured-scalar">2026-06-19</span></td><td><span class="structured-scalar">38000</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.72</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">41000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.85</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">30000</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">84.73</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">38850</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.94</span></td></tr><tr><td><span class="structured-scalar">2026-06-09</span></td><td><span class="structured-scalar">48000</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">84.8763</span></td></tr></tbody></table></div></td></tr><tr><th>월세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>월세 거래</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">9790</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">140</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.94</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">11390</span></td><td><span class="structured-scalar">57</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">12990</span></td><td><span class="structured-scalar">53</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">9790</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">84.7474</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">9790</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">11390</span></td><td><span class="structured-scalar">59</span></td><td><span class="structured-scalar">5</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">16210</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">84.71</span></td></tr><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">4000</span></td><td><span class="structured-scalar">110</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">84.9568</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">9790</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.7474</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">48610</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">53.3</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">87.7</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">36640</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">75.4</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">1</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>수집 메타</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260625_083524_realestate_full_20260625_20260725\2_아파트_서울_인천_경기_20260625_20260725_20260625_0952.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">49</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">874</span></td></tr><tr><th>part</th><td><span class="structured-scalar">2</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">501~874</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260625 ~ 20260725</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-25 09:52:56</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260625_20260725_20260625_0952.json</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+</section>
+<section class="candidate-section">
+<h2>전체 조회 데이터</h2>
+<p class="empty">분석 item 전체를 요약하지 않고 항목별로 펼쳐 표시합니다.</p>
+<div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점수</th><td><span class="structured-scalar">81.0</span></td></tr><tr><th>등급</th><td><span class="structured-scalar">C</span></td></tr><tr><th>판정</th><td><span class="structured-scalar">시세 보강 필요</span></td></tr><tr><th>점수 구성</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>시세 할인 점수</th><td><span class="structured-scalar">30.0</span></td></tr><tr><th>경매 할인 점수</th><td><span class="structured-scalar">11.2</span></td></tr><tr><th>전세/임대 지지 점수</th><td><span class="structured-scalar">8.4</span></td></tr><tr><th>환금성 점수</th><td><span class="structured-scalar">12.0</span></td></tr><tr><th>권리/리스크 점수</th><td><span class="structured-scalar">11.4</span></td></tr><tr><th>데이터 신뢰도 점수</th><td><span class="structured-scalar">8.0</span></td></tr></tbody></table></div></td></tr><tr><th>정규화 정보</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경55979</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">수원지방법원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>자산 구분</th><td><span class="structured-scalar">residential</span></td></tr><tr><th>투자 전략</th><td><span class="structured-scalar">liquid-resale-or-rental-support</span></td></tr><tr><th>시장 데이터 성격</th><td><span class="structured-scalar">residential_trade_and_rent</span></td></tr><tr><th>수동 시세보강 필요</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>특수자산 검토 필요</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>자산별 목표 할인율</th><td><span class="empty">-</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 수원시 권선구 호매실동 84-25 호매실지에스아파트 108동 1층104호</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260710</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">259000000</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">370000000</span></td></tr><tr><th>min bid manwon</th><td><span class="structured-scalar">25900.0</span></td></tr><tr><th>appraisal manwon</th><td><span class="structured-scalar">37000.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">48610.0</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">36640.0</span></td></tr><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">53.3</span></td></tr><tr><th>시세 할인율</th><td><span class="structured-scalar">46.7</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">87.7</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">75.4</span></td></tr><tr><th>매매 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>전세 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>월세 표본 수</th><td><span class="structured-scalar">10</span></td></tr><tr><th>거래표본 품질</th><td><span class="structured-scalar">area_only_match</span></td></tr><tr><th>비교 단지/명칭</th><td><span class="empty">-</span></td></tr><tr><th>비교 면적</th><td><span class="structured-scalar">84.922</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">area_fallback</span></td></tr><tr><th>보조 매칭 기준</th><td><span class="structured-scalar">호매실지에스아파트</span></td></tr><tr><th>표본 비고</th><td><span class="structured-scalar">Exact complex name produced no trades; area-based fallback was used from 호매실지에스아파트.</span></td></tr><tr><th>3개월 인근 매각건수</th><td><span class="structured-scalar">47.0</span></td></tr><tr><th>6개월 인근 매각건수</th><td><span class="structured-scalar">59.0</span></td></tr><tr><th>12개월 인근 매각건수</th><td><span class="structured-scalar">119.0</span></td></tr><tr><th>3개월 인근 매각가율</th><td><span class="structured-scalar">75.0</span></td></tr><tr><th>6개월 인근 매각가율</th><td><span class="structured-scalar">78.0</span></td></tr><tr><th>12개월 인근 매각가율</th><td><span class="structured-scalar">77.0</span></td></tr><tr><th>12개월 평균 유찰</th><td><span class="structured-scalar">1.5</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>현황조사 임차/점유 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>임차/점유 감지</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 배당요구 확인</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 인수위험 감지</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 배당요구 상태</th><td><span class="structured-scalar">none</span></td></tr><tr><th>임차인 배당요구 판단</th><td><span class="structured-scalar">임차인 또는 점유자 위험 신호가 자동 수집 기준으로 두드러지지 않습니다.</span></td></tr><tr><th>검토 버킷</th><td><span class="structured-scalar">manual_comps_needed</span></td></tr><tr><th>buffered gain pct</th><td><span class="structured-scalar">74.5</span></td></tr><tr><th>권장 입찰 상한</th><td><span class="structured-scalar">408324000</span></td></tr><tr><th>권장 상한 비고</th><td><span class="structured-scalar">최근 실거래 평균의 84%를 1차 보수 상한으로 계산</span></td></tr><tr><th>점수 프로필</th><td><span class="structured-scalar">residential-liquidity-rights</span></td></tr><tr><th>점수 프로필 설명</th><td><span class="structured-scalar">주거: 같은 단지 시세, 전세가율, 환금성, 임차/명도 리스크를 우선 반영</span></td></tr></tbody></table></div></td></tr><tr><th>리스크</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>위험도</th><th>키워드</th><th>사유</th></tr></thead><tbody><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">전입</span></td><td><span class="structured-scalar">resident registration</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">점유</span></td><td><span class="structured-scalar">occupancy</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">폐문</span></td><td><span class="structured-scalar">closed-door survey</span></td></tr><tr><td><span class="structured-scalar">low</span></td><td><span class="structured-scalar">comp_match_quality</span></td><td><span class="structured-scalar">comparable trade match needs manual verification</span></td></tr></tbody></table></div></td></tr><tr><th>기회 요인</th><td><ul class="structured-list"><li><span class="structured-scalar">학교: school nearby</span></li><li><span class="structured-scalar">대단위: large complex</span></li><li><span class="structured-scalar">버스: bus access</span></li></ul></td></tr><tr><th>확인할 사항</th><td><ul class="structured-list"><li><span class="structured-scalar">매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</span></li><li><span class="structured-scalar">등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</span></li><li><span class="structured-scalar">입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</span></li><li><span class="structured-scalar">실거래 비교가 단지명 기준으로 확정되지 않았으므로 같은 단지/동/면적 거래인지 수동 검증한다.</span></li><li><span class="structured-scalar">관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</span></li></ul></td></tr><tr><th>Codex 요약</th><td><span class="structured-scalar">2025타경55979 아파트 [residential/liquid-resale-or-rental-support] / 경기도 수원시 권선구 호매실동 84-25 호매실지에스아파트 108동 1층104호 | score=81.0(C, 시세 보강 필요) | min_bid=2.6억, appraisal=3.7억, avg_trade=4.9억, bid_vs_market=53.3%, est_gain=87.7%, jeonse_rate=75.4% | risks=[medium:전입, medium:점유, medium:폐문, low:comp_match_quality] | opportunities=[학교: school nearby, 대단위: large complex, 버스: bus access]</span></td></tr><tr><th>수집 원본</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경55979</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">수원지방법원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 수원시 권선구 호매실동 84-25 호매실지에스아파트 108동 1층104호</span></td></tr><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[집합건물 철근콘크리트조
+84.9220㎡]</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">370000000</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">259000000</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260710</span></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">제101호법정</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">481250689</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="empty">-</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 수원시 권선구 호매실동 &#x27;수원시립호매실도서관&#x27; 북동측 인근에 위치하는 호매실GS아파트 제108동 내에 소재함. 본건 주위는 대단위아파트지대로서,  단지 주변과 인근으로 근린생활시설과 초증등학교, 시립도서관, 문화원, 나지 등이 혼재함.
+본건 아파트 단지까지 차량 출입이 용이하고, 단지 주변으로 버스정류장이 있어 제반 교통사정은 보통시 됨.
+본건은 1998년 6월에 사용승인된 철근콘크리트조 슬래브지붕 20층 아파트 중 1층 104호로서,
+외벽은 콘크리트위 페인트 마감,       
+내벽은 벽지 마감,  
+창호는 샷시 단창 또는 샷시 이중창호임.
+남서향 계단식 아파트로서 침실3, 욕실2, 거실, 주방 겸 식당, 현관, 발코니로 이용중임.
+도시가스에 의한 개별 난방과 급탕설비, 급배수시설, 위생설비, 승강기설비, 무인공동현관 시스템 등이 되어있음.
+
+6필지 일단지인 대지권 목적 토지는 평탄한 지세에 부정형 형태로 16개동 1,754세대 아파트와 상가동, 부속건물 대지로 이용중임.
+단지 북서측과 남서측으로 매실로와 칠보로183번길에, 단지 동측과 남측으로 칠보로에 접함.
+대지권 기호(1) 토지는 제3종일반주거지역, 상대보호구역(칠보초등학교, 푸른하늘유치원, 호매실중학교, 호매실초등학교), 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(2) 토지는 제3종일반주거지역, 지구단위계획구역, 중로1류(폭 20m~25m)· 중로2류(폭 15m~20m) 저촉, 상대보호구역(호매실초등학교), 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(3) 토지는 제3종일반주거지역, 지구단위계획구역, 중로1류(폭 20m~25m) 저촉, 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(4) 토지는 제3종일반주거지역, 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(5) 토지는 제3종일반주거지역, 중로2류(폭 15m~20m) 접함, 비행안전제6구역, 도시교통정비지역, 과밀억제권역, 
+대지권 기호(6) 토지는 제3종일반주거지역, 대로2류(폭 30m~35m)·소로1류(폭 10m~12m)· 중로2류(폭 15m~20m) 접함, 상대보호구역(칠보초등학교, 푸른하늘류치원, 호매실중학교, 호매실초등학교), 비행안전제6구역, 도시교통정비지역, 과밀억제권역임.
+없음
+소유자가 거주하는 것으로 탐문조사되었으나 임대관계는 추후 재확인 요함.</span></td></tr><tr><th>건물명</th><td><span class="structured-scalar">호매실지에스아파트</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>x</th><td><span class="structured-scalar">307778</span></td></tr><tr><th>y</th><td><span class="structured-scalar">518989</span></td></tr></tbody></table></div></td></tr><tr><th>지번 주소</th><td><ul class="structured-list"><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li><li><span class="structured-scalar">경기도 수원시 권선구 매실로 70 (호매실동,호매실지에스아파트)</span></li></ul></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260605</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제101호 법정</span></td><td><span class="structured-scalar">370000000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260710</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제101호 법정</span></td><td><span class="structured-scalar">259000000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260720</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">제101호 법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">비OOOOOO OOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">심OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">수OO OOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">비OOOOOO OOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20250729</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 수원시 권선구 호매실동 84-25 호매실지에스아파트 108동 1층104호</span></td><td><span class="structured-scalar">소유자점유</span></td><td><span class="structured-scalar">해당 부동산에 대하여 현황조사차 방문하였는바, 폐문부재로 소유자 및 점유자 등을 만날 수 없어 출입문에 안내문을 부착하여 두었으며, 전입세대확인서 등에 의하면, 해당 주소에는 채무자 겸 소유자를 세대주로 하는 세대가 전입되어 있음.&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">47</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">280574468</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">232093803</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">75</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.6</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">59</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">330338983</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">283255251</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">78</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.4</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">119</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">341008403</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">284205610</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">77</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">1.5</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매칭 단지</th><td><span class="empty">-</span></td></tr><tr><th>매칭 면적</th><td><span class="structured-scalar">84.922</span></td></tr><tr><th>매칭 방식</th><td><span class="structured-scalar">area_fallback</span></td></tr><tr><th>보조 기준 단지</th><td><span class="structured-scalar">호매실지에스아파트</span></td></tr><tr><th>매매 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>매매가</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">58500</span></td><td><span class="structured-scalar">7</span></td><td><span class="structured-scalar">84.98</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">54000</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">84.79</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">28500</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">84.99</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">37600</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.903</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">59800</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.85</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">62700</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">84.85</span></td></tr><tr><td><span class="structured-scalar">2026-06-06</span></td><td><span class="structured-scalar">73000</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.8763</span></td></tr><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">31000</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.7038</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">39000</span></td><td><span class="structured-scalar">11</span></td><td><span class="structured-scalar">84.3</span></td></tr><tr><td><span class="structured-scalar">2026-06-22</span></td><td><span class="structured-scalar">42000</span></td><td><span class="structured-scalar">5</span></td><td><span class="structured-scalar">84.8151</span></td></tr></tbody></table></div></td></tr><tr><th>전세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-10</span></td><td><span class="structured-scalar">43900</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9521</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">29500</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">84.97</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">24150</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">84.9416</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">27000</span></td><td><span class="structured-scalar">9</span></td><td><span class="structured-scalar">84.952</span></td></tr><tr><td><span class="structured-scalar">2026-06-22</span></td><td><span class="structured-scalar">46000</span></td><td><span class="structured-scalar">21</span></td><td><span class="structured-scalar">84.9521</span></td></tr><tr><td><span class="structured-scalar">2026-06-19</span></td><td><span class="structured-scalar">38000</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.72</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">41000</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.85</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">30000</span></td><td><span class="structured-scalar">13</span></td><td><span class="structured-scalar">84.73</span></td></tr><tr><td><span class="structured-scalar">2026-06-20</span></td><td><span class="structured-scalar">38850</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.94</span></td></tr><tr><td><span class="structured-scalar">2026-06-09</span></td><td><span class="structured-scalar">48000</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">84.8763</span></td></tr></tbody></table></div></td></tr><tr><th>월세 거래</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>보증금</th><th>월세 거래</th><th>층</th><th>전용면적</th></tr></thead><tbody><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">9790</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">6</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">5000</span></td><td><span class="structured-scalar">140</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.94</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">11390</span></td><td><span class="structured-scalar">57</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-24</span></td><td><span class="structured-scalar">12990</span></td><td><span class="structured-scalar">53</span></td><td><span class="structured-scalar">2</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">9790</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">12</span></td><td><span class="structured-scalar">84.7474</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">9790</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">4</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">11390</span></td><td><span class="structured-scalar">59</span></td><td><span class="structured-scalar">5</span></td><td><span class="structured-scalar">84.9701</span></td></tr><tr><td><span class="structured-scalar">2026-06-23</span></td><td><span class="structured-scalar">16210</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">10</span></td><td><span class="structured-scalar">84.71</span></td></tr><tr><td><span class="structured-scalar">2026-06-12</span></td><td><span class="structured-scalar">4000</span></td><td><span class="structured-scalar">110</span></td><td><span class="structured-scalar">1</span></td><td><span class="structured-scalar">84.9568</span></td></tr><tr><td><span class="structured-scalar">2026-06-05</span></td><td><span class="structured-scalar">9790</span></td><td><span class="structured-scalar">63</span></td><td><span class="structured-scalar">8</span></td><td><span class="structured-scalar">84.7474</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 수집 비고</th><td><span class="empty">-</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>매매 평균</th><td><span class="structured-scalar">48610</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="structured-scalar">53.3</span></td></tr><tr><th>예상차익률</th><td><span class="structured-scalar">87.7</span></td></tr><tr><th>전세 평균</th><td><span class="structured-scalar">36640</span></td></tr><tr><th>전세가율</th><td><span class="structured-scalar">75.4</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">1</span></td></tr></tbody></table></div></td></tr><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260625_083524_realestate_full_20260625_20260725\2_아파트_서울_인천_경기_20260625_20260725_20260625_0952.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">49</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">아파트</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">874</span></td></tr><tr><th>part</th><td><span class="structured-scalar">2</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">501~874</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260625 ~ 20260725</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-25 09:52:56</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260625_20260725_20260625_0952.json</span></td></tr></tbody></table></div></td></tr><tr><th> internal cs no</th><td><span class="structured-scalar">20250130055979</span></td></tr><tr><th> detail cache enriched</th><td><span class="structured-scalar">예</span></td></tr></tbody></table></div></td></tr><tr><th> detail cache status</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>item detail</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>case detail</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>current status</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>nearby stats</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</section>
+</main>
+</body>
+</html>
