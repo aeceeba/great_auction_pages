@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>2025타경64589 상세 조회 자료</title>
+<style>
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #18202a;
+  --muted: #667085;
+  --line: #d8dde6;
+  --good: #0f766e;
+  --wait: #946200;
+  --risk: #b42318;
+  --accent: #1d4ed8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+main {
+  width: min(1120px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+.hero {
+  padding: 12px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.hero p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+.meta {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.audit-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.summary-card,
+.guide,
+.candidate-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.summary-card {
+  padding: 14px;
+}
+.summary-card span,
+.facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+}
+.summary-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.guide {
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.guide h2,
+.candidate-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.guide ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.guide code {
+  overflow-wrap: anywhere;
+}
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.criteria-card {
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #f8fafc;
+}
+.criteria-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.criteria-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.criteria-card li {
+  margin: 5px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.collection-audit {
+  border-color: #cbd5e1;
+}
+.collection-audit .summary-grid {
+  margin: 10px 0 12px;
+}
+.audit-cache-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.audit-cache-list li {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f8fafc;
+}
+.audit-cache-list strong,
+.audit-cache-list span {
+  display: block;
+}
+.audit-cache-list span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.ok-note {
+  margin: 0;
+  color: var(--good);
+  font-weight: 700;
+}
+.llm-review {
+  border-color: #c7d2fe;
+  background: #f8fbff;
+}
+.llm-meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.llm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.llm-pick {
+  border: 1px solid #dbe3f0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 13px 14px;
+}
+.llm-pick h3,
+.llm-followups h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.llm-pick h3 a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.llm-pick h3 a:hover {
+  text-decoration: underline;
+}
+.llm-rank {
+  display: inline-block;
+  margin-right: 6px;
+  color: #3730a3;
+  font-size: 13px;
+}
+.llm-pick h4 {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.llm-pick ul,
+.llm-followups ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.llm-pick li,
+.llm-followups li {
+  margin: 5px 0;
+}
+.llm-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.llm-badges span {
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 3px 8px;
+  color: #3730a3;
+  background: #eef2ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+.llm-basic-info {
+  margin: 10px 0 12px;
+  padding: 10px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #fbfdff;
+}
+.llm-basic-info .address {
+  margin-top: 0;
+}
+.llm-basic-info .link-row {
+  margin: 8px 0 10px;
+}
+.llm-facts {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.llm-detail-link {
+  margin: 0;
+}
+.llm-detail-link a {
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+.llm-detail-link a:hover {
+  text-decoration: underline;
+}
+.llm-rerank {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-left: 3px solid #6366f1;
+  background: #f8fafc;
+  color: var(--text);
+}
+.llm-rerank strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #3730a3;
+}
+.llm-price {
+  margin: 12px 0 0;
+  color: var(--text);
+  font-weight: 700;
+}
+.llm-followups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.candidate-section {
+  margin-top: 24px;
+}
+.candidate-section.good h2 { color: var(--good); }
+.candidate-section.wait h2 { color: var(--wait); }
+.candidate-section.risk h2 { color: var(--risk); }
+.region-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.city-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0 10px;
+  padding: 8px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+.tab-list {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.region-button,
+.city-button,
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.region-button span,
+.city-button span,
+.tab-button span {
+  display: inline-flex;
+  min-width: 28px;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 12px;
+}
+.region-button.active,
+.city-button.active,
+.tab-button.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+.region-button.active span,
+.city-button.active span,
+.tab-button.active span {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+.region-view {
+  display: none;
+}
+.region-view.active {
+  display: block;
+}
+.city-view {
+  display: none;
+}
+.city-view.active {
+  display: block;
+}
+.tab-panel {
+  display: none;
+  margin-top: 12px;
+}
+.tab-panel.active {
+  display: block;
+}
+.category-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+.category-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.category-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.candidate-card {
+  padding: 16px;
+  margin: 10px 0;
+}
+.candidate-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.candidate-head h3 {
+  display: inline;
+  margin: 0;
+  font-size: 18px;
+}
+.candidate-head h3 a,
+.hero a,
+.link-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.candidate-head h3 a:hover,
+.hero a:hover,
+.link-row a:hover {
+  text-decoration: underline;
+}
+.rank {
+  display: inline-flex;
+  min-width: 34px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #e7eefc;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+.score {
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--accent);
+}
+.address {
+  margin: 8px 0 12px;
+  color: var(--muted);
+}
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef4ff;
+  border: 1px solid #d7e5ff;
+  font-size: 13px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.facts div {
+  padding: 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+}
+.facts strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.data-health {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 14px;
+}
+.data-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid #d8dde6;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.data-chip.ok {
+  border-color: #99f6e4;
+  background: #ecfdf5;
+  color: var(--good);
+}
+.data-chip.warn {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: var(--wait);
+}
+.data-chip.bad {
+  border-color: #fecaca;
+  background: #fff1f2;
+  color: var(--risk);
+}
+.data-chip.missing {
+  border-color: #e5e7eb;
+  background: #f8fafc;
+  color: #64748b;
+}
+.detail {
+  margin-top: 12px;
+}
+.detail p {
+  margin: 6px 0;
+}
+.comp-summary {
+  color: var(--text);
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+}
+.comp-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.comp-table th,
+.comp-table td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #e7ebf1;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comp-table th {
+  background: #f2f5f9;
+  color: var(--muted);
+  font-weight: 800;
+}
+.analysis-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e7ebf1;
+}
+.analysis-block h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.investment-opinion {
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.risk-list,
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.risk-list li,
+.review-list li {
+  margin: 7px 0;
+}
+.risk-list strong {
+  display: block;
+}
+.risk-list span {
+  display: block;
+  color: var(--muted);
+}
+.risk-list li.high strong { color: var(--risk); }
+.risk-list li.medium strong { color: var(--wait); }
+.risk-list li.low strong { color: var(--good); }
+.structured-section {
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.structured-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+.structured-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.kv-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+.kv-table th,
+.kv-table td,
+.data-table th,
+.data-table td {
+  vertical-align: top;
+  border-top: 1px solid #e7ebf1;
+  padding: 8px 9px;
+  font-size: 13px;
+  text-align: left;
+}
+.kv-table th {
+  width: 178px;
+  min-width: 150px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+.data-table th {
+  color: var(--muted);
+  background: #f2f5f9;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.structured-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.structured-list li {
+  margin: 5px 0;
+}
+.structured-scalar {
+  overflow-wrap: anywhere;
+}
+.empty {
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  main { width: min(100% - 20px, 720px); padding-top: 18px; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { font-size: 25px; }
+  .category-heading { display: block; }
+  .category-heading p { margin-top: 3px; }
+}
+@media (max-width: 460px) {
+  .summary-grid,
+  .facts { grid-template-columns: 1fr; }
+  .candidate-head { display: block; }
+  .score { display: inline-block; margin-top: 8px; }
+}
+
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p><a href="../investment_review.html">← 투자 검토 리포트로 돌아가기</a></p>
+<h1>2025타경64589 상세 조회 자료</h1>
+<div class="meta">#284 · 고양시 토지 분류 상위 후보 · 원천 분석 reports\20260627_063147_realestate_full_20260627_20260727\analysis.json</div>
+</section>
+<section class="summary-grid">
+<div class="summary-card"><span>점수</span><strong>D/30.7</strong><p>권리 리스크 해소 전 보류</p></div>
+<div class="summary-card"><span>입찰일</span><strong>20260701</strong><p>D-4</p></div>
+<div class="summary-card"><span>최저가</span><strong>17.5억</strong><p>감정가 24.9억</p></div>
+<div class="summary-card"><span>유찰</span><strong>1회</strong><p>직전최저가 24.9억</p></div>
+<div class="summary-card"><span>시세대비</span><strong>-</strong><p>예상차익 -</p></div>
+<div class="summary-card"><span>권장상한</span><strong>-</strong><p>실거래 표본 부족</p></div>
+<div class="summary-card"><span>자료상태</span><strong>확인 5/5</strong><p>미지원 1</p></div>
+</section>
+<section class="guide">
+<h2>경기도 고양시 덕양구 내유동 405-2</h2>
+<div class="link-row"><a href="https://search.naver.com/search.naver?query=2025%ED%83%80%EA%B2%BD64589%20%EB%B2%95%EC%9B%90%EA%B2%BD%EB%A7%A4" target="_blank" rel="noopener">사건번호 검색</a><a href="https://www.courtauction.go.kr/pgj/index.on?w2xPath=/pgj/ui/pgj100/PGJ151F00.xml" target="_blank" rel="noopener">법원 경매 검색</a></div>
+</section>
+<section class="candidate-section wait">
+<h2>종합 투자 의견</h2>
+<div class="analysis-block investment-opinion"><h4>종합 투자 의견</h4><ul class="review-list"><li>종합 의견: D/30.7점입니다. 가격보다 권리·점유 리스크 해소가 먼저라 현재는 보류가 기본입니다.</li><li>가격 의견: 최저가는 시세 대비 -, 예상차익은 -입니다. 권장상한은 실거래 표본 부족 상태입니다.</li><li>토지 기준으로는 자동 시세보다 토지이용계획, 접도, 지목, 경사, 형상, 개발행위 제한이 우선입니다.</li><li>농취증, 전용 가능성, 맹지·접도 문제, 지분/공유자 협상이 정리되지 않으면 매수 후 출구가 좁아질 수 있습니다.</li><li>다음 행동: 대항력, 배당요구, 점유자, 체납, 인수 권리를 먼저 해소합니다. 해소 전에는 가격 검토를 진행하지 않습니다.</li></ul></div>
+</section>
+<section class="candidate-section good">
+<h2>거래표본 전체</h2>
+<p class="comp-summary"><strong>거래표본</strong> 비교 실거래 없음 · 기준 주소/면적 · 매매 0건 · 전세 0건 · 월세 0건</p>
+<p class="empty">수집된 실거래/임대 표본 없음</p>
+</section>
+<section class="candidate-section risk">
+<h2>리스크와 검토 포인트</h2>
+<div class="analysis-block"><h4>권리 분석</h4><ul class="review-list"><li>사건 성격은 부동산임의경매이고 청구금액은 15.5억입니다. 청구금액이 최저가와 크게 차이 나는지 배당 가능성을 함께 봐야 합니다.</li><li>배당요구종기는 2026-01-22입니다. 임차인이나 이해관계인이 있으면 이 날짜 전 배당요구 여부가 보증금 인수 판단의 출발점입니다.</li><li>이해관계인은 14명/건 수집됐습니다. 구성은 근저당권자 3건, 채권자 2건, 가압류권자 2건, 교부권자 2건, 승계인 1건, 채무자 1건, 소유자 1건, 채무자겸소유자 1건, 지상권자 1건입니다.</li><li>사건상 임차인 목록은 자동 수집 기준으로 두드러지지 않습니다. 그래도 전입세대열람과 현황조사서 원문으로 실제 점유자를 재확인해야 합니다.</li><li>채권자/담보권자 항목은 7건입니다. 구성은 근저당권자 3건, 채권자 2건, 가압류권자 2건입니다. 배당순위는 등기 순번 기준으로 다시 확인해야 합니다.</li><li>현황조사 점유 내용: 점유관계 별도 확인, 현황조사 임차인 0명 (현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함)</li><li>매각조건 특이사항: 1. 일괄매각 2. 공부상 지목은 전이나 현황은 모두 휴경지 상태, 농지취득자격증명 제출 필요(매각결정기일까지 미제출시 보증금은 반환하지 않음).</li><li>권리상 주의 키워드: 전입. 해당 문구가 말소되는 권리인지 낙찰자 인수 권리인지 원문과 등기로 분리해야 합니다.</li></ul></div>
+<div class="analysis-block"><h4>리스크</h4><ul class="risk-list"><li class="high"><strong>높음 · 농지취득자격증명</strong><span>농지취득자격증명 발급이 안 되면 매각불허가 또는 보증금 리스크가 생길 수 있습니다.</span></li><li class="high"><strong>높음 · 폐기물/환경 리스크</strong><span>폐기물 관련 문구가 있어 처리비, 원상복구, 환경 책임이 발생할 수 있습니다.</span></li><li class="medium"><strong>중간 · 토지 수동 비교 필요</strong><span>토지는 지목, 용도지역, 접도, 개발행위 가능성에 따라 가치가 크게 달라집니다. 주변 토지 실거래와 토지이용계획확인원이 필요합니다.</span></li><li class="medium"><strong>중간 · 비교 실거래 없음</strong><span>수집된 국토부 실거래 표본이 없어 자동 산정한 시세대비 할인율을 신뢰하기 어렵습니다. 외부 호가와 같은 면적 실거래를 수동으로 보강해야 합니다.</span></li><li class="medium"><strong>중간 · 전입 가능성</strong><span>전입 관련 문구가 있어 대항력 있는 임차인이 존재할 가능성을 배제할 수 없습니다.</span></li><li class="medium"><strong>중간 · 점유 문구</strong><span>원문 또는 수집 데이터에 점유 관련 문구가 있습니다. 실제 점유자, 명도 가능성, 협상 비용을 확인해야 합니다.</span></li><li class="low"><strong>낮음 · 채권자 다수</strong><span>채권자 수가 많아 배당관계가 복잡할 수 있습니다. 배당표와 말소/인수 관계를 등기 기준으로 확인해야 합니다.</span></li></ul></div>
+<div class="analysis-block"><h4>검토 포인트</h4><ul class="review-list"><li>가격 매력이 있어도 권리 또는 점유 리스크가 먼저입니다. 말소/인수 관계가 확인되기 전에는 보류가 기본입니다.</li><li>거래표본은 비교 실거래 없음이며 매매 0건 기준입니다. 표본이 같은 단지/동/면적인지 검색 링크에서 직접 확인하세요.</li><li>매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</li><li>등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</li><li>입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</li><li>high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</li></ul></div>
+</section>
+<section class="candidate-section">
+<h2>자료 수집 상태</h2>
+<div class="data-health" aria-label="자료상태"><span class="data-chip ok" title="">물건상세 완료</span><span class="data-chip ok" title="">사건상세 완료</span><span class="data-chip ok" title="">현황/점유 완료</span><span class="data-chip ok" title="">인근통계 완료</span><span class="data-chip warn" title="토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요">실거래 미지원</span></div>
+</section>
+<section class="candidate-section">
+<h2>수집 섹션별 조회 정보</h2>
+<details class="structured-section" open><summary>매각조건/기일</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">1550361215</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="structured-scalar">1. 일괄매각
+2. 공부상 지목은 전이나 현황은 모두 휴경지 상태, 농지취득자격증명 제출 필요(매각결정기일까지 미제출시 보증금은 반환하지 않음).</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260527</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제101호 입찰법정</span></td><td><span class="structured-scalar">2494764000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260701</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제101호 입찰법정</span></td><td><span class="structured-scalar">1746335000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260708</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">제101호 입찰법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">제101호입찰법정</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>현황조사/점유</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-4</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-8</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-9</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-9</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하였고 덧붙인 전입세대 확인서 및 외국인체류 확인서에 등재자가 없으니 점유관계 등은 별도 확인이 필요함(현황조사안내문 부착함)&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-10</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 405-2</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 405-3</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>사건상세/이해관계인</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">유OOOOOOOOOOOOOOOOO</span></td><td><span class="structured-scalar">승계인</span></td><td><span class="structured-scalar">other</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">유OOOOOOOOOOOOOOOOO(OOOOOO)</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">피OOOOO OOOO</span></td><td><span class="structured-scalar">채무자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">박OO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">주OOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">서OOOOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">금OOOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">삼OOO OOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">고OOOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">(주)OOOOOOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOO</span></td><td><span class="structured-scalar">지상권자</span></td><td><span class="structured-scalar">other</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">주OOO OOOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">유OOOOOOOOOOOOOOOOO(OOOOOO)</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">박OO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">주OOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">서OOOOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">금OOOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">삼OOO OOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20260122</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>감정평가 요약</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[토지 전 2063㎡]</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 고양시 덕양구 내유동 소재 &amp;amp;quot;내유초등학교&amp;amp;quot; 남측 및 북서측 인근에 위치하며, 기호1, 2, 3, 5 토지 주위는 근린생활시설, 다세대주택 등이 혼재하며, 기호6, 7 토지 주위는 공장 및 농경지 등이 혼재하는 지역임.
+본건까지 차량의 진출입이 가능하며, 인근에 노선버스정류장이 소재하는 등 대중교통이용여건은 보통임.
+본건 기호1, 2, 3, 5 토지는 평지의 부정형 토지로서 현황 상업용 및 상업나지 등 상태이며, 기호6, 7 토지는 현황 전 상태임.
+본건 기호1, 2, 3, 5 토지는 일단으로 남서측 및 남동측으로 각각 노폭 약 20m, 노폭 약8m 내외의 포장도로와 접하며, 기호6,7 토지는 북측으로 노폭 약 4m 내외의 포장도로에 접함.
+기호1 - 계획관리지역, 성장관리계획구역(주거zone), 소로2류(폭 8m~10m)(접합), 가축사육제한구역(2024-11-12)(일부제한구역 [전부제한구역으로부터 제한거리 500m (소,젖소,말 제한)])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 가축사육제한구역(2024-11-12)(전부제한구역 [도시지역{주거,상업,공업,녹지(자연취락지구)}및주거밀집지역])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 절대보호구역(내유초등학교)&amp;lt;교육환경 보호에 관한 법률&amp;gt;, 과밀억제권역&amp;lt;수도권정비계획법&amp;gt;, 토지거래계약에관한허가구역(2025-08-26)(외국인등대상,대상용도(단독,다가구,연립,다세대주택,아파트)로사용되는토지)임,  기호2, 3 - 공히 계획관리지역, 성장관리계획구역(주거zone), 가축사육제한구역(2024-11-12)(일부제한구역 [전부제한구역으로부터 제한거리 500m (소,젖소,말 제한)])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 가축사육제한구역(2024-11-12)(전부제한구역 [도시지역{주거,상업,공업,녹지(자연취락지구)}및주거밀집지역])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 절대보호구역(내유초등학교)&amp;lt;교육환경 보호에 관한 법률&amp;gt;, 과밀억제권역&amp;lt;수도권정비계획법&amp;gt;, 토지거래계약에관한허가구역(2025-08-26)(외국인등대상,대상용도(단독,다가구,연립,다세대주택,아파트)로사용되는토지)임,   기호5 - 계획관리지역, 성장관리계획구역(주거zone), 가축사육제한구역(2024-11-12)(일부제한구역 [전부제한구역으로부터 제한거리 500m (소,젖소,말 제한)])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 가축사육제한구역(2024-11-12)(전부제한구역 [도시지역{주거,상업,공업,녹지(자연취락지구)}및주거밀집지역])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 절대보호구역(내유초등학교)&amp;lt;교육환경 보호에 관한 법률&amp;gt;, 과밀억제권역&amp;lt;수도권정비계획법&amp;gt;, 토지거래계약에관한허가구역(2025-08-26)(외국인등대상,대상용도(단독,다가구,연립,다세대주택,아파트)로사용되는토지)임,  기호6, 7 - 공히 계획관리지역, 성장관리계획구역(산업zone), 가축사육제한구역(2024-11-12)(일부제한구역 [전부제한구역으로부터 제한거리 500m (소,젖소,말 제한)])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 과밀억제권역&amp;lt;수도권정비계획법&amp;gt;, (한강)폐기물매립시설 설치제한지역&amp;lt;한강수계 상수원수질개선 및 주민지원 등에 관한 법률&amp;gt;, 토지거래계약에관한허가구역(2025-08-26)(외국인등대상,대상용도(단독,다가구,연립,다세대주택,아파트)로사용되는토지)임.  
+없음.
+본건 기호1, 5 토지는 공부상 &amp;amp;apos;답&amp;amp;apos;이나 현황 &amp;amp;apos;상업용 부속토지&amp;amp;apos; 상태임.
+임대관계 등은 미상임.
+기호4 건물 벽돌조 슬래브지붕 단층주택 (사용승인일 : 미상) 외벽 : 몰탈위 페인팅 및 무늬목 마감 등, 창호 : 샷시 창호 등임.  부속 벽돌조 슬래브 단층 부속사 (사용승인일 : 미상) 외벽 : 몰탈위 페인팅 마감 등, 창호 : 샷시 창호 등임.
+기준시점 현재 공실 상태로 일반건축물대장상 &amp;amp;quot;근린생활시설 등&amp;amp;quot;임.
+기본적인 위생 및 급배수설비 난방설비 등이 구비되어 있는 것으로 탐문조사됨.
+후첨 &amp;amp;apos;지적개황도&amp;amp;apos; 등 참조
+건물 등기사항전부증명서 상 &amp;amp;quot;단층주택 및 부속사&amp;amp;quot; 로 기재되어 있으나, 일반건축물 대장상 &amp;amp;quot;제2종근린생활시설 및 부속사&amp;amp;quot; 로 기재되어 있음.
+임대관계 등은 미상임.</span></td></tr><tr><th>건물명</th><td><span class="empty">-</span></td></tr><tr><th>지번 주소</th><td><span class="empty">-</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>x</th><td><span class="structured-scalar">298385</span></td></tr><tr><th>y</th><td><span class="structured-scalar">568914</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>가격 근거</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">23</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">804703733</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">413391730</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">49</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.8</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">30</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">951667791</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">516355993</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">50</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.8</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">41</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">1224126307</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">658592288</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">50</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.8</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="structured-scalar">토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">7</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+<details class="structured-section" open><summary>수집 메타</summary><div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260627_063147_realestate_full_20260627_20260727\2_토지_서울_인천_경기_20260627_20260727_20260627_0801.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">182</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">토지</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">739</span></td></tr><tr><th>part</th><td><span class="structured-scalar">2</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">501~739</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260627 ~ 20260727</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-27 08:02:05</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260627_20260727_20260627_0801.json</span></td></tr></tbody></table></div></td></tr></tbody></table></div></details>
+</section>
+<section class="candidate-section">
+<h2>전체 조회 데이터</h2>
+<p class="empty">분석 item 전체를 요약하지 않고 항목별로 펼쳐 표시합니다.</p>
+<div class="structured-scroll"><table class="kv-table depth-0"><tbody><tr><th>점수</th><td><span class="structured-scalar">30.7</span></td></tr><tr><th>등급</th><td><span class="structured-scalar">D</span></td></tr><tr><th>판정</th><td><span class="structured-scalar">권리 리스크 해소 전 보류</span></td></tr><tr><th>점수 구성</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>시세 할인 점수</th><td><span class="structured-scalar">0.6</span></td></tr><tr><th>경매 할인 점수</th><td><span class="structured-scalar">11.2</span></td></tr><tr><th>토지 사업성 점수</th><td><span class="structured-scalar">13.5</span></td></tr><tr><th>환금성 점수</th><td><span class="structured-scalar">0.0</span></td></tr><tr><th>권리/리스크 점수</th><td><span class="structured-scalar">0.0</span></td></tr><tr><th>데이터 신뢰도 점수</th><td><span class="structured-scalar">5.4</span></td></tr></tbody></table></div></td></tr><tr><th>정규화 정보</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경64589</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">고양지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">전답</span></td></tr><tr><th>자산 구분</th><td><span class="structured-scalar">land</span></td></tr><tr><th>투자 전략</th><td><span class="structured-scalar">land-development-or-adjacent-owner</span></td></tr><tr><th>시장 데이터 성격</th><td><span class="structured-scalar">manual_land_comps_required</span></td></tr><tr><th>수동 시세보강 필요</th><td><span class="structured-scalar">예</span></td></tr><tr><th>특수자산 검토 필요</th><td><span class="structured-scalar">예</span></td></tr><tr><th>자산별 목표 할인율</th><td><span class="structured-scalar">55.0</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 405-2</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260701</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">1746335000</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">2494764000</span></td></tr><tr><th>min bid manwon</th><td><span class="structured-scalar">174633.5</span></td></tr><tr><th>appraisal manwon</th><td><span class="structured-scalar">249476.4</span></td></tr><tr><th>매매 평균</th><td><span class="empty">-</span></td></tr><tr><th>전세 평균</th><td><span class="empty">-</span></td></tr><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>시세 대비 최저가</th><td><span class="empty">-</span></td></tr><tr><th>시세 할인율</th><td><span class="empty">-</span></td></tr><tr><th>예상차익률</th><td><span class="empty">-</span></td></tr><tr><th>전세가율</th><td><span class="empty">-</span></td></tr><tr><th>매매 표본 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>전세 표본 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>월세 표본 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>거래표본 품질</th><td><span class="structured-scalar">no_comps</span></td></tr><tr><th>비교 단지/명칭</th><td><span class="empty">-</span></td></tr><tr><th>비교 면적</th><td><span class="structured-scalar">0.0</span></td></tr><tr><th>매칭 방식</th><td><span class="empty">-</span></td></tr><tr><th>보조 매칭 기준</th><td><span class="empty">-</span></td></tr><tr><th>표본 비고</th><td><span class="structured-scalar">No comparable trade data was collected.</span></td></tr><tr><th>3개월 인근 매각건수</th><td><span class="structured-scalar">23.0</span></td></tr><tr><th>6개월 인근 매각건수</th><td><span class="structured-scalar">30.0</span></td></tr><tr><th>12개월 인근 매각건수</th><td><span class="structured-scalar">41.0</span></td></tr><tr><th>3개월 인근 매각가율</th><td><span class="structured-scalar">49.0</span></td></tr><tr><th>6개월 인근 매각가율</th><td><span class="structured-scalar">50.0</span></td></tr><tr><th>12개월 인근 매각가율</th><td><span class="structured-scalar">50.0</span></td></tr><tr><th>12개월 평균 유찰</th><td><span class="structured-scalar">2.8</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>현황조사 임차/점유 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">7</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="structured-scalar">토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요</span></td></tr><tr><th>임차/점유 감지</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 배당요구 확인</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 인수위험 감지</th><td><span class="structured-scalar">아니오</span></td></tr><tr><th>임차인 배당요구 상태</th><td><span class="structured-scalar">none</span></td></tr><tr><th>임차인 배당요구 판단</th><td><span class="structured-scalar">임차인 또는 점유자 위험 신호가 자동 수집 기준으로 두드러지지 않습니다.</span></td></tr><tr><th>검토 버킷</th><td><span class="structured-scalar">legal_review</span></td></tr><tr><th>buffered gain pct</th><td><span class="empty">-</span></td></tr><tr><th>권장 입찰 상한</th><td><span class="empty">-</span></td></tr><tr><th>권장 상한 비고</th><td><span class="structured-scalar">실거래 표본 부족</span></td></tr><tr><th>점수 프로필</th><td><span class="structured-scalar">land-feasibility</span></td></tr><tr><th>점수 프로필 설명</th><td><span class="structured-scalar">토지: 접도, 용도지역, 개발행위 가능성, 수동 토지 시세 보강을 우선 반영</span></td></tr></tbody></table></div></td></tr><tr><th>리스크</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>위험도</th><th>키워드</th><th>사유</th></tr></thead><tbody><tr><td><span class="structured-scalar">high</span></td><td><span class="structured-scalar">농지취득자격증명</span></td><td><span class="structured-scalar">farmland acquisition certificate</span></td></tr><tr><td><span class="structured-scalar">high</span></td><td><span class="structured-scalar">폐기물</span></td><td><span class="structured-scalar">waste/environmental risk</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">land_manual_comps</span></td><td><span class="structured-scalar">land value requires zoning, road access, and local land comps</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">real_price.trade</span></td><td><span class="structured-scalar">no comparable trade found</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">전입</span></td><td><span class="structured-scalar">resident registration</span></td></tr><tr><td><span class="structured-scalar">medium</span></td><td><span class="structured-scalar">점유</span></td><td><span class="structured-scalar">occupancy</span></td></tr><tr><td><span class="structured-scalar">low</span></td><td><span class="structured-scalar">creditors</span></td><td><span class="structured-scalar">many creditor records</span></td></tr></tbody></table></div></td></tr><tr><th>기회 요인</th><td><ul class="structured-list"><li><span class="structured-scalar">학교: school nearby</span></li><li><span class="structured-scalar">버스: bus access</span></li><li><span class="structured-scalar">계획관리: planned management zoning</span></li></ul></td></tr><tr><th>확인할 사항</th><td><ul class="structured-list"><li><span class="structured-scalar">매각물건명세서, 현황조사서, 감정평가서 원문을 대조한다.</span></li><li><span class="structured-scalar">등기부등본 갑구/을구에서 말소기준권리와 인수 권리를 확인한다.</span></li><li><span class="structured-scalar">입찰 당일 변경, 취하, 유찰, 재매각 여부를 법원경매 사이트에서 재확인한다.</span></li><li><span class="structured-scalar">high risk flag가 있는 권리/점유 항목은 전문가 검토 전까지 투자 후보에서 보수적으로 제외한다.</span></li><li><span class="structured-scalar">동일 단지, 동일 면적, 최근 12개월 실거래를 수동으로 보강한다.</span></li><li><span class="structured-scalar">특별매각조건과 비고 문구를 원문 기준으로 해석한다.</span></li><li><span class="structured-scalar">토지는 토지이용계획확인원, 지목, 용도지역, 건폐율/용적률, 접도, 맹지 여부, 개발행위 제한을 확인한다.</span></li><li><span class="structured-scalar">농지라면 농지취득자격증명 가능성과 전용 가능성을 입찰 전 확인한다.</span></li><li><span class="structured-scalar">관리비 체납, 점유자 협상비, 수리비, 대출 가능 금액을 입찰가 산정표에 반영한다.</span></li></ul></td></tr><tr><th>Codex 요약</th><td><span class="structured-scalar">2025타경64589 전답 [land/land-development-or-adjacent-owner] / 경기도 고양시 덕양구 내유동 405-2 | score=30.7(D, 권리 리스크 해소 전 보류) | min_bid=17.5억, appraisal=24.9억, avg_trade=-, bid_vs_market=None%, est_gain=None%, jeonse_rate=None% | risks=[high:농지취득자격증명, high:폐기물, medium:land_manual_comps, medium:real_price.trade, medium:전입] | opportunities=[학교: school nearby, 버스: bus access, 계획관리: planned management zoning]</span></td></tr><tr><th>수집 원본</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>사건번호</th><td><span class="structured-scalar">2025타경64589</span></td></tr><tr><th>법원</th><td><span class="structured-scalar">고양지원</span></td></tr><tr><th>물건 유형</th><td><span class="structured-scalar">전답</span></td></tr><tr><th>주소</th><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 405-2</span></td></tr><tr><th>감정/물건 상세</th><td><span class="structured-scalar">[토지 전 2063㎡]</span></td></tr><tr><th>감정가</th><td><span class="structured-scalar">2494764000</span></td></tr><tr><th>최저입찰가</th><td><span class="structured-scalar">1746335000</span></td></tr><tr><th>입찰일</th><td><span class="structured-scalar">20260701</span></td></tr><tr><th>입찰 장소</th><td><span class="structured-scalar">제101호입찰법정</span></td></tr><tr><th>유찰 횟수</th><td><span class="structured-scalar">1</span></td></tr><tr><th>사건 유형</th><td><span class="structured-scalar">부동산임의경매</span></td></tr><tr><th>청구금액</th><td><span class="structured-scalar">1550361215</span></td></tr><tr><th>특별매각조건/비고</th><td><span class="structured-scalar">1. 일괄매각
+2. 공부상 지목은 전이나 현황은 모두 휴경지 상태, 농지취득자격증명 제출 필요(매각결정기일까지 미제출시 보증금은 반환하지 않음).</span></td></tr><tr><th>감정평가 포인트</th><td><span class="structured-scalar">본건은 경기도 고양시 덕양구 내유동 소재 &amp;amp;quot;내유초등학교&amp;amp;quot; 남측 및 북서측 인근에 위치하며, 기호1, 2, 3, 5 토지 주위는 근린생활시설, 다세대주택 등이 혼재하며, 기호6, 7 토지 주위는 공장 및 농경지 등이 혼재하는 지역임.
+본건까지 차량의 진출입이 가능하며, 인근에 노선버스정류장이 소재하는 등 대중교통이용여건은 보통임.
+본건 기호1, 2, 3, 5 토지는 평지의 부정형 토지로서 현황 상업용 및 상업나지 등 상태이며, 기호6, 7 토지는 현황 전 상태임.
+본건 기호1, 2, 3, 5 토지는 일단으로 남서측 및 남동측으로 각각 노폭 약 20m, 노폭 약8m 내외의 포장도로와 접하며, 기호6,7 토지는 북측으로 노폭 약 4m 내외의 포장도로에 접함.
+기호1 - 계획관리지역, 성장관리계획구역(주거zone), 소로2류(폭 8m~10m)(접합), 가축사육제한구역(2024-11-12)(일부제한구역 [전부제한구역으로부터 제한거리 500m (소,젖소,말 제한)])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 가축사육제한구역(2024-11-12)(전부제한구역 [도시지역{주거,상업,공업,녹지(자연취락지구)}및주거밀집지역])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 절대보호구역(내유초등학교)&amp;lt;교육환경 보호에 관한 법률&amp;gt;, 과밀억제권역&amp;lt;수도권정비계획법&amp;gt;, 토지거래계약에관한허가구역(2025-08-26)(외국인등대상,대상용도(단독,다가구,연립,다세대주택,아파트)로사용되는토지)임,  기호2, 3 - 공히 계획관리지역, 성장관리계획구역(주거zone), 가축사육제한구역(2024-11-12)(일부제한구역 [전부제한구역으로부터 제한거리 500m (소,젖소,말 제한)])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 가축사육제한구역(2024-11-12)(전부제한구역 [도시지역{주거,상업,공업,녹지(자연취락지구)}및주거밀집지역])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 절대보호구역(내유초등학교)&amp;lt;교육환경 보호에 관한 법률&amp;gt;, 과밀억제권역&amp;lt;수도권정비계획법&amp;gt;, 토지거래계약에관한허가구역(2025-08-26)(외국인등대상,대상용도(단독,다가구,연립,다세대주택,아파트)로사용되는토지)임,   기호5 - 계획관리지역, 성장관리계획구역(주거zone), 가축사육제한구역(2024-11-12)(일부제한구역 [전부제한구역으로부터 제한거리 500m (소,젖소,말 제한)])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 가축사육제한구역(2024-11-12)(전부제한구역 [도시지역{주거,상업,공업,녹지(자연취락지구)}및주거밀집지역])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 절대보호구역(내유초등학교)&amp;lt;교육환경 보호에 관한 법률&amp;gt;, 과밀억제권역&amp;lt;수도권정비계획법&amp;gt;, 토지거래계약에관한허가구역(2025-08-26)(외국인등대상,대상용도(단독,다가구,연립,다세대주택,아파트)로사용되는토지)임,  기호6, 7 - 공히 계획관리지역, 성장관리계획구역(산업zone), 가축사육제한구역(2024-11-12)(일부제한구역 [전부제한구역으로부터 제한거리 500m (소,젖소,말 제한)])&amp;lt;가축분뇨의 관리 및 이용에 관한 법률&amp;gt;, 과밀억제권역&amp;lt;수도권정비계획법&amp;gt;, (한강)폐기물매립시설 설치제한지역&amp;lt;한강수계 상수원수질개선 및 주민지원 등에 관한 법률&amp;gt;, 토지거래계약에관한허가구역(2025-08-26)(외국인등대상,대상용도(단독,다가구,연립,다세대주택,아파트)로사용되는토지)임.  
+없음.
+본건 기호1, 5 토지는 공부상 &amp;amp;apos;답&amp;amp;apos;이나 현황 &amp;amp;apos;상업용 부속토지&amp;amp;apos; 상태임.
+임대관계 등은 미상임.
+기호4 건물 벽돌조 슬래브지붕 단층주택 (사용승인일 : 미상) 외벽 : 몰탈위 페인팅 및 무늬목 마감 등, 창호 : 샷시 창호 등임.  부속 벽돌조 슬래브 단층 부속사 (사용승인일 : 미상) 외벽 : 몰탈위 페인팅 마감 등, 창호 : 샷시 창호 등임.
+기준시점 현재 공실 상태로 일반건축물대장상 &amp;amp;quot;근린생활시설 등&amp;amp;quot;임.
+기본적인 위생 및 급배수설비 난방설비 등이 구비되어 있는 것으로 탐문조사됨.
+후첨 &amp;amp;apos;지적개황도&amp;amp;apos; 등 참조
+건물 등기사항전부증명서 상 &amp;amp;quot;단층주택 및 부속사&amp;amp;quot; 로 기재되어 있으나, 일반건축물 대장상 &amp;amp;quot;제2종근린생활시설 및 부속사&amp;amp;quot; 로 기재되어 있음.
+임대관계 등은 미상임.</span></td></tr><tr><th>건물명</th><td><span class="empty">-</span></td></tr><tr><th>좌표</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>x</th><td><span class="structured-scalar">298385</span></td></tr><tr><th>y</th><td><span class="structured-scalar">568914</span></td></tr></tbody></table></div></td></tr><tr><th>지번 주소</th><td><span class="empty">-</span></td></tr><tr><th>기일/입찰 이력</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>계약일</th><th>time</th><th>place</th><th>min price</th><th>sold price</th><th>result</th></tr></thead><tbody><tr><td><span class="structured-scalar">20260527</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제101호 입찰법정</span></td><td><span class="structured-scalar">2494764000</span></td><td><span class="empty">-</span></td><td><span class="structured-scalar">002</span></td></tr><tr><td><span class="structured-scalar">20260701</span></td><td><span class="structured-scalar">1000</span></td><td><span class="structured-scalar">제101호 입찰법정</span></td><td><span class="structured-scalar">1746335000</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr><tr><td><span class="structured-scalar">20260708</span></td><td><span class="structured-scalar">1400</span></td><td><span class="structured-scalar">제101호 입찰법정</span></td><td><span class="structured-scalar">0</span></td><td><span class="structured-scalar">0</span></td><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>이해관계인</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">유OOOOOOOOOOOOOOOOO</span></td><td><span class="structured-scalar">승계인</span></td><td><span class="structured-scalar">other</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">유OOOOOOOOOOOOOOOOO(OOOOOO)</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">피OOOOO OOOO</span></td><td><span class="structured-scalar">채무자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">이OO</span></td><td><span class="structured-scalar">채무자겸소유자</span></td><td><span class="structured-scalar">debtor</span></td></tr><tr><td><span class="structured-scalar">박OO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">주OOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">서OOOOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">금OOOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">삼OOO OOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">고OOOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">(주)OOOOOOOO</span></td><td><span class="structured-scalar">교부권자</span></td><td><span class="structured-scalar">delivery_claimant</span></td></tr><tr><td><span class="structured-scalar">주OOO OOOO</span></td><td><span class="structured-scalar">지상권자</span></td><td><span class="structured-scalar">other</span></td></tr></tbody></table></div></td></tr><tr><th>임차인</th><td><span class="empty">-</span></td></tr><tr><th>채권자</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>name</th><th>role</th><th>category</th></tr></thead><tbody><tr><td><span class="structured-scalar">주OOO OOOOOOOO</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">유OOOOOOOOOOOOOOOOO(OOOOOO)</span></td><td><span class="structured-scalar">채권자</span></td><td><span class="structured-scalar">creditor</span></td></tr><tr><td><span class="structured-scalar">박OO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">주OOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">서OOOOOOOOO</span></td><td><span class="structured-scalar">근저당권자</span></td><td><span class="structured-scalar">mortgage</span></td></tr><tr><td><span class="structured-scalar">금OOOOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr><tr><td><span class="structured-scalar">삼OOO OOOO</span></td><td><span class="structured-scalar">가압류권자</span></td><td><span class="structured-scalar">provisional_seizure</span></td></tr></tbody></table></div></td></tr><tr><th>배당요구 종기</th><td><span class="structured-scalar">20260122</span></td></tr><tr><th>사건상세 비고</th><td><span class="empty">-</span></td></tr><tr><th>점유 현황</th><td><div class="structured-scroll"><table class="data-table"><thead><tr><th>주소</th><th>possession</th><th>description</th><th>임차인 수</th></tr></thead><tbody><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-4</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-8</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-9</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-9</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하였고 덧붙인 전입세대 확인서 및 외국인체류 확인서에 등재자가 없으니 점유관계 등은 별도 확인이 필요함(현황조사안내문 부착함)&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 431-10</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 405-2</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr><tr><td><span class="structured-scalar">경기도 고양시 덕양구 내유동 405-3</span></td><td><span class="structured-scalar">09</span></td><td><span class="structured-scalar">현지 조사차 방문하였으나 이해관계인을 만나지 못하여 점유관계를 알 수 없으므로 점유관계 등은 별도 확인이 필요함&lt;br /&gt;</span></td><td><span class="structured-scalar">0</span></td></tr></tbody></table></div></td></tr><tr><th>현황조사 임차/점유</th><td><span class="empty">-</span></td></tr><tr><th>현황조사 비고</th><td><span class="empty">-</span></td></tr><tr><th>인근 경매 통계</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>3m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">23</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">804703733</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">413391730</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">49</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.8</span></td></tr></tbody></table></div></td></tr><tr><th>6m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">30</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">951667791</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">516355993</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">50</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.8</span></td></tr></tbody></table></div></td></tr><tr><th>12m</th><td><div class="structured-scroll"><table class="kv-table depth-3"><tbody><tr><th>매각건수</th><td><span class="structured-scalar">41</span></td></tr><tr><th>평균감정가</th><td><span class="structured-scalar">1224126307</span></td></tr><tr><th>평균매각가</th><td><span class="structured-scalar">658592288</span></td></tr><tr><th>매각가율</th><td><span class="structured-scalar">50</span></td></tr><tr><th>평균유찰횟수</th><td><span class="structured-scalar">2.8</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><span class="empty">-</span></td></tr><tr><th>실거래 수집 비고</th><td><span class="structured-scalar">토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요</span></td></tr><tr><th>가격 분석</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>감정가 대비 최저가</th><td><span class="structured-scalar">70.0</span></td></tr><tr><th>임차인 수</th><td><span class="structured-scalar">0</span></td></tr><tr><th>채권자 수</th><td><span class="structured-scalar">7</span></td></tr></tbody></table></div></td></tr><tr><th>수집 파일</th><td><span class="structured-scalar">C:\Users\lsyko\Documents\git\great_auction\outputs\20260627_063147_realestate_full_20260627_20260727\2_토지_서울_인천_경기_20260627_20260727_20260627_0801.json</span></td></tr><tr><th>수집 순번</th><td><span class="structured-scalar">182</span></td></tr><tr><th>수집 메타</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>물건 유형</th><td><span class="structured-scalar">토지</span></td></tr><tr><th>total collected</th><td><span class="structured-scalar">739</span></td></tr><tr><th>part</th><td><span class="structured-scalar">2</span></td></tr><tr><th>total parts</th><td><span class="structured-scalar">2</span></td></tr><tr><th>part range</th><td><span class="structured-scalar">501~739</span></td></tr><tr><th>region</th><td><span class="structured-scalar">서울특별시, 인천광역시, 경기도</span></td></tr><tr><th>date range</th><td><span class="structured-scalar">20260627 ~ 20260727</span></td></tr><tr><th>fetch date</th><td><span class="structured-scalar">2026-06-27 08:02:05</span></td></tr><tr><th>target profile</th><td><span class="structured-scalar">all-realestate</span></td></tr><tr><th>collection audit status</th><td><span class="structured-scalar">degraded</span></td></tr><tr><th>collection audit file</th><td><span class="structured-scalar">collection_audit_서울_인천_경기_20260627_20260727_20260627_0801.json</span></td></tr></tbody></table></div></td></tr><tr><th> internal cs no</th><td><span class="structured-scalar">20250130064589</span></td></tr><tr><th> detail cache enriched</th><td><span class="structured-scalar">예</span></td></tr></tbody></table></div></td></tr><tr><th> detail cache status</th><td><div class="structured-scroll"><table class="kv-table depth-1"><tbody><tr><th>item detail</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>case detail</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>current status</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>nearby stats</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">ok</span></td></tr><tr><th>사유</th><td><span class="empty">-</span></td></tr></tbody></table></div></td></tr><tr><th>실거래 자료</th><td><div class="structured-scroll"><table class="kv-table depth-2"><tbody><tr><th>status</th><td><span class="structured-scalar">unsupported</span></td></tr><tr><th>사유</th><td><span class="structured-scalar">토지/도로/특수자산은 자동 실거래 매칭 미지원: 토지이용계획, 접도, 인접지 거래 수동 보강 필요</span></td></tr></tbody></table></div></td></tr></tbody></table></div></td></tr></tbody></table></div>
+</section>
+</main>
+</body>
+</html>
