@@ -1,0 +1,1053 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>투자 검토 필요 리포트</title>
+<style>
+
+:root {
+  color-scheme: light;
+  --bg: #f6f7f9;
+  --panel: #ffffff;
+  --text: #18202a;
+  --muted: #667085;
+  --line: #d8dde6;
+  --good: #0f766e;
+  --wait: #946200;
+  --risk: #b42318;
+  --accent: #1d4ed8;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+main {
+  width: min(1120px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+.hero {
+  padding: 12px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+.hero p {
+  margin: 0 0 6px;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hero h1 {
+  margin: 0;
+  font-size: 30px;
+  letter-spacing: 0;
+}
+.meta {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+  margin: 18px 0;
+}
+.audit-grid {
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+}
+.summary-card,
+.guide,
+.candidate-card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+}
+.summary-card {
+  padding: 14px;
+}
+.summary-card span,
+.facts span {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+}
+.summary-card strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 24px;
+}
+.summary-card p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.guide {
+  padding: 16px 18px;
+  margin-bottom: 18px;
+}
+.guide h2,
+.candidate-section h2 {
+  margin: 0 0 10px;
+  font-size: 20px;
+  letter-spacing: 0;
+}
+.guide ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.guide code {
+  overflow-wrap: anywhere;
+}
+.criteria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+.criteria-card {
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: #f8fafc;
+}
+.criteria-card h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.criteria-card ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.criteria-card li {
+  margin: 5px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.collection-audit {
+  border-color: #cbd5e1;
+}
+.collection-audit .summary-grid {
+  margin: 10px 0 12px;
+}
+.audit-cache-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 8px;
+  margin: 0 0 12px;
+  padding: 0;
+  list-style: none;
+}
+.audit-cache-list li {
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f8fafc;
+}
+.audit-cache-list strong,
+.audit-cache-list span {
+  display: block;
+}
+.audit-cache-list span {
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.ok-note {
+  margin: 0;
+  color: var(--good);
+  font-weight: 700;
+}
+.llm-review {
+  border-color: #c7d2fe;
+  background: #f8fbff;
+}
+.llm-meta {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 13px;
+}
+.llm-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
+.llm-pick {
+  border: 1px solid #dbe3f0;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 13px 14px;
+}
+.llm-pick h3,
+.llm-followups h3 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.llm-pick h3 a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.llm-pick h3 a:hover {
+  text-decoration: underline;
+}
+.llm-rank {
+  display: inline-block;
+  margin-right: 6px;
+  color: #3730a3;
+  font-size: 13px;
+}
+.llm-pick h4 {
+  margin: 12px 0 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.llm-pick ul,
+.llm-followups ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.llm-pick li,
+.llm-followups li {
+  margin: 5px 0;
+}
+.llm-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.llm-badges span {
+  border: 1px solid #c7d2fe;
+  border-radius: 999px;
+  padding: 3px 8px;
+  color: #3730a3;
+  background: #eef2ff;
+  font-size: 12px;
+  font-weight: 800;
+}
+.llm-basic-info {
+  margin: 10px 0 12px;
+  padding: 10px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #fbfdff;
+}
+.llm-basic-info .address {
+  margin-top: 0;
+}
+.llm-basic-info .link-row {
+  margin: 8px 0 10px;
+}
+.llm-facts {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+.llm-detail-link {
+  margin: 0;
+}
+.llm-detail-link a {
+  color: var(--accent);
+  font-weight: 800;
+  text-decoration: none;
+}
+.llm-detail-link a:hover {
+  text-decoration: underline;
+}
+.llm-rerank {
+  margin: 10px 0 0;
+  padding: 8px 10px;
+  border-left: 3px solid #6366f1;
+  background: #f8fafc;
+  color: var(--text);
+}
+.llm-rerank strong {
+  display: block;
+  margin-bottom: 3px;
+  color: #3730a3;
+}
+.llm-price {
+  margin: 12px 0 0;
+  color: var(--text);
+  font-weight: 700;
+}
+.llm-followups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.candidate-section {
+  margin-top: 24px;
+}
+.candidate-section.good h2 { color: var(--good); }
+.candidate-section.wait h2 { color: var(--wait); }
+.candidate-section.risk h2 { color: var(--risk); }
+.region-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 8px;
+}
+.city-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 8px 0 10px;
+  padding: 8px;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  background: #ffffff;
+}
+.tab-list {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+  padding: 8px 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.region-button,
+.city-button,
+.tab-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 7px 11px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--text);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+}
+.region-button span,
+.city-button span,
+.tab-button span {
+  display: inline-flex;
+  min-width: 28px;
+  justify-content: center;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #eef2f7;
+  color: var(--muted);
+  font-size: 12px;
+}
+.region-button.active,
+.city-button.active,
+.tab-button.active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #ffffff;
+}
+.region-button.active span,
+.city-button.active span,
+.tab-button.active span {
+  background: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+.region-view {
+  display: none;
+}
+.region-view.active {
+  display: block;
+}
+.city-view {
+  display: none;
+}
+.city-view.active {
+  display: block;
+}
+.tab-panel {
+  display: none;
+  margin-top: 12px;
+}
+.tab-panel.active {
+  display: block;
+}
+.category-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 8px 0;
+}
+.category-heading h3 {
+  margin: 0;
+  font-size: 18px;
+}
+.category-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.candidate-card {
+  padding: 16px;
+  margin: 10px 0;
+}
+.candidate-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.candidate-head h3 {
+  display: inline;
+  margin: 0;
+  font-size: 18px;
+}
+.candidate-head h3 a,
+.hero a,
+.link-row a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 800;
+}
+.candidate-head h3 a:hover,
+.hero a:hover,
+.link-row a:hover {
+  text-decoration: underline;
+}
+.rank {
+  display: inline-flex;
+  min-width: 34px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 999px;
+  background: #e7eefc;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 800;
+}
+.score {
+  white-space: nowrap;
+  font-weight: 800;
+  color: var(--accent);
+}
+.address {
+  margin: 8px 0 12px;
+  color: var(--muted);
+}
+.link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 12px;
+}
+.link-row a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #eef4ff;
+  border: 1px solid #d7e5ff;
+  font-size: 13px;
+}
+.facts {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 8px;
+}
+.facts div {
+  padding: 10px;
+  border-radius: 6px;
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+}
+.facts strong {
+  display: block;
+  margin-top: 2px;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+.data-health {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 12px 0 14px;
+}
+.data-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 26px;
+  border: 1px solid #d8dde6;
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: #f8fafc;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+.data-chip.ok {
+  border-color: #99f6e4;
+  background: #ecfdf5;
+  color: var(--good);
+}
+.data-chip.warn {
+  border-color: #fde68a;
+  background: #fffbeb;
+  color: var(--wait);
+}
+.data-chip.bad {
+  border-color: #fecaca;
+  background: #fff1f2;
+  color: var(--risk);
+}
+.data-chip.missing {
+  border-color: #e5e7eb;
+  background: #f8fafc;
+  color: #64748b;
+}
+.detail {
+  margin-top: 12px;
+}
+.detail p {
+  margin: 6px 0;
+}
+.comp-summary {
+  color: var(--text);
+}
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin: 10px 0 14px;
+}
+.comp-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+.comp-table th,
+.comp-table td {
+  padding: 8px 9px;
+  border-bottom: 1px solid #e7ebf1;
+  text-align: left;
+  font-size: 13px;
+  white-space: nowrap;
+}
+.comp-table th {
+  background: #f2f5f9;
+  color: var(--muted);
+  font-weight: 800;
+}
+.analysis-block {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid #e7ebf1;
+}
+.analysis-block h4 {
+  margin: 0 0 8px;
+  font-size: 15px;
+}
+.investment-opinion {
+  background: #f8fafc;
+  border: 1px solid #e7ebf1;
+  border-radius: 8px;
+  padding: 12px 14px;
+}
+.risk-list,
+.review-list {
+  margin: 0;
+  padding-left: 20px;
+}
+.risk-list li,
+.review-list li {
+  margin: 7px 0;
+}
+.risk-list strong {
+  display: block;
+}
+.risk-list span {
+  display: block;
+  color: var(--muted);
+}
+.risk-list li.high strong { color: var(--risk); }
+.risk-list li.medium strong { color: var(--wait); }
+.risk-list li.low strong { color: var(--good); }
+.structured-section {
+  margin: 10px 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+.structured-section summary {
+  cursor: pointer;
+  padding: 12px 14px;
+  font-weight: 800;
+}
+.structured-scroll {
+  width: 100%;
+  overflow-x: auto;
+}
+.kv-table,
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+}
+.kv-table th,
+.kv-table td,
+.data-table th,
+.data-table td {
+  vertical-align: top;
+  border-top: 1px solid #e7ebf1;
+  padding: 8px 9px;
+  font-size: 13px;
+  text-align: left;
+}
+.kv-table th {
+  width: 178px;
+  min-width: 150px;
+  color: var(--muted);
+  background: #f8fafc;
+  font-weight: 800;
+}
+.data-table th {
+  color: var(--muted);
+  background: #f2f5f9;
+  font-weight: 800;
+  white-space: nowrap;
+}
+.data-table td {
+  white-space: nowrap;
+}
+.structured-list {
+  margin: 0;
+  padding-left: 18px;
+}
+.structured-list li {
+  margin: 5px 0;
+}
+.structured-scalar {
+  overflow-wrap: anywhere;
+}
+.empty {
+  color: var(--muted);
+}
+@media (max-width: 860px) {
+  main { width: min(100% - 20px, 720px); padding-top: 18px; }
+  .summary-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .facts { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { font-size: 25px; }
+  .category-heading { display: block; }
+  .category-heading p { margin-top: 3px; }
+}
+@media (max-width: 460px) {
+  .summary-grid,
+  .facts { grid-template-columns: 1fr; }
+  .candidate-head { display: block; }
+  .score { display: inline-block; margin-top: 8px; }
+}
+
+.browser { margin: 18px 0; }
+.filter-bar {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--bg); padding: 10px 0 8px; border-bottom: 1px solid var(--line);
+}
+.chip-row { display: flex; gap: 6px; overflow-x: auto; padding: 3px 0; scrollbar-width: none; align-items: center; }
+.chip-row::-webkit-scrollbar { display: none; }
+.chip {
+  flex: 0 0 auto; border: 1px solid var(--line); background: var(--panel); color: var(--text);
+  border-radius: 999px; padding: 6px 12px; font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.chip span { margin-left: 6px; color: var(--muted); font-weight: 500; font-size: 12px; }
+.chip.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip.active span { color: #dbe6ff; }
+.city-select, .sort-select {
+  flex: 0 0 auto; border: 1px solid var(--line); border-radius: 8px; padding: 6px 8px; background: var(--panel); font-size: 14px;
+}
+.filter-foot { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.result-count { color: var(--muted); font-size: 14px; font-weight: 600; }
+.card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 10px; margin-top: 12px; }
+.mini-card {
+  display: block; background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+  padding: 12px 14px; color: inherit; text-decoration: none;
+}
+.mini-card[hidden] { display: none; }
+.card-grid > * { min-width: 0; }
+.mini-card:hover { border-color: var(--accent); box-shadow: 0 2px 10px rgba(29, 78, 216, 0.08); }
+.mini-head { display: flex; align-items: baseline; gap: 8px; }
+.mini-head strong { font-size: 16px; color: var(--accent); }
+.mini-type { color: var(--muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dday { margin-left: auto; font-size: 13px; font-weight: 700; color: var(--risk); white-space: nowrap; }
+.mini-address { margin: 4px 0 8px; color: var(--muted); font-size: 13px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mini-metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+.mini-metrics span { display: block; color: var(--muted); font-size: 11px; }
+.mini-metrics strong { display: block; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mini-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+.tag { font-size: 12px; padding: 2px 8px; border-radius: 999px; background: #eef1f5; color: var(--text); }
+.tag.good { background: #e6f4f1; color: var(--good); }
+.tag.wait { background: #fdf3e1; color: var(--wait); }
+.tag.muted { color: var(--muted); }
+.more-button {
+  display: block; width: 100%; margin-top: 12px; padding: 10px; border: 1px solid var(--line);
+  border-radius: 8px; background: var(--panel); font-weight: 700; cursor: pointer;
+}
+details.fold { margin: 12px 0; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; }
+details.fold > summary { padding: 12px 14px; font-weight: 700; cursor: pointer; }
+details.fold > section { margin: 0; border: 0; }
+@media (max-width: 520px) {
+  .card-grid { grid-template-columns: 1fr; }
+  .mini-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+<p>경매 투자 스크리닝</p>
+<h1>투자 검토 필요 리포트</h1>
+<div class="meta">분석 생성 2026-10-14 18:35:36 · 리포트 생성 2026-10-14 18:35:42</div>
+</section>
+
+<section class="browser" id="browser">
+<div class="filter-bar">
+<div class="chip-row"><button type="button" class="chip active" data-filter="strategy" data-value="any">내 기준 추천<span></span></button><button type="button" class="chip" data-filter="strategy" data-value="resale">차익형<span></span></button><button type="button" class="chip" data-filter="strategy" data-value="rental">수익형<span></span></button><button type="button" class="chip" data-filter="strategy" data-value="startup">상가 창업형<span></span></button><button type="button" class="chip" data-filter="strategy" data-value="reviewed">Claude 판단<span></span></button><button type="button" class="chip" data-filter="strategy" data-value="all">전체 후보<span></span></button></div>
+<div class="chip-row"><button type="button" class="chip active" data-filter="region" data-value="all">전체 지역<span></span></button><button type="button" class="chip" data-filter="region" data-value="seoul">서울<span></span></button><button type="button" class="chip" data-filter="region" data-value="gyeonggi">경기<span></span></button><button type="button" class="chip" data-filter="region" data-value="incheon">인천<span></span></button><select class="city-select" data-filter-select="city" hidden><option value="all">경기 전체 도시</option><option value="고양시">고양시</option><option value="동두천시">동두천시</option><option value="수원시">수원시</option><option value="양주시">양주시</option><option value="양평군">양평군</option><option value="여주시">여주시</option><option value="연천군">연천군</option><option value="오산시">오산시</option><option value="용인시">용인시</option><option value="의정부시">의정부시</option><option value="이천시">이천시</option><option value="파주시">파주시</option><option value="포천시">포천시</option><option value="화성시">화성시</option></select></div>
+<div class="chip-row"><button type="button" class="chip active" data-filter="category" data-value="all">전체 유형<span></span></button><button type="button" class="chip" data-filter="category" data-value="residential">주거<span></span></button><button type="button" class="chip" data-filter="category" data-value="commercial">상가/업무<span></span></button><button type="button" class="chip" data-filter="category" data-value="industrial">공장/창고<span></span></button><button type="button" class="chip" data-filter="category" data-value="land">토지<span></span></button><button type="button" class="chip" data-filter="category" data-value="road_special">도로/특수<span></span></button><button type="button" class="chip" data-filter="category" data-value="vehicle">차량/중기<span></span></button></div>
+<div class="filter-foot"><span class="result-count"></span><select class="sort-select" data-filter-select="sort"><option value="rank">추천순</option><option value="bid">입찰일 빠른순</option><option value="dist">목동 가까운순</option><option value="score">점수순</option></select></div>
+</div>
+<div class="card-grid">
+<a class="mini-card" href="cases/001_2026_100398.html" data-region="seoul" data-city="" data-category="residential" data-strategies="rental" data-score="41.7" data-net="-6389002" data-yield="8.6" data-dist="8.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100398</strong><span class="mini-type">오피스텔</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 관악구 봉천동 921-6 청룡오피스텔 8층808호</p><div class="mini-metrics"><div><span>최저가</span><strong>75,000,000원</strong></div><div><span>예상 낙찰</span><strong>75,000,000원</strong></div><div><span>필요 현금</span><strong>31,020,000원</strong></div><div><span>월세 수익률</span><strong>8.6%</strong></div></div><div class="mini-tags"><span class="tag good">기준 충족</span><span class="tag good">수익형</span><span class="tag">D/41.7</span><span class="tag">목동 8.6km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/002_2026_100329.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="startup" data-score="69.5" data-net="0" data-yield="0" data-dist="6.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100329</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 동작구 신대방동 395-68 보라매나산스위트 지하1층046호</p><div class="mini-metrics"><div><span>최저가</span><strong>66,000,000원</strong></div><div><span>예상 낙찰</span><strong>66,000,000원</strong></div><div><span>필요 현금</span><strong>29,574,500원</strong></div><div><span>시세대비</span><strong>22.8%</strong></div></div><div class="mini-tags"><span class="tag good">기준 충족</span><span class="tag good">창업형</span><span class="tag">C/69.5</span><span class="tag">목동 6.5km</span></div></a>
+<a class="mini-card" href="cases/003_2026_100692.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="startup" data-score="62.4" data-net="0" data-yield="0" data-dist="13.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100692</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 중구 신당동 844 남산타운아파트 상가5동 3층317호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.5억</strong></div><div><span>예상 낙찰</span><strong>1.5억</strong></div><div><span>필요 현금</span><strong>58,626,000원</strong></div><div><span>시세대비</span><strong>35.8%</strong></div></div><div class="mini-tags"><span class="tag good">기준 충족</span><span class="tag good">창업형</span><span class="tag">D/62.4</span><span class="tag">목동 13.0km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/004_2026_100692.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="startup" data-score="62.4" data-net="0" data-yield="0" data-dist="13.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100692</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 중구 신당동 844 남산타운아파트 상가5동 3층318호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.6억</strong></div><div><span>예상 낙찰</span><strong>1.6억</strong></div><div><span>필요 현금</span><strong>64,134,500원</strong></div><div><span>시세대비</span><strong>24.6%</strong></div></div><div class="mini-tags"><span class="tag good">기준 충족</span><span class="tag good">창업형</span><span class="tag">D/62.4</span><span class="tag">목동 13.0km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/005_2026_100692.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="startup" data-score="62.4" data-net="0" data-yield="0" data-dist="13.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100692</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 중구 신당동 844 남산타운아파트 상가5동 3층323호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.5억</strong></div><div><span>예상 낙찰</span><strong>1.5억</strong></div><div><span>필요 현금</span><strong>58,626,000원</strong></div><div><span>시세대비</span><strong>35.8%</strong></div></div><div class="mini-tags"><span class="tag good">기준 충족</span><span class="tag good">창업형</span><span class="tag">D/62.4</span><span class="tag">목동 13.0km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/006_2026_100692.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="startup" data-score="62.4" data-net="0" data-yield="0" data-dist="13.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100692</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 중구 신당동 844 남산타운아파트 상가5동 3층326호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.6억</strong></div><div><span>예상 낙찰</span><strong>1.6억</strong></div><div><span>필요 현금</span><strong>64,134,500원</strong></div><div><span>시세대비</span><strong>24.6%</strong></div></div><div class="mini-tags"><span class="tag good">기준 충족</span><span class="tag good">창업형</span><span class="tag">D/62.4</span><span class="tag">목동 13.0km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/007_2026_243.html" data-region="gyeonggi" data-city="의정부시" data-category="commercial" data-strategies="" data-score="67.9" data-net="0" data-yield="0" data-dist="30.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경243</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 고산동 996-1 한강듀클래스의정부고산 에이동 7층703호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.4억</strong></div><div><span>예상 낙찰</span><strong>2.4억</strong></div><div><span>필요 현금</span><strong>92,720,500원</strong></div><div><span>시세대비</span><strong>57.5%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">C/67.9</span><span class="tag">목동 30.9km</span></div></a>
+<a class="mini-card" href="cases/008_2025_30933.html" data-region="gyeonggi" data-city="여주시" data-category="commercial" data-strategies="" data-score="67.2" data-net="0" data-yield="0" data-dist="71.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30933</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 월송동 345-51</p><div class="mini-metrics"><div><span>최저가</span><strong>8.4억</strong></div><div><span>예상 낙찰</span><strong>8.4억</strong></div><div><span>필요 현금</span><strong>3.2억</strong></div><div><span>시세대비</span><strong>68.2%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">C/67.2</span><span class="tag">목동 71.3km</span></div></a>
+<a class="mini-card" href="cases/009_2025_1568.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="56.4" data-net="0" data-yield="0" data-dist="29.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경1568</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 장안구 영화동 101-7 벽산아파트 101동 7층704호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.1억</strong></div><div><span>예상 낙찰</span><strong>3.1억</strong></div><div><span>필요 현금</span><strong>3.5억</strong></div><div><span>시세대비</span><strong>47.7%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/56.4</span><span class="tag">목동 29.2km</span></div></a>
+<a class="mini-card" href="cases/010_2026_100722.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="52.3" data-net="0" data-yield="0" data-dist="12.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100722</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 서초구 방배동 847-34 방배대우유로카운티 1층105호</p><div class="mini-metrics"><div><span>최저가</span><strong>42.0억</strong></div><div><span>예상 낙찰</span><strong>42.0억</strong></div><div><span>필요 현금</span><strong>46.5억</strong></div><div><span>시세대비</span><strong>69.4%</strong></div></div><div class="mini-tags"><span class="tag muted">필요 현금 초과</span><span class="tag">D/52.3</span><span class="tag">목동 12.3km</span></div></a>
+<a class="mini-card" href="cases/011_2026_71239.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="64.6" data-net="168521874" data-yield="5.5" data-dist="27.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71239</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 의정부동 721 의정부롯데캐슬골드파크1단지 102동 5층 501호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.0억</strong></div><div><span>예상 낙찰</span><strong>3.0억</strong></div><div><span>필요 현금</span><strong>1.4억</strong></div><div><span>월세 수익률</span><strong>5.5%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/64.6</span><span class="tag">목동 27.3km</span><span class="tag wait">주의 1</span></div></a>
+<a class="mini-card" href="cases/012_2026_100692.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="" data-score="62.4" data-net="0" data-yield="0" data-dist="13.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100692</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 중구 신당동 844 남산타운아파트 상가5동 1층101호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.9억</strong></div><div><span>예상 낙찰</span><strong>2.9억</strong></div><div><span>필요 현금</span><strong>1.1억</strong></div><div><span>시세대비</span><strong>54.2%</strong></div></div><div class="mini-tags"><span class="tag muted">필요 현금 초과</span><span class="tag">D/62.4</span><span class="tag">목동 13.0km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/013_2026_100692.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="" data-score="62.4" data-net="0" data-yield="0" data-dist="13.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100692</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 중구 신당동 844 남산타운아파트 상가5동 3층315호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.6억</strong></div><div><span>예상 낙찰</span><strong>2.6억</strong></div><div><span>필요 현금</span><strong>1.0억</strong></div><div><span>시세대비</span><strong>43.2%</strong></div></div><div class="mini-tags"><span class="tag muted">필요 현금 초과</span><span class="tag">D/62.4</span><span class="tag">목동 13.0km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/014_2025_1487.html" data-region="gyeonggi" data-city="용인시" data-category="residential" data-strategies="" data-score="64.1" data-net="23536455" data-yield="1.1" data-dist="37.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경1487</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 용인시 기흥구 중동 1139 신동백서해그랑블2차 209동 6층604호</p><div class="mini-metrics"><div><span>최저가</span><strong>5.1억</strong></div><div><span>예상 낙찰</span><strong>5.1억</strong></div><div><span>필요 현금</span><strong>5.7억</strong></div><div><span>월세 수익률</span><strong>1.1%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">C/64.1</span><span class="tag">목동 37.2km</span></div></a>
+<a class="mini-card" href="cases/015_2026_4487.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="42.3" data-net="0" data-yield="0" data-dist="3.4" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경4487</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 양천구 신월동 331-68 제2층 제4호</p><div class="mini-metrics"><div><span>최저가</span><strong>85,000,000원</strong></div><div><span>예상 낙찰</span><strong>85,000,000원</strong></div><div><span>필요 현금</span><strong>98,939,000원</strong></div><div><span>시세대비</span><strong>48.6%</strong></div></div><div class="mini-tags"><span class="tag wait">수익 기준 미달</span><span class="tag">D/42.3</span><span class="tag">목동 3.4km</span></div></a>
+<a class="mini-card" href="cases/016_2026_4418.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="36.6" data-net="0" data-yield="0" data-dist="6.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경4418</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 강서구 마곡동 739-4 마곡헤리움1차 제9층 제931호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.5억</strong></div><div><span>예상 낙찰</span><strong>1.5억</strong></div><div><span>필요 현금</span><strong>58,095,000원</strong></div><div><span>시세대비</span><strong>52.7%</strong></div></div><div class="mini-tags"><span class="tag wait">수익 기준 미달</span><span class="tag">D/36.6</span><span class="tag">목동 6.1km</span></div></a>
+<a class="mini-card" href="cases/017_2026_4310.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="34.5" data-net="0" data-yield="0" data-dist="2.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경4310</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 강서구 화곡동 920-16 청솔펠리스 제2층 제206호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.1억</strong></div><div><span>예상 낙찰</span><strong>1.1억</strong></div><div><span>필요 현금</span><strong>43,796,000원</strong></div><div><span>시세대비</span><strong>38.0%</strong></div></div><div class="mini-tags"><span class="tag wait">수익 기준 미달</span><span class="tag">D/34.5</span><span class="tag">목동 2.1km</span></div></a>
+<a class="mini-card" href="cases/018_2026_71210.html" data-region="gyeonggi" data-city="양주시" data-category="residential" data-strategies="" data-score="30.8" data-net="0" data-yield="0" data-dist="30.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71210</strong><span class="mini-type">단독주택</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 어둔동 418-2</p><div class="mini-metrics"><div><span>최저가</span><strong>6.2억</strong></div><div><span>예상 낙찰</span><strong>6.2억</strong></div><div><span>필요 현금</span><strong>3.1억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/30.8</span><span class="tag">목동 30.6km</span></div></a>
+<a class="mini-card" href="cases/019_2025_695.html" data-region="gyeonggi" data-city="양평군" data-category="residential" data-strategies="" data-score="30.8" data-net="0" data-yield="0" data-dist="68.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경695</strong><span class="mini-type">단독주택</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 지평면 월산리 1557-7</p><div class="mini-metrics"><div><span>최저가</span><strong>2.9억</strong></div><div><span>예상 낙찰</span><strong>2.9억</strong></div><div><span>필요 현금</span><strong>1.8억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/30.8</span><span class="tag">목동 68.2km</span></div></a>
+<a class="mini-card" href="cases/020_2025_511.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="27.9" data-net="0" data-yield="0" data-dist="62.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경511</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 죽당리 1549 404동 4층402호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.3억</strong></div><div><span>예상 낙찰</span><strong>2.3억</strong></div><div><span>필요 현금</span><strong>1.1억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/27.9</span><span class="tag">목동 62.3km</span></div></a>
+<a class="mini-card" href="cases/021_2025_702.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="27.9" data-net="0" data-yield="0" data-dist="65.4" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경702</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 대월면 초지리 461-51 1동 4층402호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.6억</strong></div><div><span>예상 낙찰</span><strong>1.6억</strong></div><div><span>필요 현금</span><strong>76,312,000원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/27.9</span><span class="tag">목동 65.4km</span></div></a>
+<a class="mini-card" href="cases/022_2025_31580.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="27.9" data-net="0" data-yield="0" data-dist="62.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31580</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 죽당리 1549 506동 3층301호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.2억</strong></div><div><span>예상 낙찰</span><strong>2.2억</strong></div><div><span>필요 현금</span><strong>1.0억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/27.9</span><span class="tag">목동 62.3km</span></div></a>
+<a class="mini-card" href="cases/023_2026_315.html" data-region="gyeonggi" data-city="포천시" data-category="residential" data-strategies="" data-score="26.7" data-net="0" data-yield="0" data-dist="40.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경315</strong><span class="mini-type">단독주택</span><span class="dday">D-14</span></div><p class="mini-address">경기도 포천시 내촌면 음현리 827-4</p><div class="mini-metrics"><div><span>최저가</span><strong>3.4억</strong></div><div><span>예상 낙찰</span><strong>3.4억</strong></div><div><span>필요 현금</span><strong>1.8억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/26.7</span><span class="tag">목동 40.8km</span></div></a>
+<a class="mini-card" href="cases/024_2025_104346.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="" data-score="56.8" data-net="0" data-yield="0" data-dist="15.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경104346</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 강남구 청담동 5-29 지하층1호</p><div class="mini-metrics"><div><span>최저가</span><strong>22.6억</strong></div><div><span>예상 낙찰</span><strong>22.6억</strong></div><div><span>필요 현금</span><strong>8.3억</strong></div><div><span>시세대비</span><strong>15.6%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/56.8</span><span class="tag">목동 15.9km</span></div></a>
+<a class="mini-card" href="cases/025_2026_100257.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="" data-score="42.4" data-net="0" data-yield="0" data-dist="12.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100257</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 중구 묵정동 35 힐스테이트남산 101동 1층110호</p><div class="mini-metrics"><div><span>최저가</span><strong>12.2억</strong></div><div><span>예상 낙찰</span><strong>12.2억</strong></div><div><span>필요 현금</span><strong>4.4억</strong></div><div><span>시세대비</span><strong>277.0%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/42.4</span><span class="tag">목동 12.5km</span></div></a>
+<a class="mini-card" href="cases/026_2025_104091.html" data-region="seoul" data-city="" data-category="commercial" data-strategies="" data-score="36.8" data-net="0" data-yield="0" data-dist="14.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경104091</strong><span class="mini-type">근린시설</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 강남구 논현동 144-7</p><div class="mini-metrics"><div><span>최저가</span><strong>93.6억</strong></div><div><span>예상 낙찰</span><strong>93.6억</strong></div><div><span>필요 현금</span><strong>33.4억</strong></div><div><span>시세대비</span><strong>1022.5%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/36.8</span><span class="tag">목동 14.1km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/027_2024_42275.html" data-region="gyeonggi" data-city="이천시" data-category="industrial" data-strategies="" data-score="21.4" data-net="0" data-yield="0" data-dist="55.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경42275</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 마장면 표교리 696</p><div class="mini-metrics"><div><span>최저가</span><strong>200.3억</strong></div><div><span>예상 낙찰</span><strong>200.3억</strong></div><div><span>필요 현금</span><strong>91.4억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/21.4</span><span class="tag">목동 55.6km</span></div></a>
+<a class="mini-card" href="cases/028_2026_70562.html" data-region="gyeonggi" data-city="양주시" data-category="land" data-strategies="" data-score="37.0" data-net="0" data-yield="0" data-dist="39.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경70562</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 남면 상수리 324-2</p><div class="mini-metrics"><div><span>최저가</span><strong>13.0억</strong></div><div><span>예상 낙찰</span><strong>13.0억</strong></div><div><span>필요 현금</span><strong>7.2억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/37.0</span><span class="tag">목동 39.9km</span></div></a>
+<a class="mini-card" href="cases/029_2026_70720.html" data-region="gyeonggi" data-city="양주시" data-category="land" data-strategies="" data-score="37.0" data-net="0" data-yield="0" data-dist="36.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경70720</strong><span class="mini-type">대지</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 덕계동 894-3</p><div class="mini-metrics"><div><span>최저가</span><strong>52.6억</strong></div><div><span>예상 낙찰</span><strong>52.6억</strong></div><div><span>필요 현금</span><strong>29.3억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/37.0</span><span class="tag">목동 36.7km</span></div></a>
+<a class="mini-card" href="cases/030_2025_609.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="37.0" data-net="0" data-yield="0" data-dist="73.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경609</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 오학동 62-8</p><div class="mini-metrics"><div><span>최저가</span><strong>3.8억</strong></div><div><span>예상 낙찰</span><strong>3.8억</strong></div><div><span>필요 현금</span><strong>2.1억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/37.0</span><span class="tag">목동 73.1km</span></div></a>
+<a class="mini-card" href="cases/031_2025_30231.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="37.0" data-net="0" data-yield="0" data-dist="46.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30231</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 강하면 왕창리 629-23</p><div class="mini-metrics"><div><span>최저가</span><strong>5.5억</strong></div><div><span>예상 낙찰</span><strong>5.5억</strong></div><div><span>필요 현금</span><strong>3.0억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/37.0</span><span class="tag">목동 46.7km</span></div></a>
+<a class="mini-card" href="cases/032_2025_31160.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="37.0" data-net="0" data-yield="0" data-dist="63.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31160</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 용문면 오촌리 144-3</p><div class="mini-metrics"><div><span>최저가</span><strong>34,684,000원</strong></div><div><span>예상 낙찰</span><strong>34,684,000원</strong></div><div><span>필요 현금</span><strong>19,284,304원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/37.0</span><span class="tag">목동 63.7km</span></div></a>
+<a class="mini-card" href="cases/033_2025_31284.html" data-region="gyeonggi" data-city="이천시" data-category="land" data-strategies="" data-score="34.0" data-net="0" data-yield="0" data-dist="67.4" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31284</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 대월면 군량리 628-10</p><div class="mini-metrics"><div><span>최저가</span><strong>12,096,000원</strong></div><div><span>예상 낙찰</span><strong>12,096,000원</strong></div><div><span>필요 현금</span><strong>6,725,376원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/34.0</span><span class="tag">목동 67.4km</span></div></a>
+<a class="mini-card" href="cases/034_2025_31443.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="30.8" data-net="0" data-yield="0" data-dist="68.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31443</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 가남읍 신해리 332-5</p><div class="mini-metrics"><div><span>최저가</span><strong>67,267,200원</strong></div><div><span>예상 낙찰</span><strong>67,267,200원</strong></div><div><span>필요 현금</span><strong>37,400,563원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/30.8</span><span class="tag">목동 68.9km</span></div></a>
+<a class="mini-card" href="cases/035_2025_4957.html" data-region="gyeonggi" data-city="양주시" data-category="land" data-strategies="" data-score="25.6" data-net="0" data-yield="0" data-dist="41.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경4957</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 봉양동 412</p><div class="mini-metrics"><div><span>최저가</span><strong>10.3억</strong></div><div><span>예상 낙찰</span><strong>10.3억</strong></div><div><span>필요 현금</span><strong>5.7억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/25.6</span><span class="tag">목동 41.3km</span></div></a>
+<a class="mini-card" href="cases/036_2024_5979.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="24.5" data-net="0" data-yield="0" data-dist="72.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경5979</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 가남읍 안금리 462-4</p><div class="mini-metrics"><div><span>최저가</span><strong>37,929,000원</strong></div><div><span>예상 낙찰</span><strong>37,929,000원</strong></div><div><span>필요 현금</span><strong>21,088,524원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/24.5</span><span class="tag">목동 72.8km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/037_2025_30026.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="24.5" data-net="0" data-yield="0" data-dist="79.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30026</strong><span class="mini-type">대지</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 점동면 부구리 384-1</p><div class="mini-metrics"><div><span>최저가</span><strong>43,065,000원</strong></div><div><span>예상 낙찰</span><strong>43,065,000원</strong></div><div><span>필요 현금</span><strong>23,944,140원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/24.5</span><span class="tag">목동 79.8km</span></div></a>
+<a class="mini-card" href="cases/038_2025_609.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="22.5" data-net="0" data-yield="0" data-dist="67.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경609</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 세종대왕면 번도리 839</p><div class="mini-metrics"><div><span>최저가</span><strong>4.0억</strong></div><div><span>예상 낙찰</span><strong>4.0억</strong></div><div><span>필요 현금</span><strong>2.2억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.5</span><span class="tag">목동 67.1km</span></div></a>
+<a class="mini-card" href="cases/039_2025_619.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="22.5" data-net="0" data-yield="0" data-dist="65.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경619</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 흥천면 신근리 677-15</p><div class="mini-metrics"><div><span>최저가</span><strong>1.4억</strong></div><div><span>예상 낙찰</span><strong>1.4억</strong></div><div><span>필요 현금</span><strong>79,104,344원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.5</span><span class="tag">목동 65.3km</span></div></a>
+<a class="mini-card" href="cases/040_2026_100595.html" data-region="seoul" data-city="" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100595</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 서초구 우면동 696</p><div class="mini-metrics"><div><span>최저가</span><strong>84.4억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/041_2026_105.html" data-region="seoul" data-city="" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경105</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 금천구 가산동 327-30 가산와이피피아르센타워 제15층 제1507호</p><div class="mini-metrics"><div><span>최저가</span><strong>5.1억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/042_2026_4822.html" data-region="seoul" data-city="" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경4822</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 구로구 구로동 191-7 에이스테크노타워8 제8층 제801호</p><div class="mini-metrics"><div><span>최저가</span><strong>18.0억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/043_2025_73455.html" data-region="gyeonggi" data-city="양주시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경73455</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 은현면 운암리 227-3</p><div class="mini-metrics"><div><span>최저가</span><strong>24.4억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/044_2026_71030.html" data-region="gyeonggi" data-city="의정부시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71030</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 의정부동 602-6</p><div class="mini-metrics"><div><span>최저가</span><strong>17.9억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/045_2024_60581.html" data-region="gyeonggi" data-city="화성시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경60581</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 화성시 향남읍 길성리 270</p><div class="mini-metrics"><div><span>최저가</span><strong>17.1억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/046_2024_4761.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경4761</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 갈산동 652-7</p><div class="mini-metrics"><div><span>최저가</span><strong>17.8억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/047_2024_36133.html" data-region="gyeonggi" data-city="양평군" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경36133</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양동면 석곡리 406-3</p><div class="mini-metrics"><div><span>최저가</span><strong>5.4억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/048_2024_39996.html" data-region="gyeonggi" data-city="양평군" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경39996</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 강하면 왕창리 480-8</p><div class="mini-metrics"><div><span>최저가</span><strong>7.2억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/049_2024_40552.html" data-region="gyeonggi" data-city="여주시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경40552</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 가남읍 연대리 559</p><div class="mini-metrics"><div><span>최저가</span><strong>3.6억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/050_2025_496.html" data-region="gyeonggi" data-city="여주시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경496</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 가남읍 삼군리 산24-1</p><div class="mini-metrics"><div><span>최저가</span><strong>11.1억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/051_2025_640.html" data-region="gyeonggi" data-city="여주시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경640</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 흥천면 귀백리 76-18</p><div class="mini-metrics"><div><span>최저가</span><strong>5.2억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/052_2026_71243.html" data-region="gyeonggi" data-city="양주시" data-category="vehicle" data-strategies="" data-score="37.3" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71243</strong><span class="mini-type">자동차</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 경기도 양주시 녹양로 538</p><div class="mini-metrics"><div><span>최저가</span><strong>4,500,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/37.3</span></div></a>
+<a class="mini-card" href="cases/053_2025_57964.html" data-region="gyeonggi" data-city="화성시" data-category="vehicle" data-strategies="" data-score="37.3" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경57964</strong><span class="mini-type">자동차</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 경기도 화성시 봉담읍 수영리 671</p><div class="mini-metrics"><div><span>최저가</span><strong>19,000,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/37.3</span></div></a>
+<a class="mini-card" href="cases/054_2026_51329.html" data-region="gyeonggi" data-city="화성시" data-category="vehicle" data-strategies="" data-score="36.3" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경51329</strong><span class="mini-type">자동차,중기</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 경기도 화성시 만세구 상신하길로135번길 9-16 204호</p><div class="mini-metrics"><div><span>최저가</span><strong>21,000,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/36.3</span></div></a>
+<a class="mini-card" href="cases/055_2026_5826.html" data-region="seoul" data-city="" data-category="vehicle" data-strategies="" data-score="36.1" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경5826</strong><span class="mini-type">자동차,중기</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 서울특별시 강서구 개화동</p><div class="mini-metrics"><div><span>최저가</span><strong>13,000,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/36.1</span></div></a>
+<a class="mini-card" href="cases/056_2026_6385.html" data-region="seoul" data-city="" data-category="vehicle" data-strategies="" data-score="36.1" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경6385</strong><span class="mini-type">자동차,중기</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 서울특별시 강서구 개화동 5</p><div class="mini-metrics"><div><span>최저가</span><strong>17,300,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/36.1</span></div></a>
+<a class="mini-card" href="cases/057_2026_70364.html" data-region="gyeonggi" data-city="양평군" data-category="vehicle" data-strategies="" data-score="36.1" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경70364</strong><span class="mini-type">자동차</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 경기도 양평군 강상면 웃서라우길 22</p><div class="mini-metrics"><div><span>최저가</span><strong>18,000,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/36.1</span></div></a>
+<a class="mini-card" href="cases/058_2026_71532.html" data-region="gyeonggi" data-city="양주시" data-category="vehicle" data-strategies="" data-score="36.1" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71532</strong><span class="mini-type">자동차</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 경기도 양주시 부흥로 1142</p><div class="mini-metrics"><div><span>최저가</span><strong>12,000,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/36.1</span></div></a>
+<a class="mini-card" href="cases/059_2026_71612.html" data-region="gyeonggi" data-city="양주시" data-category="vehicle" data-strategies="" data-score="36.1" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71612</strong><span class="mini-type">자동차</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 경기도 양주시 부흥로 1142</p><div class="mini-metrics"><div><span>최저가</span><strong>7,800,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/36.1</span></div></a>
+<a class="mini-card" href="cases/060_2026_71660.html" data-region="gyeonggi" data-city="양주시" data-category="vehicle" data-strategies="" data-score="36.1" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71660</strong><span class="mini-type">자동차</span><span class="dday">D-14</span></div><p class="mini-address">사용본거지 : 경기도 양주시 부흥로 1142</p><div class="mini-metrics"><div><span>최저가</span><strong>10,000,000원</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/36.1</span></div></a>
+<a class="mini-card" href="cases/061_2026_100418.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="51.1" data-net="0" data-yield="0" data-dist="8.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100418</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 관악구 봉천동 41-383 더빌 3층302호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.9억</strong></div><div><span>예상 낙찰</span><strong>2.9억</strong></div><div><span>필요 현금</span><strong>3.2억</strong></div><div><span>시세대비</span><strong>98.0%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/51.1</span><span class="tag">목동 8.9km</span></div></a>
+<a class="mini-card" href="cases/062_2026_100454.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="49.5" data-net="0" data-yield="0" data-dist="7.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100454</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 관악구 신림동 713-1 성진리치빌5차 3층302호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.1억</strong></div><div><span>예상 낙찰</span><strong>2.1억</strong></div><div><span>필요 현금</span><strong>2.3억</strong></div><div><span>시세대비</span><strong>75.2%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/49.5</span><span class="tag">목동 7.8km</span></div></a>
+<a class="mini-card" href="cases/063_2026_100470.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="40.6" data-net="-34824100" data-yield="0.6" data-dist="10.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100470</strong><span class="mini-type">오피스텔</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 종로구 내수동 72 경희궁의아침3단지 4층오피스텔415호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.2억</strong></div><div><span>예상 낙찰</span><strong>3.2억</strong></div><div><span>필요 현금</span><strong>1.2억</strong></div><div><span>월세 수익률</span><strong>0.6%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/40.6</span><span class="tag">목동 10.9km</span></div></a>
+<a class="mini-card" href="cases/064_2026_100539.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="38.0" data-net="0" data-yield="0" data-dist="8.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100539</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 관악구 봉천동 872-18 현대빌라트 5층502호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.9억</strong></div><div><span>예상 낙찰</span><strong>2.9억</strong></div><div><span>필요 현금</span><strong>3.2억</strong></div><div><span>시세대비</span><strong>99.0%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/38.0</span><span class="tag">목동 8.9km</span></div></a>
+<a class="mini-card" href="cases/065_2026_100201.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="37.5" data-net="0" data-yield="0" data-dist="7.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100201</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 관악구 봉천동 673-93 일광리치빌 2층202호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.3억</strong></div><div><span>예상 낙찰</span><strong>3.3억</strong></div><div><span>필요 현금</span><strong>3.7억</strong></div><div><span>시세대비</span><strong>123.8%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/37.5</span><span class="tag">목동 7.2km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/066_2026_100684.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="37.5" data-net="0" data-yield="0" data-dist="7.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경100684</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 관악구 신림동 1433-55 프라비다트라움 11층1113호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.4억</strong></div><div><span>예상 낙찰</span><strong>1.4억</strong></div><div><span>필요 현금</span><strong>1.6억</strong></div><div><span>시세대비</span><strong>61.7%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/37.5</span><span class="tag">목동 7.2km</span></div></a>
+<a class="mini-card" href="cases/067_2025_13497.html" data-region="seoul" data-city="" data-category="residential" data-strategies="" data-score="37.5" data-net="0" data-yield="0" data-dist="6.4" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경13497</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 금천구 독산동 964-39 하이팰리스 제4층 제403호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.1억</strong></div><div><span>예상 낙찰</span><strong>3.1억</strong></div><div><span>필요 현금</span><strong>3.5억</strong></div><div><span>시세대비</span><strong>107.6%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/37.5</span><span class="tag">목동 6.4km</span><span class="tag wait">주의 1</span></div></a>
+<a class="mini-card" href="cases/068_2025_104137.html" data-region="seoul" data-city="" data-category="land" data-strategies="" data-score="16.5" data-net="0" data-yield="0" data-dist="19.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경104137</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">서울특별시 서초구 신원동 산22-1</p><div class="mini-metrics"><div><span>최저가</span><strong>14.0억</strong></div><div><span>예상 낙찰</span><strong>14.0억</strong></div><div><span>필요 현금</span><strong>7.8억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/16.5</span><span class="tag">목동 19.0km</span></div></a>
+<a class="mini-card" href="cases/069_2025_58260.html" data-region="gyeonggi" data-city="화성시" data-category="residential" data-strategies="" data-score="24.9" data-net="0" data-yield="0" data-dist="38.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경58260</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 화성시 능동 1066-3 동탄아르젠3차 5층511호</p><div class="mini-metrics"><div><span>최저가</span><strong>52,000,000원</strong></div><div><span>예상 낙찰</span><strong>52,000,000원</strong></div><div><span>필요 현금</span><strong>23,157,000원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/24.9</span><span class="tag">목동 38.3km</span></div></a>
+<a class="mini-card" href="cases/070_2025_62848.html" data-region="gyeonggi" data-city="파주시" data-category="residential" data-strategies="" data-score="24.6" data-net="0" data-yield="0" data-dist="52.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경62848</strong><span class="mini-type">단독주택다가구</span><span class="dday">D-14</span></div><p class="mini-address">경기도 파주시 적성면 적암리 76-1</p><div class="mini-metrics"><div><span>최저가</span><strong>1.7억</strong></div><div><span>예상 낙찰</span><strong>1.7억</strong></div><div><span>필요 현금</span><strong>1.1억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/24.6</span><span class="tag">목동 52.6km</span></div></a>
+<a class="mini-card" href="cases/071_2026_305.html" data-region="gyeonggi" data-city="동두천시" data-category="residential" data-strategies="" data-score="43.6" data-net="0" data-yield="0" data-dist="49.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경305</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 동두천시 상봉암동 207-25 가우디타운 1타운 2동 4층401호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.1억</strong></div><div><span>예상 낙찰</span><strong>2.1억</strong></div><div><span>필요 현금</span><strong>1.0억</strong></div><div><span>시세대비</span><strong>102.4%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/43.6</span><span class="tag">목동 49.7km</span></div></a>
+<a class="mini-card" href="cases/072_2026_71376.html" data-region="gyeonggi" data-city="의정부시" data-category="commercial" data-strategies="" data-score="34.3" data-net="0" data-yield="0" data-dist="30.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71376</strong><span class="mini-type">상가</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 고산동 996-3 한강듀클래스의정부고산 비동 5층 504호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.3억</strong></div><div><span>예상 낙찰</span><strong>3.3억</strong></div><div><span>필요 현금</span><strong>1.3억</strong></div><div><span>시세대비</span><strong>165.7%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/34.3</span><span class="tag">목동 30.8km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/073_2026_71376.html" data-region="gyeonggi" data-city="의정부시" data-category="commercial" data-strategies="" data-score="34.3" data-net="0" data-yield="0" data-dist="30.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71376</strong><span class="mini-type">상가</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 고산동 996-3 한강듀클래스의정부고산 비동 5층 505호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.1억</strong></div><div><span>예상 낙찰</span><strong>3.1억</strong></div><div><span>필요 현금</span><strong>1.2억</strong></div><div><span>시세대비</span><strong>154.8%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/34.3</span><span class="tag">목동 30.8km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/074_2026_71376.html" data-region="gyeonggi" data-city="의정부시" data-category="commercial" data-strategies="" data-score="34.3" data-net="0" data-yield="0" data-dist="30.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71376</strong><span class="mini-type">상가</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 고산동 996-3 한강듀클래스의정부고산 비동 5층 506호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.0억</strong></div><div><span>예상 낙찰</span><strong>3.0억</strong></div><div><span>필요 현금</span><strong>1.1억</strong></div><div><span>시세대비</span><strong>111.8%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/34.3</span><span class="tag">목동 30.8km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/075_2026_71376.html" data-region="gyeonggi" data-city="의정부시" data-category="commercial" data-strategies="" data-score="34.3" data-net="0" data-yield="0" data-dist="30.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71376</strong><span class="mini-type">상가</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 고산동 996-3 한강듀클래스의정부고산 비동 5층 507호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.5억</strong></div><div><span>예상 낙찰</span><strong>3.5억</strong></div><div><span>필요 현금</span><strong>1.3억</strong></div><div><span>시세대비</span><strong>202.9%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/34.3</span><span class="tag">목동 30.8km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/076_2025_30095.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30095</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 경충대로2092번길 23 8층804호 (이천삼성홈프레스티지1동)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.8억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/077_2025_30095.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30095</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 경충대로2092번길 23 8층806호 (이천삼성홈프레스티지1동)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.8억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/078_2025_30095.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30095</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 경충대로2092번길 23 8층808호 (이천삼성홈프레스티지1동)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.8억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/080_2025_63707.html" data-region="gyeonggi" data-city="고양시" data-category="residential" data-strategies="" data-score="41.8" data-net="-32132332" data-yield="1.2" data-dist="20.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경63707</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 고양시 일산서구 일산동 2120 일신삼익아파트 104동 15층 1504호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.8억</strong></div><div><span>예상 낙찰</span><strong>2.8억</strong></div><div><span>필요 현금</span><strong>1.3억</strong></div><div><span>월세 수익률</span><strong>1.2%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/41.8</span><span class="tag">목동 20.2km</span></div></a>
+<a class="mini-card" href="cases/081_2026_51427.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="37.5" data-net="0" data-yield="0" data-dist="30.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경51427</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 팔달구 고등동 16-49 테라타워빌비동 2층202호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.1억</strong></div><div><span>예상 낙찰</span><strong>2.1억</strong></div><div><span>필요 현금</span><strong>2.4억</strong></div><div><span>시세대비</span><strong>114.1%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/37.5</span><span class="tag">목동 30.6km</span></div></a>
+<a class="mini-card" href="cases/082_2025_57359.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="30.0" data-net="-91772400" data-yield="-1.7" data-dist="26.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경57359</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 권선구 입북동 815 서수원레이크푸르지오2단지 205동 27층2705호</p><div class="mini-metrics"><div><span>최저가</span><strong>5.4억</strong></div><div><span>예상 낙찰</span><strong>5.4억</strong></div><div><span>필요 현금</span><strong>2.4억</strong></div><div><span>월세 수익률</span><strong>-1.7%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/30.0</span><span class="tag">목동 26.5km</span></div></a>
+<a class="mini-card" href="cases/083_2025_59624.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="26.7" data-net="0" data-yield="0" data-dist="29.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경59624</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 장안구 연무동 176-9 강남빌 2층201호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.3억</strong></div><div><span>예상 낙찰</span><strong>2.3억</strong></div><div><span>필요 현금</span><strong>2.6억</strong></div><div><span>시세대비</span><strong>164.7%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/26.7</span><span class="tag">목동 29.7km</span></div></a>
+<a class="mini-card" href="cases/084_2025_265.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="25.1" data-net="0" data-yield="0" data-dist="30.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경265</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 영통구 에듀타운로 101 108동 6층608호 (이의동,에듀하임1309오피스텔)</p><div class="mini-metrics"><div><span>최저가</span><strong>4.9억</strong></div><div><span>예상 낙찰</span><strong>4.9억</strong></div><div><span>필요 현금</span><strong>1.8억</strong></div><div><span>시세대비</span><strong>139.0%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/25.1</span><span class="tag">목동 30.7km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/085_2025_58153.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="25.1" data-net="0" data-yield="0" data-dist="32.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경58153</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 팔달구 인계동 1116-3 한화 꿈에그린 효원 101동 3층302호</p><div class="mini-metrics"><div><span>최저가</span><strong>4.9억</strong></div><div><span>예상 낙찰</span><strong>4.9억</strong></div><div><span>필요 현금</span><strong>2.0억</strong></div><div><span>시세대비</span><strong>86.9%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/25.1</span><span class="tag">목동 32.7km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/086_2026_50135.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="18.8" data-net="0" data-yield="0" data-dist="35.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경50135</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 영통구 영통동 1113 루벤하임에이 3층304호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.3억</strong></div><div><span>예상 낙찰</span><strong>2.3억</strong></div><div><span>필요 현금</span><strong>2.6억</strong></div><div><span>시세대비</span><strong>97.5%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/18.8</span><span class="tag">목동 35.7km</span></div></a>
+<a class="mini-card" href="cases/087_2026_50209.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="18.8" data-net="0" data-yield="0" data-dist="35.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경50209</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 영통구 영통동 1113 루벤하임에이 4층404호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.3억</strong></div><div><span>예상 낙찰</span><strong>2.3억</strong></div><div><span>필요 현금</span><strong>2.6억</strong></div><div><span>시세대비</span><strong>96.6%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/18.8</span><span class="tag">목동 35.7km</span></div></a>
+<a class="mini-card" href="cases/088_2026_50306.html" data-region="gyeonggi" data-city="수원시" data-category="residential" data-strategies="" data-score="17.2" data-net="-37262000" data-yield="0" data-dist="32.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경50306</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 수원시 권선구 권선동 955-5 4층402호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.0억</strong></div><div><span>예상 낙찰</span><strong>2.0억</strong></div><div><span>필요 현금</span><strong>92,331,000원</strong></div><div><span>순이익</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/17.2</span><span class="tag">목동 32.5km</span></div></a>
+<a class="mini-card" href="cases/089_2026_71307.html" data-region="gyeonggi" data-city="양주시" data-category="residential" data-strategies="" data-score="39.4" data-net="-63813020" data-yield="1.3" data-dist="39.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71307</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 고암동 582 덕정중흥에스클래스 103동 8층 802호</p><div class="mini-metrics"><div><span>최저가</span><strong>4.0억</strong></div><div><span>예상 낙찰</span><strong>4.0억</strong></div><div><span>필요 현금</span><strong>1.8억</strong></div><div><span>월세 수익률</span><strong>1.3%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/39.4</span><span class="tag">목동 39.0km</span><span class="tag wait">주의 1</span></div></a>
+<a class="mini-card" href="cases/090_2025_72865.html" data-region="gyeonggi" data-city="양주시" data-category="residential" data-strategies="" data-score="13.1" data-net="0" data-yield="0" data-dist="38.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경72865</strong><span class="mini-type">다가구주택</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 고암동 599-2</p><div class="mini-metrics"><div><span>최저가</span><strong>17.0억</strong></div><div><span>예상 낙찰</span><strong>17.0억</strong></div><div><span>필요 현금</span><strong>7.8억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/13.1</span><span class="tag">목동 38.8km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/091_2026_71421.html" data-region="gyeonggi" data-city="양주시" data-category="residential" data-strategies="" data-score="51.3" data-net="0" data-yield="0" data-dist="39.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71421</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 덕정동 536 일성트루엘 106동 4층 402호</p><div class="mini-metrics"><div><span>최저가</span><strong>4.0억</strong></div><div><span>예상 낙찰</span><strong>4.0억</strong></div><div><span>필요 현금</span><strong>1.8억</strong></div><div><span>시세대비</span><strong>94.3%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/51.3</span><span class="tag">목동 39.5km</span></div></a>
+<a class="mini-card" href="cases/092_2026_70849.html" data-region="gyeonggi" data-city="양주시" data-category="land" data-strategies="" data-score="22.0" data-net="0" data-yield="0" data-dist="30.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경70849</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양주시 백석읍 홍죽리 260-23</p><div class="mini-metrics"><div><span>최저가</span><strong>1.9억</strong></div><div><span>예상 낙찰</span><strong>1.9억</strong></div><div><span>필요 현금</span><strong>1.0억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.0</span><span class="tag">목동 30.3km</span></div></a>
+<a class="mini-card" href="cases/093_2025_703.html" data-region="gyeonggi" data-city="양평군" data-category="residential" data-strategies="" data-score="13.1" data-net="0" data-yield="0" data-dist="43.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경703</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양서면 부용리 94-2 전원팰리스 102동 1층101호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.6억</strong></div><div><span>예상 낙찰</span><strong>1.6억</strong></div><div><span>필요 현금</span><strong>73,412,000원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/13.1</span><span class="tag">목동 43.5km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/094_2025_31129.html" data-region="gyeonggi" data-city="양평군" data-category="residential" data-strategies="" data-score="13.1" data-net="0" data-yield="0" data-dist="44.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31129</strong><span class="mini-type">단독주택</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 서종면 문호리 240-53</p><div class="mini-metrics"><div><span>최저가</span><strong>6.3억</strong></div><div><span>예상 낙찰</span><strong>6.3억</strong></div><div><span>필요 현금</span><strong>3.4억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/13.1</span><span class="tag">목동 44.7km</span><span class="tag wait">주의 1</span></div></a>
+<a class="mini-card" href="cases/095_2025_31162.html" data-region="gyeonggi" data-city="양평군" data-category="residential" data-strategies="" data-score="13.1" data-net="0" data-yield="0" data-dist="56.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31162</strong><span class="mini-type">단독주택</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양평읍 창대리 319-4</p><div class="mini-metrics"><div><span>최저가</span><strong>4.0억</strong></div><div><span>예상 낙찰</span><strong>4.0억</strong></div><div><span>필요 현금</span><strong>2.0억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/13.1</span><span class="tag">목동 56.5km</span></div></a>
+<a class="mini-card" href="cases/096_2025_31393.html" data-region="gyeonggi" data-city="양평군" data-category="residential" data-strategies="" data-score="13.1" data-net="0" data-yield="0" data-dist="57.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31393</strong><span class="mini-type">단독주택</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양평읍 백안리 366-6</p><div class="mini-metrics"><div><span>최저가</span><strong>11.4억</strong></div><div><span>예상 낙찰</span><strong>11.4억</strong></div><div><span>필요 현금</span><strong>5.8억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/13.1</span><span class="tag">목동 57.8km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/097_2025_715.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="22.5" data-net="0" data-yield="0" data-dist="47.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경715</strong><span class="mini-type">대지</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 서종면 도장리 76-2</p><div class="mini-metrics"><div><span>최저가</span><strong>2.2억</strong></div><div><span>예상 낙찰</span><strong>2.2억</strong></div><div><span>필요 현금</span><strong>1.2억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.5</span><span class="tag">목동 47.3km</span></div></a>
+<a class="mini-card" href="cases/098_2025_31424.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="22.0" data-net="0" data-yield="0" data-dist="77.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31424</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양동면 석곡리 산32-3</p><div class="mini-metrics"><div><span>최저가</span><strong>41,186,880원</strong></div><div><span>예상 낙찰</span><strong>41,186,880원</strong></div><div><span>필요 현금</span><strong>22,899,905원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.0</span><span class="tag">목동 77.8km</span></div></a>
+<a class="mini-card" href="cases/099_2025_635.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="19.5" data-net="0" data-yield="0" data-dist="66.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경635</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 용문면 금곡리 365-52</p><div class="mini-metrics"><div><span>최저가</span><strong>99,827,000원</strong></div><div><span>예상 낙찰</span><strong>99,827,000원</strong></div><div><span>필요 현금</span><strong>55,503,812원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/19.5</span><span class="tag">목동 66.2km</span></div></a>
+<a class="mini-card" href="cases/100_2025_31037.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="19.5" data-net="0" data-yield="0" data-dist="44.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31037</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양서면 목왕리 산6-33</p><div class="mini-metrics"><div><span>최저가</span><strong>60,280,000원</strong></div><div><span>예상 낙찰</span><strong>60,280,000원</strong></div><div><span>필요 현금</span><strong>33,515,680원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/19.5</span><span class="tag">목동 44.0km</span></div></a>
+<a class="mini-card" href="cases/101_2024_40446.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="18.1" data-net="0" data-yield="0" data-dist="64.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경40446</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 지평면 수곡리 816</p><div class="mini-metrics"><div><span>최저가</span><strong>2.7억</strong></div><div><span>예상 낙찰</span><strong>2.7억</strong></div><div><span>필요 현금</span><strong>1.5억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/18.1</span><span class="tag">목동 64.9km</span></div></a>
+<a class="mini-card" href="cases/102_2025_30893.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="18.1" data-net="0" data-yield="0" data-dist="63.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30893</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 개군면 주읍리 71-17</p><div class="mini-metrics"><div><span>최저가</span><strong>3.8억</strong></div><div><span>예상 낙찰</span><strong>3.8억</strong></div><div><span>필요 현금</span><strong>2.1억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/18.1</span><span class="tag">목동 63.7km</span></div></a>
+<a class="mini-card" href="cases/103_2025_31037.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="15.1" data-net="0" data-yield="0" data-dist="44.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31037</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양서면 목왕리 615-17</p><div class="mini-metrics"><div><span>최저가</span><strong>1.0억</strong></div><div><span>예상 낙찰</span><strong>1.0억</strong></div><div><span>필요 현금</span><strong>56,829,872원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/15.1</span><span class="tag">목동 44.2km</span></div></a>
+<a class="mini-card" href="cases/104_2024_39217.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="13.6" data-net="0" data-yield="0" data-dist="46.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경39217</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양서면 대심리 191</p><div class="mini-metrics"><div><span>최저가</span><strong>1.6억</strong></div><div><span>예상 낙찰</span><strong>1.6억</strong></div><div><span>필요 현금</span><strong>90,407,824원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/13.6</span><span class="tag">목동 46.6km</span></div></a>
+<a class="mini-card" href="cases/105_2024_41975.html" data-region="gyeonggi" data-city="양평군" data-category="land" data-strategies="" data-score="13.6" data-net="0" data-yield="0" data-dist="78.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경41975</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 양동면 석곡리 329</p><div class="mini-metrics"><div><span>최저가</span><strong>50,650,200원</strong></div><div><span>예상 낙찰</span><strong>50,650,200원</strong></div><div><span>필요 현금</span><strong>28,161,511원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/13.6</span><span class="tag">목동 78.5km</span></div></a>
+<a class="mini-card" href="cases/106_2025_30893.html" data-region="gyeonggi" data-city="양평군" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30893</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 개군면 주읍리 62</p><div class="mini-metrics"><div><span>최저가</span><strong>5.3억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/107_2025_30914.html" data-region="gyeonggi" data-city="양평군" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30914</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 용문면 금곡리 262-9</p><div class="mini-metrics"><div><span>최저가</span><strong>2.5억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/108_2025_31133.html" data-region="gyeonggi" data-city="양평군" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31133</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 양평군 단월면 향소리 765-31</p><div class="mini-metrics"><div><span>최저가</span><strong>2.1억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/109_2024_5757.html" data-region="gyeonggi" data-city="여주시" data-category="residential" data-strategies="" data-score="23.9" data-net="0" data-yield="0" data-dist="76.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경5757</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 명성로 114-26</p><div class="mini-metrics"><div><span>최저가</span><strong>18.8억</strong></div><div><span>예상 낙찰</span><strong>18.8억</strong></div><div><span>필요 현금</span><strong>6.9억</strong></div><div><span>시세대비</span><strong>470.8%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/23.9</span><span class="tag">목동 76.7km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/110_2024_40750.html" data-region="gyeonggi" data-city="여주시" data-category="residential" data-strategies="" data-score="19.2" data-net="-32856000" data-yield="5.5" data-dist="72.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경40750</strong><span class="mini-type">오피스텔</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 도예로 85-14 203동 4층 402호 (오학동,비아트리스)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.4억</strong></div><div><span>예상 낙찰</span><strong>1.4억</strong></div><div><span>필요 현금</span><strong>60,051,000원</strong></div><div><span>월세 수익률</span><strong>5.5%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/19.2</span><span class="tag">목동 72.8km</span></div></a>
+<a class="mini-card" href="cases/111_2025_30868.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="22.5" data-net="0" data-yield="0" data-dist="79.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30868</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 강천면 적금리 377</p><div class="mini-metrics"><div><span>최저가</span><strong>1.5억</strong></div><div><span>예상 낙찰</span><strong>1.5억</strong></div><div><span>필요 현금</span><strong>80,672,820원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.5</span><span class="tag">목동 79.9km</span></div></a>
+<a class="mini-card" href="cases/112_2025_30868.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="22.5" data-net="0" data-yield="0" data-dist="80.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30868</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 강천면 적금리 380-1</p><div class="mini-metrics"><div><span>최저가</span><strong>69,379,100원</strong></div><div><span>예상 낙찰</span><strong>69,379,100원</strong></div><div><span>필요 현금</span><strong>38,574,780원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.5</span><span class="tag">목동 80.0km</span></div></a>
+<a class="mini-card" href="cases/113_2025_648.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="15.1" data-net="0" data-yield="0" data-dist="67.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경648</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 세종대왕면 구양리 335-23</p><div class="mini-metrics"><div><span>최저가</span><strong>1.5억</strong></div><div><span>예상 낙찰</span><strong>1.5억</strong></div><div><span>필요 현금</span><strong>82,691,100원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/15.1</span><span class="tag">목동 67.3km</span></div></a>
+<a class="mini-card" href="cases/114_2024_38443.html" data-region="gyeonggi" data-city="여주시" data-category="land" data-strategies="" data-score="10.6" data-net="0" data-yield="0" data-dist="72.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경38443</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 가업동 90-7</p><div class="mini-metrics"><div><span>최저가</span><strong>14,892,000원</strong></div><div><span>예상 낙찰</span><strong>14,892,000원</strong></div><div><span>필요 현금</span><strong>8,279,952원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/10.6</span><span class="tag">목동 72.5km</span></div></a>
+<a class="mini-card" href="cases/115_2025_31111.html" data-region="gyeonggi" data-city="여주시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31111</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 여주시 대신면 후포리 271-9</p><div class="mini-metrics"><div><span>최저가</span><strong>2.3억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/116_2026_71289.html" data-region="gyeonggi" data-city="연천군" data-category="land" data-strategies="" data-score="19.5" data-net="0" data-yield="0" data-dist="55.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71289</strong><span class="mini-type">대지</span><span class="dday">D-14</span></div><p class="mini-address">경기도 연천군 군남면 남계리 435</p><div class="mini-metrics"><div><span>최저가</span><strong>2.9억</strong></div><div><span>예상 낙찰</span><strong>2.9억</strong></div><div><span>필요 현금</span><strong>1.6억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/19.5</span><span class="tag">목동 55.9km</span></div></a>
+<a class="mini-card" href="cases/117_2025_59244.html" data-region="gyeonggi" data-city="오산시" data-category="residential" data-strategies="" data-score="25.1" data-net="0" data-yield="0" data-dist="43.4" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경59244</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 오산시 수청동 620-2 스마트캐슬 4층417호</p><div class="mini-metrics"><div><span>최저가</span><strong>84,000,000원</strong></div><div><span>예상 낙찰</span><strong>84,000,000원</strong></div><div><span>필요 현금</span><strong>34,931,400원</strong></div><div><span>시세대비</span><strong>145.7%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/25.1</span><span class="tag">목동 43.4km</span></div></a>
+<a class="mini-card" href="cases/118_2024_11718.html" data-region="gyeonggi" data-city="용인시" data-category="residential" data-strategies="" data-score="43.3" data-net="28329766" data-yield="0" data-dist="36.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경11718</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 용인시 기흥구 서그내로53번길 27-26 3층302호 (서천동,건우까사미3)</p><div class="mini-metrics"><div><span>최저가</span><strong>2.4억</strong></div><div><span>예상 낙찰</span><strong>2.4억</strong></div><div><span>필요 현금</span><strong>2.7억</strong></div><div><span>순이익</span><strong>28,329,766원</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/43.3</span><span class="tag">목동 36.6km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/119_2025_58287.html" data-region="gyeonggi" data-city="용인시" data-category="residential" data-strategies="" data-score="34.8" data-net="-57909340" data-yield="3.2" data-dist="38.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경58287</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 용인시 기흥구 공세동 676 화성파크드림프라브 805동 1층105호</p><div class="mini-metrics"><div><span>최저가</span><strong>4.1억</strong></div><div><span>예상 낙찰</span><strong>4.1억</strong></div><div><span>필요 현금</span><strong>4.6억</strong></div><div><span>월세 수익률</span><strong>3.2%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/34.8</span><span class="tag">목동 38.1km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/120_2025_57739.html" data-region="gyeonggi" data-city="용인시" data-category="residential" data-strategies="" data-score="33.9" data-net="0" data-yield="0" data-dist="34.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경57739</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 용인시 기흥구 언남동 380-7 1층1호</p><div class="mini-metrics"><div><span>최저가</span><strong>40,000,000원</strong></div><div><span>예상 낙찰</span><strong>40,000,000원</strong></div><div><span>필요 현금</span><strong>50,750,000원</strong></div><div><span>시세대비</span><strong>15.7%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/33.9</span><span class="tag">목동 34.1km</span></div></a>
+<a class="mini-card" href="cases/121_2026_50748.html" data-region="gyeonggi" data-city="용인시" data-category="residential" data-strategies="" data-score="25.1" data-net="0" data-yield="0" data-dist="33.4" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경50748</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 용인시 기흥구 마북동 519 플랫폼시티아이브주건축물제1동 2층204호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.7억</strong></div><div><span>예상 낙찰</span><strong>1.7억</strong></div><div><span>필요 현금</span><strong>64,190,000원</strong></div><div><span>시세대비</span><strong>144.3%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/25.1</span><span class="tag">목동 33.4km</span></div></a>
+<a class="mini-card" href="cases/122_2026_50836.html" data-region="gyeonggi" data-city="용인시" data-category="residential" data-strategies="" data-score="25.1" data-net="0" data-yield="0" data-dist="33.4" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경50836</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 용인시 기흥구 마북동 519 플랫폼시티아이브주건축물제1동 2층206호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.5억</strong></div><div><span>예상 낙찰</span><strong>1.5억</strong></div><div><span>필요 현금</span><strong>59,125,000원</strong></div><div><span>시세대비</span><strong>153.2%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/25.1</span><span class="tag">목동 33.4km</span></div></a>
+<a class="mini-card" href="cases/123_2026_50095.html" data-region="gyeonggi" data-city="용인시" data-category="residential" data-strategies="" data-score="23.9" data-net="0" data-yield="0" data-dist="52.4" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경50095</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 용인시 처인구 이동읍 송전리 577-16 드림펠리체 나동 2층202호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.7억</strong></div><div><span>예상 낙찰</span><strong>1.7억</strong></div><div><span>필요 현금</span><strong>67,241,300원</strong></div><div><span>시세대비</span><strong>82.4%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/23.9</span><span class="tag">목동 52.4km</span></div></a>
+<a class="mini-card" href="cases/124_2026_51045.html" data-region="gyeonggi" data-city="용인시" data-category="residential" data-strategies="" data-score="20.0" data-net="0" data-yield="0" data-dist="45.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경51045</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 용인시 처인구 마평동 589-9 드림캐슬 101동 3층304호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.0억</strong></div><div><span>예상 낙찰</span><strong>3.0억</strong></div><div><span>필요 현금</span><strong>1.4억</strong></div><div><span>시세대비</span><strong>103.4%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/20.0</span><span class="tag">목동 45.1km</span></div></a>
+<a class="mini-card" href="cases/125_2025_73764.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="38.1" data-net="0" data-yield="0" data-dist="27.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경73764</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 의정부동 601-16 홍익빌라 1층 103호</p><div class="mini-metrics"><div><span>최저가</span><strong>73,000,000원</strong></div><div><span>예상 낙찰</span><strong>73,000,000원</strong></div><div><span>필요 현금</span><strong>37,136,000원</strong></div><div><span>시세대비</span><strong>93.6%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/38.1</span><span class="tag">목동 27.7km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/126_2024_92162.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="36.4" data-net="0" data-yield="0" data-dist="28.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경92162</strong><span class="mini-type">오피스텔</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 평화로483번길 11 2층 202호 (의정부동,은가람)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.7억</strong></div><div><span>예상 낙찰</span><strong>1.7억</strong></div><div><span>필요 현금</span><strong>69,042,300원</strong></div><div><span>시세대비</span><strong>93.0%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/36.4</span><span class="tag">목동 28.3km</span></div></a>
+<a class="mini-card" href="cases/127_2026_113.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="31.1" data-net="0" data-yield="0" data-dist="32.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경113</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 고산동 945 고산 디에트르 에듀파크 아파트 110동 17층1703호</p><div class="mini-metrics"><div><span>최저가</span><strong>5.3억</strong></div><div><span>예상 낙찰</span><strong>5.3억</strong></div><div><span>필요 현금</span><strong>2.3억</strong></div><div><span>시세대비</span><strong>137.4%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/31.1</span><span class="tag">목동 32.0km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/128_2025_2968.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="29.9" data-net="0" data-yield="0" data-dist="31.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경2968</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 금오동 453-6 리치팰리스 103동 5층501호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.7억</strong></div><div><span>예상 낙찰</span><strong>2.7억</strong></div><div><span>필요 현금</span><strong>1.2억</strong></div><div><span>시세대비</span><strong>158.9%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/29.9</span><span class="tag">목동 31.7km</span></div></a>
+<a class="mini-card" href="cases/129_2026_70779.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="28.8" data-net="-8802200" data-yield="7.2" data-dist="28.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경70779</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 의정부동 499-6 의정부역코아루퍼스트원 6층 610호</p><div class="mini-metrics"><div><span>최저가</span><strong>90,000,000원</strong></div><div><span>예상 낙찰</span><strong>90,000,000원</strong></div><div><span>필요 현금</span><strong>42,614,000원</strong></div><div><span>월세 수익률</span><strong>7.2%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/28.8</span><span class="tag">목동 28.3km</span></div></a>
+<a class="mini-card" href="cases/130_2025_2838.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="25.5" data-net="0" data-yield="0" data-dist="27.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경2838</strong><span class="mini-type">단독주택다가구</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 의정부동 555-2</p><div class="mini-metrics"><div><span>최저가</span><strong>7.3억</strong></div><div><span>예상 낙찰</span><strong>7.3억</strong></div><div><span>필요 현금</span><strong>3.3억</strong></div><div><span>시세대비</span><strong>189.9%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/25.5</span><span class="tag">목동 27.9km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/131_2026_71364.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="22.0" data-net="0" data-yield="0" data-dist="28.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71364</strong><span class="mini-type">오피스텔</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 의정부동 492-1 태림더끌리움씨티 7층 708호</p><div class="mini-metrics"><div><span>최저가</span><strong>92,000,000원</strong></div><div><span>예상 낙찰</span><strong>92,000,000원</strong></div><div><span>필요 현금</span><strong>37,217,000원</strong></div><div><span>시세대비</span><strong>155.9%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.0</span><span class="tag">목동 28.2km</span></div></a>
+<a class="mini-card" href="cases/132_2026_34.html" data-region="gyeonggi" data-city="의정부시" data-category="residential" data-strategies="" data-score="19.2" data-net="0" data-yield="0" data-dist="29.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경34</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 의정부시 신곡동 455-15 양지빌라 6동 3층301호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.1억</strong></div><div><span>예상 낙찰</span><strong>1.1억</strong></div><div><span>필요 현금</span><strong>52,655,000원</strong></div><div><span>시세대비</span><strong>141.9%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/19.2</span><span class="tag">목동 29.2km</span></div></a>
+<a class="mini-card" href="cases/133_2024_41104.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="37.5" data-net="0" data-yield="0" data-dist="61.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경41104</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 가좌로103번길 65-3 105동 3층 301호 (해밀리안)</p><div class="mini-metrics"><div><span>최저가</span><strong>2.0억</strong></div><div><span>예상 낙찰</span><strong>2.0억</strong></div><div><span>필요 현금</span><strong>96,280,000원</strong></div><div><span>시세대비</span><strong>98.6%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/37.5</span><span class="tag">목동 61.0km</span></div></a>
+<a class="mini-card" href="cases/134_2025_124.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="34.0" data-net="0" data-yield="0" data-dist="61.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경124</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 황무로 1425 1동 4층409호 (미영팰리스)</p><div class="mini-metrics"><div><span>최저가</span><strong>2.4억</strong></div><div><span>예상 낙찰</span><strong>2.4억</strong></div><div><span>필요 현금</span><strong>1.1억</strong></div><div><span>시세대비</span><strong>288.5%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/34.0</span><span class="tag">목동 61.8km</span></div></a>
+<a class="mini-card" href="cases/135_2024_42510.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="30.3" data-net="0" data-yield="0" data-dist="61.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경42510</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 가좌로103번길 115 3층305호 (리치하임)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.0억</strong></div><div><span>예상 낙찰</span><strong>1.0억</strong></div><div><span>필요 현금</span><strong>48,192,000원</strong></div><div><span>시세대비</span><strong>201.1%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/30.3</span><span class="tag">목동 61.1km</span></div></a>
+<a class="mini-card" href="cases/136_2025_31328.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="23.4" data-net="0" data-yield="0" data-dist="55.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31328</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 사음동 261-25 건화홈타운 302동 4층401호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.7억</strong></div><div><span>예상 낙찰</span><strong>1.7억</strong></div><div><span>필요 현금</span><strong>80,879,000원</strong></div><div><span>시세대비</span><strong>212.5%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/23.4</span><span class="tag">목동 55.1km</span></div></a>
+<a class="mini-card" href="cases/137_2025_31692.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="21.6" data-net="-28340100" data-yield="8.2" data-dist="58.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31692</strong><span class="mini-type">오피스텔</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 중리동 464-5 코아루페라즈오피스텔 12층1203호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.0억</strong></div><div><span>예상 낙찰</span><strong>1.0억</strong></div><div><span>필요 현금</span><strong>41,179,500원</strong></div><div><span>월세 수익률</span><strong>8.2%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/21.6</span><span class="tag">목동 58.6km</span></div></a>
+<a class="mini-card" href="cases/138_2024_41302.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="16.8" data-net="0" data-yield="0" data-dist="58.7" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경41302</strong><span class="mini-type">오피스텔</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 중리천로 135 2동 6층604호 (중리동,미래캐슬)</p><div class="mini-metrics"><div><span>최저가</span><strong>2.1억</strong></div><div><span>예상 낙찰</span><strong>2.1억</strong></div><div><span>필요 현금</span><strong>84,524,000원</strong></div><div><span>시세대비</span><strong>131.2%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/16.8</span><span class="tag">목동 58.7km</span></div></a>
+<a class="mini-card" href="cases/139_2025_31069.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="14.3" data-net="0" data-yield="0" data-dist="56.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31069</strong><span class="mini-type">오피스텔</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 송정동 375-61 송정다울3차 1동 6층601호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.7억</strong></div><div><span>예상 낙찰</span><strong>1.7억</strong></div><div><span>필요 현금</span><strong>70,265,000원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/14.3</span><span class="tag">목동 56.5km</span></div></a>
+<a class="mini-card" href="cases/140_2025_31014.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="14.3" data-net="0" data-yield="0" data-dist="54.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31014</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 신둔면 수남리 106 이든빌 1층102호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.9억</strong></div><div><span>예상 낙찰</span><strong>1.9억</strong></div><div><span>필요 현금</span><strong>90,082,000원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/14.3</span><span class="tag">목동 54.3km</span></div></a>
+<a class="mini-card" href="cases/141_2025_31242.html" data-region="gyeonggi" data-city="이천시" data-category="residential" data-strategies="" data-score="14.3" data-net="0" data-yield="0" data-dist="58.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31242</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 백사면 모전리 779-1 그린캐슬 1동 3층301호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.4억</strong></div><div><span>예상 낙찰</span><strong>1.4억</strong></div><div><span>필요 현금</span><strong>66,656,500원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/14.3</span><span class="tag">목동 58.8km</span></div></a>
+<a class="mini-card" href="cases/142_2025_30217.html" data-region="gyeonggi" data-city="이천시" data-category="land" data-strategies="" data-score="22.5" data-net="0" data-yield="0" data-dist="71.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30217</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 설성면 수산리 산98-1</p><div class="mini-metrics"><div><span>최저가</span><strong>11.2억</strong></div><div><span>예상 낙찰</span><strong>11.2억</strong></div><div><span>필요 현금</span><strong>6.2억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.5</span><span class="tag">목동 71.0km</span></div></a>
+<a class="mini-card" href="cases/143_2025_31284.html" data-region="gyeonggi" data-city="이천시" data-category="land" data-strategies="" data-score="12.1" data-net="0" data-yield="0" data-dist="67.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31284</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 대월면 군량리 628-4</p><div class="mini-metrics"><div><span>최저가</span><strong>7.5억</strong></div><div><span>예상 낙찰</span><strong>7.5억</strong></div><div><span>필요 현금</span><strong>4.1억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/12.1</span><span class="tag">목동 67.5km</span></div></a>
+<a class="mini-card" href="cases/144_2025_31029.html" data-region="gyeonggi" data-city="이천시" data-category="land" data-strategies="" data-score="11.5" data-net="0" data-yield="0" data-dist="54.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31029</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 신둔면 지석리 467-20</p><div class="mini-metrics"><div><span>최저가</span><strong>2.0억</strong></div><div><span>예상 낙찰</span><strong>2.0억</strong></div><div><span>필요 현금</span><strong>1.1억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/11.5</span><span class="tag">목동 54.0km</span></div></a>
+<a class="mini-card" href="cases/145_2024_3256.html" data-region="gyeonggi" data-city="이천시" data-category="land" data-strategies="" data-score="10.6" data-net="0" data-yield="0" data-dist="58.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경3256</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 증포동 47-15</p><div class="mini-metrics"><div><span>최저가</span><strong>9.6억</strong></div><div><span>예상 낙찰</span><strong>9.6억</strong></div><div><span>필요 현금</span><strong>5.3억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/10.6</span><span class="tag">목동 58.6km</span></div></a>
+<a class="mini-card" href="cases/146_2025_31029.html" data-region="gyeonggi" data-city="이천시" data-category="land" data-strategies="" data-score="8.5" data-net="0" data-yield="0" data-dist="54.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경31029</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 신둔면 지석리 465-16</p><div class="mini-metrics"><div><span>최저가</span><strong>3,163,680원</strong></div><div><span>예상 낙찰</span><strong>3,163,680원</strong></div><div><span>필요 현금</span><strong>1,759,006원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/8.5</span><span class="tag">목동 54.2km</span></div></a>
+<a class="mini-card" href="cases/147_2025_30960.html" data-region="gyeonggi" data-city="이천시" data-category="land" data-strategies="" data-score="7.6" data-net="0" data-yield="0" data-dist="74.0" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30960</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 설성면 장능리 275-4</p><div class="mini-metrics"><div><span>최저가</span><strong>4.0억</strong></div><div><span>예상 낙찰</span><strong>4.0억</strong></div><div><span>필요 현금</span><strong>2.2억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/7.6</span><span class="tag">목동 74.0km</span></div></a>
+<a class="mini-card" href="cases/148_2025_30095.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30095</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 경충대로2092번길 23 9층921호 (이천삼성홈프레스티지1동)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.8억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/149_2025_30095.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30095</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 경충대로2092번길 23 16층1625호 (이천삼성홈프레스티지1동)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.8억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/150_2025_30095.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30095</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 경충대로2092번길 23 17층1725호 (이천삼성홈프레스티지1동)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.8억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/151_2025_30095.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30095</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 부발읍 경충대로2092번길 23 18층1823호 (이천삼성홈프레스티지1동)</p><div class="mini-metrics"><div><span>최저가</span><strong>1.8억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/152_2025_30361.html" data-region="gyeonggi" data-city="이천시" data-category="road_special" data-strategies="" data-score="12.4" data-net="0" data-yield="0" data-dist="999" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경30361</strong><span class="mini-type">기타</span><span class="dday">D-14</span></div><p class="mini-address">경기도 이천시 마장면 서이천로320번길 27-42</p><div class="mini-metrics"><div><span>최저가</span><strong>2.0억</strong></div><div><span>예상 낙찰</span><strong>-</strong></div><div><span>필요 현금</span><strong>-</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag">D/12.4</span></div></a>
+<a class="mini-card" href="cases/153_2025_64415.html" data-region="gyeonggi" data-city="파주시" data-category="residential" data-strategies="" data-score="37.6" data-net="0" data-yield="0" data-dist="28.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경64415</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">경기도 파주시 아동동 296-12 아느칸빌4단지 401동 3층301호</p><div class="mini-metrics"><div><span>최저가</span><strong>2.1억</strong></div><div><span>예상 낙찰</span><strong>2.1억</strong></div><div><span>필요 현금</span><strong>95,515,000원</strong></div><div><span>시세대비</span><strong>146.2%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/37.6</span><span class="tag">목동 28.1km</span><span class="tag wait">주의 1</span></div></a>
+<a class="mini-card" href="cases/154_2025_64455.html" data-region="gyeonggi" data-city="파주시" data-category="residential" data-strategies="" data-score="47.1" data-net="0" data-yield="0" data-dist="22.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경64455</strong><span class="mini-type">아파트</span><span class="dday">D-14</span></div><p class="mini-address">경기도 파주시 조리읍 대원리 218 그린시티동문아파트 505동 8층802호</p><div class="mini-metrics"><div><span>최저가</span><strong>3.0억</strong></div><div><span>예상 낙찰</span><strong>3.0억</strong></div><div><span>필요 현금</span><strong>1.4억</strong></div><div><span>시세대비</span><strong>95.8%</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/47.1</span><span class="tag">목동 22.9km</span></div></a>
+<a class="mini-card" href="cases/155_2024_8696.html" data-region="gyeonggi" data-city="파주시" data-category="land" data-strategies="" data-score="22.5" data-net="0" data-yield="0" data-dist="39.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경8696</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 파주시 파평면 마산리 97</p><div class="mini-metrics"><div><span>최저가</span><strong>31,388,000원</strong></div><div><span>예상 낙찰</span><strong>31,388,000원</strong></div><div><span>필요 현금</span><strong>17,451,728원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/22.5</span><span class="tag">목동 39.5km</span></div></a>
+<a class="mini-card" href="cases/156_2024_8276.html" data-region="gyeonggi" data-city="파주시" data-category="land" data-strategies="" data-score="21.1" data-net="0" data-yield="0" data-dist="23.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경8276</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 파주시 조리읍 장곡리 427-79</p><div class="mini-metrics"><div><span>최저가</span><strong>18.8억</strong></div><div><span>예상 낙찰</span><strong>18.8억</strong></div><div><span>필요 현금</span><strong>10.5억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/21.1</span><span class="tag">목동 23.3km</span></div></a>
+<a class="mini-card" href="cases/157_2024_8696.html" data-region="gyeonggi" data-city="파주시" data-category="land" data-strategies="" data-score="15.1" data-net="0" data-yield="0" data-dist="40.5" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경8696</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 파주시 파평면 마산리 282</p><div class="mini-metrics"><div><span>최저가</span><strong>23,865,000원</strong></div><div><span>예상 낙찰</span><strong>23,865,000원</strong></div><div><span>필요 현금</span><strong>13,268,940원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/15.1</span><span class="tag">목동 40.5km</span></div></a>
+<a class="mini-card" href="cases/158_2024_8696.html" data-region="gyeonggi" data-city="파주시" data-category="land" data-strategies="" data-score="15.1" data-net="0" data-yield="0" data-dist="38.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2024타경8696</strong><span class="mini-type">대지,임야,전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 파주시 법원읍 동문리 381-4</p><div class="mini-metrics"><div><span>최저가</span><strong>7.8억</strong></div><div><span>예상 낙찰</span><strong>7.8억</strong></div><div><span>필요 현금</span><strong>4.3억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/15.1</span><span class="tag">목동 38.8km</span></div></a>
+<a class="mini-card" href="cases/159_2026_70392.html" data-region="gyeonggi" data-city="포천시" data-category="residential" data-strategies="" data-score="15.4" data-net="0" data-yield="0" data-dist="45.9" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경70392</strong><span class="mini-type">다세대</span><span class="dday">D-14</span></div><p class="mini-address">경기도 포천시 가산면 마산리 183-36 송학레미안2차 가동 4층 403호</p><div class="mini-metrics"><div><span>최저가</span><strong>92,000,000원</strong></div><div><span>예상 낙찰</span><strong>92,000,000원</strong></div><div><span>필요 현금</span><strong>47,120,500원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/15.4</span><span class="tag">목동 45.9km</span></div></a>
+<a class="mini-card" href="cases/160_2026_70108.html" data-region="gyeonggi" data-city="포천시" data-category="land" data-strategies="" data-score="18.1" data-net="0" data-yield="0" data-dist="41.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경70108</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 포천시 소흘읍 고모리 104</p><div class="mini-metrics"><div><span>최저가</span><strong>94,010,000원</strong></div><div><span>예상 낙찰</span><strong>94,010,000원</strong></div><div><span>필요 현금</span><strong>52,269,560원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/18.1</span><span class="tag">목동 41.2km</span></div></a>
+<a class="mini-card" href="cases/161_2025_73481.html" data-region="gyeonggi" data-city="포천시" data-category="land" data-strategies="" data-score="17.7" data-net="0" data-yield="0" data-dist="55.2" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경73481</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 포천시 신북면 삼정리 308</p><div class="mini-metrics"><div><span>최저가</span><strong>4.0억</strong></div><div><span>예상 낙찰</span><strong>4.0억</strong></div><div><span>필요 현금</span><strong>2.2억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/17.7</span><span class="tag">목동 55.2km</span></div></a>
+<a class="mini-card" href="cases/162_2025_73481.html" data-region="gyeonggi" data-city="포천시" data-category="land" data-strategies="" data-score="17.7" data-net="0" data-yield="0" data-dist="55.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경73481</strong><span class="mini-type">임야</span><span class="dday">D-14</span></div><p class="mini-address">경기도 포천시 신북면 삼정리 산107</p><div class="mini-metrics"><div><span>최저가</span><strong>1.6억</strong></div><div><span>예상 낙찰</span><strong>1.6억</strong></div><div><span>필요 현금</span><strong>88,267,891원</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/17.7</span><span class="tag">목동 55.1km</span></div></a>
+<a class="mini-card" href="cases/163_2025_73817.html" data-region="gyeonggi" data-city="포천시" data-category="land" data-strategies="" data-score="15.1" data-net="0" data-yield="0" data-dist="42.3" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경73817</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 포천시 소흘읍 송우리 314-2</p><div class="mini-metrics"><div><span>최저가</span><strong>10.8억</strong></div><div><span>예상 낙찰</span><strong>10.8억</strong></div><div><span>필요 현금</span><strong>6.0억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/15.1</span><span class="tag">목동 42.3km</span></div></a>
+<a class="mini-card" href="cases/164_2026_71329.html" data-region="gyeonggi" data-city="포천시" data-category="land" data-strategies="" data-score="15.1" data-net="0" data-yield="0" data-dist="54.8" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경71329</strong><span class="mini-type">전답</span><span class="dday">D-14</span></div><p class="mini-address">경기도 포천시 신북면 신평리 509</p><div class="mini-metrics"><div><span>최저가</span><strong>2.6억</strong></div><div><span>예상 낙찰</span><strong>2.6억</strong></div><div><span>필요 현금</span><strong>1.5억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/15.1</span><span class="tag">목동 54.8km</span></div></a>
+<a class="mini-card" href="cases/165_2025_1603.html" data-region="gyeonggi" data-city="화성시" data-category="residential" data-strategies="" data-score="16.6" data-net="0" data-yield="0" data-dist="41.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경1603</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 화성시 오산동 982-2 우평라비엔파크 1층106호</p><div class="mini-metrics"><div><span>최저가</span><strong>10.4억</strong></div><div><span>예상 낙찰</span><strong>10.4억</strong></div><div><span>필요 현금</span><strong>3.8억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/16.6</span><span class="tag">목동 41.6km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/166_2025_1603.html" data-region="gyeonggi" data-city="화성시" data-category="residential" data-strategies="" data-score="16.6" data-net="0" data-yield="0" data-dist="41.6" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2025타경1603</strong><span class="mini-type">상가,오피스텔,근린시설</span><span class="dday">D-14</span></div><p class="mini-address">경기도 화성시 오산동 982-2 우평라비엔파크 1층107호</p><div class="mini-metrics"><div><span>최저가</span><strong>11.0억</strong></div><div><span>예상 낙찰</span><strong>11.0억</strong></div><div><span>필요 현금</span><strong>4.0억</strong></div><div><span>시세대비</span><strong>-</strong></div></div><div class="mini-tags"><span class="tag muted">타깃 지역 밖</span><span class="tag">D/16.6</span><span class="tag">목동 41.6km</span><span class="tag wait">주의 2</span></div></a>
+<a class="mini-card" href="cases/079_2026_34.html" data-region="incheon" data-city="" data-category="residential" data-strategies="" data-score="19.2" data-net="-58169200" data-yield="1.7" data-dist="13.1" data-bid="20261028" data-reviewed="" data-verdict="9"><div class="mini-head"><strong>2026타경34</strong><span class="mini-type">연립주택,다세대,빌라</span><span class="dday">D-14</span></div><p class="mini-address">인천광역시 계양구 효성동 21-36 크리스탈타운 3층301호</p><div class="mini-metrics"><div><span>최저가</span><strong>1.5억</strong></div><div><span>예상 낙찰</span><strong>1.5억</strong></div><div><span>필요 현금</span><strong>70,463,000원</strong></div><div><span>월세 수익률</span><strong>1.7%</strong></div></div><div class="mini-tags"><span class="tag muted">권리 난이도 초과</span><span class="tag">D/19.2</span><span class="tag">목동 13.1km</span><span class="tag wait">주의 2</span></div></a>
+</div>
+<p class="empty browser-empty" hidden>조건에 맞는 물건이 없습니다.</p>
+<button type="button" class="more-button" hidden>더 보기</button>
+</section>
+<details class="fold"><summary>수집 감사 상태</summary><section class="guide collection-audit"><h2>수집 감사 상태</h2><div class="summary-grid audit-grid"><div class="summary-card"><span>감사상태</span><strong>완료</strong><p>검색과 상세 보강 완료</p></div><div class="summary-card"><span>검색페이지</span><strong>51/51</strong><p>법원 목록 조회</p></div><div class="summary-card"><span>검색건수</span><strong>2,016/2,016</strong><p>선택 816건</p></div><div class="summary-card"><span>물건상세</span><strong>215/215</strong><p>실패 0</p></div><div class="summary-card"><span>사건상세</span><strong>185/185</strong><p>실패 0</p></div><div class="summary-card"><span>현황/점유</span><strong>185/185</strong><p>실패 0</p></div><div class="summary-card"><span>인근통계</span><strong>185/185</strong><p>실패 0</p></div><div class="summary-card"><span>실거래</span><strong>215/215</strong><p>실패 0</p></div></div><ul class="audit-cache-list"><li><strong>물건상세</strong><span>캐시 0 · 새로조회 215 · 보류 0 · item_detail_missing 213, search_changed 1, cache_miss 1</span></li><li><strong>사건상세</strong><span>캐시 1 · 새로조회 184 · 보류 0 · case_detail_missing 183, cache_miss 1</span></li><li><strong>현황/점유</strong><span>캐시 1 · 새로조회 184 · 보류 0 · current_status_missing 183, cache_miss 1</span></li><li><strong>인근통계</strong><span>캐시 1 · 새로조회 184 · 보류 0 · nearby_stats_missing 183, cache_miss 1</span></li><li><strong>실거래</strong><span>캐시 43 · 새로조회 172 · 보류 0 · unsupported_note 34, deferred_now_priority 137, cache_miss 1</span></li></ul><p class="ok-note">검색 누락을 막는 핵심 게이트는 통과했습니다.</p></section></details>
+
+<details class="fold"><summary>분류별 평가 기준</summary><section class="guide criteria-guide"><h2>분류별 평가 기준</h2><div class="criteria-grid"><div class="criteria-card"><h3>주거</h3><ul><li>같은 단지·같은 면적 실거래와 최저가의 괴리</li><li>전세가율, 환금성, 명도 기간, 임차인 대항력/배당요구</li><li>관리비·수리비·취득비용 차감 후 보수적 입찰상한</li></ul></div><div class="criteria-card"><h3>상가/업무</h3><ul><li>월세, 공실률, 전용률, 층수, 가시성, 전면도로, 주차</li><li>임대차 승계, 관리비 체납, 업종 제한, 권리금 형성 가능성</li><li>매매차익보다 실제 임대수익과 재임대 가능성</li></ul></div><div class="criteria-card"><h3>공장/창고</h3><ul><li>용도지역, 공장등록, 진입도로 폭, 층고, 하역동선, 전력</li><li>자가사용 수요와 임차 수요, 공실 기간, 재매각 기간</li><li>폐기물·오염·불법 증축·원상복구 비용</li></ul></div><div class="criteria-card"><h3>토지</h3><ul><li>지목, 용도지역, 건폐율/용적률, 접도, 맹지, 경사, 형상</li><li>농취증, 전용 가능성, 개발행위 제한, 지분/공유자 협상</li><li>인접 필지 실거래와 개발계획으로 수동 시세 보강</li></ul></div><div class="criteria-card"><h3>도로/특수</h3><ul><li>독립 사용가치보다 인접 소유자 매입 수요</li><li>통행로 분쟁, 공익사업 보상, 개발계획 편입 여부</li><li>수익 논리가 없으면 가격이 낮아도 보류</li></ul></div><div class="criteria-card"><h3>차량/중기</h3><ul><li>차량명, 모델/등급, 연식, 주행거리, 보관상태</li><li>동일 모델 중고시세, 사고이력, 압류·저당, 이전등록 비용</li><li>부동산 수익률 모델과 분리한 별도 경매 검토</li></ul></div></div></section></details>
+<section class="summary-grid">
+<div class="summary-card"><span>전체</span><strong>215건</strong><p>수도권 30일 분석</p></div>
+<div class="summary-card"><span>즉시 후보</span><strong>0</strong><p>가격/리스크 양호</p></div>
+<div class="summary-card"><span>시세 보강</span><strong>31</strong><p>비교 거래 확인 필요</p></div>
+<div class="summary-card"><span>권리 검토</span><strong>156</strong><p>입찰 전 보류</p></div>
+<div class="summary-card"><span>A/B 등급</span><strong>0/0</strong><p>상위 점수군</p></div>
+</section>
+<section class="guide">
+<h2>읽는 법</h2>
+<ol>
+<li>카드를 누르면 실거래 표본, 권리 분석, 내 기준 계산이 담긴 상세 페이지가 열립니다.</li>
+<li>즉시검토는 원문 3종과 현장 확인 후 입찰 여부를 판단합니다.</li>
+<li>시세보강 후보는 실거래 표본 품질이 낮으므로 직접 비교 시세가 먼저입니다.</li>
+<li>권리검토 후보는 가격 매력이 있어도 점유·임차·폐기물 리스크 해소 전에는 보류합니다.</li>
+</ol>
+<p>원천 분석 파일: <code>reports\20261014_183010_realestate_detail_retry_20261028_20261028_1w\analysis.json</code></p>
+</section>
+
+<script>
+(function () {
+  const root = document.getElementById("browser");
+  if (!root) return;
+  const cards = Array.from(root.querySelectorAll(".mini-card"));
+  const grid = root.querySelector(".card-grid");
+  const more = root.querySelector(".more-button");
+  const empty = root.querySelector(".browser-empty");
+  const countEl = root.querySelector(".result-count");
+  const citySelect = root.querySelector(".city-select");
+  const sortSelect = root.querySelector(".sort-select");
+  const PAGE = 30;
+  const state = { strategy: "all", region: "all", category: "all", city: "all", sort: "rank", limit: PAGE };
+  root.querySelectorAll(".chip.active").forEach(function (c) { state[c.dataset.filter] = c.dataset.value; });
+
+  function matches(card, skip) {
+    const strategies = (card.dataset.strategies || "").split(" ").filter(Boolean);
+    if (skip !== "strategy") {
+      if (state.strategy === "any" && !strategies.length) return false;
+      if (["resale", "rental", "startup"].includes(state.strategy) && !strategies.includes(state.strategy)) return false;
+      if (state.strategy === "reviewed" && card.dataset.reviewed !== "1") return false;
+    }
+    if (skip !== "region" && state.region !== "all" && card.dataset.region !== state.region) return false;
+    if (skip !== "region" && state.region === "gyeonggi" && state.city !== "all" && card.dataset.city !== state.city) return false;
+    if (skip !== "category" && state.category !== "all" && card.dataset.category !== state.category) return false;
+    return true;
+  }
+  function num(card, key) { return parseFloat(card.dataset[key] || "0"); }
+  function sortKey(card) {
+    if (state.sort === "bid") return [card.dataset.bid, 0];
+    if (state.sort === "dist") return [num(card, "dist"), -num(card, "score")];
+    if (state.sort === "score") return [-num(card, "score"), 0];
+    if (state.strategy === "resale") return [-num(card, "net"), num(card, "dist")];
+    if (state.strategy === "rental") return [-num(card, "yield"), num(card, "dist")];
+    if (state.strategy === "startup") return [num(card, "dist"), -num(card, "score")];
+    if (state.strategy === "reviewed") return [num(card, "verdict"), num(card, "dist")];
+    return [0, 0];
+  }
+  function cmp(a, b) {
+    const ka = sortKey(a), kb = sortKey(b);
+    for (let i = 0; i < ka.length; i++) { if (ka[i] < kb[i]) return -1; if (ka[i] > kb[i]) return 1; }
+    return cards.indexOf(a) - cards.indexOf(b);
+  }
+  function render() {
+    const visible = cards.filter(function (c) { return matches(c); }).sort(cmp);
+    cards.forEach(function (c) { c.hidden = true; });
+    visible.forEach(function (c, i) { grid.appendChild(c); c.hidden = i >= state.limit; });
+    countEl.textContent = visible.length.toLocaleString() + "건";
+    more.hidden = visible.length <= state.limit;
+    empty.hidden = visible.length > 0;
+    root.querySelectorAll(".chip").forEach(function (chip) {
+      const group = chip.dataset.filter, value = chip.dataset.value;
+      const saved = state[group];
+      state[group] = value;
+      const n = cards.filter(function (c) { return matches(c); }).length;
+      state[group] = saved;
+      chip.querySelector("span").textContent = n.toLocaleString();
+      chip.classList.toggle("active", saved === value);
+    });
+    if (citySelect) citySelect.hidden = state.region !== "gyeonggi";
+  }
+  root.addEventListener("click", function (event) {
+    const chip = event.target.closest(".chip");
+    if (chip) {
+      state[chip.dataset.filter] = chip.dataset.value;
+      if (chip.dataset.filter === "region") { state.city = "all"; if (citySelect) citySelect.value = "all"; }
+      state.limit = PAGE;
+      render();
+      return;
+    }
+    if (event.target === more) { state.limit += PAGE; render(); }
+  });
+  root.addEventListener("change", function (event) {
+    const key = event.target.dataset.filterSelect;
+    if (!key) return;
+    state[key] = event.target.value;
+    state.limit = PAGE;
+    render();
+  });
+  render();
+})();
+</script>
+
+
+<script>
+document.addEventListener("click", function (event) {
+  const regionButton = event.target.closest("[data-region-target]");
+  if (regionButton) {
+    const root = regionButton.closest(".category-tabs");
+    if (!root) return;
+    root.querySelectorAll(".region-button").forEach(function (item) {
+      item.classList.toggle("active", item === regionButton);
+      item.setAttribute("aria-selected", item === regionButton ? "true" : "false");
+    });
+    root.querySelectorAll(".region-view").forEach(function (panel) {
+      const active = panel.id === regionButton.dataset.regionTarget;
+      panel.classList.toggle("active", active);
+      panel.hidden = !active;
+    });
+    return;
+  }
+
+  const cityButton = event.target.closest("[data-city-target]");
+  if (cityButton) {
+    const regionView = cityButton.closest(".region-view");
+    if (!regionView) return;
+    regionView.querySelectorAll(".city-button").forEach(function (item) {
+      item.classList.toggle("active", item === cityButton);
+      item.setAttribute("aria-selected", item === cityButton ? "true" : "false");
+    });
+    regionView.querySelectorAll(".city-view").forEach(function (panel) {
+      const active = panel.id === cityButton.dataset.cityTarget;
+      panel.classList.toggle("active", active);
+      panel.hidden = !active;
+    });
+    return;
+  }
+
+  const tabButton = event.target.closest("[data-tab-target]");
+  if (!tabButton) return;
+  const scope = tabButton.closest(".category-scope");
+  if (!scope) return;
+  scope.querySelectorAll(".tab-button").forEach(function (item) {
+    item.classList.toggle("active", item === tabButton);
+    item.setAttribute("aria-selected", item === tabButton ? "true" : "false");
+  });
+  scope.querySelectorAll(".tab-panel").forEach(function (panel) {
+    const active = panel.id === tabButton.dataset.tabTarget;
+    panel.classList.toggle("active", active);
+    panel.hidden = !active;
+  });
+});
+</script>
+
+</main>
+</body>
+</html>
